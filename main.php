@@ -21,7 +21,7 @@
                                    </div>
                               </div>
                               <div class="form">
-                                   <form action="#" method="post" class="login-form bg-dark-alpha p-5 bg-light">
+                                   <form action="login.php" method="post" class="login-form bg-dark-alpha p-5 bg-light">
                                         <div class="form-group">
                                              <label for="">Direccion de Email</label>
                                              <input type="text" name="username" class="form-control form-control-lg" >
