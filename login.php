@@ -2,28 +2,34 @@
 
 require_once("Config/Autoload.php");
 
+use Repositories\UserRepository as UserRepository;
 Use Models\User as User;
 
+$userRepository = new UserRepository();
+$userRepository = $userRepository->GetAll();
 $error;
 
 if($_POST){
 	$userName = $_POST['username'];
 	$password = $_POST['password'];
+	$count = 0;
 
-	if(($userName == 'test') && ($password == '123')){
+	foreach($userRepository as $user){
+		if(($user -> getEmail() == $email) && ($user -> getPassword() == $password)){
 
-        session_start();
+			$count = 1;
+        	session_start();
 
-		$loggedUser = new User();
-		$loggedUser->setEmail($userName);
-		$loggedUser->setPassword($password);
+			$loggedUser = new User();
+			$loggedUser->setEmail($userName);
+			$loggedUser->setPassword($password);
 
-		$_SESSION["loggedUser"] = $loggedUser;
+			$_SESSION["loggedUser"] = $loggedUser;
 
-		header ("location:nav.php");
-
-		
-	}else{
+			header ("location:nav.php");
+		}
+	}
+	if ($count == 0){
         $error = 'Nombre de usuario/constraseña incorrecto';
         header ("location: main.php");
 	}
