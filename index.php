@@ -22,6 +22,12 @@
                               </div>
                               <div class="form">
                                    <form action="login.php" method="post" class="login-form bg-dark-alpha p-5 bg-light">
+                                   <?php
+                                         if(isset($_GET['error']))
+                                             echo '<p class="alert-danger">Usuario y/o Contraseña incorrecto</p>';
+                                        if(isset($_GET['error-data']))
+                                             echo '<p class="alert-danger">Error en el envio de datos</p>'; 
+                                   ?>
                                         <div class="form-group">
                                              <label for="">Direccion de Email</label>
                                              <input type="text" name="username" class="form-control form-control-lg" >

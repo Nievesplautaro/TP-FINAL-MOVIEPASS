@@ -1,4 +1,6 @@
 <?php
+     
+
      require_once("Config/Autoload.php");
      Use Model\User as User;
 
@@ -13,16 +15,25 @@
      include('header.php');
 ?>
 
-<nav class="navbar navbar-expand-lg  navbar-dark bg-dark">
-     <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-               <a class="nav-link" href="#">Listar Libros</a>
-          </li>
-          <li class="nav-item">
-               <a class="nav-link" href="#">Agregar Libro</a>
-          </li>
-          <li class="nav-item">
-               <a class="nav-link" href="logout.php">Cerrar sesión</a>
-          </li>
-     </ul>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">MoviePass</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="menu.php">Inicio</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="catalogo.php">Catalogo</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="reserva.php">Reserva</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="logout.php">Cerrar Sesion</a>
+      </li>
+    </ul>
+  </div>
 </nav>
