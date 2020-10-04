@@ -23,7 +23,7 @@
                                    ?>
                                         <div class="form-group">
                                              <label for="">Direccion de Email</label>
-                                             <input type="text" name="username" class="form-control form-control-lg" >
+                                             <input type="text" name="email" class="form-control form-control-lg" >
                                         </div>
                                         <div class="form-group">
                                              <label for="">Contraseña</label>

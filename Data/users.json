@@ -1,18 +1,18 @@
 [
     {
-        "user": "test",
-        "pass": "123"
+        "user": "test@hotmail.com",
+        "pass": "labo4tn"
     },
     {
         "user": "a@a.a",
-        "pass": "aaa"
+        "pass": "labo4tn"
     },
     {
         "user": "fakeEmail@email.com",
-        "pass": "123"
+        "pass": "labo4tn"
     },
     {
         "user": "123@123.123",
-        "pass": "123"
+        "pass": "labo4tn"
     }
 ]

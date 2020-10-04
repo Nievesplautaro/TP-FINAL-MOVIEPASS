@@ -11,7 +11,7 @@ $userList = $userRepository->GetAll();
 var_dump($userList);
 
 if($_POST){
-	$userName = $_POST['username'];
+	$userName = $_POST['email'];
 	$password = $_POST['password'];
 	$count = 0;
 
