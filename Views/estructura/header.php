@@ -8,8 +8,6 @@
      <link href='https://fonts.googleapis.com/css?family=Rubik' rel='stylesheet'>
      <!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">-->
 
-
-
      <link rel="stylesheet" href="Style/css/style.css">
      
 
@@ -17,3 +15,10 @@
      <title>Movie Pass</title>
 </head>
 <body>
+<header class="text-center">
+          <div class="cont_header">
+               <div class="logo_header">
+                    <img src="Style/img/MoviePass_w.png" alt="Movie-Pass">
+               </div>
+          </div>
+</header>
