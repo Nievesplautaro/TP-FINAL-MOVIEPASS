@@ -1,5 +1,5 @@
-<?php
-     include('Views/estructura/header.php');
+     <?php
+     //include('Views/estructura/header.php');
      include('Views/estructura/nav.php');
 ?>
 

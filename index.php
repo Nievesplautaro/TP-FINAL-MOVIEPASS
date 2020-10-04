@@ -1,13 +1,6 @@
 <?php
  include('Views/estructura/header.php');
   ?>
-     <header class="text-center">
-          <div class="cont_header">
-               <div class="logo_header">
-                    <img src="Style/img/MoviePass_w.png" alt="Movie-Pass">
-               </div>
-          </div>
-     </header>
      <main class="d-flex align-items-center justify-content-center height-100" >
           <div class="content">
                <div class="container">
