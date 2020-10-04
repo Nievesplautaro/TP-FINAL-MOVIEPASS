@@ -4,56 +4,135 @@ namespace Models;
 
     class Movie{
 
-    private $name;
-    private $director;
-    private $genre;
-    private $lenght;
+    private $popularity;
+    private $vote_count;
+    private $poster_path;
+    private $backdrop_path;
+    private $original_language;
+    private $id;
+    private $title;
+    private $poster_path_ids;
+    private $vote_average;
+    private $overview;
+    private $release_date;
 
     
-    public function getName()
+    public function getPopularity()
     {
-        return $this->name;
+        return $this->popularity;
     }
 
-    public function setName($name)
+    public function setPopularity($popularity)
     {
-        $this->name = $name;
+        $this->popularity = $popularity;
 
         return $this;
     }
 
-    public function getDirector()
+    public function getVote_count()
     {
-        return $this->director;
+        return $this->vote_count;
     }
 
-    public function setDirector($director)
+    public function setVote_count($vote_count)
     {
-        $this->director = $director;
+        $this->vote_count = $vote_count;
 
         return $this;
     }
 
-    public function getGenre()
+    public function getPoster_path()
     {
-        return $this->genre;
+        return $this->poster_path;
     }
 
-    public function setGenre($genre)
+    public function setPoster_path($poster_path)
     {
-        $this->genre = $genre;
+        $this->poster_path = $poster_path;
 
         return $this;
     }
 
-    public function getLenght()
+    public function getId()
     {
-        return $this->lenght;
+        return $this->id;
     }
 
-    public function setLenght($lenght)
+    public function setId($id)
     {
-        $this->lenght = $lenght;
+        $this->id = $id;
+
+        return $this;
+    }
+
+    public function getBackdrop_path()
+    {
+        return $this->backdrop_path;
+    }
+
+    public function setBackdrop_path($backdrop_path)
+    {
+        $this->backdrop_path = $backdrop_path;
+
+        return $this;
+    }
+
+    public function getOriginal_language()
+    {
+        return $this->original_language;
+    }
+
+    public function setOriginal_language($original_language)
+    {
+        $this->original_language = $original_language;
+
+        return $this;
+    }
+
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    public function setTitle($title)
+    {
+        $this->title = $title;
+
+        return $this;
+    }
+
+    public function getVote_average()
+    {
+        return $this->vote_average;
+    }
+
+    public function setVote_average($vote_average)
+    {
+        $this->vote_average = $vote_average;
+
+        return $this;
+    }
+
+    public function getOverview()
+    {
+        return $this->overview;
+    }
+
+    public function setOverview($overview)
+    {
+        $this->overview = $overview;
+
+        return $this;
+    }
+
+    public function getRelease_date()
+    {
+        return $this->release_date;
+    }
+
+    public function setRelease_date($release_date)
+    {
+        $this->release_date = $release_date;
 
         return $this;
     }
