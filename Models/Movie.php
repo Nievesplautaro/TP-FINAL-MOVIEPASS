@@ -7,15 +7,28 @@ namespace Models;
     private $popularity;
     private $vote_count;
     private $poster_path;
+    private $id;
     private $backdrop_path;
     private $original_language;
-    private $id;
+    private $genre_ids;
     private $title;
-    private $poster_path_ids;
     private $vote_average;
     private $overview;
     private $release_date;
 
+    public function __construct($popularity,$vote_count,$poster_path,$id,$backdrop_path,$original_language,$genre_ids,$title,$vote_average,$overview,$release_date){
+        $this->popularity = $popularity;
+        $this->vote_count = $vote_count;
+        $this->poster_path = $poster_path;
+        $this->id = $id;
+        $this->backdrop_path = $backdrop_path;
+        $this->original_language = $original_language;
+        $this->vote_average = $vote_average;
+        $this->overview = $overview;
+        $this->release_date = $release_date;
+        $this->genre_ids = $genre_ids;
+        $this->title = $title;
+    }
     
     public function getPopularity()
     {

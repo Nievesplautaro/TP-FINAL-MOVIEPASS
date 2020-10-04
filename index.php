@@ -16,7 +16,7 @@
                               <div class="form">
                                    <form action="login.php" method="post" class="login-form bg-dark-alpha p-5 bg-light">
                                    <?php
-                                         if(isset($_GET['error']))
+                                        if(isset($_GET['error']))
                                              echo '<p class="alert-danger">Usuario y/o Contraseña incorrecto</p>';
                                         if(isset($_GET['error-data']))
                                              echo '<p class="alert-danger">Error en el envio de datos</p>'; 
