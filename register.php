@@ -14,7 +14,7 @@
                                    </div>
                               </div>
                               <div class="form">
-                                   <form action="login.php" method="post" class="login-form bg-dark-alpha p-5 bg-light">
+                                   <form action="register-action.php" method="post" class="login-form bg-dark-alpha p-5 bg-light">
                                    <?php
                                         if(isset($_GET['error']))
                                              echo '<p class="alert-danger">Usuario y/o Contraseña incorrecto</p>';
@@ -30,8 +30,7 @@
                                              <input type="password" name="password" class="form-control form-control-lg" >
                                         </div>
                                         <div class="btn_cont">
-                                        <button class="btn btn-primary btn-block btn-lg" type="submit">Login</button>
-                                        <button class="btn btn-primary btn-block btn-lg" type="button" onclick="location.href='register.php'">Register</button>
+                                        <button class="btn btn-primary btn-block btn-lg" type="submit">Register</button>
                                         </div>
                                    </form>
                               </div>

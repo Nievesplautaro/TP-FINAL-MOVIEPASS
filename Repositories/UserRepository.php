@@ -14,13 +14,33 @@
 
     public function Add(User $user){
         $this->RetrieveData();
-        array_push($this->userList,$user);
+        if ($this->CompareEmail($user->getEmail()) == 'false'){
+            array_push($this->userList,$user);
+            echo '<script language="javascript">alert("' . 'You have been successfully registered' . '")</script>';
+        }else{
+            echo '<script language="javascript">alert("' . 'Email Already In Use' . '")</script>';
+        }      
         $this->SaveData();
     }
 
     public function GetAll(){
         $this->RetrieveData();
         return $this->userList;
+    }
+
+    public function CompareEmail($email){
+        $count = 0;
+        foreach ($userList as $user){
+            if ($user->getEmail() == $email){
+                $count = 1;
+            }
+        }
+        if ($count == 1){
+            return true;
+        }else{
+            return false;
+        }
+
     }
 
     private function SaveData(){

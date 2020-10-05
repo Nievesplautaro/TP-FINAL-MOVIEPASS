@@ -233,5 +233,19 @@ margin: 0;
     margin-right: 5px;
 }
 
+/* -------------------- DASHBOARD ------------------------------- */
 
-/*  */
+/*falta alinear las imagenes y que los cuadros sean del mismo tamaño*/
+
+.card{
+    margin: 1rem;
+    width: 20rem;
+    height: 45rem;
+    background-color: violet;
+    border: 1.5rem ridge burlywood;
+    display: inline-block;
+}
+.txtContainer{
+    margin: 0;
+    text-align: center;
+}

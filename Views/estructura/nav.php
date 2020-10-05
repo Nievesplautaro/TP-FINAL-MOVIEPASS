@@ -17,16 +17,16 @@
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
       <li class="nav-item active">
-        <a class="nav-link" href="menu.php">Inicio</a>
+        <a class="nav-link" href="menu.php">Menu</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="cartelera.php">Cartelera</a>
+        <a class="nav-link" href="dashboard.php">Dashboard</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="reserva.php">Reserva</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="logout.php">Cerrar Sesion</a>
+        <a class="nav-link" href="logout.php">Logout</a>
       </li>
     </ul>
   </div>
