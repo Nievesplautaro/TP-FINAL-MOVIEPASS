@@ -20,7 +20,7 @@
         <a class="nav-link" href="menu.php">Inicio</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="catalogo.php">Catalogo</a>
+        <a class="nav-link" href="cartelera.php">Cartelera</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="reserva.php">Reserva</a>
