@@ -18,6 +18,7 @@ if($_POST){
     $newUserRepository = new UserRepository();
     $newUserRepository->Add($newUser);
 
+    sleep(3);
 	header ("location:index.php");
 
 }else{

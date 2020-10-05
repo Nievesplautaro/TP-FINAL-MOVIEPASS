@@ -14,11 +14,11 @@
 
     public function Add(User $user){
         $this->RetrieveData();
-        if ($this->CompareEmail($user->getEmail()) == 'false'){
+        if ($this->CompareEmail($user->getEmail()) == "false"){
             array_push($this->userList,$user);
-            echo '<script language="javascript">alert("' . 'You have been successfully registered' . '")</script>';
+            echo '<script language="javascript">alert("You Have Been Registered Successfully");</script>';
         }else{
-            echo '<script language="javascript">alert("' . 'Email Already In Use' . '")</script>';
+            echo '<script language="javascript">alert("Email Already In Use");</script>';
         }      
         $this->SaveData();
     }
