@@ -1,9 +1,9 @@
 <?php
-    namespace Repositories;
+    namespace DAO;
 
     use Models\Movie as Movie;
 
-    class ApiRepository{
+    class RequestDAO{
         private $movieList = array();
         private  $genreList = array();
         //Cuando se crea el repositorio se carga el array movieList con las peliculas del nowPlaying y el array genres con los generos y sus id.

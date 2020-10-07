@@ -4,13 +4,13 @@
      include('Views/estructura/nav.php');
      require_once("Config/Autoload.php");
 
-     use Repositories\ApiRepository as ApiRepository;
+     use DAO\RequestDAO as RequestDAO;
      use Models\Movie as Movie;
 
 
-     $apiRepository = new ApiRepository();
+     $apiDAO = new RequestDAO();
      $movieList = array();
-     $movieList = $apiRepository->GetAllMovies();
+     $movieList = $apiDAO->GetAllMovies();
 
     //var_dump($list);
 

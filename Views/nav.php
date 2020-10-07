@@ -23,7 +23,7 @@
         <a class="nav-link" href="dashboard.php">Dashboard</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="reserva.php">Reserva</a>
+        <a class="nav-link" href="reservation.php">Reserva</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="logout.php">Logout</a>

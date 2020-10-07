@@ -2,10 +2,10 @@
     require_once('Config/Autoload.php');
     
     
-    use Repositories\ApiRepository as ApiRepository;
+    use DAO\RequestDAO as RequestDAO;
 
 
-    $apiRepository = new ApiRepository();
+    $apiRepository = new RequestDAO();
     $list = array();
     $list = $apiRepository->GetAllMovies();
 

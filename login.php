@@ -2,10 +2,10 @@
 
 require_once("Config/Autoload.php");
 
-use Repositories\UserRepository as UserRepository;
+use DAO\UserDAO as UserDAO;
 Use Models\User as User;
 
-$userRepository = new UserRepository();
+$userRepository = new UserDAO();
 $userList = $userRepository->GetAll();
 
 var_dump($userList);

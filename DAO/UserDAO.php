@@ -1,9 +1,9 @@
 <?php
-    namespace Repositories;
+    namespace DAO;
 
     use Models\User as User;
 
-    class UserRepository{
+    class UserDAO{
 
     private $userList = array();
     private $fileName;

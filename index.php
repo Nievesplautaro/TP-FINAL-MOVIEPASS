@@ -1,46 +1,20 @@
 <?php
- include('Views/estructura/header.php');
-  ?>
-     <main class="d-flex align-items-center justify-content-center height-100" >
-          <div class="content">
-               <div class="container">
-                    <div class="grid"> 
-                         <div class="form_login">
-                              <div class= "logo_head"> 
-                                   <div class="media">
-                                        <a href="">
-                                        <img src="Style/img/favicon.png" alt="Logo">
-                                        </a>
-                                   </div>
-                              </div>
-                              <div class="form">
-                                   <form action="login.php" method="post" class="login-form bg-dark-alpha p-5 bg-light">
-                                   <?php
-                                        if(isset($_GET['error']))
-                                             echo '<p class="alert-danger">Usuario y/o Contraseña incorrecto</p>';
-                                        if(isset($_GET['error-data']))
-                                             echo '<p class="alert-danger">Error en el envio de datos</p>'; 
-                                   ?>
-                                        <div class="form-group">
-                                             <label for="">Email</label>
-                                             <input type="text" name="email" class="form-control form-control-lg" >
-                                        </div>
-                                        <div class="form-group">
-                                             <label for="">Password</label>
-                                             <input type="password" name="password" class="form-control form-control-lg" >
-                                        </div>
-                                        <div class="btn_cont">
-                                        <button class="btn btn-primary btn-block btn-lg" type="submit">Login</button>
-                                        <button class="btn btn-primary btn-block btn-lg" type="button" onclick="location.href='register.php'">Register</button>
-                                        </div>
-                                   </form>
-                              </div>
-                         </div>
-                    </div>
-               </div>
-          </div>
-     </main>
+ 
+     require ("Config/Autoload.php");
+     require ("Config/Config.php");
 
-<?php
- include('Views/estructura/footer.php')
-?>
+     use Config\Autoload as Autoload;
+     use Config\Router as Router;
+     use Config\Request as Request;
+
+     Autoload::start();
+
+	session_start();
+
+	require_once(VIEWS_PATH."header.php");
+
+	Router::Route(new Request());
+
+	require_once(VIEWS_PATH."footer.php");
+
+  ?>

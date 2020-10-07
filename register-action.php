@@ -2,7 +2,7 @@
 
 require_once("Config/Autoload.php");
 
-use Repositories\UserRepository as UserRepository;
+use DAO\UserDAO as UserDAO;
 Use Models\User as User;
 
 
@@ -15,7 +15,7 @@ if($_POST){
     $newUser->setEmail($userName);
     $newUser->setPassword($password);
 
-    $newUserRepository = new UserRepository();
+    $newUserRepository = new UserDAO();
     $newUserRepository->Add($newUser);
 
     sleep(3);
