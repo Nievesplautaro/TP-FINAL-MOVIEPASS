@@ -12,7 +12,7 @@
                               </div>
                               <div class="form">
                                    
-                                   <form action="<?php echo FRONT_ROOT ?>User/Login" method="POST" class="login-form bg-dark-alpha p-5 bg-light">
+                                   <form action="<?php echo FRONT_ROOT ?>User/login" method="POST" class="login-form bg-dark-alpha p-5 bg-light">
                                    <?php
                                         if(isset($_GET['error']))
                                              echo '<p class="alert-danger">Usuario y/o Contraseña incorrecto</p>';

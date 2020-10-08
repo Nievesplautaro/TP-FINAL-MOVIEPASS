@@ -18,7 +18,7 @@
         }
 
 
-        public function Login($email, $password)
+        public function login($email, $password)
         {
             $userList = $userDAO->GetAll();
             $userName = $email;

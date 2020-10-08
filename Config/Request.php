@@ -14,7 +14,7 @@
             $urlArray = explode("/", $url);
          
             $urlArray = array_filter($urlArray);
-
+            
             if(empty($urlArray))
                 $this->controller = "Home";            
             else
