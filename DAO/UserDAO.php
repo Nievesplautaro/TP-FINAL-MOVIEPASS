@@ -8,18 +8,15 @@
     private $userList = array();
     private $fileName;
 
-    public function __construct(){
-        $this->fileName = dirname (__DIR__)."/Data/users.json";
-    }
 
     public function Add(User $user){
         $this->RetrieveData();
-        if ($this->CompareEmail($user->getEmail()) == "false"){
-            array_push($this->userList,$user);
-            echo '<script language="javascript">alert("You Have Been Registered Successfully");</script>';
-        }else{
-            echo '<script language="javascript">alert("Email Already In Use");</script>';
-        }      
+        foreach ($this->GetAll() as $value){
+            if ($user->getEmail() == $value->getEmail()){
+                return 0;
+            }
+        }
+        array_push($this->userList,$user);    
         $this->SaveData();
     }
 
@@ -29,17 +26,13 @@
     }
 
     public function CompareEmail($email){
-        $count = 0;
+        $userList= $this->GetAll();
         foreach ($userList as $user){
             if ($user->getEmail() == $email){
-                $count = 1;
+                return true;
             }
         }
-        if ($count == 1){
-            return true;
-        }else{
-            return false;
-        }
+        return false;
 
     }
 
@@ -53,15 +46,15 @@
         }
 
         $jsonContent = json_encode($arrayToEncode, JSON_PRETTY_PRINT);
-        file_put_contents($this->fileName, $jsonContent);
+        file_put_contents('Data/users.json', $jsonContent);
     }
 
     private function RetrieveData(){
         
         $this->userList = array();
 
-        if(file_exists($this->fileName)){
-            $jsonContent = file_get_contents($this->fileName);
+        if(file_exists('Data/users.json')){
+            $jsonContent = file_get_contents('Data/users.json');
             $arrayToDecode = ($jsonContent) ? json_decode($jsonContent,true) : array();
             
             foreach($arrayToDecode as $valuesArray){

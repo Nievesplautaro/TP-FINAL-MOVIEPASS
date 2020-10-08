@@ -1,6 +1,8 @@
-     <?php
+<?php
      //include('Views/header.php');
-     include('Views/nav.php');
+     //require_once(VIEWS_PATH."header.php");
+     require_once(VIEWS_PATH."nav.php");
+     //include('Views/nav.php');
 ?>
 
 
@@ -9,5 +11,6 @@
 
 
 <?php
-     include('Views/footer.php');
+    // require_once(VIEWS_PATH."footer.php");
+     //include('Views/footer.php');
 ?>

@@ -1,18 +1,3 @@
-<?php
-     require_once("Config/Autoload.php");
-     Use Model\User as User;
-
-     
-
-     if (isset($_SESSION["loggedUser"])){
-          $loggedUser = $_SESSION["loggedUser"];
-     }
-     else{
-          header("location:index.php");
-     }
-     include('header.php');
-?>
-
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
@@ -26,7 +11,7 @@
         <a class="nav-link" href="reservation.php">Reserva</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="logout.php">Logout</a>
+        <a class="nav-link" href="<?php echo FRONT_ROOT ?>User/logout">Logout</a>
       </li>
     </ul>
   </div>

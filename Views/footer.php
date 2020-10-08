@@ -1,12 +1,12 @@
 <footer class="footer">
     <div class="sociales">
         <ul>
-            <li><a href="https://www.facebook.com/" target="_blank"><img src="Style/img/facebook.png" alt=""></a></li>
-            <li><a href="https://instagram.com/" target="_blank"><img src="Style/img/instagram.png" alt=""></a></li>
-            <li><a href="https://open.spotify.com/user/" target="_blank"><img src="Style/img/spotify.png" alt=""></a></li>
-            <li><a href="https://www.youtube.com/user/" target="_blank"><img src="Style/img/youtube.png" alt=""></a></li>
-            <li><a href="https://twitter.com/" target="_blank"><img src="Style/img/twitter.png" alt=""></a></li>            
-            <li><a href="https://www.google.com//" target="_blank"><img src="Style/img/google-plus.png" alt=""></a></li>            
+            <li><a href="https://www.facebook.com/" target="_blank"><img src="<?php echo IMG_PATH ?>facebook.png" alt=""></a></li>
+            <li><a href="https://instagram.com/" target="_blank"><img src="<?php echo IMG_PATH ?>instagram.png" alt=""></a></li>
+            <li><a href="https://open.spotify.com/user/" target="_blank"><img src="<?php echo IMG_PATH ?>spotify.png" alt=""></a></li>
+            <li><a href="https://www.youtube.com/user/" target="_blank"><img src="<?php echo IMG_PATH ?>youtube.png" alt=""></a></li>
+            <li><a href="https://twitter.com/" target="_blank"><img src="<?php echo IMG_PATH ?>twitter.png" alt=""></a></li>            
+            <li><a href="https://www.google.com//" target="_blank"><img src="<?php echo IMG_PATH ?>google-plus.png" alt=""></a></li>            
         </ul>        
     </div>
     <div class="texto">                
@@ -18,7 +18,7 @@
     </div>
     <div class="texto sello">
         <a target="_blank" href="#">  
-            <img src="Style/img/MoviePass_b.png" alt="BUENARDO">                 
+            <img src="<?php echo IMG_PATH ?>MoviePass_b.png" alt="BUENARDO">                 
             B.T.P.V. DEVELOPENT - Web Design Buenardo
         </a>
     </div> 

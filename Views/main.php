@@ -6,12 +6,11 @@
                               <div class= "logo_head"> 
                                    <div class="media">
                                         <a href="">
-                                        <img src="Style/img/favicon.png" alt="Logo">
+                                        <img src="<?php echo IMG_PATH ?>favicon.png" alt="Logo">
                                         </a>
                                    </div>
                               </div>
-                              <div class="form">
-                                   
+                              <div class="form">                 
                                    <form action="<?php echo FRONT_ROOT ?>User/login" method="POST" class="login-form bg-dark-alpha p-5 bg-light">
                                    <?php
                                         if(isset($_GET['error']))
@@ -29,7 +28,11 @@
                                         </div>
                                         <div class="btn_cont">
                                         <button class="btn btn-primary btn-block btn-lg" type="submit">Login</button>
-                                        <button class="btn btn-primary btn-block btn-lg" type="button" onclick="location.href='register.php'">Register</button>
+                                        </div>
+                                   </form>
+                                   <form action="<?php echo FRONT_ROOT ?>User/ShowRegisterView" method="class="login-form bg-dark-alpha p-5 bg-light">
+                                   <div class="btn_cont">
+                                        <button class="btn btn-primary btn-block btn-lg" type="submit">Register</button>
                                         </div>
                                    </form>
                               </div>

@@ -14,5 +14,13 @@
     {
         "user": "123@123.123",
         "pass": "labo4tn"
+    },
+    {
+        "user": "test@test.test",
+        "pass": "testingpassword123"
+    },
+    {
+        "user": "cacatua@123.com",
+        "pass": "123456adivinamelapass"
     }
 ]
