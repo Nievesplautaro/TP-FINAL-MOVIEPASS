@@ -2,7 +2,7 @@
      require_once("Config/Autoload.php");
      Use Model\User as User;
 
-     session_start();
+     
 
      if (isset($_SESSION["loggedUser"])){
           $loggedUser = $_SESSION["loggedUser"];

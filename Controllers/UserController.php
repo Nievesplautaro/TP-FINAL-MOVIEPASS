@@ -9,7 +9,7 @@
         private $userDAO;
         
         public function __construct(){
-            $this->$userDAO = new UserDAO();
+            $this->userDAO = new UserDAO();
         }
 
         public function ShowMenuView($message = "")
@@ -20,7 +20,7 @@
 
         public function login($email, $password)
         {
-            $userList = $userDAO->GetAll();
+            $userList = $this->userDAO->GetAll();
             $userName = $email;
             $count = 0;
 
@@ -28,7 +28,7 @@
                 if(($user -> getEmail() == $userName) && ($user -> getPassword() == $password)){
 
                     $count = 1;
-                    session_start();
+                    
 
                     $loggedUser = new User();
                     $loggedUser->setEmail($userName);
@@ -36,12 +36,12 @@
 
                     $_SESSION["loggedUser"] = $loggedUser;
                     
-                    $this->$ShowMenuView;
+                    $this->ShowMenuView();
                     //require_once(VIEWS_PATH."menu.php");
                 }
             }
             if ($count == 0){
-                $this->showMenuView("Email or Password Invalid.");
+                $this->ShowMenuView("Email or Password Invalid.");
                 //require_once(VIEWS_PATH."main.php?error");
             }
         }        

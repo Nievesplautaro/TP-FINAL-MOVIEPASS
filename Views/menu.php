@@ -1,6 +1,6 @@
      <?php
-     //include('Views/estructura/header.php');
-     include('Views/estructura/nav.php');
+     //include('Views/header.php');
+     include('Views/nav.php');
 ?>
 
 
@@ -9,5 +9,5 @@
 
 
 <?php
-     include('Views/estructura/footer.php');
+     include('Views/footer.php');
 ?>
