@@ -30,11 +30,18 @@
                                         <button class="btn btn-primary btn-block btn-lg" type="submit">Login</button>
                                         </div>
                                    </form>
-                                   <form action="<?php echo FRONT_ROOT ?>User/ShowRegisterView" method="class="login-form bg-dark-alpha p-5 bg-light">
+                                   <a href="<?php echo FRONT_ROOT ?>User/ShowRegisterView" class="login-form bg-dark-alpha p-5 bg-light">
                                    <div class="btn_cont">
+                                        <!-- <div class="btn btn-primary btn-block btn-lg">Register</div> -->
                                         <button class="btn btn-primary btn-block btn-lg" type="submit">Register</button>
-                                        </div>
-                                   </form>
+                                   </div>
+                                   </a>
+                                   <a href="<?php echo FRONT_ROOT ?>Admin/ShowAdminView" class="login-form bg-dark-alpha p-5 bg-light">
+                                   <div class="btn_cont">
+                                        <!-- <div class="btn btn-primary btn-block btn-lg">Register</div> -->
+                                        <button class="btn btn-primary btn-block btn-lg" type="submit">ADMIN</button>
+                                   </div>
+                                   </a>
                               </div>
                          </div>
                     </div>

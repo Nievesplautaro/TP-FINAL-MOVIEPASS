@@ -1,9 +1,8 @@
-<!-- SE COPIPASTEO EL LAYOUT, HAY QUE HACER UN FORMULARIO CON MAS DATOS -->
-     <main class="d-flex align-items-center justify-content-center height-100" >
+<main class="d-flex align-items-center justify-content-center height-100" >
           <div class="content">
                <div class="container">
                     <div class="grid"> 
-                         <div class="form_login register">
+                         <div class="form_login">
                               <div class= "logo_head"> 
                                    <div class="media">
                                         <a href="">

@@ -1,9 +1,8 @@
-<!-- SE COPIPASTEO EL LAYOUT, HAY QUE HACER UN FORMULARIO CON MAS DATOS -->
-     <main class="d-flex align-items-center justify-content-center height-100" >
+<main class="d-flex align-items-center justify-content-center height-100" >
           <div class="content">
                <div class="container">
                     <div class="grid"> 
-                         <div class="form_login register">
+                         <div class="form_login admin">
                               <div class= "logo_head"> 
                                    <div class="media">
                                         <a href="">
@@ -11,8 +10,8 @@
                                         </a>
                                    </div>
                               </div>
-                              <div class="form">
-                                   <form action="<?php echo FRONT_ROOT ?>User/register"  method="post" class="login-form bg-dark-alpha p-5 bg-light">
+                              <div class="form">                 
+                                   <form action="<?php echo FRONT_ROOT ?>Admin/login" method="POST" class="login-form bg-dark-alpha p-5 bg-light">
                                    <?php
                                         if(isset($_GET['error']))
                                              echo '<p class="alert-danger">Usuario y/o Contraseña incorrecto</p>';
@@ -28,7 +27,7 @@
                                              <input type="password" name="password" class="form-control form-control-lg" >
                                         </div>
                                         <div class="btn_cont">
-                                        <button class="btn btn-primary btn-block btn-lg" type="submit">Register</button>
+                                        <button class="btn btn-primary btn-block btn-lg" type="submit">Login</button>
                                         </div>
                                    </form>
                               </div>

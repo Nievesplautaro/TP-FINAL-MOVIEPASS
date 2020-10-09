@@ -3,6 +3,10 @@
     font-family: 'Rubik';
 }
 
+a{
+    text-decoration: none;
+}
+
 img {
     max-width: 100%;
     border-width: 0;
@@ -67,11 +71,17 @@ body{
 .form_login{
     width: 260px;
     padding: 20px 12px;
-    height: 380px;
+    height:450px;
     border: 2px solid #cdcdcd;
     border-radius: 15px;
     margin: auto;
 }
+
+.form_login.admin,
+.form_login.register{
+    height: 350px;
+} 
+
 .logo_head{
     display: flex;
     justify-content: center;
