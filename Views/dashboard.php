@@ -9,8 +9,8 @@
                     echo "<img src='http://image.tmdb.org/t/p/w185".$movie->getPosterPath()."' style='width:15rem; padding-left: 2.5rem; padding-top:1rem;'>";
                     echo "<div class='txtContainer' >
                             <br><b>".$movie->getTitle()."</b></br>
-                            <br>".$movie->getOverview()."</br>
-                          </div>";
+                            <br>".$movie->getOverview()."
+                            </br> </div>";
               echo "</div>";
           }
 ?>
