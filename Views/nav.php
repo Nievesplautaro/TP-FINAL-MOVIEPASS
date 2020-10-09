@@ -5,7 +5,7 @@
         <a class="nav-link" href="menu.php">Menu</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="dashboard.php">Dashboard</a>
+        <a class="nav-link" href="<?php echo FRONT_ROOT?>Dashboard/showMovies">Dashboard</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="reservation.php">Reserva</a>
