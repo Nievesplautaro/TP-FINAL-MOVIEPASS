@@ -9,6 +9,7 @@ namespace Models;
     private $ticketPrice;
     private $address;
     private $capacity;
+    private $show;
     
     public function getName()
     {
@@ -66,6 +67,18 @@ namespace Models;
     public function setCapacity($capacity)
     {
         $this->capacity = $capacity;
+
+        return $this;
+    }
+
+    public function getShow()
+    {
+        return $this->show;
+    }
+
+    public function setShow($show)
+    {
+        $this->show = $show;
 
         return $this;
     }

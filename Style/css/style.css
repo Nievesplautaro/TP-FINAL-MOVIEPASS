@@ -68,6 +68,10 @@ body{
     padding-top: 95px;
 }
 
+.container.menu{
+    padding: 0;
+}
+
 .form_login{
     width: 260px;
     padding: 20px 12px;
@@ -77,10 +81,10 @@ body{
     margin: auto;
 }
 
-.form_login.admin,
+/* .form_login.admin,
 .form_login.register{
     height: 350px;
-} 
+}  */
 
 .logo_head{
     display: flex;
@@ -167,6 +171,54 @@ body{
     border-radius: 5px;
 }
 
+.dash{
+    display: flex;
+}
+
+.dash .narrow{
+    width: 280px;
+    border: 0.2px solid #cbcbcb;
+    border-radius: 12px;
+    padding: 15px 0;
+    margin: 15px;
+}
+
+.dash .narrow .searchBar{
+    display: flex;
+    justify-content: center;
+}
+
+.dash .narrow input {
+    width: calc(100% - 35px);
+    padding: 8px 5px;
+    border: solid 0.5px #cbcbcb;
+    outline: none;
+}
+
+.dash  .movie_list{
+    width: calc(100% - 275px);
+    position: relative;
+    transition: all .3s ease;
+}
+
+.dash .movie_list .catalogo{
+    list-style: none;
+    
+}
+
+.dash .movie_list .catalogo li{
+    transform: translateY(0);
+    opacity: 1;
+    display: inline-block;
+    vertical-align: top;
+    margin: 0 20px;
+    margin-bottom: 50px;
+}
+
+.dash .movie_list .catalogo li:nth-child(1) {
+    transition-delay: 50ms;
+}
+
 
 /* -------------------- FOOTER ------------------------------- */
 
@@ -245,15 +297,27 @@ margin: 0;
 
 /* -------------------- DASHBOARD ------------------------------- */
 
-/*falta alinear las imagenes y que los cuadros sean del mismo tamaño*/
 
 .card{
-    margin: 1rem;
-    width: 20rem;
-    height: 45rem;
-    background-color: violet;
-    border: 1.5rem ridge burlywood;
-    display: inline-block;
+    width: 180px;
+    display: block;
+    border: 0.5px solid #ababab;
+    padding: 5px;
+    border-radius: 5px;
+    border-radius: 2px;
+    box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+}
+
+.card .title{
+    min-height: 55px;
+    display: flex;
+    align-items: center;
+    padding: 0 5px;
+}
+
+.card .title p{
+    margin: 0;
 }
 .txtContainer{
     margin: 0;
