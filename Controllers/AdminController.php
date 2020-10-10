@@ -56,7 +56,7 @@
             }
         }  
         
-        public function register($email, $password){
+        public function register(/* $email, $password */){
             
             $userName = $_POST['email'];
             $password = $_POST['password'];
