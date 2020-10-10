@@ -24,6 +24,7 @@
      public function showMovies(){
           $movieList = array();
           $movieList = $this->dashboardDAO->GetAllMovies();
+          $genreList = $this->dashboardDAO->GetGenres();
           
           require_once(VIEWS_PATH."dashboard.php");
 

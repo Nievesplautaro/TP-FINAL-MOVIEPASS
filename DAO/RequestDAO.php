@@ -2,6 +2,7 @@
     namespace DAO;
 
     use Models\Movie as Movie;
+    use Models\Genre as Genre;
 
     class RequestDAO{
         private $movieList = array();
@@ -28,15 +29,38 @@
                         }
                     } 
                 } 
-            $this->genreList = json_decode(file_get_contents('http://api.themoviedb.org/3/genre/movie/list?api_key=d7de7eee1dd5c6bed7940903c861af62'),true);
+            
+            $genreArray = json_decode(file_get_contents('http://api.themoviedb.org/3/genre/movie/list?api_key=d7de7eee1dd5c6bed7940903c861af62'),true);
+            if($genreArray && $genreArray['genres'] && count($genreArray['genres'])!=0){
+                foreach($genreArray['genres'] as $genre){
+                    if($genre){
+                        $newGenre = new Genre();
+                        $newGenre->setGenreId($genre['id']);
+                        $newGenre->setGenreName($genre['name']);
+                        array_push($this->genreList, $newGenre);
+                    }
+                }
+            }
+            
         }
         private function SetMovies(){
             
         }
-
         
         public function GetAllMovies(){
             return $this->movieList;
+        }
+
+        public function GetGenres(){
+            return $this->genreList;
+        }
+
+        public function GetGenreById($id){
+            foreach($this->genreList as $genre){
+                if($genre->getGenreId() == $id){
+                     return $genre->getGenreName();
+                }
+           }
         }
         
     }
