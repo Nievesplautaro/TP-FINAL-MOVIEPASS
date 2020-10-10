@@ -21,6 +21,11 @@
             <img src="<?php echo IMG_PATH ?>MoviePass_b.png" alt="BUENARDO">                 
             B.T.P.V. DEVELOPENT - Web Design Buenardo
         </a>
+        <a href="<?php echo FRONT_ROOT ?>Admin/ShowAdminView" class="admin">
+            <div class="">
+                LOG AS ADMIN
+            </div>
+        </a>
     </div> 
 </footer>
 </body>

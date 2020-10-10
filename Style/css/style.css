@@ -68,19 +68,23 @@ body{
     padding-top: 95px;
 }
 
+.container.menu{
+    padding: 0;
+}
+
 .form_login{
     width: 260px;
     padding: 20px 12px;
-    height:450px;
+    height:380px;
     border: 2px solid #cdcdcd;
     border-radius: 15px;
     margin: auto;
 }
 
-.form_login.admin,
+/* .form_login.admin,
 .form_login.register{
     height: 350px;
-} 
+}  */
 
 .logo_head{
     display: flex;
@@ -165,6 +169,30 @@ body{
     -webkit-appearance: none;
     -moz-appearance: none;
     border-radius: 5px;
+}
+
+.dash{
+    display: flex;
+}
+
+.dash .narrow{
+    width: 280px;
+    border: 0.2px solid #cbcbcb;
+    border-radius: 12px;
+    padding: 15px 0;
+    display: flex;
+    justify-content: center;
+}
+
+.dash .narrow input {
+    width: calc(100% - 35px);
+    padding: 8px 5px;
+    border: solid 0.5px #cbcbcb;
+    outline: none;
+}
+
+.dash .narrow .movie_list{
+    width: calc(100% - 280px);
 }
 
 
