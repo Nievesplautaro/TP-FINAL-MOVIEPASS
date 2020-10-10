@@ -17,10 +17,10 @@
         {
             require_once(VIEWS_PATH."menuCinema.php");
         }
-        public function ShowCinemaView($message = "")
+/*         public function ShowCinemaView($message = "")
         {
             require_once(VIEWS_PATH."mainCinema.php");
-        }
+        } */
         public function registerCinema($message = "")
         {
             require_once(VIEWS_PATH."registerCinema.php");
@@ -34,7 +34,7 @@
             $ticketPrice = $_POST['ticketPrice'];
             $address = $_POST['address'];
             $capacity = $_POST['capacity'];
-            $show = $_POST['show'];
+            /* $show = $_POST['show']; */
 
             $newCinema = new Cinema();
         
@@ -43,8 +43,8 @@
             $newCinema->setTicketPrice($ticketPrice);
             $newCinema->setAddress($address);
             $newCinema->setCapacity($capacity);
-            $newCinema->setShow($show);
-        
+            /* $newCinema->setShow($show); */
+            $newCinema->setShow(array());
             $newCinemaRepository = new CinemaDAO();
             $valid = $newCinemaRepository->Add($newCinema);
         
