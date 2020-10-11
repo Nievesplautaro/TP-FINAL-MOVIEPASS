@@ -2,7 +2,7 @@
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
       <li class="nav-item active">
-        <a class="nav-link" href="CREAR_RUTA_CINES">Cine</a>
+        <a class="nav-link" href="<?php echo FRONT_ROOT ?>Cinema/ShowMenuView">Cine</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="RUTA_FUNCIONES_ADMNI">Admin Managment</a>

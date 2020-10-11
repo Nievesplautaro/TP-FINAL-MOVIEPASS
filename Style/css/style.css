@@ -46,6 +46,10 @@ header{
     width: 100%;
 }
 
+#navbarNav .navbar-nav.center-content{
+    justify-content: space-around;
+}
+
 #navbarNav .navbar-nav{
     DISPLAY: flex;
     JUSTIFY-CONTENT: space-between;
