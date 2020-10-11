@@ -34,6 +34,16 @@
           //return $movieList;
      }
 
+     public function showMoviesByGenre($genre){
+          $movieList = array();
+          $movieList = $this->dashboardDAO->GetMoviesByGenre($genre);
+          $genreList = $this->dashboardDAO->GetGenres();
+          
+          require_once(VIEWS_PATH."dashboard.php");
+          
+          
+     }
+
 
 
     }
