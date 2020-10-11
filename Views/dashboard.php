@@ -10,10 +10,19 @@
                     <input type="search" placeholder="Que buscas?...">
                </div>
                <div class="filters">
+                    <div class="head_title">Genres</div>
                     <ul class="filter_by">
-                         <li class="categoria">
-                              <a href="">ACA VAN LOS ID PARA PEGARLE A LA API POR CATEGORIA</a>
-                         </li>
+                         <?php 
+                              if(!empty($genreList)){
+                                   foreach($genreList as $genre){
+                         ?>
+                                   <li class="categoria">
+                                        <a href="#"><?php echo $genre->getGenreName()?></a>
+                                   </li>
+                         <?php
+                                   }
+                              }
+                         ?>
                     </ul>
                </div>
           </div>
@@ -27,12 +36,12 @@
                                    echo "<div class='title'>
                                         <p><b>".$movie->getTitle()."</b></p>
                                         </div>";
-                                    echo "<br>Genres: ";
+                                    echo "<div class='generos' >Genres: ";
                                     foreach($movie->getGenreIds() as $genreId){
-                                        // recorre todos los id, y ejecuta la funcion del dao, si el id existe, devuelve e imprime el nombre
                                         $genre = $this->dashboardDAO->GetGenreById($genreId);
-                                        echo $genre." ";
+                                        echo $genre." - ";
                                     }
+                                    echo "</div>";     
                              echo "</div>";
                          echo "</li>";
                          }

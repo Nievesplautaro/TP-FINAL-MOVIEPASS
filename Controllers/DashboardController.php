@@ -27,7 +27,6 @@
           $genreList = $this->dashboardDAO->GetGenres();
           
           require_once(VIEWS_PATH."dashboard.php");
-
           
           /*$this->movieListArray = $this->dashboardDAO->GetAllMovies();
           $this->ShowDashboardView();*/
