@@ -14,10 +14,17 @@
                               <div class="form">
                                    <form action="<?php echo FRONT_ROOT ?>User/register"  method="post" class="login-form bg-dark-alpha p-5 bg-light">
                                    <?php
-                                        if(isset($_GET['error']))
-                                             echo '<p class="alert-danger">Usuario y/o Contraseña incorrecto</p>';
-                                        if(isset($_GET['error-data']))
-                                             echo '<p class="alert-danger">Error en el envio de datos</p>'; 
+                                        if(isset($error)){
+                                             switch ($error) {
+                                                  case "invalid":
+                                                       echo "<div class='error' >Ese nombre de usuario ya ha sido registrado</div>";
+                                                       break;
+                                                  case "02":
+                                                       echo "<div class='error' >Error en el envio de datos</div>";
+                                                       break;
+                                                  }
+                                        }
+
                                    ?>
                                         <div class="form-group">
                                              <label for="">Email</label>

@@ -75,16 +75,23 @@ body{
 .form_login{
     width: 260px;
     padding: 20px 12px;
-    height: 450px;
+    height: 400px;
     border: 2px solid #cdcdcd;
     border-radius: 15px;
     margin: auto;
 }
 
-/* .form_login.admin,
-.form_login.register{
-    height: 350px;
-}  */
+.error{
+    color: red;
+    font-size: 0.8em;
+    margin-bottom: 12px;
+}
+
+.valid{
+    color: green;
+    font-size: 0.8em;
+    margin-bottom: 12px;
+}
 
 .logo_head{
     display: flex;

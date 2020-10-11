@@ -14,15 +14,15 @@
             $this->userDAO = new UserDAO();
         }
 
-        public function ShowMenuView($message = "")
+        public function ShowMenuView($message)
         {
             require_once(VIEWS_PATH."menu.php");
         }
-        public function ShowMainView($message = "")
+        public function ShowMainView()
         {
             require_once(VIEWS_PATH."main.php");
         }
-        public function ShowRegisterView($message = "")
+        public function ShowRegisterView()
         {
             require_once(VIEWS_PATH."register.php");
         }
@@ -39,7 +39,6 @@
 
                     $count = 1;
                     
-
                     $loggedUser = new User();
                     $loggedUser->setEmail($userName);
                     $loggedUser->setPassword($password);
@@ -52,12 +51,12 @@
                 }
             }
             if ($count == 0){
-                $message = "Email or Password Invalid.";
-                $this->ShowMainView($message);
+                $error = true;
+                require_once(VIEWS_PATH."main.php");
             }
         }  
         
-        public function register($email, $password){
+        public function register(){
             
             $userName = $_POST['email'];
             $password = $_POST['password'];
@@ -71,13 +70,13 @@
             $valid = $newUserRepository->Add($newUser);
         
             if ($valid === 0){
-                $message = "Email Already in Use";
-                echo '<script language="javascript">alert("Email Already In Use");</script>';
+                $error = "invalid";
+                require_once(VIEWS_PATH."register.php");
             }else{
-                $message = "User Registered Successfully";
-                echo '<script language="javascript">alert("You Have Been Registered Successfully");</script>';
+                //usar require ya que permite el pasaje de la variable para mensajes, si uso la funcion show no puedo pasar vars.
+                $error = "03";
+                require_once(VIEWS_PATH."main.php");
             }
-            $this->ShowMainView($message);
         
         }
 
