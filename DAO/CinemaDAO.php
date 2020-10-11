@@ -19,7 +19,7 @@
         $this->SaveData();
     }
 
-    public function GetAll(){
+    public function GetAllCinemas(){
         $this->RetrieveData();
         return $this->CinemaList;
     }
