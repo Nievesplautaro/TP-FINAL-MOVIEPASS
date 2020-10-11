@@ -1,6 +1,6 @@
 
 <?php
-     include('Views/nav.php');
+     include('Views/nav.php'); //Tratar de usar el framework, VIEWS_PATH nav
 ?>
 <div class="container menu">
      <div class="grid">

@@ -5,7 +5,7 @@
         <a class="nav-link" href="menu.php">Menu</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="<?php echo FRONT_ROOT?>Dashboard/showMovies">Dashboard</a>
+        <a class="nav-link" href="<?php echo FRONT_ROOT?>Dashboard/showMovies">Dashboard</a> <!-- Showmovies trae todas las peliculas a una lista y las muestra en Views/dashboard -->
       </li>
       <li class="nav-item">
         <a class="nav-link" href="reservation.php">Reserva</a>

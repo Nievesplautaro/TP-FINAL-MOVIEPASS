@@ -59,5 +59,11 @@
         
         }
 
+
+        public function showCinemas(){
+            $cinemaList = array();
+            $cinemaList = $this->cinemaDAO->GetAllCinemas();
+            require_once(VIEWS_PATH."cinemaManagment.php");
+        }
     }
 ?>
