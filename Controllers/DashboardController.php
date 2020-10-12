@@ -34,16 +34,29 @@
           //return $movieList;
      }
 
-     public function showMoviesByGenre($genre){
-          $movieList = array();
-          $movieList = $this->dashboardDAO->GetMoviesByGenre($genre);
-          $genreList = $this->dashboardDAO->GetGenres();
+     public function showMoviesByGenre(){
+
+        $var = $_GET['var'];
+
+        $movieList = array();
+        $movieList = $this->dashboardDAO->GetMoviesByGenre($var);
+        $genreList = $this->dashboardDAO->GetGenres();
           
-          require_once(VIEWS_PATH."dashboard.php");
+        require_once(VIEWS_PATH."dashboard.php");
           
           
      }
 
+     public function searchMovie() {                                            
+          
+        $title = $_POST['title'];
 
+        $movieList = array();
+        $movieList = $this->dashboardDAO->getMovieByTitle($title);
+        $genreList = $this->dashboardDAO->GetGenres();
+        
+        require_once(VIEWS_PATH."dashboard.php");
+
+      }
 
     }

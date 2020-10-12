@@ -7,7 +7,9 @@
           <div class="dash">
           <div class="narrow">
                <div class="searchBar">
-                    <input type="search" placeholder="Que buscas?...">
+                    <form action="<?= FRONT_ROOT ?>Dashboard/searchMovie" method="post" class="search-container">
+                         <input type="search" name="title" placeholder="Que buscas?...">
+                    </form>
                </div>
                <div class="filters">
                     <div class="head_title">Genres</div>
@@ -17,7 +19,7 @@
                                    foreach($genreList as $genre){
                          ?>
                                    <li class="categoria">
-                                        <a href="<?php echo FRONT_ROOT ?>Dashboard/showMoviesByGenre"><?php echo $genre->getGenreName()?></a>
+                                        <a href="#"><?php echo $genre->getGenreName()?></a>
                                    </li>
                          <?php
                                    }
