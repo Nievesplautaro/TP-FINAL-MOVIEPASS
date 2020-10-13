@@ -51,24 +51,6 @@
             return $this->movieList;
         }
 
-        public function GetMoviesByGenre($id){
-            $movieGenreList = array();
-            foreach ($this->movieList as $movie){
-                if (in_array($id,$movie->getGenreIds())){
-                    array_push($this->movieGenreList, $movie);
-                }
-            }
-            return $this->movieGenreList;
-        }
-
-        public function GetMovieByTitle($title){
-            foreach ($this->movieList as $movie){
-                if ($movie->getTitle() == $title){
-                    return $movie;
-                }
-            }
-            return $this->movieList;
-        }
 
 
         public function GetGenres(){
