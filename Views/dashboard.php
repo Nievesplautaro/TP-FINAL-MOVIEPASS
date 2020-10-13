@@ -19,7 +19,7 @@
                                    foreach($genreList as $genre){
                          ?>
                                    <li class="categoria">
-                                        <a href="#"><?php echo $genre->getGenreName()?></a>
+                                        <a href="<?php echo FRONT_ROOT?>Dashboard/showMoviesByGenre?<?php echo $genre->getGenreName()?>"><?php echo $genre->getGenreName()?></a>
                                    </li>
                          <?php
                                    }
