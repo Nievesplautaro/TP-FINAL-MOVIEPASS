@@ -72,7 +72,8 @@
             if($query){
                     $idCinema = str_replace("url=Cinema/editCinema&", "", $query);
             }
-            
+            $cinemaList = array();
+            $cinemaList = $this->cinemaDAO->GetAllCinemas();
             require_once(VIEWS_PATH."editCinema.php");
                 
         }
