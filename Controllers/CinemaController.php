@@ -17,6 +17,20 @@
         {
             require_once(VIEWS_PATH."menuCinema.php");
         }
+        public function ShowRegisterView()
+        {
+            
+            $query = $_SERVER["QUERY_STRING"];
+
+            if($query){
+
+                    $idCinema = str_replace("url=Cinema/editCinema&", "", $query);
+
+            }
+
+            require_once(VIEWS_PATH."editCinema.php");
+
+        }
 /*         public function ShowCinemaView($message = "")
         {
             require_once(VIEWS_PATH."mainCinema.php");
@@ -55,7 +69,7 @@
                 $message = "Cinema Registered Successfully";
                 echo '<script language="javascript">alert("Your Cinema Has Been Registered Successfully");</script>';
             }
-            $this->ShowCinemaView($message);
+            $this->ShowMenuView($message);
         
         }
 
@@ -66,15 +80,59 @@
             require_once(VIEWS_PATH."cinemaManagment.php");
         }
 
+        public function removeCinema(){
+            
+            $newCinemaRepository = new CinemaDAO();
+
+            if ($_GET){
+                $name = $_GET["name"];
+                $newCinemaRepository->removeCinema($name);
+                echo '<script language="javascript">alert("Your Cinema Has Been Deleted Successfully");</script>';  
+            
+            }
+
+            $this->ShowMenuView("");            
+            
+        }
+
         public function editCinema(){
+
+            $newCinemaRepository = new CinemaDAO();
+
             $query = $_SERVER["QUERY_STRING"];
 
             if($query){
+
                     $idCinema = str_replace("url=Cinema/editCinema&", "", $query);
+
+                    if ($_POST){
+
+                        $nameId = $_POST["nameId"];
+
+                        $name = $_POST['name'];
+                        $phoneNumber = $_POST['phoneNumber'];
+                        $ticketPrice = $_POST['ticketPrice'];
+                        $address = $_POST['address'];
+                        $capacity = $_POST['capacity'];
+
+
+                        $newCinema = new Cinema();
+        
+                        $newCinema->setName($name);
+                        $newCinema->setPhoneNumber($phoneNumber);
+                        $newCinema->setTicketPrice($ticketPrice);
+                        $newCinema->setAddress($address);
+                        $newCinema->setCapacity($capacity);
+
+                        $newCinemaRepository->editCinema($nameId,$newCinema);
+
+                        echo '<script language="javascript">alert("Your Cinema Has Been Edited Successfully");</script>';  
+                    
+                    }
+
             }
-            $cinemaList = array();
-            $cinemaList = $this->cinemaDAO->GetAllCinemas();
-            require_once(VIEWS_PATH."editCinema.php");
+
+            $this->ShowMenuView(""); 
                 
         }
     }

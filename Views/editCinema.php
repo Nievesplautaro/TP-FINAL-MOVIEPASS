@@ -1,8 +1,8 @@
 <main class="d-flex align-items-center justify-content-center height-100" >
         <div class="content">
             <div class="container">
-                    <div class="gridCinema"> 
-                        <div class="form_login">
+                    <div class="grid"> 
+                        <div class="form_edit">
                             <div class= "logo_head"> 
                                 <div class="media">
                                         <a href="">
@@ -11,13 +11,14 @@
                                 </div>
                             </div>
                             <div class="form">
-                                <form action="<?php echo FRONT_ROOT ?>Cinema/edit"  method="post" class="login-form bg-dark-alpha p-5 bg-light">
+                                <form action="<?php echo FRONT_ROOT ?>Cinema/editCinema?<?php $id ?>" method="post" class="login-form bg-dark-alpha p-5 bg-light">
                                 <?php
                                         if(isset($_GET['error']))
                                             echo '<p class="alert-danger">Usuario y/o Contraseña incorrecto</p>';
                                         if(isset($_GET['error-data']))
                                             echo '<p class="alert-danger">Error en el envio de datos</p>'; 
                                 ?>
+                                        <input type="hidden" value="<?php echo $cinemaList[$idCinema]->getName(); ?>" name="nameId">
                                         <div class="form-group">
                                             <label for="">Cinema Name</label>
                                             <input type="text" value="<?php echo $cinemaList[$idCinema]->getName();?>" name="name" class="form-control form-control-lg" >

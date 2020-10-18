@@ -85,6 +85,15 @@ body{
     margin: auto;
 }
 
+.form_edit{
+    width: 260px;
+    padding: 20px 12px;
+    height: 550px;
+    border: 2px solid #cdcdcd;
+    border-radius: 15px;
+    margin: auto;
+}
+
 .error{
     color: red;
     font-size: 0.8em;

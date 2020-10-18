@@ -10,7 +10,7 @@
 
     public function Add(Cinema $Cinema){
         $this->RetrieveData();
-        foreach ($this->GetAll() as $value){
+        foreach ($this->GetAllCinemas() as $value){
             if ($Cinema->getName() == $value->getName()){
                 return 0;
             }
@@ -25,7 +25,7 @@
     }
 
     public function CompareName($name){
-        $CinemaList= $this->GetAll();
+        $CinemaList= $this->GetAllCinemas();
         foreach ($CinemaList as $Cinema){
             if ($Cinema->getName() == $name){
                 return true;
@@ -33,6 +33,30 @@
         }
         return false;
 
+    }
+
+    public function removeCinema($name){
+        {
+            $this->RetrieveData();
+            foreach ($this->CinemaList as $key => $value){
+                    if ($value->getName() == $name){
+                        unset($this->CinemaList[$key]);
+                    }
+            }
+            $this->SaveData();
+      }
+    }
+
+    public function editCinema($nameId, $cinema){
+        {
+            $this->RetrieveData();
+            foreach ($this->CinemaList as $key => $value){
+                    if ($value->getName() == $nameId){
+                        $this->CinemaList[$key] = $cinema;
+                    }
+            }
+            $this->SaveData();
+      }
     }
 
     private function SaveData(){

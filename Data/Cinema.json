@@ -1,10 +1,26 @@
 [
     {
-        "name": "Ambasador",
-        "phoneNumber": "213154513",
-        "ticketPrice": "2055",
-        "address": "Pe\u00f1a 2221",
+        "name": "CineMaiameeeee",
+        "phoneNumber": "123",
+        "ticketPrice": "100",
+        "address": "CalleFalsa 123",
+        "capacity": "50",
+        "show": []
+    },
+    {
+        "name": "El Mejor Cine",
+        "phoneNumber": "1234",
+        "ticketPrice": "200",
+        "address": "CalleFalsa 1234",
         "capacity": "60",
+        "show": []
+    },
+    {
+        "name": "Cinema Pirule",
+        "phoneNumber": "12345",
+        "ticketPrice": "300",
+        "address": "CalleFalsa 12345",
+        "capacity": "100",
         "show": []
     }
 ]

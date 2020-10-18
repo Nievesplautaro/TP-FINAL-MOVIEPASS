@@ -2,7 +2,7 @@
         <div class="content">
             <div class="container">
                     <div class="grid"> 
-                        <div class="form_login">
+                        <div class="form_edit">
                             <div class= "logo_head"> 
                                 <div class="media">
                                         <a href="">

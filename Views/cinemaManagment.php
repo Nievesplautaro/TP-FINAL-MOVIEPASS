@@ -9,7 +9,7 @@
                         foreach($cinemaList as $cinema){
                         $id++;
                         echo "<li class='movie' >";
-                            echo "<div onclick=\"location.href='"; echo FRONT_ROOT; echo "Cinema/editCinema?"; echo $id;echo "'\";  class='card' >"
+                            echo "<div onclick=\"location.href='"; echo FRONT_ROOT; echo "Cinema/ShowRegisterView?"; echo $id;echo "'\";  class='card' >"
                             ;
                                 echo "<div class='title center'>
                                         ".$cinema->getName()."
@@ -33,7 +33,16 @@
                                         ".$cinema->getShow()."
                                         </div>"; */
                             echo "</div>
-                                </div>";
+                                </div>";?>
+                                <div>
+                                <form action="<?php echo FRONT_ROOT?>Cinema/removeCinema" method="GET">
+                                    <input type="hidden" value="<?php echo $cinema->getName() ?>" name="name">
+                                    <button type="submit" class="uk-button uk-button-danger uk-button-small">
+                                        <img src="<?php echo IMG_PATH ?>trash.png">
+                                    </button>
+                                </form>
+                            </div>
+                            <?php
                         echo "</li>";
                         }
             ?>
