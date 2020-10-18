@@ -65,5 +65,16 @@
             $cinemaList = $this->cinemaDAO->GetAllCinemas();
             require_once(VIEWS_PATH."cinemaManagment.php");
         }
+
+        public function editCinema(){
+            $query = $_SERVER["QUERY_STRING"];
+
+            if($query){
+                    $idCinema = str_replace("url=Cinema/editCinema&", "", $query);
+            }
+            
+            require_once(VIEWS_PATH."editCinema.php");
+                
+        }
     }
 ?>

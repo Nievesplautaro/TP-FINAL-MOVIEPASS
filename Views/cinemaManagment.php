@@ -10,7 +10,9 @@
                             echo "<div class='card' >";
                                 echo "<div class='title center'>
                                         ".$cinema->getName()."
-                                        </div>";
+                                        </div>
+                                        "
+                                        ;
                                 echo "<div class='data'>
                                         <div class='title center'>
                                         ".$cinema->getPhoneNumber()."
