@@ -5,9 +5,12 @@
     <div class="movie_list">
         <ul class="catalogo">
             <?php
+            $id = -1;
                         foreach($cinemaList as $cinema){
-                        echo "<li class='movie' >"; /* no pienso hacer un css para esto */
-                            echo "<div class='card' >";
+                        $id++;
+                        echo "<li class='movie' >";
+                            echo "<div onclick=\"location.href='"; echo FRONT_ROOT; echo "Cinema/editCinema?"; echo $id;echo "'\";  class='card' >"
+                            ;
                                 echo "<div class='title center'>
                                         ".$cinema->getName()."
                                         </div>
