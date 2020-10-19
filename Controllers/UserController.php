@@ -47,7 +47,9 @@
                     
                     $message = "Login Successfully";
 
-                    $this->ShowMenuView($message);
+                    header("location:ShowMenu");
+
+                    //$this->ShowMenuView($message);
                 }
             }
             if ($count == 0){
@@ -55,6 +57,11 @@
                 require_once(VIEWS_PATH."main.php");
             }
         }  
+
+        public function Showmenu(){
+            require_once(VIEWS_PATH."menu.php");
+            
+        }
         
         public function register(){
             

@@ -47,14 +47,18 @@
                     
                     $message = "Login Successfully";
 
-                    $this->ShowMenuView($message);
+                    header("location:Showmenu");    
                 }
             }
             if ($count == 0){
-                $message = "Email or Password Invalid.";
-                $this->ShowAdminView($message);
+                $error = true;
+                require_once(VIEWS_PATH."mainAdmin.php");
             }
         }  
+
+        public function Showmenu(){
+            include(VIEWS_PATH."menuAdmin.php");
+        }
         
         public function register(){
             
