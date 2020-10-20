@@ -53,7 +53,7 @@
                     $_SESSION["loggedUser"] = $loggedUser;
                     
                     $message = "Login Successfully";
-
+                    /* Se implemento Header ya que si se hace un require, al volver para atras con el navegador rompe como pasa en el tp6*/
                     header("location:Menu");    
                 }
             }

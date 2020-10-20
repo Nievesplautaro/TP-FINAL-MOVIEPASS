@@ -14,7 +14,7 @@
             $this->userDAO = new UserDAO();
         }
 
-        public function ShowMenuView($message)
+        public function ShowMenuView()
         {
             require_once(VIEWS_PATH."validate-session.php");
             require_once(VIEWS_PATH."menu.php");
@@ -24,6 +24,7 @@
             require_once(VIEWS_PATH."validate-session.php");
             require_once(VIEWS_PATH."main.php");
         }
+
         public function ShowRegisterView()
         {
             require_once(VIEWS_PATH."register.php");
@@ -48,7 +49,7 @@
                     $_SESSION["loggedUser"] = $loggedUser;
                     
                     $message = "Login Successfully";
-
+                    /*Se implementa header ya que con require rompe al volver hacia atras como en tp6*/
                     header("location:Menu");
 
                     //$this->ShowMenuView($message);
@@ -56,13 +57,14 @@
             }
             if ($count == 0){
                 $error = true;
-                header("location:Main");
+                require_once(VIEWS_PATH."main.php");
+                
+                //require_once("location:Main");
             }
         }  
 
         public function Main (){
-            include(VIEWS_PATH."main.php");
-
+            require_once(VIEWS_PATH."main.php");
         }
 
         public function Menu(){
