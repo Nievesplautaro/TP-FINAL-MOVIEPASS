@@ -56,13 +56,18 @@
             }
             if ($count == 0){
                 $error = true;
-                require_once(VIEWS_PATH."main.php");
+                header("location:Main");
             }
         }  
 
+        public function Main (){
+            include(VIEWS_PATH."main.php");
+
+        }
+
         public function Menu(){
             require_once(VIEWS_PATH."validate-session.php");
-            require_once(VIEWS_PATH."menu.php");
+            include(VIEWS_PATH."menu.php");
             
         }
         

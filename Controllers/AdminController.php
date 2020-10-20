@@ -25,7 +25,6 @@
         }
         public function ShowAdminView($message = "")
         {
-            require_once(VIEWS_PATH."validate-session.php");
             require_once(VIEWS_PATH."mainAdmin.php");
         }
         public function registerAdmin($message = "")
@@ -60,9 +59,13 @@
             }
             if ($count == 0){
                 $error = true;
-                require_once(VIEWS_PATH."mainAdmin.php");
+                header("location:Main");    
             }
         }  
+
+        public function Main(){
+            include(VIEWS_PATH."mainAdmin.php");
+        }
         
         public function register(){
             
@@ -79,11 +82,11 @@
         
             if ($valid === 0){
                 $error = "invalid";
-                require_once(VIEWS_PATH."register.php");
+                require_once(VIEWS_PATH."registerAdmin.php");
             }else{
                 //usar require ya que permite el pasaje de la variable para mensajes, si uso la funcion show no puedo pasar vars.
                 $error = "03";
-                require_once(VIEWS_PATH."main.php");
+                require_once(VIEWS_PATH."mainAdmin.php");
             }
         
         }
