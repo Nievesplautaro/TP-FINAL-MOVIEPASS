@@ -16,10 +16,12 @@
 
         public function ShowMenuView($message)
         {
+            require_once(VIEWS_PATH."validate-session.php");
             require_once(VIEWS_PATH."menu.php");
         }
         public function ShowMainView()
         {
+            require_once(VIEWS_PATH."validate-session.php");
             require_once(VIEWS_PATH."main.php");
         }
         public function ShowRegisterView()
@@ -47,19 +49,25 @@
                     
                     $message = "Login Successfully";
 
-                    header("location:ShowMenu");
+                    header("location:Menu");
 
                     //$this->ShowMenuView($message);
                 }
             }
             if ($count == 0){
                 $error = true;
-                require_once(VIEWS_PATH."main.php");
+                header("location:Main");
             }
         }  
 
-        public function Showmenu(){
-            require_once(VIEWS_PATH."menu.php");
+        public function Main (){
+            include(VIEWS_PATH."main.php");
+
+        }
+
+        public function Menu(){
+            require_once(VIEWS_PATH."validate-session.php");
+            include(VIEWS_PATH."menu.php");
             
         }
         

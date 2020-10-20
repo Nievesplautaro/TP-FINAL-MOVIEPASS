@@ -15,7 +15,13 @@
 
         public function ShowMenuView($message = "")
         {
+            require_once(VIEWS_PATH."validate-session.php");
             require_once(VIEWS_PATH."menuAdmin.php");
+        }
+        /* ESTA REPETIDA APROPOSITO*/
+        public function Menu(){
+            require_once(VIEWS_PATH."validate-session.php");
+            include(VIEWS_PATH."menuAdmin.php");
         }
         public function ShowAdminView($message = "")
         {
@@ -23,6 +29,7 @@
         }
         public function registerAdmin($message = "")
         {
+            require_once(VIEWS_PATH."validate-session.php");
             require_once(VIEWS_PATH."registerAdmin.php");
         }
 
@@ -47,17 +54,17 @@
                     
                     $message = "Login Successfully";
 
-                    header("location:Showmenu");    
+                    header("location:Menu");    
                 }
             }
             if ($count == 0){
                 $error = true;
-                require_once(VIEWS_PATH."mainAdmin.php");
+                header("location:Main");    
             }
         }  
 
-        public function Showmenu(){
-            include(VIEWS_PATH."menuAdmin.php");
+        public function Main(){
+            include(VIEWS_PATH."mainAdmin.php");
         }
         
         public function register(){
@@ -74,13 +81,13 @@
             $valid = $newUserRepository->Add($newUser);
         
             if ($valid === 0){
-                $message = "Email Already in Use";
-                echo '<script language="javascript">alert("Email Already In Use");</script>';
+                $error = "invalid";
+                require_once(VIEWS_PATH."registerAdmin.php");
             }else{
-                $message = "User Registered Successfully";
-                echo '<script language="javascript">alert("You Have Been Registered Successfully");</script>';
+                //usar require ya que permite el pasaje de la variable para mensajes, si uso la funcion show no puedo pasar vars.
+                $error = "03";
+                require_once(VIEWS_PATH."mainAdmin.php");
             }
-            $this->ShowAdminView($message);
         
         }
 
