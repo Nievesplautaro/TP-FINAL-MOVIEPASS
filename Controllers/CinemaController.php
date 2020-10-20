@@ -15,10 +15,12 @@
 
         public function ShowMenuView($message = "")
         {
+            require_once(VIEWS_PATH."validate-session.php");
             require_once(VIEWS_PATH."menuCinema.php");
         }
         public function ShowRegisterView()
         {
+            require_once(VIEWS_PATH."validate-session.php");
             
             $query = $_SERVER["QUERY_STRING"];
 
@@ -37,6 +39,7 @@
         } */
         public function registerCinema($message = "")
         {
+            require_once(VIEWS_PATH."validate-session.php");
             require_once(VIEWS_PATH."registerCinema.php");
         }
 
@@ -77,10 +80,12 @@
         public function showCinemas(){
             $cinemaList = array();
             $cinemaList = $this->cinemaDAO->GetAllCinemas();
+            require_once(VIEWS_PATH."validate-session.php");
             require_once(VIEWS_PATH."cinemaManagment.php");
         }
 
         public function removeCinema(){
+            require_once(VIEWS_PATH."validate-session.php");
             
             $newCinemaRepository = new CinemaDAO();
 
@@ -96,6 +101,8 @@
         }
 
         public function editCinema(){
+            require_once(VIEWS_PATH."validate-session.php");
+
 
             $newCinemaRepository = new CinemaDAO();
 
