@@ -11,36 +11,38 @@
                                 </div>
                             </div>
                             <div class="form">
-                                <form action="<?php echo FRONT_ROOT ?>Cinema/editCinema?<?php $id ?>" method="post" class="login-form bg-dark-alpha p-5 bg-light">
+                                <form action="<?php echo FRONT_ROOT ?>Cinema/editCinema?<?php echo $newCinema->getName() ?>"  method="post" class="login-form bg-dark-alpha p-5 bg-light">
                                 <?php
                                         if(isset($_GET['error']))
                                             echo '<p class="alert-danger">Usuario y/o Contraseña incorrecto</p>';
                                         if(isset($_GET['error-data']))
-                                            echo '<p class="alert-danger">Error en el envio de datos</p>'; 
+                                            echo '<p class="alert-danger">Error en el envio de datos</p>';
+                                            
+                                        
+                                        
                                 ?>
-                                        <input type="hidden" value="<?php echo $cinemaList[$idCinema]->getName(); ?>" name="nameId">
                                         <div class="form-group">
                                             <label for="">Cinema Name</label>
-                                            <input type="text" value="<?php echo $cinemaList[$idCinema]->getName();?>" name="name" class="form-control form-control-lg" >
+                                            <input type="text" name="name" value="<?php echo $newCinema->getName() ?>" class="form-control form-control-lg" >
                                         </div>
                                         <div class="form-group">
                                             <label for="">Phone number</label>
-                                            <input type="number" value="<?php echo $cinemaList[$idCinema]->getPhoneNumber();?>" name="phoneNumber" class="form-control form-control-lg" >
+                                            <input type="number" name="phoneNumber" value="<?php echo $newCinema->getPhoneNumber() ?>" class="form-control form-control-lg" >
                                         </div>
                                         <div class="form-group">
                                             <label for="">Ticket Price</label>
-                                            <input type="number" value="<?php echo $cinemaList[$idCinema]->getTicketPrice();?>" name="ticketPrice" class="form-control form-control-lg" >
+                                            <input type="number" name="ticketPrice" value="<?php echo $newCinema->getTicketPrice() ?>" class="form-control form-control-lg" >
                                         </div>
                                         <div class="form-group">
                                             <label for="">Address</label>
-                                            <input type="text"  value="<?php echo $cinemaList[$idCinema]->getAddress();?>" name="address" class="form-control form-control-lg" >
+                                            <input type="text" name="address" value="<?php echo $newCinema->getAddress() ?>" class="form-control form-control-lg" >
                                         </div>
                                         <div class="form-group">
                                             <label for="">Capacity</label>
-                                            <input type="number" value="<?php echo $cinemaList[$idCinema]->getCapacity();?>" name="capacity" class="form-control form-control-lg" >
+                                            <input type="number" name="capacity" value="<?php echo $newCinema->getCapacity() ?>" class="form-control form-control-lg" >
                                         </div>
                                         <div class="btn_cont">
-                                        <button class="btn btn-primary btn-block btn-lg" type="submit">Edit</button>
+                                        <button class="btn btn-primary btn-block btn-lg" type="submit">Edit Cinema</button>
                                         </div>
                                 </form>
                             </div>
