@@ -6,11 +6,11 @@
      <div class="grid">
           <div class="dash">
           <div class="narrow">
-               <div class="searchBar">
+<!--                <div class="searchBar">
                     <form action="<?= FRONT_ROOT ?>Dashboard/searchMovie" method="post" class="search-container">
                          <input type="search" name="title" placeholder="Que buscas?...">
                     </form>
-               </div>
+               </div> -->
                <div class="filters">
                     <div class="head_title">Genres</div>
                     <ul class="filter_by">
