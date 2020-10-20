@@ -18,14 +18,16 @@
 
      public function ShowDashboardView($message = ""){
           //$movieList = $this->movieListArray;
+          require_once(VIEWS_PATH."validate-session.php");
           require_once(VIEWS_PATH."dashboard.php");
      }
 
      public function showMovies(){
+         
           $movieList = array();
           $movieList = $this->dashboardDAO->GetAllMovies();
           $genreList = $this->dashboardDAO->GetGenres();
-          
+          require_once(VIEWS_PATH."validate-session.php");
           require_once(VIEWS_PATH."dashboard.php");
           
      }
@@ -44,6 +46,7 @@
                $movieList = $this->GetMoviesByGenre($idGenre);
                $genreList = $this->dashboardDAO->GetGenres();
           }
+          require_once(VIEWS_PATH."validate-session.php");
           require_once(VIEWS_PATH."dashboard.php");
           
      }
@@ -55,7 +58,7 @@
         $movieList = array();
         $movieList = $this->dashboardDAO->getMovieByTitle($title);
         $genreList = $this->dashboardDAO->GetGenres();
-        
+        require_once(VIEWS_PATH."validate-session.php");
         require_once(VIEWS_PATH."dashboard.php");
 
       }
