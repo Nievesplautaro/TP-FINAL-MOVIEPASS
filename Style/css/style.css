@@ -259,6 +259,30 @@ body{
     transition-delay: 50ms;
 }
 
+.catalogo.cine{
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+}
+
+.catalogo.cine .cinema{
+    display: inline-block;
+}
+
+.catalogo.cine .cinema .delete{
+    display: flex;
+    justify-content: center;
+    margin: 5px 0;
+    background: transparent;
+}
+
+.catalogo.cine .cinema .delete button{
+    text-decoration: none;
+    background-color: transparent;
+    border: none;
+}
+
+
 
 /* -------------------- FOOTER ------------------------------- */
 
