@@ -14,5 +14,13 @@
         "address": "Fake Street 12345",
         "capacity": "109",
         "show": null
+    },
+    {
+        "name": "IsThisACinema?",
+        "phoneNumber": "12345678",
+        "ticketPrice": "500",
+        "address": "FakeStreet 123",
+        "capacity": "30",
+        "show": []
     }
 ]

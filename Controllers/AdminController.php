@@ -59,7 +59,9 @@
             }
             if ($count == 0){
                 $error = true;
-                header("location:Main");    
+
+                require_once(VIEWS_PATH."mainAdmin.php");
+                //header("location:Main");    
             }
         }  
 

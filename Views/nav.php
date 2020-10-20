@@ -2,7 +2,7 @@
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
       <li class="nav-item active">
-        <a class="nav-link" href="<?php echo FRONT_ROOT ?>User/ShowMenu">Menu</a> 
+        <a class="nav-link" href="<?php echo FRONT_ROOT ?>User/ShowMenuView">Menu</a> 
       </li>
       <li class="nav-item">
         <a class="nav-link" href="<?php echo FRONT_ROOT?>Dashboard/showMovies">Dashboard</a> <!-- Showmovies trae todas las peliculas a una lista y las muestra en Views/dashboard -->
