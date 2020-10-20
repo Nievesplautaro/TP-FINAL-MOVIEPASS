@@ -64,8 +64,7 @@
             $newCinema->setCapacity($capacity);
             /* $newCinema->setShow($show); */
             $newCinema->setShow(array());
-            $newCinemaRepository = new CinemaDAO();
-            $valid = $newCinemaRepository->Add($newCinema);
+            $valid = $this->cinemaDAO->Add($newCinema);
         
             if ($valid === 0){
                 $message = "Cinema Name Already in Use";
@@ -88,12 +87,10 @@
 
         public function removeCinema(){
             require_once(VIEWS_PATH."validate-session.php");
-            
-            $newCinemaRepository = new CinemaDAO();
 
             if ($_GET){
                 $name = $_GET["name"];
-                $newCinemaRepository->removeCinema($name);
+                $this->cinemaDAO->removeCinema($name);
                 echo '<script language="javascript">alert("Your Cinema Has Been Deleted Successfully");</script>';  
             
             }

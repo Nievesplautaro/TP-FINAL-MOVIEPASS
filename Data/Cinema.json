@@ -8,11 +8,11 @@
         "show": null
     },
     {
-        "name": "Cinema Pirule",
-        "phoneNumber": "12345",
-        "ticketPrice": "300",
-        "address": "CalleFalsa 12345",
-        "capacity": "100",
-        "show": []
+        "name": "Cinema Pirulito",
+        "phoneNumber": "123090",
+        "ticketPrice": "100",
+        "address": "Fake Street 12345",
+        "capacity": "109",
+        "show": null
     }
 ]
