@@ -24,6 +24,25 @@
         return $this->CinemaList;
     }
 
+    public function GetCinemaByName($name){
+        $newCinema = new Cinema();
+        $CinemaList= $this->GetAllCinemas();
+        foreach($CinemaList as $cinema){
+            if($cinema->getName() == $name){
+                $newCinema->setName($cinema->getName());
+                $newCinema->setPhoneNumber($cinema->getPhoneNumber());
+                $newCinema->setTicketPrice($cinema->getTicketPrice());
+                $newCinema->setAddress($cinema->getAddress());
+                $newCinema->setCapacity($cinema->getCapacity());
+                $newCinema->setShow($cinema->getShow());
+            }
+       }
+
+       return $newCinema;
+       
+    }
+
+
     public function CompareName($name){
         $CinemaList= $this->GetAllCinemas();
         foreach ($CinemaList as $Cinema){
@@ -47,16 +66,14 @@
       }
     }
 
-    public function editCinema($nameId, $cinema){
-        {
-            $this->RetrieveData();
-            foreach ($this->CinemaList as $key => $value){
-                    if ($value->getName() == $nameId){
-                        $this->CinemaList[$key] = $cinema;
-                    }
+    public function editCinema($cinemaName, $cinema){
+        $this->RetrieveData();
+        foreach ($this->CinemaList as $key => $value){
+            if ($value->getName() == $cinemaName){
+                $this->CinemaList[$key] = $cinema;
             }
-            $this->SaveData();
-      }
+        }
+        $this->SaveData();
     }
 
     private function SaveData(){

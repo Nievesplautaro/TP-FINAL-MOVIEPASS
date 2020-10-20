@@ -24,10 +24,12 @@
             
             $query = $_SERVER["QUERY_STRING"];
 
+
             if($query){
-
-                    $idCinema = str_replace("url=Cinema/editCinema&", "", $query);
-
+                $query = urldecode($query);
+                $name = str_replace("url=Cinema/ShowRegisterView&", "", $query);
+                $newCinema = new Cinema();
+                $newCinema = $this->cinemaDAO->GetCinemaByName($name);
             }
 
             require_once(VIEWS_PATH."editCinema.php");
@@ -62,8 +64,7 @@
             $newCinema->setCapacity($capacity);
             /* $newCinema->setShow($show); */
             $newCinema->setShow(array());
-            $newCinemaRepository = new CinemaDAO();
-            $valid = $newCinemaRepository->Add($newCinema);
+            $valid = $this->cinemaDAO->Add($newCinema);
         
             if ($valid === 0){
                 $message = "Cinema Name Already in Use";
@@ -86,12 +87,10 @@
 
         public function removeCinema(){
             require_once(VIEWS_PATH."validate-session.php");
-            
-            $newCinemaRepository = new CinemaDAO();
 
             if ($_GET){
                 $name = $_GET["name"];
-                $newCinemaRepository->removeCinema($name);
+                $this->cinemaDAO->removeCinema($name);
                 echo '<script language="javascript">alert("Your Cinema Has Been Deleted Successfully");</script>';  
             
             }
@@ -104,18 +103,14 @@
             require_once(VIEWS_PATH."validate-session.php");
 
 
-            $newCinemaRepository = new CinemaDAO();
 
             $query = $_SERVER["QUERY_STRING"];
 
             if($query){
-
-                    $idCinema = str_replace("url=Cinema/editCinema&", "", $query);
+                    $query = urldecode($query);
+                    $cinemaToReplace = str_replace("url=Cinema/editCinema&", "", $query);
 
                     if ($_POST){
-
-                        $nameId = $_POST["nameId"];
-
                         $name = $_POST['name'];
                         $phoneNumber = $_POST['phoneNumber'];
                         $ticketPrice = $_POST['ticketPrice'];
@@ -123,15 +118,15 @@
                         $capacity = $_POST['capacity'];
 
 
-                        $newCinema = new Cinema();
+                        $editCinema = new Cinema();
         
-                        $newCinema->setName($name);
-                        $newCinema->setPhoneNumber($phoneNumber);
-                        $newCinema->setTicketPrice($ticketPrice);
-                        $newCinema->setAddress($address);
-                        $newCinema->setCapacity($capacity);
+                        $editCinema->setName($name);
+                        $editCinema->setPhoneNumber($phoneNumber);
+                        $editCinema->setTicketPrice($ticketPrice);
+                        $editCinema->setAddress($address);
+                        $editCinema->setCapacity($capacity);
 
-                        $newCinemaRepository->editCinema($nameId,$newCinema);
+                        $this->cinemaDAO->editCinema($cinemaToReplace,$editCinema);
 
                         echo '<script language="javascript">alert("Your Cinema Has Been Edited Successfully");</script>';  
                     

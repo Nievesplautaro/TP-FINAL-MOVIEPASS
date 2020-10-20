@@ -1,26 +1,18 @@
 [
     {
-        "name": "CineMaiameeeee",
-        "phoneNumber": "123",
+        "name": "El Mejor Cine Del World",
+        "phoneNumber": "1235123",
+        "ticketPrice": "200123",
+        "address": "CalleFalsa 1234123",
+        "capacity": "6022",
+        "show": null
+    },
+    {
+        "name": "Cinema Pirulito",
+        "phoneNumber": "123090",
         "ticketPrice": "100",
-        "address": "CalleFalsa 123",
-        "capacity": "50",
-        "show": []
-    },
-    {
-        "name": "El Mejor Cine",
-        "phoneNumber": "1234",
-        "ticketPrice": "200",
-        "address": "CalleFalsa 1234",
-        "capacity": "60",
-        "show": []
-    },
-    {
-        "name": "Cinema Pirule",
-        "phoneNumber": "12345",
-        "ticketPrice": "300",
-        "address": "CalleFalsa 12345",
-        "capacity": "100",
-        "show": []
+        "address": "Fake Street 12345",
+        "capacity": "109",
+        "show": null
     }
 ]

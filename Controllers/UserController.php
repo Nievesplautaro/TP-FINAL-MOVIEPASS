@@ -83,8 +83,7 @@
             $newUser->setEmail($userName);
             $newUser->setPassword($password);
         
-            $newUserRepository = new UserDAO();
-            $valid = $newUserRepository->Add($newUser);
+            $valid = $this->userDAO->Add($newUser);
         
             if ($valid === 0){
                 $error = "invalid";

@@ -9,7 +9,7 @@
                         foreach($cinemaList as $cinema){
                         $id++;
                         echo "<li class='movie' >";
-                            echo "<div onclick=\"location.href='"; echo FRONT_ROOT; echo "Cinema/ShowRegisterView?"; echo $id;echo "'\";  class='card' >"
+                            echo "<div onclick=\"location.href='"; echo FRONT_ROOT; echo "Cinema/ShowRegisterView?"; echo $cinema->getName();echo "'\";  class='card' >"
                             ;
                                 echo "<div class='title center'>
                                         ".$cinema->getName()."
