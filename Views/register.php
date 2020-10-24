@@ -12,7 +12,7 @@
                                    </div>
                               </div>
                               <div class="form">
-                                   <form action="<?php echo FRONT_ROOT ?>User/register"  method="post" class="login-form bg-dark-alpha p-5 bg-light">
+                                   <form action="<?php echo FRONT_ROOT ?>User/SignUp"  method="post" class="login-form bg-dark-alpha p-5 bg-light">
                                    <?php
                                         if(isset($error)){
                                              switch ($error) {
@@ -28,11 +28,11 @@
                                    ?>
                                         <div class="form-group">
                                              <label for="">Email</label>
-                                             <input type="text" name="email" class="form-control form-control-lg" >
+                                             <input type="text" name="email" class="form-control form-control-lg" required>
                                         </div>
                                         <div class="form-group">
                                              <label for="">Password</label>
-                                             <input type="password" name="password" class="form-control form-control-lg" >
+                                             <input type="password" name="password" class="form-control form-control-lg" required>
                                         </div>
                                         <div class="btn_cont">
                                         <button class="btn btn-primary btn-block btn-lg" type="submit">Register</button>

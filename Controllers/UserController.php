@@ -30,38 +30,36 @@
             require_once(VIEWS_PATH."register.php");
         }
 
+        public function login($email,$password){
 
-        public function login($email, $password)
-        {
-            $userList = $this->userDAO->GetAll();
-            $userName = $email;
-            $count = 0;
+            $daoUser= new UserDAO();
 
-            foreach($userList as $user){
-                if(($user -> getEmail() == $userName) && ($user -> getPassword() == $password)){
+            try{
+                if(!$this->UserExist($email)){
 
-                    $count = 1;
+                    $user = $daoUser->read($email);
                     
-                    $loggedUser = new User();
-                    $loggedUser->setEmail($userName);
-                    $loggedUser->setPassword($password);
-
-                    $_SESSION["loggedUser"] = $loggedUser;
-                    
-                    $message = "Login Successfully";
-                    /*Se implementa header ya que con require rompe al volver hacia atras como en tp6*/
-                    header("location:Menu");
-
-                    //$this->ShowMenuView($message);
+                    if($user->getPassword() == $password){                    
+                        $_SESSION["loggedUser"] = $user;
+                        $_SESSION["status"] = "on";
+                        $message = "Login Successfully";
+                        echo $message;
+                        /*Se implementa header ya que con require rompe al volver hacia atras como en tp6*/
+                        header("location:Menu");
+                    }else{
+                        $message = "Contraseña incorrecta";
+                        require_once(VIEWS_PATH."main.php"); 
+                    }
+                }else{
+                    $message = "Usuario incorrecto";
+                    require_once(VIEWS_PATH."main.php");
                 }
+            }catch(\PDOExeption $ex){
+                $message = "ERROR 404 NOT FOUND";
+                require_once(VIEWS_PATH."main.php"); 
             }
-            if ($count == 0){
-                $error = true;
-                require_once(VIEWS_PATH."main.php");
-                
-                //require_once("location:Main");
-            }
-        }  
+
+        }
 
         public function Main (){
             require_once(VIEWS_PATH."main.php");
@@ -72,29 +70,56 @@
             include(VIEWS_PATH."menu.php");
             
         }
-        
-        public function register(){
-            
-            $userName = $_POST['email'];
-            $password = $_POST['password'];
-            
-            $newUser = new User();
-        
-            $newUser->setEmail($userName);
-            $newUser->setPassword($password);
-        
-            $valid = $this->userDAO->Add($newUser);
-        
-            if ($valid === 0){
-                $error = "invalid";
-                require_once(VIEWS_PATH."register.php");
-            }else{
-                //usar require ya que permite el pasaje de la variable para mensajes, si uso la funcion show no puedo pasar vars.
-                $error = "03";
+
+        public function SignUp($username,$pass){
+
+            try{
+                if(!$this->UserExist($username))
+                {
+
+                    $user = new User($username,$pass);
+    
+                    $daoUser= new UserDAO(); 
+
+                    //se crean los usuarios sin rol de admin
+                    if($daoUser->create($user)){
+                        $message = "Usuario registrado correctamente";
+                    }else{
+                        $message = "Error de usuario: intentelo de nuevo mas tarde...";
+                    }
+                    
+                }else{
+                    $message = "Ya existe un usuario registrado con esa direccion de correo";
+    
+                }
                 require_once(VIEWS_PATH."main.php");
+                
+            }catch(\PDOException $ex){
+                throw $ex;
             }
-        
+            
         }
+
+    /**
+     * Chequea el usuario por el nombre
+     */
+    public function UserExist($username){
+        
+        $daoUser= new UserDAO();
+        
+        try{
+            if($daoUser->read($username)){
+                return true;
+            }else{
+                return false;
+            }
+        }catch(\PDOException $ex){
+            throw $ex;
+        }
+    }
+/**
+ * Rompe la session iniciada
+ */
 
         public function logout(){
 

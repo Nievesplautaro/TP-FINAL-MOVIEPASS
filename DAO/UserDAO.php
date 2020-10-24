@@ -2,71 +2,77 @@
     namespace DAO;
 
     use Models\User as User;
+    use DAO\Connection as Connection;
 
     class UserDAO{
 
     private $userList = array();
     private $fileName;
+    private $connection;
+    private $tableName = "users";
 
 
-    public function Add(User $user){
-        $this->RetrieveData();
-        foreach ($this->GetAll() as $value){
-            if ($user->getEmail() == $value->getEmail()){
-                return 0;
-            }
-        }
-        array_push($this->userList,$user);    
-        $this->SaveData();
-    }
+    /**
+     * create = add, agrega usuarios a la base de datos, tabla users
+     */
+    public function create($_user){
 
-    public function GetAll(){
-        $this->RetrieveData();
-        return $this->userList;
-    }
+        $sql = "INSERT INTO users (username, pass, user_role, id_user) VALUES (:username, :pass, :user_role, :id_user)";
 
-    public function CompareEmail($email){
-        $userList= $this->GetAll();
-        foreach ($userList as $user){
-            if ($user->getEmail() == $email){
-                return true;
-            }
-        }
-        return false;
+        $parameters['username'] = $_user->getEmail();
+        $parameters['pass'] = $_user->getPassword();
+        //predefinido rol USUARIO y no ADMIN
+        $parameters['user_role'] = 0;
+        //indistinto el id de usuario porque es autoincremental, pero sino no lo sube por parametros
+        $parameters['id_user'] = 0;
 
-    }
-
-    private function SaveData(){
-        $arrayToEncode = array();
-
-        foreach($this->userList as $user){
-            $valuesArray["user"] = $user->getEmail();
-            $valuesArray["pass"] = $user->getPassword();
-            array_push($arrayToEncode,$valuesArray);
+        try{
+            $this->connection = Connection::getInstance();
+            return $this->connection->ExecuteNonQuery($sql, $parameters);
+        }catch(\PDOException $ex){
+            throw $ex;
         }
 
-        $jsonContent = json_encode($arrayToEncode, JSON_PRETTY_PRINT);
-        file_put_contents('Data/users.json', $jsonContent);
     }
 
-    private function RetrieveData(){
-        
-        $this->userList = array();
 
-        if(file_exists('Data/users.json')){
-            $jsonContent = file_get_contents('Data/users.json');
-            $arrayToDecode = ($jsonContent) ? json_decode($jsonContent,true) : array();
-            
-            foreach($arrayToDecode as $valuesArray){
+/**
+ * Transformamos el listado de usuarios en objetos de la clase usuario
+ */
+    protected function mapear ($value){
 
-                $user = new User();
+        $value = is_array($value) ? $value : [];
 
-                $user->setEmail($valuesArray["user"]);
-                $user->setPassword($valuesArray["pass"]);
-                array_push($this->userList,$user);
-            }
+        $resp = array_map(function($p){
+            return new User($p['username'], $p['pass']);
+        }, $value);
 
+        return count($resp) > 1 ? $resp : $resp['0'];
+
+    }
+
+/**
+ * Devuelve el usuario por el username
+ */
+
+    public function read($email){
+
+        $sql = "SELECT * FROM Users WHERE Users.username = :username";
+        $parameters['username'] = $email;
+
+        try{
+            $this->connection = Connection::getInstance();
+            $result = $this->connection->Execute($sql,$parameters);
+        }catch(\PDOException $ex){
+            throw $ex;
         }
+        if(!empty($result)){
+            return $this->mapear($result);
+        }else{
+            return false;
+        }
+
     }
+
 }
 ?>
