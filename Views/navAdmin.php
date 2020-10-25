@@ -8,13 +8,13 @@
         <a class="nav-link" href="RUTA_FUNCIONES_ADMNI">Admin Managment</a>
       </li> -->
       <li class="nav-item">
-        <a class="nav-link" href="<?php echo FRONT_ROOT ?>Admin/registerAdmin">Add Admin</a>
+        <a class="nav-link" href="<?php echo FRONT_ROOT ?>User/ShowRegisterAdmin">Add Admin</a>
       </li>
 <!--       <li class="nav-item">
         <a class="nav-link" href="reservation.php">Settings</a>
       </li> -->
       <li class="nav-item">
-        <a class="nav-link" href="<?php echo FRONT_ROOT ?>Admin/logout">Logout</a>
+        <a class="nav-link" href="<?php echo FRONT_ROOT ?>User/logout">Logout</a>
       </li>
     </ul>
   </div>

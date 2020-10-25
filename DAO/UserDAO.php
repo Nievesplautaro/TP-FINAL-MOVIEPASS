@@ -55,10 +55,10 @@
  * Devuelve el usuario por el username
  */
 
-    public function read($email){
+    public function read($username){
 
         $sql = "SELECT * FROM Users WHERE Users.username = :username";
-        $parameters['username'] = $email;
+        $parameters['username'] = $username;
 
         try{
             $this->connection = Connection::getInstance();
