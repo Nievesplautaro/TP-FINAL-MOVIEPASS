@@ -93,7 +93,7 @@
                 {
 
                     $user = new User($username,$pass);
-    
+                    $user->setUserRole(0);
                     $daoUser= new UserDAO(); 
 
                     //se crean los usuarios sin rol de admin

@@ -22,7 +22,7 @@
         $parameters['username'] = $_user->getEmail();
         $parameters['pass'] = $_user->getPassword();
         //predefinido rol USUARIO y no ADMIN
-        $parameters['user_role'] = 0;
+        $parameters['user_role'] = $_user->getUserRole();
         //indistinto el id de usuario porque es autoincremental, pero sino no lo sube por parametros
         $parameters['id_user'] = 0;
 
@@ -44,7 +44,7 @@
         $value = is_array($value) ? $value : [];
 
         $resp = array_map(function($p){
-            return new User($p['username'], $p['pass']);
+            return $user = new User($p['username'], $p['pass'],$p['user_role']);
         }, $value);
 
         return count($resp) > 1 ? $resp : $resp['0'];

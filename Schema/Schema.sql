@@ -3,7 +3,7 @@ use moviepass;
 
 create table if not exists users(
 	id_user int not null auto_increment,
-    user_role varchar(50),
+    user_role int,
     username varchar(75),
     pass varchar(50),
     constraint pk_users primary key (id_user)
