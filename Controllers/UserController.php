@@ -56,7 +56,7 @@
                         $_SESSION["status"] = "on";
                         $message = "Login Successfully";
                         /*Se implementa header ya que con require rompe al volver hacia atras como en tp6*/
-                        if ($this->isAdmin($email)){
+                        if ($user->getUserRole() == 1||$user->getUserRole() == "1"){   /* $this->isAdmin$user */
                             header("location:MenuAdmin");
                         }else{
                             header("location:Menu");
@@ -146,13 +146,13 @@
         /**
         * Chequea el urol de usuario, admin o usuario
         */
-        public function isAdmin($username){
+        public function isAdmin($user){
         
-            $daoUser= new UserDAO();
+            /* $daoUser= new UserDAO(); */
         
             try{
-                $newUser = $daoUser->read($username);
-                if ($newUser->getUserRole() == 1){
+                /* $newUser = $daoUser->read($username); */
+                if ($user->getUserRole() == 1){
                     return true;
                 }else{
                     return false;

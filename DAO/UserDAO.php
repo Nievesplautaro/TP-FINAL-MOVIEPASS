@@ -42,9 +42,11 @@
     protected function mapear ($value){
 
         $value = is_array($value) ? $value : [];
-
+        
         $resp = array_map(function($p){
-            return $user = new User($p['username'], $p['pass'],$p['user_role']);
+            $user = new User($p['username'], $p['pass']);
+            $user->setUserRole($p['user_role']);
+            return $user;
         }, $value);
 
         return count($resp) > 1 ? $resp : $resp['0'];
