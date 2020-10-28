@@ -56,6 +56,7 @@ header{
     WIDTH: 100%;
     PADDING: 0 12PX;
     list-style-type: none;
+    z-index: 899;
 }
 
 #navbarNav .navbar-nav li a{
@@ -65,21 +66,21 @@ header{
     cursor: pointer;
 }
 
-nav #navbarNav.admin ul{
+nav #navbarNav ul{
     list-style:none;
 }
 
-nav #navbarNav.admin ul a{
+nav #navbarNav ul a{
     display: block;
 }
 
-nav #navbarNav.admin ul li {
+nav #navbarNav ul li {
 	position:relative;
     float:left;
     padding: 0 10px;
 }
 
-nav #navbarNav.admin ul ul {
+nav #navbarNav ul ul {
 	display:none;
 	position:absolute;
 	top:100%;
@@ -87,14 +88,14 @@ nav #navbarNav.admin ul ul {
 	padding:0;
 }
 
-nav #navbarNav.admin ul ul li{
+nav #navbarNav ul ul li{
     float: none;
     background-color: rgba(240,171,131,1);;
     padding: 10px;
     width: 160px;
 }
 
-nav #navbarNav.admin ul li:hover > ul {
+nav #navbarNav ul li:hover > ul {
 	display:block;
 }
 
