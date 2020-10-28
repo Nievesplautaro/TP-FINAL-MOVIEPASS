@@ -1,5 +1,5 @@
 <?php 
-    moviespace Models;
+    namespace Models;
 
     class Show{
         private $movie;

@@ -70,8 +70,7 @@
                     require_once(VIEWS_PATH."main.php");
                 }
             }catch(\PDOExeption $ex){
-                $message = "ERROR 404 NOT FOUND";
-                require_once(VIEWS_PATH."main.php"); 
+                throw $ex; 
             }
 
         }
@@ -112,7 +111,7 @@
             
         }
 
-        public function registerAdm($username,$pass){
+        public function SignUpAdm($username,$pass){
 
             try{
                 if(!$this->UserExist($username))

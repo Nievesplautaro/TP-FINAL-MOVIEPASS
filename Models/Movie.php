@@ -14,6 +14,8 @@ namespace Models;
     private $title;
     private $vote_average;
     private $overview;
+    private $trailer;
+    private $duration;
     private $release_date;
 
     /*public function __construct(){}
@@ -31,7 +33,30 @@ namespace Models;
         $this->genre_ids = $genre_ids;
         $this->title = $title;
     }*/
-    
+    public function getTrailer()
+    {
+        return $this->trailer;
+    }
+
+    public function setTrailer($trailer)
+    {
+        $this->trailer = $trailer;
+
+        return $this;
+    }
+
+    public function getDuration()
+    {
+        return $this->duration;
+    }
+
+    public function SetDuration($duration)
+    {
+        $this->duration = $duration;
+
+        return $this;
+    }
+
     public function getPopularity()
     {
         return $this->popularity;

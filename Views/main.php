@@ -16,13 +16,13 @@
                                         if(isset($error)){
                                              switch ($error) {
                                                   case "01":
-                                                      echo "<div class='error' >Usuario y/o contraseña incorrecto</div>  ";
+                                                      echo "<div class='error' >Incorrect Username / Password</div>  ";
                                                       break;
                                                   case "02":
-                                                      echo "<div class='error' >Error en el envio de datos</div>";
+                                                      echo "<div class='error' >Error Sending Data</div>";
                                                       break;
                                                   case "03":
-                                                       echo "<div class='valid' >Usuario registrado correctamente</div>";
+                                                       echo "<div class='valid' >You Have Been Successfully Registered</div>";
                                                        break;
                                                   }
                                         }
@@ -30,11 +30,11 @@
                                    ?>
                                         <div class="form-group">
                                              <label for="">Email</label>
-                                             <input type="text" name="email" class="form-control form-control-lg" >
+                                             <input type="email" name="email" class="form-control form-control-lg" placeholder="Enter Email" title="Email" oninvalid="this.setCustomValidity('Insert a Valid Email')" oninput="this.setCustomValidity('')" required>
                                         </div>
                                         <div class="form-group">
                                              <label for="">Password</label>
-                                             <input type="password" name="password" class="form-control form-control-lg" >
+                                             <input type="password" name="password" class="form-control form-control-lg" placeholder="Enter Password" title="Password" minlength = "6" maxlength = "16" oninvalid="this.setCustomValidity('The password should have between 6 to 16 characters')" oninput="this.setCustomValidity('')" required >
                                         </div>
                                         <div class="btn_cont">
                                         <button class="btn btn-primary btn-block btn-lg" type="submit">Login</button>

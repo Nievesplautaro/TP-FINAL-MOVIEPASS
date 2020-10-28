@@ -4,7 +4,7 @@
     use Models\Cinema as Cinema;
     use DAO\Connection as Connection;
 
-    class UserDAO{
+    class CinemaDAO{
 
     private $CinemaList = array();
     private $fileName;

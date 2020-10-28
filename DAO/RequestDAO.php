@@ -25,6 +25,11 @@
                             $movie->setVoteAverage($jsonMovie['vote_average']);
                             $movie->setOverview($jsonMovie['overview']);
                             $movie->setReleaseDate($jsonMovie['release_date']);
+                            $details = json_decode(file_get_contents("http://api.themoviedb.org/3/movie/". $jsonMovie['id'] ."?api_key=d7de7eee1dd5c6bed7940903c861af62"),true);
+                            $movie->setDuration($details['runtime']);
+                            //$movie->setDuration($jsonMovie['runtime']);
+                            //$movie->setTrailer($jsonMovie['youtube'][0]['source']);
+                            
                             array_push($this->movieList, $movie);
                         }
                     } 
