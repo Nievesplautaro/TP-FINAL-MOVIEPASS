@@ -288,6 +288,11 @@ body{
     margin: 15px;
 }
 
+.dash .narrow .date_filter input{
+    display: flex;
+    margin: 12px auto;
+}
+
 .dash .narrow .searchBar{
     display: flex;
     justify-content: center;

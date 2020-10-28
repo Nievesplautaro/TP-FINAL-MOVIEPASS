@@ -12,7 +12,16 @@
                     </form>
                </div> -->
                <div class="filters">
-                    <div class="head_title">Genres</div>
+                    <div class="date_filter">
+                    <div class="head_title">Search by date</div>
+                    <form action="<?php echo FRONT_ROOT ?>Dashboard/showMoviesByDate" method="GET">
+                         <input type="date" id="start" name="date"
+                              value="<?php if(isset($date)){echo $date;}else{ echo date("Y-m-d");}?>"
+                              min="2018-01-01" max="2022-12-31">
+                         <input type="submit" name="" value="Search"/>
+                    </form>
+                    </div>
+                    <div class="head_title">Search by genres</div>
                     <ul class="filter_by">
                          <?php 
                               if(!empty($genreList)){
