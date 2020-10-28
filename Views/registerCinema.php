@@ -1,4 +1,7 @@
-<main class="d-flex align-items-center justify-content-center height-100" >
+<?php
+    require_once(VIEWS_PATH."navAdmin.php");
+?>
+<div class="d-flex align-items-center justify-content-center height-100" >
         <div class="content">
             <div class="container">
                     <div class="grid"> 
@@ -47,4 +50,4 @@
                     </div>
             </div>
         </div>
-    </main>
+</div>

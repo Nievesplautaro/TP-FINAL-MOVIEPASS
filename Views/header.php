@@ -21,3 +21,15 @@
                </div>
           </div>
 </header>
+
+<?php
+     /* if(isset($_SESSION["loggedUser"])){
+          if (isset($_SESSION["admin"])){
+               require_once(VIEWS_PATH."navAdmin.php");
+          }else{
+               require_once(VIEWS_PATH."nav.php");
+          }
+     } */
+?>
+
+

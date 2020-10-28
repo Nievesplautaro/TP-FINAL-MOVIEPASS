@@ -49,24 +49,24 @@
 
             try{
                 if($this->UserExist($email)){
-
                     $user = $daoUser->read($email);
                     if($user->getPassword() == $password){                    
                         $_SESSION["loggedUser"] = $user;
                         $_SESSION["status"] = "on";
-                        $message = "Login Successfully";
-                        /*Se implementa header ya que con require rompe al volver hacia atras como en tp6*/
-                        if ($user->getUserRole() == 1||$user->getUserRole() == "1"){   /* $this->isAdmin$user */
+                        //$message = "Login Successfully";
+                        //Se implementa header ya que con require rompe al volver hacia atras como en tp6
+                        if ($user->getUserRole() == 1||$user->getUserRole() == "1"){
+                            $_SESSION["admin"] = true;
                             header("location:MenuAdmin");
                         }else{
                             header("location:Menu");
                         }   
                     }else{
-                        $message = "Contraseña incorrecta";
+                        $error = "01";
                         require_once(VIEWS_PATH."main.php"); 
                     }
                 }else{
-                    $message = "Usuario incorrecto";
+                    $error = "01";
                     require_once(VIEWS_PATH."main.php");
                 }
             }catch(\PDOExeption $ex){
@@ -87,27 +87,24 @@
         }
 
         public function SignUp($username,$pass){
-
             try{
                 if(!$this->UserExist($username))
                 {
-
                     $user = new User($username,$pass);
                     $user->setUserRole(0);
                     $daoUser= new UserDAO(); 
 
                     //se crean los usuarios sin rol de admin
                     if($daoUser->create($user)){
-                        $message = "Usuario registrado correctamente";
+                        $error = "03";
                     }else{
-                        $message = "Error de usuario: intentelo de nuevo mas tarde...";
+                        $error = "02";
                     }
-                    
+                    require_once(VIEWS_PATH."main.php");
                 }else{
-                    $message = "Ya existe un usuario registrado con esa direccion de correo";
-    
+                    $error = "10";
+                    require_once(VIEWS_PATH."register.php");
                 }
-                require_once(VIEWS_PATH."main.php");
                 
             }catch(\PDOException $ex){
                 throw $ex;
@@ -127,16 +124,16 @@
 
                     //se crean los usuarios sin rol de admin
                     if($daoUser->create($user)){
-                        $message = "Usuario registrado correctamente";
+                        $error = "03";
                     }else{
-                        $message = "Error de usuario: intentelo de nuevo mas tarde...";
+                        $error = "02";
                     }
-                    
+                    //cambiar por llamado a controladora
+                    require_once(VIEWS_PATH."menuAdmin.php");
                 }else{
-                    $message = "Ya existe un usuario registrado con esa direccion de correo";
-    
+                    $error = "01";
+                    require_once(VIEWS_PATH."registerAdmin.php");
                 }
-                require_once(VIEWS_PATH."menuAdmin.php");
                 
             }catch(\PDOException $ex){
                 throw $ex;

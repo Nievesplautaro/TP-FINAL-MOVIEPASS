@@ -11,13 +11,17 @@
                                         </a>
                                    </div>
                               </div>
+                              <div class="data_register">
+                                   <p>¡Bienvenido!</p>
+                                   <p>Por favor ingresa tus datos para registrarte.</p> 
+                              </div>
                               <div class="form">
                                    <form action="<?php echo FRONT_ROOT ?>User/SignUp"  method="post" class="login-form bg-dark-alpha p-5 bg-light">
                                    <?php
                                         if(isset($error)){
                                              switch ($error) {
-                                                  case "invalid":
-                                                       echo "<div class='error' >Ese nombre de usuario ya ha sido registrado</div>";
+                                                  case "10":
+                                                       echo "<div class='error' >Ese nombre de usuario ya ha sido registrado. Por favor ingrese otro.</div>";
                                                        break;
                                                   case "02":
                                                        echo "<div class='error' >Error en el envio de datos</div>";

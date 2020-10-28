@@ -1,5 +1,5 @@
 <?php
-    require_once(VIEWS_PATH."navCinema.php");
+    require_once(VIEWS_PATH."navAdmin.php");
 ?>
 <div class="container menu">
     <div class="movie_list">
