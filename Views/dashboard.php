@@ -36,7 +36,7 @@
                               echo "<div class='card' >";
                                    echo "<div class='movie_media' ><img src='http://image.tmdb.org/t/p/w185".$movie->getPosterPath()."'></div>";
                                    echo "<div class='title'>
-                                        <p><b>".$movie->getTitle()."</b></p>                                        
+                                        <p><b>".$movie->getTitle()."</b></p>                                       
                                         </div>";
                                     echo "<div class='generos' >Genres: ";
                                     foreach($movie->getGenreIds() as $genreId){
