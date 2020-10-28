@@ -2,119 +2,80 @@
     namespace DAO;
 
     use Models\Cinema as Cinema;
+    use DAO\Connection as Connection;
 
-    class CinemaDAO{
+    class UserDAO{
 
     private $CinemaList = array();
     private $fileName;
-
-    public function Add(Cinema $Cinema){
-        $this->RetrieveData();
-        foreach ($this->GetAllCinemas() as $value){
-            if ($Cinema->getName() == $value->getName()){
-                return 0;
-            }
-        }
-        array_push($this->CinemaList,$Cinema);    
-        $this->SaveData();
-    }
-
-    public function GetAllCinemas(){
-        $this->RetrieveData();
-        return $this->CinemaList;
-    }
-
-    public function GetCinemaByName($name){
-        $newCinema = new Cinema();
-        $CinemaList= $this->GetAllCinemas();
-        foreach($CinemaList as $cinema){
-            if($cinema->getName() == $name){
-                $newCinema->setName($cinema->getName());
-                $newCinema->setPhoneNumber($cinema->getPhoneNumber());
-                $newCinema->setTicketPrice($cinema->getTicketPrice());
-                $newCinema->setAddress($cinema->getAddress());
-                $newCinema->setCapacity($cinema->getCapacity());
-                $newCinema->setShow($cinema->getShow());
-            }
-       }
-
-       return $newCinema;
-       
-    }
+    private $connection;
+    private $tableName = "cinemas";
 
 
-    public function CompareName($name){
-        $CinemaList= $this->GetAllCinemas();
-        foreach ($CinemaList as $Cinema){
-            if ($Cinema->getName() == $name){
-                return true;
-            }
-        }
-        return false;
+    /**
+     * create = add, agrega cines a la base de datos, tabla cinemas
+     */
+    public function create($_cinema){
 
-    }
+        $sql = "INSERT INTO cinema (cinema_name, address, phone_number, id_cinema) VALUES (:cinema_name, :address, :phone_number, :id_cinema)";
 
-    public function removeCinema($name){
-        {
-            $this->RetrieveData();
-            foreach ($this->CinemaList as $key => $value){
-                    if ($value->getName() == $name){
-                        unset($this->CinemaList[$key]);
-                    }
-            }
-            $this->SaveData();
-      }
-    }
+        $parameters['cinema_name'] = $_cinema->getName();
+        $parameters['address'] = $_cinema->getAddress();
+        $parameters['phone_number'] = $_user->getPhoneNumber();
+        //indistinto el id de usuario porque es autoincremental, pero sino no lo sube por parametros
+        $parameters['id_cinema'] = 0;
 
-    public function editCinema($cinemaName, $cinema){
-        $this->RetrieveData();
-        foreach ($this->CinemaList as $key => $value){
-            if ($value->getName() == $cinemaName){
-                $this->CinemaList[$key] = $cinema;
-            }
-        }
-        $this->SaveData();
-    }
-
-    private function SaveData(){
-        $arrayToEncode = array();
-
-        foreach($this->CinemaList as $Cinema){
-            $valuesArray["name"] = $Cinema->getName();
-            $valuesArray["phoneNumber"] = $Cinema->getPhoneNumber();
-            $valuesArray["ticketPrice"] = $Cinema->getTicketPrice();
-            $valuesArray["address"] = $Cinema->getAddress();
-            $valuesArray["capacity"] = $Cinema->getCapacity();
-            $valuesArray["show"] = $Cinema->getShow();
-            array_push($arrayToEncode,$valuesArray);
+        try{
+            $this->connection = Connection::getInstance();
+            return $this->connection->ExecuteNonQuery($sql, $parameters);
+        }catch(\PDOException $ex){
+            throw $ex;
         }
 
-        $jsonContent = json_encode($arrayToEncode, JSON_PRETTY_PRINT);
-        file_put_contents('Data/Cinema.json', $jsonContent);
     }
 
-    private function RetrieveData(){
+
+/**
+ * Transformamos el listado de usuarios en objetos de la clase usuario
+ */
+    protected function mapear ($value){
+
+        $value = is_array($value) ? $value : [];
         
-        $this->CinemaList = array();
+        $resp = array_map(function($p){
+            $cinema = new Cinema();
+            $cinema->setName($p['cinema_name']);
+            $cinema->setAddress($p['adress']);
+            $cinema->setPhoneNumber($p['phone_number']);            
+	return $cinema;
+        }, $value);
 
-        if(file_exists('Data/Cinema.json')){
-            $jsonContent = file_get_contents('Data/Cinema.json');
-            $arrayToDecode = ($jsonContent) ? json_decode($jsonContent,true) : array();
-            
-            foreach($arrayToDecode as $valuesArray){
+        return count($resp) > 1 ? $resp : $resp['0'];
 
-                $Cinema = new Cinema();
-
-                $Cinema->setName($valuesArray["name"]);
-                $Cinema->setPhoneNumber($valuesArray["phoneNumber"]);
-                $Cinema->setTicketPrice($valuesArray["ticketPrice"]);
-                $Cinema->setAddress($valuesArray["address"]);
-                $Cinema->setCapacity($valuesArray["capacity"]);
-                $Cinema->setShow($valuesArray["show"]);
-                array_push($this->CinemaList,$Cinema);
-            }
-
-        }
     }
+
+/**
+ * Devuelve el cine por el nombre
+ */
+
+    public function read($cinema_name){
+
+        $sql = "SELECT * FROM Cinemas WHERE Cinemas.cinema_name = :cinema_name";
+        $parameters['cinema_name'] = $cinema_name;
+
+        try{
+            $this->connection = Connection::getInstance();
+            $result = $this->connection->Execute($sql,$parameters);
+        }catch(\PDOException $ex){
+            throw $ex;
+        }
+        if(!empty($result)){
+            return $this->mapear($result);
+        }else{
+            return false;
+        }
+
+    }
+
 }
 ?>
