@@ -35,7 +35,23 @@
 
     }
 
+    public function readUsers(){
 
+        $sql = "SELECT * FROM users";
+    
+        try{
+            $this->connection = Connection::getInstance();
+            $result = $this->connection->Execute($sql);
+        }catch(\PDOException $ex){
+            throw $ex;
+        }
+        if(!empty($result)){
+            return $this->mapear($result);
+        }else{
+            return false;
+        }
+
+    }
 /**
  * Transformamos el listado de usuarios en objetos de la clase usuario
  */
@@ -64,7 +80,7 @@
 
         try{
             $this->connection = Connection::getInstance();
-            $result = $this->connection->Execute($sql,$parameters);
+            $result = $this->connection->execute($sql,$parameters);
         }catch(\PDOException $ex){
             throw $ex;
         }

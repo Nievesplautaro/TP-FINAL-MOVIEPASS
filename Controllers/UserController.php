@@ -158,7 +158,6 @@
             }
         }
 
-
         /**
         * Chequea el usuario por el nombre
         */
@@ -176,6 +175,7 @@
                 throw $ex;
             }
         }
+
         
         /**
         * Rompe la session iniciada

@@ -50,21 +50,21 @@
             
             $name = $_POST['name'];
             $phoneNumber = $_POST['phoneNumber'];
-            $ticketPrice = $_POST['ticketPrice'];
+            /* $ticketPrice = $_POST['ticketPrice']; */
             $address = $_POST['address'];
-            $capacity = $_POST['capacity'];
+            /* $capacity = $_POST['capacity']; */
             /* $show = $_POST['show']; */
 
             $newCinema = new Cinema();
         
             $newCinema->setName($name);
             $newCinema->setPhoneNumber($phoneNumber);
-            $newCinema->setTicketPrice($ticketPrice);
+            /* $newCinema->setTicketPrice($ticketPrice); */
             $newCinema->setAddress($address);
-            $newCinema->setCapacity($capacity);
+            /* $newCinema->setCapacity($capacity); */
             /* $newCinema->setShow($show); */
-            $newCinema->setShow(array());
-            $valid = $this->cinemaDAO->Add($newCinema);
+            /* $newCinema->setShow(array()); */
+            $valid = $this->cinemaDAO->create($newCinema);
         
             if ($valid === 0){
                 $message = "Cinema Name Already in Use";
@@ -80,7 +80,7 @@
 
         public function showCinemas(){
             $cinemaList = array();
-            $cinemaList = $this->cinemaDAO->GetAllCinemas();
+            $cinemaList = $this->cinemaDAO->readCinemas();
             require_once(VIEWS_PATH."validate-session.php");
             require_once(VIEWS_PATH."cinemaManagment.php");
         }
@@ -165,6 +165,7 @@
                     }   
             $this->ShowMenuView(""); 
                 
+        }
         }
     }
 ?>

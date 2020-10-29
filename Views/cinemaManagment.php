@@ -21,15 +21,15 @@
                                         <div class='title center'>
                                         ".$cinema->getPhoneNumber()."
                                         </div>";
-                                echo "<div class='title center'>
+                                /* echo "<div class='title center'>
                                         ".$cinema->getTicketPrice()."
-                                        </div>";
+                                        </div>"; */
                                 echo "<div class='title center'>
                                         ".$cinema->getAddress()."
                                         </div>";
-                                        echo "<div class='title center'>
+                           /*              echo "<div class='title center'>
                                         ".$cinema->getCapacity()."
-                                        </div>";
+                                        </div>"; */
                                 /* echo "<div class='title'>
                                         ".$cinema->getShow()."
                                         </div>"; */

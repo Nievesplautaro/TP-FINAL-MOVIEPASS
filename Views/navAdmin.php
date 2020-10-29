@@ -5,14 +5,13 @@
         <a class="nav-link">Cine</a>
         <ul>
           <li><a href="<?php echo FRONT_ROOT ?>Cinema/registerCinema">Add Cine</a></li>
-          <li><a href="<?php echo FRONT_ROOT ?> Cinema/showCinemas">Show Cine</a></li>
+          <li><a href="<?php echo FRONT_ROOT ?>Cinema/showCinemas">Show Cine</a></li>
         </ul>
       </li>
       <li class="nav-item">
         <a class="nav-link">Admin</a>
         <ul>
           <li><a href="<?php echo FRONT_ROOT ?>User/ShowRegisterAdmin">Add Admin</a></li>
-          <li><a href="">Show Admin</a></li>
         </ul>
       </li>
       <li class="nav-item">
