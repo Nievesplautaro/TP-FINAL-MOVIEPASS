@@ -38,6 +38,12 @@ namespace Models;
         return $this->trailer;
     }
 
+    public function getTrailerEmbed(){
+        $url = $this->getTrailer();
+        $url = str_replace("watch?v=", "embed/", $url);
+        return $url;
+    }
+
     public function setTrailer($trailer)
     {
         $this->trailer = $trailer;

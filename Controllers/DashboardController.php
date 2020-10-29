@@ -22,7 +22,7 @@
           require_once(VIEWS_PATH."dashboard.php");
      }
 
-     public function showMovies(){
+    public function showMovies(){
          
           $movieList = array();
 
@@ -39,7 +39,16 @@
           require_once(VIEWS_PATH."validate-session.php");
           require_once(VIEWS_PATH."dashboard.php");
           
-     }
+    }
+
+    public function showMovieDetails ($id){
+        if ($id){
+            $movie =  $this->GetMovieById($id);
+        }
+        $genreList = $this->dashboardDAO->GetGenres();
+        require_once(VIEWS_PATH."validate-session.php");
+        require_once(VIEWS_PATH."movieDetails.php");
+    }
 
      public function showMoviesByGenre(){
 
@@ -52,6 +61,23 @@
                $movieList = array();
                $movieList = $this->GetMoviesByGenre($idGenre);
                $genreList = $this->dashboardDAO->GetGenres();
+          }
+          require_once(VIEWS_PATH."validate-session.php");
+          require_once(VIEWS_PATH."dashboard.php");
+          
+     }
+
+     public function showMoviesByDate(){
+
+        
+        if($_GET && $_GET["date"]){
+            $date = $_GET["date"];
+        }
+        if($date){
+               $movieList = array();
+               $movieList = $this->GetMoviesByDate($date);
+               $genreList = $this->dashboardDAO->GetGenres();
+
           }
           require_once(VIEWS_PATH."validate-session.php");
           require_once(VIEWS_PATH."dashboard.php");
@@ -71,7 +97,6 @@
       }
 
       public function GetMoviesByGenre($id){
-          echo $id;
           $movieGenreList = array();
           $movieList = array();
           $movieList = $this->dashboardDAO->GetAllMovies();
@@ -83,13 +108,41 @@
           return $movieGenreList;
       }
 
-      public function GetMovieByTitle($title){
-          foreach ($this->movieList as $movie){
-              if ($movie->getTitle() == $title){
-                  return $movie;
-              }
-          }
-          return $this->movieList;
-      }
+    public function GetMoviesByDate($date){
+        $movieGenreList = array();
+        $movieList = array();
+        $movieList = $this->dashboardDAO->GetAllMovies();
+        foreach ($movieList as $movie){
+            if ($movie->getReleaseDate() == $date){
+                array_push($movieGenreList, $movie);
+            }
+        }
+        return $movieGenreList;
+    }
+
+    public function GetMovieByTitle($title){
+        foreach ($this->movieList as $movie){
+            if ($movie->getTitle() == $title){
+                return $movie;
+            }
+        }
+        return $this->movieList;
+    }
+
+    public function GetMovieById($id){
+        if($id){
+            $movieList = array();
+            $movieList = $this->dashboardDAO->GetAllMovies();
+            $selected = "";
+            if($movieList){
+                foreach ($movieList as $movie){
+                    if ($movie->getId() == $id){
+                        $selected = $movie;
+                    }
+                }
+                return $selected;
+            }
+        }
+    }
 
     }

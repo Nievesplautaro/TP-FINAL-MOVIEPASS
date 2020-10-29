@@ -137,5 +137,34 @@
             $this->ShowMenuView(""); 
                 
         }
+
+
+   /*      ESTA FUNCION AGREGA UNA SALA A UN CINE */
+        public function addRoom(){
+            require_once(VIEWS_PATH."validate-session.php");
+            $query = $_SERVER["QUERY_STRING"];
+            if($query){
+                    $query = urldecode($query);
+                    $id_cinema = str_replace("url=Cinema/addRoom&", "", $query);
+                    
+                    if ($_POST){
+                        $roomName = $_POST['roomName'];
+                        $capacity = $_POST['capacity'];
+                        $price = $_POST['price'];
+
+                        $room = new Room();
+
+                        $room->setRoomName($roomName);
+                        $room->setCapacity($capacity);
+                        $room->setPrice($price);
+
+                        $this->roomDAO->create($id_cinema,$room);
+                        /* ESTE SCRIPT SIRVE DE ALGO=? */
+                        echo '<script language="javascript">alert("Your Room Has Been Added Successfully");</script>';  
+                    
+                    }   
+            $this->ShowMenuView(""); 
+                
+        }
     }
 ?>

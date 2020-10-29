@@ -56,6 +56,7 @@ header{
     WIDTH: 100%;
     PADDING: 0 12PX;
     list-style-type: none;
+    z-index: 899;
 }
 
 #navbarNav .navbar-nav li a{
@@ -65,21 +66,21 @@ header{
     cursor: pointer;
 }
 
-nav #navbarNav.admin ul{
+nav #navbarNav ul{
     list-style:none;
 }
 
-nav #navbarNav.admin ul a{
+nav #navbarNav ul a{
     display: block;
 }
 
-nav #navbarNav.admin ul li {
+nav #navbarNav ul li {
 	position:relative;
     float:left;
     padding: 0 10px;
 }
 
-nav #navbarNav.admin ul ul {
+nav #navbarNav ul ul {
 	display:none;
 	position:absolute;
 	top:100%;
@@ -87,14 +88,14 @@ nav #navbarNav.admin ul ul {
 	padding:0;
 }
 
-nav #navbarNav.admin ul ul li{
+nav #navbarNav ul ul li{
     float: none;
     background-color: rgba(240,171,131,1);;
     padding: 10px;
     width: 160px;
 }
 
-nav #navbarNav.admin ul li:hover > ul {
+nav #navbarNav ul li:hover > ul {
 	display:block;
 }
 
@@ -287,6 +288,11 @@ body{
     margin: 15px;
 }
 
+.dash .narrow .date_filter input{
+    display: flex;
+    margin: 12px auto;
+}
+
 .dash .narrow .searchBar{
     display: flex;
     justify-content: center;
@@ -345,6 +351,75 @@ body{
     background-color: transparent;
     border: none;
 }
+
+.catalogo .selected_movie{
+    display: flex;
+}
+
+.catalogo .selected_movie .movie_details{
+    width: 40%;
+}
+.catalogo .selected_movie .movie_details .media{
+    max-width: 270px;
+}
+
+.catalogo .selected_movie .movie_details .media img{
+    width: 100%;
+}
+
+.catalogo .selected_movie .movie_actions{
+    width: 60%;
+}
+
+.catalogo .selected_movie .movie_details .data{
+    max-width: 270px;
+    margin: 10px 0;
+}   
+
+.catalogo .selected_movie .movie_details .data .titulo{
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.catalogo .selected_movie .movie_details .data .description{
+    font-size: 14px;
+    color: gray;
+}
+
+.catalogo .selected_movie .movie_details .data .details{
+    line-height: 0.5;
+    font-size: 14px;
+}
+
+.trailer .titulo{
+    font-size: 28px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.trailer .video{
+    width: 90%;
+    margin: auto;
+}
+
+.video_wrapper {
+    height: 0;
+    overflow: hidden;
+    padding-bottom: 56.25%;
+    padding-top: 30px;
+    position: relative;
+    }
+.video_wrapper iframe, .video_wrapper object, .video_wrapper embed {
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+
+
+
 
 
 

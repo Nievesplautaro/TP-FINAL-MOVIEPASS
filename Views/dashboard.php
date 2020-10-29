@@ -1,6 +1,6 @@
 
 <?php
-     include('Views/nav.php'); //Tratar de usar el framework, VIEWS_PATH nav
+     require_once(VIEWS_PATH."nav.php");
 ?>
 <div class="container menu">
      <div class="grid">
@@ -12,7 +12,16 @@
                     </form>
                </div> -->
                <div class="filters">
-                    <div class="head_title">Genres</div>
+                    <div class="date_filter">
+                    <div class="head_title">Search by date</div>
+                    <form action="<?php echo FRONT_ROOT ?>Dashboard/showMoviesByDate" method="GET">
+                         <input type="date" id="start" name="date"
+                              value="<?php if(isset($date)){echo $date;}else{ echo date("Y-m-d");}?>"
+                              min="2018-01-01" max="2022-12-31">
+                         <input type="submit" name="" value="Search"/>
+                    </form>
+                    </div>
+                    <div class="head_title">Search by genres</div>
                     <ul class="filter_by">
                          <?php 
                               if(!empty($genreList)){
@@ -31,8 +40,10 @@
           <div class="movie_list">
           <ul class="catalogo">
                <?php
+                    if($movieList && !empty($movieList)){
                          foreach($movieList as $movie){
                          echo "<li class='movie' >";
+                         echo "<a href='";echo FRONT_ROOT; echo "Dashboard/showMovieDetails/"; echo $movie-> getId(); echo "'>";
                               echo "<div class='card' >";
                                    echo "<div class='movie_media' ><img src='http://image.tmdb.org/t/p/w185".$movie->getPosterPath()."'></div>";
                                    echo "<div class='title'>
@@ -45,8 +56,10 @@
                                     }
                                     echo "</div>";     
                              echo "</div>";
+                         echo "</a>";
                          echo "</li>";
                          }
+                    }
                ?>
           </ul>
           </div>
