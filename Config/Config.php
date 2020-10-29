@@ -12,7 +12,7 @@ define("DB_HOST", "localhost");
 define("DB_NAME", "moviepass");
 define("DB_USER", "root");
 //define("DB_PASS", "");
-define("DB_PASS", "facu5289");
+define("DB_PASS", "");
 
 ?>
 
