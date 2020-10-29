@@ -22,7 +22,7 @@
           require_once(VIEWS_PATH."dashboard.php");
      }
 
-     public function showMovies(){
+    public function showMovies(){
          
           $movieList = array();
           $movieList = $this->dashboardDAO->GetAllMovies();
@@ -30,7 +30,16 @@
           require_once(VIEWS_PATH."validate-session.php");
           require_once(VIEWS_PATH."dashboard.php");
           
-     }
+    }
+
+    public function showMovieDetails ($id){
+        if ($id){
+            $movie =  $this->GetMovieById($id);
+        }
+        $genreList = $this->dashboardDAO->GetGenres();
+        require_once(VIEWS_PATH."validate-session.php");
+        require_once(VIEWS_PATH."movieDetails.php");
+    }
 
      public function showMoviesByGenre(){
 
@@ -104,13 +113,29 @@
         return $movieGenreList;
     }
 
-      public function GetMovieByTitle($title){
-          foreach ($this->movieList as $movie){
-              if ($movie->getTitle() == $title){
-                  return $movie;
-              }
-          }
-          return $this->movieList;
-      }
+    public function GetMovieByTitle($title){
+        foreach ($this->movieList as $movie){
+            if ($movie->getTitle() == $title){
+                return $movie;
+            }
+        }
+        return $this->movieList;
+    }
+
+    public function GetMovieById($id){
+        if($id){
+            $movieList = array();
+            $movieList = $this->dashboardDAO->GetAllMovies();
+            $selected = "";
+            if($movieList){
+                foreach ($movieList as $movie){
+                    if ($movie->getId() == $id){
+                        $selected = $movie;
+                    }
+                }
+                return $selected;
+            }
+        }
+    }
 
     }

@@ -352,6 +352,75 @@ body{
     border: none;
 }
 
+.catalogo .selected_movie{
+    display: flex;
+}
+
+.catalogo .selected_movie .movie_details{
+    width: 40%;
+}
+.catalogo .selected_movie .movie_details .media{
+    max-width: 270px;
+}
+
+.catalogo .selected_movie .movie_details .media img{
+    width: 100%;
+}
+
+.catalogo .selected_movie .movie_actions{
+    width: 60%;
+}
+
+.catalogo .selected_movie .movie_details .data{
+    max-width: 270px;
+    margin: 10px 0;
+}   
+
+.catalogo .selected_movie .movie_details .data .titulo{
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.catalogo .selected_movie .movie_details .data .description{
+    font-size: 14px;
+    color: gray;
+}
+
+.catalogo .selected_movie .movie_details .data .details{
+    line-height: 0.5;
+    font-size: 14px;
+}
+
+.trailer .titulo{
+    font-size: 28px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.trailer .video{
+    width: 90%;
+    margin: auto;
+}
+
+.video_wrapper {
+    height: 0;
+    overflow: hidden;
+    padding-bottom: 56.25%;
+    padding-top: 30px;
+    position: relative;
+    }
+.video_wrapper iframe, .video_wrapper object, .video_wrapper embed {
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+
+
+
+
 
 
 /* -------------------- FOOTER ------------------------------- */

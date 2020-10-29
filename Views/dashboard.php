@@ -1,6 +1,6 @@
 
 <?php
-     include('Views/nav.php'); //Tratar de usar el framework, VIEWS_PATH nav
+     require_once(VIEWS_PATH."nav.php");
 ?>
 <div class="container menu">
      <div class="grid">
@@ -40,8 +40,10 @@
           <div class="movie_list">
           <ul class="catalogo">
                <?php
+                    if($movieList && !empty($movieList)){
                          foreach($movieList as $movie){
                          echo "<li class='movie' >";
+                         echo "<a href='";echo FRONT_ROOT; echo "Dashboard/showMovieDetails/"; echo $movie-> getId(); echo "'>";
                               echo "<div class='card' >";
                                    echo "<div class='movie_media' ><img src='http://image.tmdb.org/t/p/w185".$movie->getPosterPath()."'></div>";
                                    echo "<div class='title'>
@@ -54,8 +56,10 @@
                                     }
                                     echo "</div>";     
                              echo "</div>";
+                         echo "</a>";
                          echo "</li>";
                          }
+                    }
                ?>
           </ul>
           </div>
