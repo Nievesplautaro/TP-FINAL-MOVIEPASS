@@ -64,7 +64,7 @@
 
         try{
             $this->connection = Connection::getInstance();
-            $result = $this->connection->Execute($sql,$parameters);
+            $result = $this->connection->execute($sql,$parameters);
         }catch(\PDOException $ex){
             throw $ex;
         }

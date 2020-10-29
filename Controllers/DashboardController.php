@@ -26,8 +26,8 @@
          
           $movieList = array();
 
-          //$this->dashboardDAO->SaveMoviesFromApi();
-          //$this->dashboardDAO->SaveGenresFromApi();
+          /* $this->dashboardDAO->SaveMoviesFromApi();
+          $this->dashboardDAO->SaveGenresFromApi(); */
 
           $movieList = $this->dashboardDAO->readMovies(); 
           $genreList = $this->dashboardDAO->readGenres();

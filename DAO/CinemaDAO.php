@@ -17,11 +17,11 @@
      */
     public function create($_cinema){
 
-        $sql = "INSERT INTO cinema (cinema_name, address, phone_number, id_cinema) VALUES (:cinema_name, :address, :phone_number, :id_cinema)";
+        $sql = "INSERT INTO cinemas (cinema_name, address, phone_number, id_cinema) VALUES (:cinema_name, :address, :phone_number, :id_cinema)";
 
         $parameters['cinema_name'] = $_cinema->getName();
         $parameters['address'] = $_cinema->getAddress();
-        $parameters['phone_number'] = $_user->getPhoneNumber();
+        $parameters['phone_number'] = $_cinema->getPhoneNumber();
         //indistinto el id de usuario porque es autoincremental, pero sino no lo sube por parametros
         $parameters['id_cinema'] = 0;
 
@@ -38,16 +38,16 @@
 /**
  * Transformamos el listado de usuarios en objetos de la clase usuario
  */
-    protected function mapear ($value){
+    protected function mapearCine($value){
 
         $value = is_array($value) ? $value : [];
         
         $resp = array_map(function($p){
             $cinema = new Cinema();
             $cinema->setName($p['cinema_name']);
-            $cinema->setAddress($p['adress']);
+            $cinema->setAddress($p['address']);
             $cinema->setPhoneNumber($p['phone_number']);            
-	return $cinema;
+	    return $cinema;
         }, $value);
 
         return count($resp) > 1 ? $resp : $resp['0'];
@@ -70,7 +70,26 @@
             throw $ex;
         }
         if(!empty($result)){
-            return $this->mapear($result);
+            return $this->mapearCine($result);
+        }else{
+            return false;
+        }
+
+    }
+
+    public function readCinemas(){
+
+        $sql = "SELECT * FROM cinemas";
+        
+
+        try{
+            $this->connection = Connection::getInstance();
+            $result = $this->connection->Execute($sql);
+        }catch(\PDOException $ex){
+            throw $ex;
+        }
+        if(!empty($result)){
+            return $this->mapearCine($result);
         }else{
             return false;
         }

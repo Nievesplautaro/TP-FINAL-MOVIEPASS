@@ -6,10 +6,10 @@ namespace Models;
 
     private $name;
     private $phoneNumber;
-    private $ticketPrice;
+    /* private $ticketPrice; */
     private $address;
     /* private $capacity; */
-    private $show;
+    /* private $show; */
     
     public function getName()
     {
@@ -35,7 +35,7 @@ namespace Models;
         return $this;
     }
 
-    public function getTicketPrice()
+ /*    public function getTicketPrice()
     {
         return $this->ticketPrice;
     }
@@ -45,7 +45,7 @@ namespace Models;
         $this->ticketPrice = $ticketPrice;
 
         return $this;
-    }
+    } */
 
     public function getAddress()
     {
@@ -71,7 +71,7 @@ namespace Models;
         return $this;
     } */
 
-    public function getShow()
+  /*   public function getShow()
     {
         return $this->show;
     }
@@ -81,6 +81,6 @@ namespace Models;
         $this->show = $show;
 
         return $this;
-    }
+    } */
     }
 ?>

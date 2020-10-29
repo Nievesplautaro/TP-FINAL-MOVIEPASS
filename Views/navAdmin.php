@@ -5,7 +5,7 @@
         <a class="nav-link">Cine</a>
         <ul>
           <li><a href="<?php echo FRONT_ROOT ?>Cinema/registerCinema">Add Cine</a></li>
-          <li><a href="<?php echo FRONT_ROOT ?> Cinema/showCinemas">Show Cine</a></li>
+          <li><a href="<?php echo FRONT_ROOT ?>Cinema/showCinemas">Show Cine</a></li>
         </ul>
       </li>
       <li class="nav-item">
