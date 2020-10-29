@@ -25,16 +25,23 @@
      public function showMovies(){
          
           $movieList = array();
-          $movieList = $this->dashboardDAO->GetAllMovies();
-          $genreList = $this->dashboardDAO->GetGenres();
+
+          //$this->dashboardDAO->SaveMoviesFromApi();
+          //$this->dashboardDAO->SaveGenresFromApi();
+
+          $movieList = $this->dashboardDAO->readMovies(); 
+          $genreList = $this->dashboardDAO->readGenres();
+          
+          //var_dump($this->dashboardDAO->readGenres());
+          //var_dump($this->dashboardDAO->readMovies());
+
+         
           require_once(VIEWS_PATH."validate-session.php");
           require_once(VIEWS_PATH."dashboard.php");
           
      }
 
      public function showMoviesByGenre(){
-
-        
 
         $query = $_SERVER["QUERY_STRING"];
 
@@ -52,7 +59,7 @@
      }
 
      public function searchMovie() {                                            
-          
+        
         $title = $_POST['title'];
 
         $movieList = array();

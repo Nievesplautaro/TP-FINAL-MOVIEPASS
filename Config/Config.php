@@ -11,7 +11,8 @@ define("IMG_PATH", FRONT_ROOT.STYLE_PATH . "img/");
 define("DB_HOST", "localhost");
 define("DB_NAME", "moviepass");
 define("DB_USER", "root");
-define("DB_PASS", "");
+//define("DB_PASS", "");
+define("DB_PASS", "facu5289");
 
 ?>
 

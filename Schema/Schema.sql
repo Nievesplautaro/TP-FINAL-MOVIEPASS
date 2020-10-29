@@ -3,18 +3,44 @@ use moviepass;
 
 create table if not exists users(
 	id_user int not null auto_increment,
-    user_role int,
+    user_role varchar(50),
     username varchar(75),
     pass varchar(50),
     constraint pk_users primary key (id_user)
 );
 
+insert into users (user_role, username, pass) values (0, 'f@f.com', '123456'), (1, 'admin@admin.com', '123456')
+
+create table if not exists genres(
+	id_genre int not null,
+    genre_name varchar(100),
+    constraint pk_genre primary key (id_genre)
+);
+
 create table if not exists movies(
 	id_movie int not null auto_increment,
-    title varchar(50),
+    title varchar(250),
     original_language varchar(50),
     release_date date,
+	popularity varchar(50),
+	vote_count int,
+	poster_path varchar(250),
+	id int,
+	backdrop_path varchar(100),
+	vote_average float,
+	overview varchar(1000),
+	trailer varchar(250),
+	duration int,
     constraint pk_movies primary key (id_movie)
+);
+
+create table if not exists movies_x_genres(
+	id_movies_x_genres int not null auto_increment,
+    id_genre int,
+    id_movie int,
+    constraint PK_movies_x_genres primary key (id_movies_x_genres),
+    constraint FK_genre foreign key (id_genre) references genres(id_genre),    
+    constraint FK_movie foreign key (id_movie) references movies(id_movie)    
 );
 
 
@@ -28,7 +54,9 @@ create table if not exists cinemas(
 
 create table if not exists room_cinema(
 	id_room int not null auto_increment,
-    seats_number int,
+    capacity int,
+    room_name varchar(50),
+    price int,
     id_cinema int,
     constraint pk_room primary key (id_room),
     constraint fk_room_cinema foreign key (id_cinema) references cinemas(id_cinema)

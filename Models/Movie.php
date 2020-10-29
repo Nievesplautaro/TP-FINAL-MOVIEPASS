@@ -69,7 +69,7 @@ namespace Models;
         return $this;
     }
 
-    public function getVotCount()
+    public function getVoteCount()
     {
         return $this->vote_count;
     }
@@ -188,5 +188,10 @@ namespace Models;
 
         return $this;
     }
+
+     
+    
+
+    
     }
 ?>
