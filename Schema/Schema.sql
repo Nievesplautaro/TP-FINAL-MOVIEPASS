@@ -28,7 +28,9 @@ create table if not exists cinemas(
 
 create table if not exists room_cinema(
 	id_room int not null auto_increment,
-    seats_number int,
+    capacity int,
+    room_name varchar(50),
+    price int,
     id_cinema int,
     constraint pk_room primary key (id_room),
     constraint fk_room_cinema foreign key (id_cinema) references cinemas(id_cinema)

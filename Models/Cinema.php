@@ -8,7 +8,7 @@ namespace Models;
     private $phoneNumber;
     private $ticketPrice;
     private $address;
-    private $capacity;
+    /* private $capacity; */
     private $show;
     
     public function getName()
@@ -59,7 +59,7 @@ namespace Models;
         return $this;
     }
 
-    public function getCapacity()
+   /*  public function getCapacity()
     {
         return $this->capacity;
     }
@@ -69,7 +69,7 @@ namespace Models;
         $this->capacity = $capacity;
 
         return $this;
-    }
+    } */
 
     public function getShow()
     {
