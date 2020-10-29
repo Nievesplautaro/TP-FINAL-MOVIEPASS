@@ -56,8 +56,7 @@
                 $this->pdoStatement->bindParam(":".$parameterName, $value);
             }
 
-            
-
+        
             $this->pdoStatement->execute();
 
             return $this->pdoStatement->fetchAll();

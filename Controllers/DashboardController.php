@@ -26,15 +26,14 @@
          
           $movieList = array();
 
-          /* $this->dashboardDAO->SaveMoviesFromApi();
-          $this->dashboardDAO->SaveGenresFromApi(); */
+          //$this->dashboardDAO->SaveGenresFromApi();
+          //$this->dashboardDAO->SaveMoviesFromApi();
 
-          $movieList = $this->dashboardDAO->readMovies(); 
+          //echo $this->dashboardDAO->getMovieIdByInternId(635302);
+
           $genreList = $this->dashboardDAO->readGenres();
+          $movieList = $this->dashboardDAO->readMovies();
           
-          //var_dump($this->dashboardDAO->readGenres());
-          //var_dump($this->dashboardDAO->readMovies());
-
          
           require_once(VIEWS_PATH."validate-session.php");
           require_once(VIEWS_PATH."dashboard.php");
@@ -61,7 +60,7 @@
         if($idGenre){
                $movieList = array();
                $movieList = $this->GetMoviesByGenre($idGenre);
-               $genreList = $this->dashboardDAO->GetGenres();
+               $genreList = $this->dashboardDAO->readGenres();
           }
           require_once(VIEWS_PATH."validate-session.php");
           require_once(VIEWS_PATH."dashboard.php");
@@ -97,13 +96,17 @@
 
       }
 
-      public function GetMoviesByGenre($id){ // a adaptar a la db
+      public function GetMoviesByGenre($id){ 
           $movieGenreList = array();
           $movieList = array();
-          $movieList = $this->dashboardDAO->GetAllMovies();
+          $movieList = $this->dashboardDAO->readMovies();
           foreach ($movieList as $movie){
-              if (in_array($id,$movie->getGenreIds())){
-                  array_push($movieGenreList, $movie);
+              $movieId = $this->dashboardDAO->getMovieIdByInternId($movie->getId());
+              $genres = $this->dashboardDAO->GetGenreByMovieId($movieId);
+              foreach ($genres as $genre){
+                if($id == $genre->getGenreId()){
+                    array_push($movieGenreList, $movie);
+                }
               }
           }
           return $movieGenreList;
