@@ -52,9 +52,11 @@
 
             $this->pdoStatement = $this->pdo->prepare($query);
 
-            foreach($parameters as $parameterName=>$value){
+            foreach($parameters as $parameterName->$value){
                 $this->pdoStatement->bindParam(":".$parameterName, $value);
             }
+
+            
 
             $this->pdoStatement->execute();
 

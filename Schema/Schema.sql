@@ -9,7 +9,7 @@ create table if not exists users(
     constraint pk_users primary key (id_user)
 );
 
-insert into users (user_role, username, pass) values (0, 'f@f.com', '123456'), (1, 'admin@admin.com', '123456')
+insert into users (user_role, username, pass) values (0, 'user@user.com', '123456'), (1, 'admin@admin.com', '123456');
 
 create table if not exists genres(
 	id_genre int not null,

@@ -135,7 +135,7 @@
     
             try{
                 $this->connection = Connection::getInstance();
-                $result = $this->connection->Execute($sql,$parameters);
+                $result = $this->connection->Execute($sql);
             }catch(\PDOException $ex){
                 throw $ex;
             }
@@ -184,7 +184,7 @@
     
             try{
                 $this->connection = Connection::getInstance();
-                $result = $this->connection->Execute($sql,$parameters);
+                $result = $this->connection->Execute($sql);
             }catch(\PDOException $ex){
                 throw $ex;
             }

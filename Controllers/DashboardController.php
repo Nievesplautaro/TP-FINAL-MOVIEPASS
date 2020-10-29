@@ -45,7 +45,8 @@
         if ($id){
             $movie =  $this->GetMovieById($id);
         }
-        $genreList = $this->dashboardDAO->GetGenres();
+        //$genreList = $this->dashboardDAO->GetGenres();
+        $genreList = $this->dashboardDAO->readGenres();
         require_once(VIEWS_PATH."validate-session.php");
         require_once(VIEWS_PATH."movieDetails.php");
     }
@@ -76,7 +77,7 @@
         if($date){
                $movieList = array();
                $movieList = $this->GetMoviesByDate($date);
-               $genreList = $this->dashboardDAO->GetGenres();
+               $genreList = $this->dashboardDAO->readGenres();
 
           }
           require_once(VIEWS_PATH."validate-session.php");
@@ -90,13 +91,13 @@
 
         $movieList = array();
         $movieList = $this->dashboardDAO->getMovieByTitle($title);
-        $genreList = $this->dashboardDAO->GetGenres();
+        $genreList = $this->dashboardDAO->readGenres();
         require_once(VIEWS_PATH."validate-session.php");
         require_once(VIEWS_PATH."dashboard.php");
 
       }
 
-      public function GetMoviesByGenre($id){
+      public function GetMoviesByGenre($id){ // a adaptar a la db
           $movieGenreList = array();
           $movieList = array();
           $movieList = $this->dashboardDAO->GetAllMovies();
@@ -111,7 +112,7 @@
     public function GetMoviesByDate($date){
         $movieGenreList = array();
         $movieList = array();
-        $movieList = $this->dashboardDAO->GetAllMovies();
+        $movieList = $this->dashboardDAO->readMovies();
         foreach ($movieList as $movie){
             if ($movie->getReleaseDate() == $date){
                 array_push($movieGenreList, $movie);
@@ -132,7 +133,7 @@
     public function GetMovieById($id){
         if($id){
             $movieList = array();
-            $movieList = $this->dashboardDAO->GetAllMovies();
+            $movieList = $this->dashboardDAO->readMovies();
             $selected = "";
             if($movieList){
                 foreach ($movieList as $movie){
