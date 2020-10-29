@@ -12,7 +12,6 @@
         <a class="nav-link">Admin</a>
         <ul>
           <li><a href="<?php echo FRONT_ROOT ?>User/ShowRegisterAdmin">Add Admin</a></li>
-          <li><a href="">Show Admin</a></li>
         </ul>
       </li>
       <li class="nav-item">
