@@ -46,7 +46,8 @@
             $cinema = new Cinema();
             $cinema->setName($p['cinema_name']);
             $cinema->setAddress($p['address']);
-            $cinema->setPhoneNumber($p['phone_number']);            
+            $cinema->setPhoneNumber($p['phone_number']);    
+            $cinema->setCinemaId($p['id_cinema']);        
 	    return $cinema;
         }, $value);
 
@@ -58,10 +59,10 @@
  * Devuelve el cine por el nombre
  */
 
-    public function read($cinema_name){
+    public function read($id_cinema){
 
-        $sql = "SELECT * FROM Cinemas WHERE Cinemas.cinema_name = :cinema_name";
-        $parameters['cinema_name'] = $cinema_name;
+        $sql = "SELECT * FROM Cinemas WHERE Cinemas.id_cinema = :id_cinema";
+        $parameters['id_cinema'] = $id_cinema;
 
         try{
             $this->connection = Connection::getInstance();
@@ -81,7 +82,6 @@
 
         $sql = "SELECT * FROM cinemas";
         
-
         try{
             $this->connection = Connection::getInstance();
             $result = $this->connection->Execute($sql);
@@ -146,6 +146,18 @@
         }
     }
 
+    public function deleteCinema($id){
+        $sql="DELETE FROM Cinemas WHERE Cinemas.id_Cinema=:id_Cinema";
+        $values['id_Cinema'] = $id;
+
+        try{
+            $this->connection= Connection::getInstance();
+            $this->connection->connect();
+            return $this->connection->ExecuteNonQuery($sql,$values);
+        }catch(\PDOException $ex){
+            throw $ex;
+        }
+    }
 
 }
 ?>

@@ -8,9 +8,22 @@ namespace Models;
     private $phoneNumber;
     /* private $ticketPrice; */
     private $address;
+    private $id_cinema;
     /* private $capacity; */
     /* private $show; */
-    
+
+    public function getCinemaId()
+    {
+        return $this->id_cinema;
+    }
+
+    public function setCinemaId($id_cinema)
+    {
+        $this->id_cinema = $id_cinema;
+
+        return $this;
+    }
+
     public function getName()
     {
         return $this->name;

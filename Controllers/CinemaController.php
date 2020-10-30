@@ -20,13 +20,11 @@
             require_once(VIEWS_PATH."validate-session.php");
             require_once(VIEWS_PATH."menuAdmin.php");
         }
-        public function ShowRegisterView($cinemaName)
+        public function ShowRegisterView($cinemaId)
         {
             require_once(VIEWS_PATH."validate-session.php");
-            if($cinemaName){
-                //$newCinema = new Cinema();
-                $cinema = $this->cinemaDAO->read($cinemaName);
-                $id_cinema = $this->cinemaDAO->getCinemaIdByName($cinemaName);
+            if($cinemaId){
+                $cinema = $this->cinemaDAO->read($cinemaId);
             }
             require_once(VIEWS_PATH."editCinema.php");
 
@@ -76,8 +74,8 @@
             require_once(VIEWS_PATH."validate-session.php");
 
             if ($_GET){
-                $name = $_GET["name"];
-                $this->cinemaDAO->removeCinema($name);
+                $cinemaId = $_GET["CinemaId"];
+                $this->cinemaDAO->deleteCinema($cinemaId);
                 echo '<script language="javascript">alert("Your Cinema Has Been Deleted Successfully");</script>';  
             
             }
@@ -91,7 +89,7 @@
             $query = $_SERVER["QUERY_STRING"];
 
             if($query){
-                $id_cinema = str_replace("url=Cinema/editCinema&", "", $query);
+                $id_cinema = str_replace("url=Cinema/editCinema&", '', $query);
             }
             if($id_cinema){
                     if ($_POST){

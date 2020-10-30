@@ -9,7 +9,9 @@ create table if not exists users(
     constraint pk_users primary key (id_user)
 );
 
-select * from users;
+drop table room_cinema;
+
+select * from cinemas;
 
 insert into users (user_role, username, pass) values (0, 'user@user.com', '123456'), (1, 'admin@admin.com', '123456');
 

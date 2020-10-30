@@ -5,6 +5,20 @@
         private $movie;
         private $roomId;
         private $start_time;
+        private $id_show;
+
+        public function getShowId()
+        {
+            return $this->id_show;
+        }
+
+        public function setShowId($id_show)
+        {
+            $this->id_show = $id_show;
+
+            return $this;
+        }
+
 
         public function getMovie()
         {

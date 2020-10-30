@@ -16,15 +16,10 @@
             $this->cinemaDAO = new CinemaDAO();
         }
 
-        public function ShowEditView($cinemaName)
+        public function ShowEditView($id_cinema)
         {
             require_once(VIEWS_PATH."validate-session.php");
-            if($cinemaName){
-                $newCinema = new Cinema();
-                $newCinema = $this->cinemaDAO->read($cinemaName);
-                $id_cinema = $this->cinemaDAO->getCinemaIdByName($cinemaName);
-            }
-            require_once(VIEWS_PATH."editCinema.php");
+            require_once(VIEWS_PATH."editRoom.php");
 
         }
 
@@ -40,10 +35,10 @@
             $query = $_SERVER["QUERY_STRING"];
 
             if($query){
-                $cinemaName = str_replace("url=Room/ShowRooms&name=", "", $query);
+                $id_cinema = str_replace("url=Room/ShowRooms&name=", "", $query);
             }
-            if($cinemaName){
-                $cinema = $this->cinemaDAO->Read($cinemaName);
+            if($id_cinema){
+                $cinema = $this->cinemaDAO->Read($id_cinema);
             }
             require_once(VIEWS_PATH."validate-session.php");
             require_once(VIEWS_PATH."roomManagment.php");
@@ -51,17 +46,17 @@
 
 
         /*      ESTA FUNCION AGREGA UNA SALA A UN CINE */
-        public function addRoom($cinemaName){
+        public function addRoom($id_cinema){
             require_once(VIEWS_PATH."validate-session.php");
-                if($cinemaName){
+                if($id_cinema){
                     $roomName = $_POST['room_name'];
                     $capacity = $_POST['capacity'];
                     $price = $_POST['price'];
+                    $cinema = $this->cinemaDAO->Read($id_cinema);
 
-                    $room = new Room($roomName, $capacity, $price);
-
-                    $id_cinema = $this->cinemaDAO->getCinemaIdByName($cinemaName);
-                    $this->roomDAO->create($id_cinema,$room);
+                    $room = new Room($roomName, $capacity, $price, $cinema);
+                    
+                    $this->roomDAO->create($room);
                     /* ESTE SCRIPT SIRVE DE ALGO=? */
                     echo '<script language="javascript">alert("Your Room Has Been Added Successfully");</script>';  
                 }
@@ -73,13 +68,12 @@
             $query = $_SERVER["QUERY_STRING"];
 
             if($query){
-                $room_name = str_replace("url=Room/Delete&", "", $query);
+                $id_room = str_replace("url=Room/Delete&", "", $query);
             }
-            if($room_name){
-                $room = $this->roomDAO->read($room_name);
+            if($id_room){
                 try{
 
-                    $this->roomDAO->Delete($room);
+                    $this->roomDAO->Delete($id_room);
     
                 }catch(\PDOException $ex){
                     throw $ex;
@@ -88,20 +82,6 @@
             require_once(VIEWS_PATH."validate-session.php");
             require_once(VIEWS_PATH."roomManagment.php");
         
-        }
-
-        private function TransformToArray($value){
-            
-            if ($value == false){
-                $value = array();
-            }
-    
-            if (!is_array($value)){
-                $value = array($value);
-            }
-    
-            return $value;
-    
         }
 
     }

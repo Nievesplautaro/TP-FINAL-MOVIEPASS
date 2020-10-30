@@ -2,6 +2,7 @@
     namespace DAO;
 
     use Models\Room as Room;
+    use Models\Cinema as Cinema;
     use DAO\Connection as Connection;
 
     class RoomDAO{
@@ -15,13 +16,15 @@
     /**
      * create = add, agrega room a la base de datos, tabla room
      */
-    public function create($id_cinema,$_room){
+    public function create($_room){
 
         $sql = "INSERT INTO room_cinema ( room_name , price,  id_room, capacity, id_cinema) VALUES (:room_name , :price,  :id_room, :capacity, :id_cinema)";
 
         $parameters['room_name'] =  $_room->getRoomName();
         $parameters['capacity'] =  $_room->getCapacity();
-        $parameters['id_cinema'] = $id_cinema;
+        $cinema = new Cinema();
+        $cinema = $_room->getCinema();
+        $parameters['id_cinema'] = $cinema->getCinemaId();
         $parameters['price'] = $_room->getPrice();
         //indistinto el id de room porque es autoincremental, pero sino no lo sube por parametros
         $parameters['id_room'] = 0;
@@ -46,7 +49,7 @@
         $value = is_array($value) ? $value : [];
         
         $resp = array_map(function($p){
-            $room = new Room($p['room_name'], $p['capacity'], $p['price']);
+            $room = new Room($p['room_name'], $p['capacity'], $p['price'], $p['id_room']);
 	        return $room;
         }, $value);
 
@@ -58,10 +61,10 @@
  * Devuelve el cine por el nombre
  */
 
-    public function read($room_name){
+    public function read($id_room){
 
-        $sql = "SELECT * FROM room_cinema WHERE room_cinema.room_name = :room_name";
-        $parameters['room_name'] = $room_name;
+        $sql = "SELECT * FROM room_cinema WHERE room_cinema.id_room = :id_room";
+        $parameters['id_room'] = $id_room;
 
         try{
             $this->connection = Connection::getInstance();
@@ -95,9 +98,9 @@
 
     }
 
-    public function Delete($room){
-        $sql="DELETE FROM Rooms WHERE Rooms.room_name=:room_name";
-        $values['room_name'] = $room->getRoomName();
+    public function Delete($id_room){
+        $sql="DELETE FROM room_cinema WHERE Rooms.id_room=:id_room";
+        $values['id_room'] = $id_room;
 
         try{
             $this->connection= Connection::getInstance();

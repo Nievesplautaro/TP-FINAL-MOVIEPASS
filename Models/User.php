@@ -2,7 +2,7 @@
 
 namespace Models;
 
-    class User{
+    class User {
 
     private $email;
     private $password;

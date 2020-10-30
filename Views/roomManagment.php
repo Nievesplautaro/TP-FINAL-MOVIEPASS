@@ -19,7 +19,7 @@
                         $id++;
                         echo "<li class='room' >";
                         echo "<div class='room_element'>";
-                            echo "<div onclick=\"location.href='"; echo FRONT_ROOT; echo "Room/ShowEditView/"; echo $cinema->getName();echo "'\";  class='card' >"
+                            echo "<div onclick=\"location.href='"; echo FRONT_ROOT; echo "Room/ShowEditView/"; echo $room->getRoomId();echo "'\";  class='card' >"
                             ;
                                 echo "<div class='title center'>
                                         ".$room->getRoomName()."
@@ -37,7 +37,7 @@
                                 </div>";?>
                                 <div class="delete">
                                 <form action="<?php echo FRONT_ROOT?>Room/Delete" method="GET">
-                                    <input type="hidden" value="<?php echo $room->getRoomName() ?>" name="name">
+                                    <input type="hidden" value="<?php echo $room->getRoomId() ?>" name="name">
                                     <button type="submit" class="uk-button uk-button-danger uk-button-small">
                                         <img src="<?php echo IMG_PATH ?>trash.png">
                                     </button>

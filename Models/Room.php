@@ -1,16 +1,45 @@
 <?php 
     namespace Models;
 
-    class Room{
+    Use Models\Cinema as Cinema;
+
+    class Room extends Cinema{
 
         private $roomName;
         private $capacity;
         private $price;
+        private $id_room;
+        private $cinema;
 
-        public function __construct($roomName, $capacity, $price){
+        public function __construct($roomName, $capacity, $price, $cinema){
             $this->roomName=$roomName;
             $this->capacity=$capacity;
             $this->price = $price;
+            $this->cinema = $cinema;
+        }
+
+        public function getCinema()
+        {
+            return $this->cinema;
+        }
+
+        public function setCinema($cinema)
+        {
+            $this->cinema = $cinema;
+
+            return $this;
+        }
+
+        public function getRoomId()
+        {
+            return $this->id_room;
+        }
+
+        public function setRoomId($id_room)
+        {
+            $this->id_room = $id_room;
+
+            return $this;
         }
 
         public function getCapacity()
