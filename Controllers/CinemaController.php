@@ -2,6 +2,7 @@
     namespace Controllers;
     use DAO\CinemaDAO as CinemaDAO;
     Use Models\Cinema as Cinema;
+    
 
     
 
@@ -11,34 +12,25 @@
         
         public function __construct(){
             $this->cinemaDAO = new CinemaDAO();
+            
         }
 
         public function ShowMenuView($message = "")
         {
             require_once(VIEWS_PATH."validate-session.php");
-            require_once(VIEWS_PATH."menuCinema.php");
+            require_once(VIEWS_PATH."menuAdmin.php");
         }
-        public function ShowRegisterView()
+        public function ShowRegisterView($cinemaName)
         {
             require_once(VIEWS_PATH."validate-session.php");
-            
-            $query = $_SERVER["QUERY_STRING"];
-
-
-            if($query){
-                $query = urldecode($query);
-                $name = str_replace("url=Cinema/ShowRegisterView&", "", $query);
+            if($cinemaName){
                 $newCinema = new Cinema();
-                $newCinema = $this->cinemaDAO->GetCinemaByName($name);
+                $newCinema = $this->cinemaDAO->read($cinemaName);
             }
-
             require_once(VIEWS_PATH."editCinema.php");
 
         }
-/*         public function ShowCinemaView($message = "")
-        {
-            require_once(VIEWS_PATH."mainCinema.php");
-        } */
+
         public function registerCinema($message = "")
         {
             require_once(VIEWS_PATH."validate-session.php");
@@ -50,20 +42,14 @@
             
             $name = $_POST['name'];
             $phoneNumber = $_POST['phoneNumber'];
-            /* $ticketPrice = $_POST['ticketPrice']; */
             $address = $_POST['address'];
-            /* $capacity = $_POST['capacity']; */
-            /* $show = $_POST['show']; */
 
             $newCinema = new Cinema();
         
             $newCinema->setName($name);
             $newCinema->setPhoneNumber($phoneNumber);
-            /* $newCinema->setTicketPrice($ticketPrice); */
             $newCinema->setAddress($address);
-            /* $newCinema->setCapacity($capacity); */
-            /* $newCinema->setShow($show); */
-            /* $newCinema->setShow(array()); */
+
             $valid = $this->cinemaDAO->create($newCinema);
         
             if ($valid === 0){
@@ -99,73 +85,32 @@
             
         }
 
-        public function editCinema(){
+        public function editCinema($newName){
             require_once(VIEWS_PATH."validate-session.php");
 
-
-
-            $query = $_SERVER["QUERY_STRING"];
-
-            if($query){
-                    $query = urldecode($query);
-                    $cinemaToReplace = str_replace("url=Cinema/editCinema&", "", $query);
-
+                if($newName){
                     if ($_POST){
+                        
                         $name = $_POST['name'];
                         $phoneNumber = $_POST['phoneNumber'];
-                        $ticketPrice = $_POST['ticketPrice'];
                         $address = $_POST['address'];
-                        $capacity = $_POST['capacity'];
-
 
                         $editCinema = new Cinema();
-        
+
                         $editCinema->setName($name);
                         $editCinema->setPhoneNumber($phoneNumber);
-                        $editCinema->setTicketPrice($ticketPrice);
                         $editCinema->setAddress($address);
-                        $editCinema->setCapacity($capacity);
-
-                        $this->cinemaDAO->editCinema($cinemaToReplace,$editCinema);
-
+                        $id_cinema = $this->cinemaDAO->getCinemaIdByName($newName);
+                        $this->cinemaDAO->editCinema($id_cinema,$editCinema);
+                        
                         echo '<script language="javascript">alert("Your Cinema Has Been Edited Successfully");</script>';  
                     
                     }
-
             }
-
             $this->ShowMenuView(""); 
-                
         }
 
 
-   /*      ESTA FUNCION AGREGA UNA SALA A UN CINE */
-        public function addRoom(){
-            require_once(VIEWS_PATH."validate-session.php");
-            $query = $_SERVER["QUERY_STRING"];
-            if($query){
-                    $query = urldecode($query);
-                    $id_cinema = str_replace("url=Cinema/addRoom&", "", $query);
-                    
-                    if ($_POST){
-                        $roomName = $_POST['roomName'];
-                        $capacity = $_POST['capacity'];
-                        $price = $_POST['price'];
 
-                        $room = new Room();
-
-                        $room->setRoomName($roomName);
-                        $room->setCapacity($capacity);
-                        $room->setPrice($price);
-
-                        $this->roomDAO->create($id_cinema,$room);
-                        /* ESTE SCRIPT SIRVE DE ALGO=? */
-                        echo '<script language="javascript">alert("Your Room Has Been Added Successfully");</script>';  
-                    
-                    }   
-            $this->ShowMenuView(""); 
-                
-        }
-        }
     }
 ?>

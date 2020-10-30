@@ -10,7 +10,7 @@
                         $id++;
                         echo "<li class='cinema' >";
                         echo "<div class='element_cine'>";
-                            echo "<div onclick=\"location.href='"; echo FRONT_ROOT; echo "Cinema/ShowRegisterView?"; echo $cinema->getName();echo "'\";  class='card' >"
+                            echo "<div onclick=\"location.href='"; echo FRONT_ROOT; echo "Cinema/ShowRegisterView/"; echo $cinema->getName();echo "'\";  class='card' >"
                             ;
                                 echo "<div class='title center'>
                                         ".$cinema->getName()."
@@ -21,18 +21,9 @@
                                         <div class='title center'>
                                         ".$cinema->getPhoneNumber()."
                                         </div>";
-                                /* echo "<div class='title center'>
-                                        ".$cinema->getTicketPrice()."
-                                        </div>"; */
                                 echo "<div class='title center'>
                                         ".$cinema->getAddress()."
                                         </div>";
-                           /*              echo "<div class='title center'>
-                                        ".$cinema->getCapacity()."
-                                        </div>"; */
-                                /* echo "<div class='title'>
-                                        ".$cinema->getShow()."
-                                        </div>"; */
                             echo "</div>
                                 </div>";?>
                                 <div class="delete">

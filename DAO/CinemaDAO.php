@@ -96,5 +96,56 @@
 
     }
 
+
+    public function getCinemaIdByName($cinemaName){
+        $sqlSelectId = "select id_cinema from cinemas where cinema_name = '".$cinemaName."' order by id_cinema desc limit 1;";
+
+        try{
+            $this->connection = Connection::getInstance();
+            $result = $this->connection->Execute($sqlSelectId);
+        }catch(\PDOException $ex){
+            throw $ex;
+        }
+        if(!empty($result)){
+            return $this->mapearCinemaId($result);
+        }else{
+            return false;
+        }
+    }
+
+    private function mapearCinemaId($value){
+        $value = is_array($value) ? $value : [];
+        
+        $resp = array_map(function($p){
+            return $p['id_cinema'];
+        }, $value);
+
+        return count($resp) > 1 ? $resp : $resp['0'];
+
+    }
+
+
+    public function editCinema($id_cinema,$editCinema){
+        $parameters['cinema_name'] = $editCinema->getName();
+        $parameters['address'] = $editCinema->getAddress();
+        $parameters['phone_number'] = $editCinema->getPhoneNumber();
+        //indistinto el id de usuario porque es autoincremental, pero sino no lo sube por parametros
+        $parameters['id_cinema'] = $id_cinema;
+        $sql = "update cinemas 
+                    set 
+                        cinema_name = :cinema_name, 
+                        address = :address, 
+                        phone_number = :phone_number 
+                    where id_cinema = :id_cinema;";
+
+        try{
+            $this->connection = Connection::getInstance();
+            return $this->connection->executeNonQuery($sql,$parameters);
+        }catch(\PDOException $ex){
+            throw $ex;
+        }
+    }
+
+
 }
 ?>
