@@ -7,7 +7,12 @@
         private $capacity;
         private $price;
 
-        
+        public function __construct($roomName, $capacity, $price){
+            $this->roomName=$roomName;
+            $this->capacity=$capacity;
+            $this->price = $price;
+        }
+
         public function getCapacity()
         {
             return $this->capacity;

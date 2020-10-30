@@ -20,15 +20,15 @@
                                 ?>
                                         <div class="form-group">
                                             <label for="">Cinema Name</label>
-                                            <input type="text" name="name" value="<?php  echo $newCinema->getName()  ?>" class="form-control form-control-lg" placeholder="Enter Cinema Name" title="Cinema Name" minlength = "3" oninvalid="this.setCustomValidity('Invalid Cinema Name')" oninput="this.setCustomValidity('')" required>
+                                            <input type="text" name="name" value="<?php  echo $cinema->getName()  ?>" class="form-control form-control-lg" placeholder="Enter Cinema Name" title="Cinema Name" minlength = "3" oninvalid="this.setCustomValidity('Invalid Cinema Name')" oninput="this.setCustomValidity('')" required>
                                         </div>
                                         <div class="form-group">
                                             <label for="">Phone number</label>
-                                            <input type="tel" name="phoneNumber" value="<?php echo $newCinema->getPhoneNumber() ?>" class="form-control form-control-lg" placeholder="Enter Phone Number" title="Phone Number" oninvalid="this.setCustomValidity('Invalid Phone Numer')" oninput="this.setCustomValidity('')" required>
+                                            <input type="tel" name="phoneNumber" value="<?php echo $cinema->getPhoneNumber() ?>" class="form-control form-control-lg" placeholder="Enter Phone Number" title="Phone Number" oninvalid="this.setCustomValidity('Invalid Phone Numer')" oninput="this.setCustomValidity('')" required>
                                         </div>
                                         <div class="form-group">
                                             <label for="">Address</label>
-                                            <input type="text" name="address" value="<?php echo $newCinema->getAddress() ?>" class="form-control form-control-lg" placeholder="Enter Address" title="Address" minlength = "6" maxlength = "75" oninvalid="this.setCustomValidity('Invalid Address')" oninput="this.setCustomValidity('')" required>
+                                            <input type="text" name="address" value="<?php echo $cinema->getAddress() ?>" class="form-control form-control-lg" placeholder="Enter Address" title="Address" minlength = "6" maxlength = "75" oninvalid="this.setCustomValidity('Invalid Address')" oninput="this.setCustomValidity('')" required>
                                         </div>
                                         <div class="btn_cont">
                                         <button class="btn btn-primary btn-block btn-lg" type="submit">Edit Cinema</button>

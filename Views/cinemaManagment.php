@@ -32,8 +32,18 @@
                                     <button type="submit" class="uk-button uk-button-danger uk-button-small">
                                         <img src="<?php echo IMG_PATH ?>trash.png">
                                     </button>
+
                                 </form>
-                            </div>
+                                </div>
+                            <div class="rooms">
+                                <form action="<?php echo FRONT_ROOT?>Room/ShowRooms" method="GET">
+                                    <input type="hidden" value="<?php echo $cinema->getName() ?>" name="name">
+                                    <button type="submit" class="uk-button uk-button-danger uk-button-small">
+                                        <img style="width: 50px; height:50px;" src="<?php echo IMG_PATH ?>RoomIcon.png">
+                                    </button>
+                                    
+                                </form>
+                                </div>
                             <?php
                         echo "</div>";
                         echo "</li>";

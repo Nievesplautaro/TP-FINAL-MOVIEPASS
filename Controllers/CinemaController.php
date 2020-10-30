@@ -24,8 +24,8 @@
         {
             require_once(VIEWS_PATH."validate-session.php");
             if($cinemaName){
-                $newCinema = new Cinema();
-                $newCinema = $this->cinemaDAO->read($cinemaName);
+                //$newCinema = new Cinema();
+                $cinema = $this->cinemaDAO->read($cinemaName);
                 $id_cinema = $this->cinemaDAO->getCinemaIdByName($cinemaName);
             }
             require_once(VIEWS_PATH."editCinema.php");

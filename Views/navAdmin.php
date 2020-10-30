@@ -8,6 +8,13 @@
           <li><a href="<?php echo FRONT_ROOT ?>Cinema/showCinemas">Show Cine</a></li>
         </ul>
       </li>
+      <li class="nav-item active">
+        <a class="nav-link">Shows</a>
+        <ul>
+          <li><a href="<?php echo FRONT_ROOT ?>Cinema/registerShow">Add Show</a></li>
+          <li><a href="<?php echo FRONT_ROOT ?>Cinema/show Shows">See Shows</a></li>
+        </ul>
+      </li>
       <li class="nav-item">
         <a class="nav-link">Admin</a>
         <ul>
