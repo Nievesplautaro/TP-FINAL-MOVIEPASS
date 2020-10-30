@@ -26,6 +26,7 @@
             if($cinemaName){
                 $newCinema = new Cinema();
                 $newCinema = $this->cinemaDAO->read($cinemaName);
+                $id_cinema = $this->cinemaDAO->getCinemaIdByName($cinemaName);
             }
             require_once(VIEWS_PATH."editCinema.php");
 
@@ -85,10 +86,14 @@
             
         }
 
-        public function editCinema($newName){
+        public function editCinema(){
             require_once(VIEWS_PATH."validate-session.php");
+            $query = $_SERVER["QUERY_STRING"];
 
-                if($newName){
+            if($query){
+                $id_cinema = str_replace("url=Cinema/editCinema&", "", $query);
+            }
+            if($id_cinema){
                     if ($_POST){
                         
                         $name = $_POST['name'];
@@ -96,18 +101,17 @@
                         $address = $_POST['address'];
 
                         $editCinema = new Cinema();
-
+                        $newDAO = new cinemaDAO();
                         $editCinema->setName($name);
                         $editCinema->setPhoneNumber($phoneNumber);
                         $editCinema->setAddress($address);
-                        $id_cinema = $this->cinemaDAO->getCinemaIdByName($newName);
-                        $this->cinemaDAO->editCinema($id_cinema,$editCinema);
+                        $newDAO->editCinema($id_cinema,$editCinema);
                         
                         echo '<script language="javascript">alert("Your Cinema Has Been Edited Successfully");</script>';  
                     
                     }
             }
-            $this->ShowMenuView(""); 
+            $this->ShowMenuView("");  
         }
 
 

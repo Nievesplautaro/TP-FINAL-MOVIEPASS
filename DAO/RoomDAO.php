@@ -26,7 +26,7 @@
         //indistinto el id de room porque es autoincremental, pero sino no lo sube por parametros
         $parameters['id_room'] = 0;
 /* 
-        ACA DEBERIA CARGARSE A LA TABLA SEATS LA CANTIDAD DE ASIENTOS ESPECIFICADOS EN SEATS_NUMBER que para mi deberia llamarse seats_amount  */
+        ACA DEBERIA CARGARSE A LA TABLA SEATS LA CANTIDAD DE ASIENTOS ESPECIFICADOS EN capacity  */
 
         try{
             $this->connection = Connection::getInstance();
