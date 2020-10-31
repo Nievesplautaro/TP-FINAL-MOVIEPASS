@@ -26,8 +26,8 @@
          
           $movieList = array();
 
-          //$this->dashboardDAO->SaveGenresFromApi();
-          //$this->dashboardDAO->SaveMoviesFromApi();
+        //   $this->dashboardDAO->SaveGenresFromApi();
+        //   $this->dashboardDAO->SaveMoviesFromApi();
 
           //echo $this->dashboardDAO->getMovieIdByInternId(635302);
 
