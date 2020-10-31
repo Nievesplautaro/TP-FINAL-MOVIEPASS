@@ -46,7 +46,7 @@
                         }
                 }else{  
                     echo "<div class='Error'>";
-                    echo "<div class='empty_cine'><p>Actualmente no tenemos ningun disponible para mostrar.</p><p> Si desea agregar un cine clickee aqui.</p></div>";
+                    echo "<div class='empty_cine'><p>Actualmente no tenemos ningun cine disponible para mostrar.</p><p> Si desea agregar un cine clickee aqui.</p></div>";
                     echo "<div class='button'><a href='";
                     echo FRONT_ROOT;
                     echo"Cinema/registerCinema'>Add Cine</a></div></div>";

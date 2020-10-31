@@ -32,11 +32,7 @@
         public function showRooms($id_cinema){
             $roomList = array();
             $roomList = $this->roomDAO->readRooms();
-            //$query = $_SERVER["QUERY_STRING"];
 
-            /*if($query){
-                $id_cinema = str_replace("url=Room/ShowRooms&name=", "", $query);
-            }*/
             if($id_cinema){
                 $cinema = $this->cinemaDAO->Read($id_cinema);
             }
@@ -47,15 +43,12 @@
 
         /*      ESTA FUNCION AGREGA UNA SALA A UN CINE */
         public function addRoom(){
-                echo "tuvieja";
                 if($_POST){
                     $id_cinema = $_POST['id_cinema'];
-                    echo $id_cinema;
                     $roomName = $_POST['room_name'];
                     $capacity = $_POST['capacity'];
                     $price = $_POST['price'];
                     $cinema = $this->cinemaDAO->getCinemaById($id_cinema);
-                    var_dump($cinema);
 
                     $room = new Room($roomName, $capacity, $price, $cinema);
                     

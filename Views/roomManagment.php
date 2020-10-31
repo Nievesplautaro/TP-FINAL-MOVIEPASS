@@ -2,9 +2,6 @@
     require_once(VIEWS_PATH."navAdmin.php");
 ?>
 <div class="container menu">
-    <div class="add">
-        <a href="<?php echo FRONT_ROOT?>Room/ShowRegisterRoom/<?php echo $id_cinema ?>"><img style="width: 50px; height:50px;" src="<?php// echo IMG_PATH ?>RoomIcon.png"></a>
-    </div>
     <div class="room_list">
         <ul class="catalogo cine">
             <?php
@@ -12,38 +9,45 @@
                     if ($roomList){
                         foreach($roomList as $room){
                         $id++;
-                        echo "<li class='room' >";
-                        echo "<div class='room_element'>";
-                            echo "<div onclick=\"location.href='"; echo FRONT_ROOT; echo "Room/ShowEditView/"; echo $room->getRoomId();echo "'\";  class='card' >"
-                            ;
-                                echo "<div class='title center'>
-                                        ".$room->getRoomName()."
-                                        </div>
-                                        "
-                                        ;
-                                echo "<div class='data'>
-                                        <div class='title center'>
-                                        ".$room->getCapacity()."
-                                        </div>";
-                                echo "<div class='title center'>
-                                        ".$room->getPrice()."
-                                        </div>";
-                            echo "</div>
-                                </div>";?>
-                                <div class="delete">
-                                <form action="<?php echo FRONT_ROOT?>Room/Delete" method="GET">
-                                    <input type="hidden" value="<?php echo $room->getRoomId() ?>" name="name">
-                                    <button type="submit" class="uk-button uk-button-danger uk-button-small">
-                                        <img src="<?php echo IMG_PATH ?>trash.png">
-                                    </button>
-
-                                </form>
-                                </div>
-                            <?php
-                        echo "</div>";
-                        echo "</li>";
+            ?>
+            <li class="cinema">
+                <div class="element_cine">
+                    <div class="header">
+                        <img src="<?php echo IMG_PATH?>/favicon.png" alt="Logo"></img>
+                    </div>
+                    <div class="title">
+                            Room Data
+                    </div>
+                    <div class="data">
+                            <div class="element">
+                                Name: <?php echo $room->getRoomName()  ?>
+                            </div>
+                            <div class="element">
+                                Capacity: <?php echo $room->getCapacity()  ?>
+                            </div>
+                            <div class="element">
+                                Price: <?php echo $room->getPrice()  ?>
+                            </div>
+                    </div>
+                    <div class="actions">
+                        <div class="button">
+                            <a href="<?php echo FRONT_ROOT?>Room/Delete/<?php echo $room->getRoomId() ?>">Delete Room</a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <?php
                         }
-                    }
+                    
+                }else{
+                    echo "<div class='Error'>";
+                    echo "<div class='empty_cine'><p>Actualmente no tenemos ninguna sala disponible para mostrar.</p><p> Si desea agregar una sala clickee aqui.</p></div>";
+                    echo "<div class='button'><a href='";
+                    echo FRONT_ROOT;
+                    echo "Room/ShowRegisterRoom/";
+                    echo $id_cinema;
+                    echo "'>Add Cine</a></div></div>";
+                }
             ?>
         </ul>
         </div>
