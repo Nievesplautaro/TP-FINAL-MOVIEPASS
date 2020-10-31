@@ -25,7 +25,7 @@
             return $this->id_movie;
         }
 
-        public function setMovie($id_movie)
+        public function setMovieId($id_movie)
         {
             $this->id_movie = $id_movie;
 
