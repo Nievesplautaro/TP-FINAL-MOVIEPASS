@@ -2,11 +2,11 @@
     namespace Models;
 
     class Show{
-        private $movie;
+        /* private $movie; */
         private $roomId;
         private $start_time;
         private $id_show;
-
+        private $id_movie;
         public function getShowId()
         {
             return $this->id_show;
@@ -20,14 +20,14 @@
         }
 
 
-        public function getMovie()
+        public function getMovieId()
         {
-            return $this->movie;
+            return $this->id_movie;
         }
 
-        public function setMovie($movie)
+        public function setMovie($id_movie)
         {
-            $this->movie = $movie;
+            $this->id_movie = $id_movie;
 
             return $this;
         }
