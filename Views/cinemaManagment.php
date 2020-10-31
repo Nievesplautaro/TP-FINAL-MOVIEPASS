@@ -6,49 +6,51 @@
         <ul class="catalogo cine">
             <?php
             $id = -1;
+                if($cinemaList && !empty($cinemaList)){
                         foreach($cinemaList as $cinema){
                         $id++;
-                        echo "<li class='cinema' >";
-                        echo "<div class='element_cine'>";
-                            echo "<div onclick=\"location.href='"; echo FRONT_ROOT; echo "Cinema/ShowRegisterView/"; echo $cinema->getCinemaId();echo "'\";  class='card' >"
-                            ;
-                                echo "<div class='title center'>
-                                        ".$cinema->getName()."
-                                        </div>
-                                        "
-                                        ;
-                                echo "<div class='data'>
-                                        <div class='title center'>
-                                        ".$cinema->getPhoneNumber()."
-                                        </div>";
-                                echo "<div class='title center'>
-                                        ".$cinema->getAddress()."
-                                        </div>";
-                            echo "</div>
-                                </div>";?>
-                                <div class="delete">
-                                <form action="<?php echo FRONT_ROOT?>Cinema/removeCinema" method="GET">
-                                    <input type="hidden" value="<?php echo $cinema->getCinemaId() ?>" name="CinemaId">
-                                    <button type="submit" class="uk-button uk-button-danger uk-button-small">
-                                        <img src="<?php echo IMG_PATH ?>trash.png">
-                                    </button>
-
-                                </form>
-                                </div>
-                            <div class="rooms">
-                                <!-- <form action="<?php// echo FRONT_ROOT?>Room/ShowRooms" method="GET">
-                                    <input type="hidden" value="<?php //echo $cinema->getCinemaId() ?>" name="CinemaId">
-                                    <button type="submit" class="uk-button uk-button-danger uk-button-small">
-                                        <img style="width: 50px; height:50px;" src="<?php// echo IMG_PATH ?>RoomIcon.png">
-                                    </button>
-                                    
-                                </form> -->
-                                <a href="<?php echo FRONT_ROOT ?>room/ShowRooms/<?php echo $cinema->getCinemaId(); ?>"><img style="width: 50px; height:50px;" src="<?php// echo IMG_PATH ?>RoomIcon.png"></a>
-                                </div>
-                            <?php
-                        echo "</div>";
-                        echo "</li>";
+            ?>
+            <li class="cinema">
+                <div class="element_cine">
+                    <div class="header">
+                        <img src="<?php echo IMG_PATH?>/favicon.png" alt="Logo"></img>
+                    </div>
+                    <div class="title">
+                            Cinema Data
+                    </div>
+                    <div class="data">
+                            <div class="element">
+                                Name: <?php echo $cinema->getName()  ?>
+                            </div>
+                            <div class="element">
+                                Phone: <?php echo $cinema->getPhoneNumber()  ?>
+                            </div>
+                            <div class="element">
+                                Address: <?php echo $cinema->getAddress()  ?>
+                            </div>
+                    </div>
+                    <div class="actions">
+                        <div class="button">
+                            <a href="<?php echo FRONT_ROOT?>Cinema/ShowRegisterView/<?php echo $cinema->getCinemaId() ?>">Edit Cinema</a>
+                        </div>
+                        <div class="button">
+                            <a href="<?php echo FRONT_ROOT ?>room/ShowRooms/<?php echo $cinema->getCinemaId(); ?>">Admin Rooms</a>
+                        </div>
+                        <div class="button">
+                            <a href="<?php echo FRONT_ROOT?>Cinema/removeCinema/<?php echo $cinema->getCinemaId() ?>">Delete Cinema</a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <?php
                         }
+                }else{  
+                    echo "<div class='Error'>";
+                    echo "<div class='empty_cine'><p>Actualmente no tenemos ningun disponible para mostrar.</p><p> Si desea agregar un cine clickee aqui.</p></div>";
+                    echo "<div class='button'><a href='";
+                    echo FRONT_ROOT;
+                    echo"Cinema/registerCinema'>Add Cine</a></div></div>";
+                }
             ?>
         </ul>
         </div>

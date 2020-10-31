@@ -418,7 +418,70 @@ body{
     width: 100%;
 }
 
+.catalogo.cine .cinema{
+    width: 20%;
+}
 
+.catalogo.cine .cinema .element_cine{
+    border: 0.5px solid #cbcbcb;
+    padding: 10px;
+}
+
+.catalogo.cine .cinema .element_cine .header{
+    display: flex;
+    margin-bottom: 15px;
+}
+
+.catalogo.cine .cinema .element_cine .header img{
+    max-width: 60px;
+    margin: auto;
+}
+.catalogo.cine .cinema .element_cine .data{
+    margin-bottom: 30px;
+}
+.catalogo.cine .cinema .element_cine .title{
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.catalogo.cine .cinema .element_cine .data .element{
+    margin: 15px 0;
+    padding: 0 5px;
+}
+.catalogo.cine .cinema .element_cine  .actions .button{
+    margin: 10px 0;
+    display: flex;
+    justify-content: center;
+}
+
+.Error .button a,
+.catalogo.cine .cinema .element_cine  .actions .button a{
+    color: white;
+    font-size: 10px;
+    background-color: rgba(240,171,131,1);
+    padding: 5px 30px;
+    font-weight: unset;
+    text-transform: uppercase;
+    border-radius: 5px;
+}
+
+.Error .button a{
+    font-size: 16px;
+}
+
+.Error .empty_cine{
+    font-size: 22px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.Error .empty_cine p{
+    margin: 10px;
+}
+
+.Error .button {
+    text-align: center;
+}
 
 
 

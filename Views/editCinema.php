@@ -11,13 +11,14 @@
                                 </div>
                             </div>
                             <div class="form">
-                                <form action="<?php echo FRONT_ROOT ?>Cinema/editCinema?<?php echo $cinema->getCinemaId() ?>"  method="post" class="login-form bg-dark-alpha p-5 bg-light">
+                                <form action="<?php echo FRONT_ROOT ?>Cinema/editCinema"  method="post" class="login-form bg-dark-alpha p-5 bg-light">
                                 <?php
                                         if(isset($_GET['error']))
                                             echo '<p class="alert-danger">Usuario y/o Contraseña incorrecto</p>';
                                         if(isset($_GET['error-data']))
                                             echo '<p class="alert-danger">Error en el envio de datos</p>';
                                 ?>
+                                        <input type="hidden" value="<?php echo $cinema->getCinemaId() ?>" name="id_cine">
                                         <div class="form-group">
                                             <label for="">Cinema Name</label>
                                             <input type="text" name="name" value="<?php  echo $cinema->getName()  ?>" class="form-control form-control-lg" placeholder="Enter Cinema Name" title="Cinema Name" minlength = "3" oninvalid="this.setCustomValidity('Invalid Cinema Name')" oninput="this.setCustomValidity('')" required>

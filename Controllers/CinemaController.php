@@ -54,30 +54,29 @@
             if ($valid === 0){
                 $message = "Cinema Name Already in Use";
                 echo '<script language="javascript">alert("Cinema Name In Use");</script>';
+                $this->ShowMenuView($message);
             }else{
                 $message = "Cinema Registered Successfully";
                 echo '<script language="javascript">alert("Your Cinema Has Been Registered Successfully");</script>';
+                header("location:showCinemas");
             }
-            $this->ShowMenuView($message);
-        
         }
 
 
         public function showCinemas(){
-            $cinemaList = array();
+            $cinemaList = [];
             $cinemaList = $this->cinemaDAO->readCinemas();
+
             require_once(VIEWS_PATH."validate-session.php");
             require_once(VIEWS_PATH."cinemaManagment.php");
         }
 
-        public function removeCinema(){
+        public function removeCinema($cinemaId){
             require_once(VIEWS_PATH."validate-session.php");
 
-            if ($_GET){
-                $cinemaId = $_GET["CinemaId"];
+            if ($cinemaId && !empty($cinemaId)){
                 $this->cinemaDAO->deleteCinema($cinemaId);
-                echo '<script language="javascript">alert("Your Cinema Has Been Deleted Successfully");</script>';  
-            
+                echo '<script language="javascript">alert("Your Cinema Has Been Deleted Successfully");</script>';      
             }
 
             $this->ShowMenuView("");            
@@ -86,29 +85,22 @@
 
         public function editCinema(){
             require_once(VIEWS_PATH."validate-session.php");
-            $query = $_SERVER["QUERY_STRING"];
-
-            if($query){
-                $id_cinema = str_replace("url=Cinema/editCinema&", '', $query);
-            }
-            if($id_cinema){
-                    if ($_POST){
+                if ($_POST){
                         
                         $name = $_POST['name'];
                         $phoneNumber = $_POST['phoneNumber'];
                         $address = $_POST['address'];
+                        $id  = $_POST["id_cine"];
 
                         $editCinema = new Cinema();
                         $newDAO = new cinemaDAO();
                         $editCinema->setName($name);
                         $editCinema->setPhoneNumber($phoneNumber);
                         $editCinema->setAddress($address);
-                        $newDAO->editCinema($id_cinema,$editCinema);
+                        $newDAO->editCinema($id,$editCinema);
                         
                         echo '<script language="javascript">alert("Your Cinema Has Been Edited Successfully");</script>';  
-                    
                     }
-            }
             $this->ShowMenuView("");  
         }
 
