@@ -23,20 +23,20 @@
 
         }
 
-        public function ShowRegisterRoom($message = "")
+        public function ShowRegisterRoom($id_cinema)
         {
             require_once(VIEWS_PATH."validate-session.php");
             require_once(VIEWS_PATH."registerRoom.php");
         }
 
-        public function showRooms(){
+        public function showRooms($id_cinema){
             $roomList = array();
             $roomList = $this->roomDAO->readRooms();
-            $query = $_SERVER["QUERY_STRING"];
+            //$query = $_SERVER["QUERY_STRING"];
 
-            if($query){
+            /*if($query){
                 $id_cinema = str_replace("url=Room/ShowRooms&name=", "", $query);
-            }
+            }*/
             if($id_cinema){
                 $cinema = $this->cinemaDAO->Read($id_cinema);
             }
@@ -46,21 +46,25 @@
 
 
         /*      ESTA FUNCION AGREGA UNA SALA A UN CINE */
-        public function addRoom($id_cinema){
-            require_once(VIEWS_PATH."validate-session.php");
-                if($id_cinema){
+        public function addRoom(){
+                echo "tuvieja";
+                if($_POST){
+                    $id_cinema = $_POST['id_cinema'];
+                    echo $id_cinema;
                     $roomName = $_POST['room_name'];
                     $capacity = $_POST['capacity'];
                     $price = $_POST['price'];
-                    $cinema = $this->cinemaDAO->Read($id_cinema);
+                    $cinema = $this->cinemaDAO->getCinemaById($id_cinema);
+                    var_dump($cinema);
 
                     $room = new Room($roomName, $capacity, $price, $cinema);
                     
                     $this->roomDAO->create($room);
                     /* ESTE SCRIPT SIRVE DE ALGO=? */
                     echo '<script language="javascript">alert("Your Room Has Been Added Successfully");</script>';  
+                    require_once(VIEWS_PATH."validate-session.php");
+                    $this->showRooms($id_cinema);
                 }
-            $this->showRooms(); 
         }
         
         public function Delete(){

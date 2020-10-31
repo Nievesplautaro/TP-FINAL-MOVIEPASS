@@ -159,7 +159,6 @@
             }, $value);
     
             return count($resp) > 1 ? $resp : $resp['0'];
-
         }
 
         public function insertGenresIntoMovies($id_genre, $id_movie){

@@ -93,6 +93,37 @@
         }else{
             return false;
         }
+    }
+
+    public function getCinemaById($id){
+        $sqlSelectId = "select * from cinemas where id_cinema = '".$id."';";
+        try{
+            $this->connection = Connection::getInstance();
+            $result = $this->connection->Execute($sqlSelectId);
+        }catch(\PDOException $ex){
+            throw $ex;
+        }
+        if(!empty($result)){
+            return $this->mapearCinema($result);
+        }else{
+            return false;
+        }
+    }
+
+    public function mapearCinema($value){
+        $value = is_array($value) ? $value : [];
+        
+        $resp = array_map(function($p){
+            $cinema = new Cinema();
+            $cinema->setCinemaId($p['id_cinema']);
+            $cinema->setName($p['cinema_name']);
+            $cinema->setAddress($p['address']);
+            $cinema->setPhoneNumber($p['phone_number']);
+            
+            return $cinema;
+        }, $value);
+
+        return count($resp) > 1 ? $resp : $resp['0'];
 
     }
 
@@ -119,6 +150,8 @@
         $resp = array_map(function($p){
             return $p['id_cinema'];
         }, $value);
+
+        var_dump($cinema);
 
         return count($resp) > 1 ? $resp : $resp['0'];
 

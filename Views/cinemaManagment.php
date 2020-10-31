@@ -36,13 +36,14 @@
                                 </form>
                                 </div>
                             <div class="rooms">
-                                <form action="<?php echo FRONT_ROOT?>Room/ShowRooms" method="GET">
-                                    <input type="hidden" value="<?php echo $cinema->getCinemaId() ?>" name="CinemaId">
+                                <!-- <form action="<?php// echo FRONT_ROOT?>Room/ShowRooms" method="GET">
+                                    <input type="hidden" value="<?php //echo $cinema->getCinemaId() ?>" name="CinemaId">
                                     <button type="submit" class="uk-button uk-button-danger uk-button-small">
-                                        <img style="width: 50px; height:50px;" src="<?php echo IMG_PATH ?>RoomIcon.png">
+                                        <img style="width: 50px; height:50px;" src="<?php// echo IMG_PATH ?>RoomIcon.png">
                                     </button>
                                     
-                                </form>
+                                </form> -->
+                                <a href="<?php echo FRONT_ROOT ?>room/ShowRooms/<?php echo $cinema->getCinemaId(); ?>"><img style="width: 50px; height:50px;" src="<?php// echo IMG_PATH ?>RoomIcon.png"></a>
                                 </div>
                             <?php
                         echo "</div>";

@@ -3,12 +3,7 @@
 ?>
 <div class="container menu">
     <div class="add">
-        <form action="<?php echo FRONT_ROOT?>Room/ShowRegisterRoom" method="GET">
-            <?php //<input type="hidden" value="<?php echo $cinema->getName()" name="name">"?>
-            <button type="submit" class="uk-button uk-button-danger uk-button-small">
-            <img src="<?php echo IMG_PATH ?>RoomIcon.png">
-            </button>
-        </form>
+        <a href="<?php echo FRONT_ROOT?>Room/ShowRegisterRoom/<?php echo $id_cinema ?>"><img style="width: 50px; height:50px;" src="<?php// echo IMG_PATH ?>RoomIcon.png"></a>
     </div>
     <div class="room_list">
         <ul class="catalogo cine">

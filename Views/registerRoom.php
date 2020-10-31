@@ -14,7 +14,7 @@
                         <p>Please Enter Room Information To Register.</p> 
                     </div>
                     <div class="form">
-                        <form action="<?php echo FRONT_ROOT ?>Room/AddRoom"  method="post" class="login-form bg-dark-alpha p-5 bg-light">
+                        <form action="<?php echo FRONT_ROOT ?>Room/addRoom"  method="POST" class="login-form bg-dark-alpha p-5 bg-light">
                         <?php
                             if(isset($error)){
                                 switch ($error) {
@@ -29,16 +29,17 @@
 
                         ?>
                             <div class="form-group">
+                                <input type="hidden" name="id_cinema" value="<?php echo $id_cinema; ?>">
                                 <label for="">Room Name</label>
                                 <input type="text" name="room_name" class="form-control form-control-lg" placeholder="Enter Room Name" title="Room Name" oninvalid="this.setCustomValidity('Insert a Valid Email')" oninput="this.setCustomValidity('')" required>
                             </div>
                             <div class="form-group">
                                 <label for="">Capacity</label>
-                                <input type="number" name="capacity" class="form-control form-control-lg" placeholder="Enter Room Capacity" title="Capacity" min = "50" maxlength = "200" oninvalid="this.setCustomValidity('The Capacity should be between 50 to 200 clients')" oninput="this.setCustomValidity('')" required>
+                                <input type="number" name="capacity" class="form-control form-control-lg" placeholder="Enter Room Capacity" title="Capacity" min = "50" max = "200" oninvalid="this.setCustomValidity('The Capacity should be between 50 to 200 clients')" oninput="this.setCustomValidity('')" required>
                             </div>
                             <div class="form-group">
                                 <label for="">Price</label>
-                                <input type="number" name="price" class="form-control form-control-lg" placeholder="Enter Room Price" title="Price" min = "50" maxlength = "200" oninvalid="this.setCustomValidity('The Price should be between 50 to 200 clienARSts')" oninput="this.setCustomValidity('')" required>
+                                <input type="number" name="price" class="form-control form-control-lg" placeholder="Enter Room Price" title="Price" min = "50" max = "200" oninvalid="this.setCustomValidity('The Price should be between 50 to 200 clienARSts')" oninput="this.setCustomValidity('')" required>
                             </div>
                             <div class="btn_cont">
                                 <button class="btn btn-primary btn-block btn-lg" type="submit">Register</button>
