@@ -81,6 +81,28 @@
         
         }
 
+        /**
+        * Chequea el room por el nombre
+        */
+        public function CinemaExists($roomName){
+
+            $roomDAO2 = new CinemaDAO();
+
+            try{
+                if($roomDAO2->readByName($roomName)){
+                    
+                    $error = "02";
+                     
+                    return $error;
+                }else{
+                    return false;
+                }
+                
+            }catch(\PDOException $ex){
+                throw $ex;
+            }
+        }
+
     }
 
 ?>
