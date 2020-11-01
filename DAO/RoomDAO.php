@@ -24,7 +24,7 @@
         $parameters['capacity'] =  $_room->getCapacity();
         //$cinema = new Cinema();
         //$cinema = $_room->getCinema();
-        var_dump($_room->getCinema());
+        //var_dump($_room->getCinema());
         $parameters['id_cinema'] = $_room->getCinema()->getCinemaId();
         $parameters['price'] = $_room->getPrice();
         //indistinto el id de room porque es autoincremental, pero sino no lo sube por parametros
