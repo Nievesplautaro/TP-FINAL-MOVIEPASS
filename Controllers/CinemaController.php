@@ -146,5 +146,17 @@
             }
         }
 
+        public function registerShow(){
+            $data = $this->cinemaDAO->readCinemas();
+             if ($data instanceof Cinema) { /* ESTE IF CHEQUEA SI EL READ RETORNA UN ARRAY DE CINES O UN CINE SOLO */
+                $cinemaList = [];
+                $cinemaList[0] = $data;
+            }else{
+                $cinemaList = $data;
+            } 
+            require_once(VIEWS_PATH."validate-session.php");
+            require_once(VIEWS_PATH."SelectCinema.php");
+        }
+
     }
 ?>
