@@ -29,7 +29,7 @@
         //   $this->dashboardDAO->SaveGenresFromApi();
         //   $this->dashboardDAO->SaveMoviesFromApi();
 
-          //echo $this->dashboardDAO->getMovieIdByInternId(635302);
+          //var_dump($this->dashboardDAO->getMovieById(1));
 
           $genreList = $this->dashboardDAO->readGenres();
           $movieList = $this->dashboardDAO->readMovies();
