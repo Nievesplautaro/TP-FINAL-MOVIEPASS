@@ -28,12 +28,12 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="id_movie">Choose a room:</label>
+                                <label for="id_movie">Choose a movie:</label>
                                 <select name="id_movie" id="id_movie">
                                     <?php 
                                     if($movieList && !empty($movieList)){
                                         foreach($movieList as $movie){
-                                            echo "<option value='".$movie->getId()."'>".$room->getTitle()."</option>";
+                                            echo "<option value='".$movie->getId()."'>".$movie->getTitle()."</option>";
                                         }
                                     }
                                     ?>

@@ -14,12 +14,12 @@
     {
         private $showDAO;
         private $roomDAO;
-        private $requestDAO;
+        private $movieDAO;
         
         public function __construct(){
             $this->showDAO = new ShowDAO();
             $this->roomDAO = new RoomDAO();
-            $this->requestDAO = new RequestDAO();
+            $this->movieDAO = new RequestDAO();
             
         }
 
@@ -67,7 +67,7 @@
             $data = $this->showDAO->read($id_cinema);
             if($data instanceof Show){
                 $movie = $data->getMovie();
-                $data->setMovie($this->requestDAO->read($movie->getMovieId()));
+                $data->setMovie($this->movieDAO->read($movie->getMovieId()));
                 $room = $data->getRoom();
                 $data->setRoom($this->roomDAO->read($room->getRoomId()));
                 $showList = [];
@@ -76,7 +76,7 @@
                 $showList = $data;
                 foreach($showList as $show){
                     $movie = $show->getMovie();
-                    $show->setMovie($this->requestDAO->read($movie->getMovieId()));
+                    $show->setMovie($this->movieDAO->read($movie->getMovieId()));
                     $room = $show->getRoom();
                     $show->setRoom($this->roomDAO->read($room->getRoomId()));
                 }
@@ -104,7 +104,7 @@
             if($_POST){
                 $id_cinema = $_POST['id_cinema'];
                 $data = $this->roomDAO->readRooms($id_cinema);
-                $movieList = $this->requestDAO->readMovies();
+                $movieList = $this->movieDAO->readMovies();
                 if ($data instanceof Room) { /* ESTE IF CHEQUEA SI EL READ RETORNA UN ARRAY DE CINES O UN CINE SOLO */
                     $roomList = [];
                     $roomList[0] = $data;
