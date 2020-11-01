@@ -20,13 +20,7 @@
                     </div>
                     <div class="data">
                             <div class="element">
-                                Name: <?php echo $show->getName()  ?>
-                            </div>
-                            <div class="element">
-                                Phone: <?php echo $show->getPhoneNumber()  ?>
-                            </div>
-                            <div class="element">
-                                Address: <?php echo $show->getAddress()  ?>
+                                Phone: <?php echo $show->getStartTime()  ?>
                             </div>
                     </div>
                     <div class="actions">
@@ -49,7 +43,7 @@
                     echo "<div class='empty_cine'><p>Actualmente no tenemos ningun disponible para mostrar.</p><p> Si desea agregar un cine clickee aqui.</p></div>";
                     echo "<div class='button'><a href='";
                     echo FRONT_ROOT;
-                    echo"show/registershow'>Add Cine</a></div></div>";
+                    echo"show/registershow'>Add Show</a></div></div>";
                 }
             ?>
         </ul>
