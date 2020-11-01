@@ -8,6 +8,7 @@
                 $id = -1;
                     if ($roomList){
                         foreach($roomList as $room){
+                            /* var_dump($room); */
                         $id++;
             ?>
             <li class="cinema">

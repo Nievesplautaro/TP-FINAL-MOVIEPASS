@@ -42,11 +42,8 @@
         $value = is_array($value) ? $value : [];
         
         $resp = array_map(function($p){
-            $show = new show();
-            $show->setMovie($p['id_movie']);
-            $show->setRoomId($p['id_room']);
-            $show->setStartTime($p['start_time']);            
-	return $show;
+            $show = new show($p['id_movie'],$p['id_room'],$p['start_time'],$p['id_show']);            
+	    return $show;
         }, $value);
 
         return count($resp) > 1 ? $resp : $resp['0'];
@@ -60,14 +57,14 @@
     public function read($id_cinema){
 
         $sql = "SELECT
-                    id_show,
-                    id_movie,
-                    id_room,
-                    start_time
+                id_show,
+                id_movie,
+                s.id_room,
+                start_time
                 FROM
-                    room_cinema r
-                Where r.id_cinema = ".$id_cinema."
-                INNER JOIN shows s on s.id_room = r.id_room
+                    room_cinema r 
+                inner JOIN shows s on r.id_room = s.id_room
+                where r.id_cinema = ".$id_cinema."
                 order by id_room;"
 
         try{
@@ -83,6 +80,7 @@
         }
 
     }
+
 
 }
 ?>

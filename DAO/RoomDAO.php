@@ -83,9 +83,9 @@
 
     }
 
-    public function readRooms(){
+    public function readRooms($id_cinema){
 
-        $sql = "SELECT * FROM room_cinema";
+        $sql = "SELECT * FROM room_cinema where room_cinema.id_cinema = ".$id_cinema."";
         
         try{
             $this->connection = Connection::getInstance();
@@ -102,7 +102,7 @@
     }
 
     public function Delete($id_room){
-        $sql="DELETE FROM room_cinema WHERE Rooms.id_room=:id_room";
+        $sql="DELETE FROM room_cinema WHERE room_cinema.id_room=:id_room";
         $values['id_room'] = $id_room;
 
         try{

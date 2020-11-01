@@ -6,38 +6,38 @@
         <ul class="catalogo cine">
             <?php
             $id = -1;
-                if($cinemaList && !empty($cinemaList)){
-                        foreach($cinemaList as $cinema){
+                if($showList && !empty($showList)){
+                        foreach($showList as $show){
                         $id++;
             ?>
-            <li class="cinema">
+            <li class="show">
                 <div class="element_cine">
                     <div class="header">
                         <img src="<?php echo IMG_PATH?>/favicon.png" alt="Logo"></img>
                     </div>
                     <div class="title">
-                            Cinema Data
+                            show Data
                     </div>
                     <div class="data">
                             <div class="element">
-                                Name: <?php echo $cinema->getName()  ?>
+                                Name: <?php echo $show->getName()  ?>
                             </div>
                             <div class="element">
-                                Phone: <?php echo $cinema->getPhoneNumber()  ?>
+                                Phone: <?php echo $show->getPhoneNumber()  ?>
                             </div>
                             <div class="element">
-                                Address: <?php echo $cinema->getAddress()  ?>
+                                Address: <?php echo $show->getAddress()  ?>
                             </div>
                     </div>
                     <div class="actions">
                         <div class="button">
-                            <a href="<?php echo FRONT_ROOT?>Cinema/ShowRegisterView/<?php echo $cinema->getCinemaId() ?>">Edit Cinema</a>
+                            <a href="<?php echo FRONT_ROOT?>show/ShowRegisterView/<?php echo $show->getshowId() ?>">Edit show</a>
                         </div>
                         <div class="button">
-                            <a href="<?php echo FRONT_ROOT ?>room/ShowRooms/<?php echo $cinema->getCinemaId(); ?>">Admin Rooms</a>
+                            <a href="<?php echo FRONT_ROOT ?>room/ShowRooms/<?php echo $show->getshowId(); ?>">Admin Rooms</a>
                         </div>
                         <div class="button">
-                            <a href="<?php echo FRONT_ROOT?>Cinema/removeCinema/<?php echo $cinema->getCinemaId() ?>">Delete Cinema</a>
+                            <a href="<?php echo FRONT_ROOT?>show/removeshow/<?php echo $show->getshowId() ?>">Delete show</a>
                         </div>
                     </div>
                 </div>
@@ -49,7 +49,7 @@
                     echo "<div class='empty_cine'><p>Actualmente no tenemos ningun disponible para mostrar.</p><p> Si desea agregar un cine clickee aqui.</p></div>";
                     echo "<div class='button'><a href='";
                     echo FRONT_ROOT;
-                    echo"Cinema/registerCinema'>Add Cine</a></div></div>";
+                    echo"show/registershow'>Add Cine</a></div></div>";
                 }
             ?>
         </ul>

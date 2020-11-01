@@ -3,7 +3,7 @@
 
     Use Models\Cinema as Cinema;
 
-    class Room extends Cinema{
+    class Room{
 
         private $roomName;
         private $capacity;
@@ -11,11 +11,11 @@
         private $id_room;
         private $cinema;
 
-        public function __construct($roomName, $capacity, $price, $cinema){
+        public function __construct($roomName, $capacity, $price, $id_room){
             $this->roomName=$roomName;
             $this->capacity=$capacity;
             $this->price = $price;
-            $this->cinema = $cinema;
+            $this->id_room = $id_room;
         }
 
         public function getCinema()

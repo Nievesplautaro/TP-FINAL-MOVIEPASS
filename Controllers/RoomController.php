@@ -9,6 +9,7 @@
     class RoomController{
 
         private $roomDAO;
+        private $cinemaDAO;
 
 
         public function __construct(){
@@ -30,16 +31,17 @@
         }
 
         public function showRooms($id_cinema){
-            $data = $this->roomDAO->readRooms();
+            $data = $this->roomDAO->readRooms($id_cinema);
             if ($data instanceof Room) { /* ESTE IF CHEQUEA SI EL READ RETORNA UN ARRAY DE Room O UN Room SOLO */
+                $data->setCinema($this->cinemaDAO->read($id_cinema));
                 $roomList = [];
                 $roomList[0] = $data;
             }else{
-                $roomList = $data;  
+                $roomList = $data;
+                foreach($roomList as $room){
+                    $room->setCinema($this->cinemaDAO->read($id_cinema));
+                } 
             } 
-            if($id_cinema){
-                $cinema = $this->cinemaDAO->Read($id_cinema);
-            }
             require_once(VIEWS_PATH."validate-session.php");
             require_once(VIEWS_PATH."roomManagment.php");
         }
@@ -54,8 +56,8 @@
                     $price = $_POST['price'];
                     $cinema = $this->cinemaDAO->getCinemaById($id_cinema);
 
-                    $room = new Room($roomName, $capacity, $price, $cinema);
-                    
+                    $room = new Room($roomName, $capacity, $price,0);
+                    $room->setCinema($cinema);
                     $this->roomDAO->create($room);
                     /* ESTE SCRIPT SIRVE DE ALGO=? */
                     echo '<script language="javascript">alert("Your Room Has Been Added Successfully");</script>';  
@@ -64,13 +66,7 @@
                 }
         }
         
-        public function Delete(){
-
-            $query = $_SERVER["QUERY_STRING"];
-
-            if($query){
-                $id_room = str_replace("url=Room/Delete&", "", $query);
-            }
+        public function Delete($id_room){
             if($id_room){
                 try{
 
