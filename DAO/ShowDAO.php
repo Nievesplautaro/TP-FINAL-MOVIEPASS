@@ -3,6 +3,8 @@
 
     use Models\Show as Show;
     use DAO\Connection as Connection;
+    use DAO\RequestDAO as RequestDAO;
+    use DAO\RoomDAO as RoomDAO;
 
     class ShowDAO{
 
@@ -10,6 +12,14 @@
     private $fileName;
     private $connection;
     private $tableName = "shows";
+    private $movieDAO;
+    private $roomDAO;
+
+    public function __construct(){
+        $this->movieDAO = new RequestDAO();
+        $this->roomDAO = new RoomDAO();
+    }
+
 
 
     /**
@@ -17,12 +27,12 @@
      */
     public function create($_show){
 
-        $sql = "INSERT INTO show ( id_movie, id_room, start_time, id_show) VALUES (:id_movie, :id_room, :start_time, :id_show)";
+        $sql = "INSERT INTO shows ( id_movie, id_room, start_time) VALUES (:id_movie, :id_room, :start_time)";
 
-        $parameters['id_movie'] = $_show->getMovieId();
-        $parameters['id_room'] = $_show->getRoomId();
-        $parameters['start_time'] = $_user->getStartTime();
-        $parameters['id_show'] = 0;
+        $parameters['id_movie'] = $_show->getMovie()->getMovieId();
+        $parameters['id_room'] = $_show->getRoom()->getRoomId();
+        $parameters['start_time'] = $_show->getStartTime();
+        //$parameters['id_show'] = 0;
 
         try{
             $this->connection = Connection::getInstance();
@@ -42,8 +52,18 @@
         $value = is_array($value) ? $value : [];
         
         $resp = array_map(function($p){
-            $show = new show($p['id_movie'],$p['id_room'],$p['start_time'],$p['id_show']);            
-	    return $show;
+            $movie = $this->movieDAO->getMovieById($p['id_movie']);
+            $room = $this->roomDAO->read($p['id_room']);
+            echo $p['id_room'];
+
+            $show = new Show();            
+            $show->setMovie($movie);
+            $show->setRoom($room);
+            $show->setStartTime($p['start_time']);
+            
+            //$p['id_movie'],$p['id_room'],$p['start_time'],$p['id_show']
+            
+            return $show;
         }, $value);
 
         return count($resp) > 1 ? $resp : $resp['0'];

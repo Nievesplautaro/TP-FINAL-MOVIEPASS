@@ -4,6 +4,7 @@ namespace Models;
 
     class Movie{
 
+    private $movie_id;
     private $popularity;
     private $vote_count;
     private $poster_path;
@@ -199,5 +200,25 @@ namespace Models;
     
 
     
+
+    /**
+     * Get the value of movie_id
+     */ 
+    public function getMovieId()
+    {
+        return $this->movie_id;
+    }
+
+    /**
+     * Set the value of movie_id
+     *
+     * @return  self
+     */ 
+    public function setMovieId($movie_id)
+    {
+        $this->movie_id = $movie_id;
+
+        return $this;
+    }
     }
 ?>

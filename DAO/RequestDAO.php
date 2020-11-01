@@ -180,6 +180,7 @@
             
             $resp = array_map(function($p){
                 $movie = new Movie();
+                $movie->setMovieId($p['id_movie']);
                 $movie->setTitle($p['title']);
                 $movie->setPopularity($p['popularity']);
                 $movie->setVoteCount($p['vote_count']);
@@ -251,6 +252,7 @@
             
             $resp = array_map(function($p){
                 $movie = new Movie();
+                $movie->setMovieId($p['id_movie']);
                 $movie->setTitle($p['title']);
                 $movie->setPopularity($p['popularity']);
                 $movie->setVoteCount($p['vote_count']);
@@ -275,6 +277,7 @@
 
             $sql = "SELECT * FROM Movies";
             
+            
     
             try{
                 $this->connection = Connection::getInstance();
@@ -288,6 +291,23 @@
                 return false;
             }
     
+        }
+
+        public function readMoviesShow(){
+            $sql = "SELECT m.*
+                    FROM shows s
+                    inner join movies m on s.id_movie = m.id_movie;";
+            try{
+                $this->connection = Connection::getInstance();
+                $result = $this->connection->Execute($sql);
+            }catch(\PDOException $ex){
+                throw $ex;
+            }
+            if(!empty($result)){
+                return $this->mapearMovies($result);
+            }else{
+                return false;
+            }
         }
 
 
@@ -337,6 +357,8 @@
                 return false;
             }
         }
+
+
 
         
 

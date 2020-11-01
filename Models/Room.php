@@ -11,11 +11,12 @@
         private $id_room;
         private $cinema;
 
-        public function __construct($roomName, $capacity, $price, $id_room){
-            $this->roomName=$roomName;
+
+        public function __construct(/*$roomName, $capacity, $price, $id_room*/){
+            /*$this->roomName=$roomName;
             $this->capacity=$capacity;
             $this->price = $price;
-            $this->id_room = $id_room;
+            $this->id_room = $id_room;*/
         }
 
         public function getCinema()

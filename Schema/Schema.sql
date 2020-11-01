@@ -70,7 +70,7 @@ create table if not exists shows(
 	id_show int not null auto_increment,
     id_movie int,
     id_room int,
-    start_time date,
+    start_time datetime,
     constraint pk_show primary key (id_show),
     constraint fk_show_movie foreign key (id_movie) references movies(id_movie),
     constraint fk_show_room foreign key (id_room) references room_cinema(id_room)

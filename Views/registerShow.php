@@ -14,7 +14,7 @@
                         <p>Please Enter Show Information To Register.</p> 
                     </div>
                     <div class="form">
-                        <form action="<?php echo FRONT_ROOT ?>Show/addShow"  method="POST" class="login-form bg-dark-alpha p-5 bg-light">
+                        <form action="<?php echo FRONT_ROOT ?>Show/register"  method="POST" class="login-form bg-dark-alpha p-5 bg-light">
                             <div class="form-group">
                                 <label for="id_room">Choose a room:</label>
                                 <select name="id_room" id="id_room">
@@ -33,15 +33,19 @@
                                     <?php 
                                     if($movieList && !empty($movieList)){
                                         foreach($movieList as $movie){
-                                            echo "<option value='".$movie->getId()."'>".$movie->getTitle()."</option>";
+                                            echo "<option value='".$movie->getMovieId()."'>".$movie->getTitle()."</option>";
                                         }
                                     }
                                     ?>
                                 </select>
                             </div>
                             <div class="form-group">
+                                <label for="start_time">Select Date and Hour of the Show:</label>
+                                <input type="datetime-local" id="start_time" name="start_time">
+                            </div>
+                            <div class="form-group">
                             <div class="btn_cont">
-                                <button class="btn btn-primary btn-block btn-lg" type="submit">Edit room Shows</button>
+                                <button class="btn btn-primary btn-block btn-lg" type="submit">Add Show</button>
                             </div>
                         </form>
                     </div>

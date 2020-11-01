@@ -38,49 +38,60 @@
 
         }
         public function register(){
+
+            if($_POST){
+                //echo $_POST['start_time'];
+                $id_room = $_POST['id_room'];
+                $id_movie = $_POST['id_movie'];
+                $start_time = $_POST['start_time'];
+
+                $newShow = new Show();
+                
+                $newShow->setRoom($this->roomDAO->read($id_room));
+                
+                $newShow->setMovie($this->movieDAO->getMovieById($id_movie));
+                $newShow->setStartTime($start_time);
+
+                //var_dump($newShow);
+
+                $valid = $this->showDAO->create($newShow);
             
-            $id_room = $_POST['id_room'];
-            $id_movie = $_POST['id_movie'];
-            $start_time = $_POST['start_time'];
-
-            $newShow = new Show();
-            $newShow->setRoomId($id_room);
-            $newShow->setMovieId($id_movie);
-            $newShow->setStartTime($start_time);
-
-            $valid = $this->showDAO->create($newShow);
-        
-            /* ESTAS VALIDACIONES HAY QUE CAMBIARLAS, LAS VOY A POSPONER HASTA QUE NOS PONGAMOS DE ACUERDO */
-            if ($valid === 0){
-                $message = "Show Name Already in Use";
-                echo '<script language="javascript">alert("Show Name In Use");</script>';
-            }else{
-                $message = "Show Registered Successfully";
-                echo '<script language="javascript">alert("Your Show Has Been Registered Successfully");</script>';
+                /* ESTAS VALIDACIONES HAY QUE CAMBIARLAS, LAS VOY A POSPONER HASTA QUE NOS PONGAMOS DE ACUERDO */
+                if ($valid === 0){
+                    $message = "Show Name Already in Use";
+                    echo '<script language="javascript">alert("Show Name In Use");</script>';
+                }else{
+                    $message = "Show Registered Successfully";
+                    echo '<script language="javascript">alert("Your Show Has Been Registered Successfully");</script>';
+                }
             }
             $this->ShowMenuView($message);
-        
+            
         }
 
 
-        public function showCinemaShows($id_cinema){
-            $data = $this->showDAO->read($id_cinema);
-            if($data instanceof Show){
-                $movie = $data->getMovie();
-                $data->setMovie($this->movieDAO->read($movie->getMovieId()));
-                $room = $data->getRoom();
-                $data->setRoom($this->roomDAO->read($room->getRoomId()));
-                $showList = [];
-                $showList[0] = $data;
-            }else{
-                $showList = $data;
-                foreach($showList as $show){
-                    $movie = $show->getMovie();
-                    $show->setMovie($this->movieDAO->read($movie->getMovieId()));
-                    $room = $show->getRoom();
-                    $show->setRoom($this->roomDAO->read($room->getRoomId()));
+        public function showCinemaShows(){
+            if($_POST){
+                $id_cinema = $_POST['id_cinema'];
+                $data = $this->showDAO->read($id_cinema);
+                if($data instanceof Show){
+                    $movie = $data->getMovie();
+                    $data->setMovie($this->movieDAO->getMovieById($movie->getMovieId()));
+                    $room = $data->getRoom();
+                    $data->setRoom($this->roomDAO->read($room->getRoomId()));
+                    $showList = [];
+                    $showList[0] = $data;
+                }else{
+                    $showList = $data;
+                    foreach($showList as $show){
+                        $movie = $show->getMovie();
+                        $show->setMovie($this->movieDAO->getMovieById($movie->getMovieId()));
+                        $room = $show->getRoom();
+                        $show->setRoom($this->roomDAO->read($room->getRoomId()));
+                    }
                 }
             }
+            
             require_once(VIEWS_PATH."validate-session.php");
             require_once(VIEWS_PATH."ShowManagment.php");
         }

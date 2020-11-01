@@ -11,10 +11,11 @@
                         </div>
                     </div>
                     <div class="data_register">
-                        <p>Please Enter Show Information To Register.</p> 
+                        <p>Please Enter Show Information To Register.</p>
+                        <?php echo $type; ?> 
                     </div>
                     <div class="form">
-                        <form action="<?php echo FRONT_ROOT ?>Show/registerShow"  method="POST" class="login-form bg-dark-alpha p-5 bg-light">
+                        <form action="<?php echo FRONT_ROOT . $path;?>"  method="POST" class="login-form bg-dark-alpha p-5 bg-light">
                             <div class="form-group">
                                 <label for="id_cinema">Choose a cinema:</label>
                                 <select name="id_cinema" id="id_cinema">
@@ -29,7 +30,7 @@
                             </div>
                             <div class="form-group">
                             <div class="btn_cont">
-                                <button class="btn btn-primary btn-block btn-lg" type="submit">Edit Cinema Shows</button>
+                                <button class="btn btn-primary btn-block btn-lg" type="submit">Next</button>
                             </div>
                         </form>
                     </div>

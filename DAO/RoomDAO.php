@@ -52,7 +52,12 @@
         $value = is_array($value) ? $value : [];
         
         $resp = array_map(function($p){
-            $room = new Room($p['room_name'], $p['capacity'], $p['price'], $p['id_room']);
+            $room = new Room();
+            $room->setRoomName($p['room_name']);
+            $room->setCapacity($p['capacity']);
+            $room->setPrice($p['price']);
+            $room->setRoomId($p['id_room']);
+
 	        return $room;
         }, $value);
 

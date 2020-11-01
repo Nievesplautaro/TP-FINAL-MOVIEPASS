@@ -6,23 +6,18 @@
 
     class Show{
         private $movie;
-        /* private $roomId; */
         private $room;
         private $start_time;
         private $id_show;
-        /* private $id_movie; */
 
-        public function __construct($id_movie, $id_room, $start_time,$id_show){
-            $this->movie = new Movie();
+        public function __construct(/*$id_movie, $id_room, $start_time,$id_show*/){
+            /*$this->movie = new Movie();
             $this->room = new Room();
             $this->movie->setMovieId($id_movie);
             $this->room->setRoomId($id_room);
             $this->start_time = $start_time;
-            $this->id_show = $id_show;
+            $this->id_show = $id_show;*/
         }
-
-        
-
 
         public function getShowId()
         {
@@ -86,14 +81,13 @@
 
         public function getStartTime()
         {
-            return $this->startTime;
+            return $this->start_time;
         }
 
         public function setStartTime($startTime)
         {
-            $this->startTime = $startTime;
+            $this->start_time = $startTime;
 
-            return $this;
         }
     }
 ?>

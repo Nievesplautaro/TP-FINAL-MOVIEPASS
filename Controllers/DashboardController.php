@@ -32,7 +32,7 @@
           //var_dump($this->dashboardDAO->getMovieById(1));
 
           $genreList = $this->dashboardDAO->readGenres();
-          $movieList = $this->dashboardDAO->readMovies();
+          $movieList = $this->dashboardDAO->readMoviesShow();
           
          
           require_once(VIEWS_PATH."validate-session.php");
