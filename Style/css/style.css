@@ -420,10 +420,13 @@ body{
 
 .catalogo.cine .cinema{
     width: 20%;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .catalogo.cine .cinema .element_cine{
     border: 0.5px solid #cbcbcb;
+    border-radius: 25px;
     padding: 10px;
 }
 
@@ -438,10 +441,15 @@ body{
 }
 .catalogo.cine .cinema .element_cine .data{
     margin-bottom: 30px;
+    text-align: center;
 }
 .catalogo.cine .cinema .element_cine .title{
     text-align: center;
+    border: 0.5px dashed salmon;
+    border-radius: 10px;
     text-transform: uppercase;
+    justify-content: center;
+    
 }
 
 .catalogo.cine .cinema .element_cine .data .element{

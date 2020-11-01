@@ -13,10 +13,22 @@
                             <div class="form">
                                 <form action="<?php echo FRONT_ROOT ?>Cinema/editCinema"  method="post" class="login-form bg-dark-alpha p-5 bg-light">
                                 <?php
-                                        if(isset($_GET['error']))
-                                            echo '<p class="alert-danger">Usuario y/o Contraseña incorrecto</p>';
-                                        if(isset($_GET['error-data']))
-                                            echo '<p class="alert-danger">Error en el envio de datos</p>';
+                                        if(isset($error)){
+                                            switch ($error) {
+                                                case "01":
+                                                    echo "<div class='valid' >Cinema Registered Successfully</div>";
+                                                    break;
+                                                case "02":
+                                                    echo "<div class='error' >Cinema Name Already in Use</div>";
+                                                    break;
+                                                case "03":
+                                                    echo "<div class='error' >Cinema Address Already in Use</div>";
+                                                    break;
+                                                case "04":
+                                                    echo "<div class='error' >Error Sending Data<</div>";
+                                                    break;
+                                                }
+                                       }
                                 ?>
                                         <input type="hidden" value="<?php echo $cinema->getCinemaId() ?>" name="id_cine">
                                         <div class="form-group">
@@ -25,7 +37,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="">Phone number</label>
-                                            <input type="tel" name="phoneNumber" value="<?php echo $cinema->getPhoneNumber() ?>" class="form-control form-control-lg" placeholder="Enter Phone Number" title="Phone Number" oninvalid="this.setCustomValidity('Invalid Phone Numer')" oninput="this.setCustomValidity('')" required>
+                                            <input type="number" name="phoneNumber" value="<?php echo $cinema->getPhoneNumber() ?>" class="form-control form-control-lg" placeholder="Enter Phone Number" title="Phone Number" min = "0" minlength="6" oninvalid="this.setCustomValidity('Invalid Phone Numer')" oninput="this.setCustomValidity('')" required>
                                         </div>
                                         <div class="form-group">
                                             <label for="">Address</label>

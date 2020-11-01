@@ -38,27 +38,32 @@
         
         public function register(){
             
-            $name = $_POST['name'];
-            $phoneNumber = $_POST['phoneNumber'];
-            $address = $_POST['address'];
+            try{
 
-            $newCinema = new Cinema();
-        
-            $newCinema->setName($name);
-            $newCinema->setPhoneNumber($phoneNumber);
-            $newCinema->setAddress($address);
+                $name = $_POST['name'];
+                $phoneNumber = $_POST['phoneNumber'];
+                $address = $_POST['address'];
 
-            $valid = $this->cinemaDAO->create($newCinema);
+                if(!$this->CinemaExists($name, $address)){
+
+                        $newCinema = new Cinema();
         
-            if ($valid === 0){
-                $message = "Cinema Name Already in Use";
-                echo '<script language="javascript">alert("Cinema Name In Use");</script>';
-                $this->ShowMenuView($message);
-            }else{
-                $message = "Cinema Registered Successfully";
-                echo '<script language="javascript">alert("Your Cinema Has Been Registered Successfully");</script>';
-                header("location:showCinemas");
+                        $newCinema->setName($name);
+                        $newCinema->setPhoneNumber($phoneNumber);
+                        $newCinema->setAddress($address);
+
+                        $this->cinemaDAO->create($newCinema);
+
+                        header("location:showCinemas");
+
+                }else{
+                    $error = $this->CinemaExists($name, $address);
+                    require_once(VIEWS_PATH."registerCinema.php");
+                }
+            }catch(\PDOExeption $ex){
+                throw $ex; 
             }
+
         }
 
 
@@ -79,10 +84,12 @@
 
             if ($cinemaId && !empty($cinemaId)){
                 $this->cinemaDAO->deleteCinema($cinemaId);
-                echo '<script language="javascript">alert("Your Cinema Has Been Deleted Successfully");</script>';      
+                $error = "04";     
+            }else{
+                $error = "05";
             }
 
-            $this->ShowMenuView("");            
+            $this->showCinemas("");            
             
         }
 
@@ -95,28 +102,47 @@
                         $address = $_POST['address'];
                         $id  = $_POST["id_cine"];
 
-                        $editCinema = new Cinema();
-                        $newDAO = new cinemaDAO();
-                        $editCinema->setName($name);
-                        $editCinema->setPhoneNumber($phoneNumber);
-                        $editCinema->setAddress($address);
-                        $newDAO->editCinema($id,$editCinema);
-                        
-                        echo '<script language="javascript">alert("Your Cinema Has Been Edited Successfully");</script>';  
-                    }
-            $this->ShowMenuView("");  
+                        if(!$this->CinemaExists($name, $address)){
+
+                            $editCinema = new Cinema();
+                            
+                            $editCinema->setName($name);
+                            $editCinema->setPhoneNumber($phoneNumber);
+                            $editCinema->setAddress($address);
+    
+                            $this->cinemaDAO->editCinema($id,$editCinema);
+    
+                            header("location:showCinemas");
+    
+                    }else{
+                        $error = $this->CinemaExists($name, $address);
+                        require_once(VIEWS_PATH."menuAdmin.php");
+                    } 
+                }
         }
 
-        public function registerShow(){
-            $data = $this->cinemaDAO->readCinemas();
-             if ($data instanceof Cinema) { /* ESTE IF CHEQUEA SI EL READ RETORNA UN ARRAY DE CINES O UN CINE SOLO */
-                $cinemaList = [];
-                $cinemaList[0] = $data;
-            }else{
-                $cinemaList = $data;
-            } 
-            require_once(VIEWS_PATH."validate-session.php");
-            require_once(VIEWS_PATH."SelectCinema.php");
+        /**
+        * Chequea el cine por el nombre
+        */
+        public function CinemaExists($cinemaName, $address){
+
+            $cinemaDAO2 = new CinemaDAO();
+
+            try{
+                if($cinemaDAO2->readByName($cinemaName) or $cinemaDAO2->readByAddress($address)){
+                    if ($cinemaDAO2->readByAddress($address)){
+                        $error = "03";
+                    }else{
+                        $error = "02";
+                    } 
+                    return $error;
+                }else{
+                    return false;
+                }
+                
+            }catch(\PDOException $ex){
+                throw $ex;
+            }
         }
 
     }

@@ -18,13 +18,19 @@
                                 <?php
                                         if(isset($error)){
                                             switch ($error) {
-                                                 case "01":
-                                                      echo "<div class='error' >Cinema Name / Address Already Exists. Please Try Another One.</div>";
-                                                      break;
-                                                 case "02":
-                                                      echo "<div class='error' >Error Sending Data<</div>";
-                                                      break;
-                                                 }
+                                                case "01":
+                                                    echo "<div class='valid' >Cinema Registered Successfully</div>";
+                                                    break;
+                                                case "02":
+                                                    echo "<div class='error' >Cinema Name Already in Use</div>";
+                                                    break;
+                                                case "03":
+                                                    echo "<div class='error' >Cinema Address Already in Use</div>";
+                                                    break;
+                                                case "04":
+                                                    echo "<div class='error' >Error Sending Data<</div>";
+                                                    break;
+                                                }
                                        }
                                 ?>
                                         <div class="form-group">

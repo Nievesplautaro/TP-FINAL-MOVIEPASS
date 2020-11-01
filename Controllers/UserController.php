@@ -123,9 +123,9 @@
 
                     //se crean los usuarios sin rol de admin
                     if($daoUser->create($user)){
-                        $error = "03";
+                        $error = "05";
                     }else{
-                        $error = "02";
+                        $error = "06";
                     }
                     //cambiar por llamado a controladora
                     require_once(VIEWS_PATH."menuAdmin.php");
