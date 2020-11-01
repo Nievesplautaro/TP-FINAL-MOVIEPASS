@@ -56,13 +56,36 @@
     }
 
 /**
+ * Devuelve el cine por el direccion
+ */
+
+public function readByAddress($address){
+
+    $sql = "SELECT * FROM Cinemas WHERE Cinemas.address = :address";
+    $parameters['address'] = $address;
+
+    try{
+        $this->connection = Connection::getInstance();
+        $result = $this->connection->Execute($sql,$parameters);
+    }catch(\PDOException $ex){
+        throw $ex;
+    }
+    if(!empty($result)){
+        return $this->mapearCine($result);
+    }else{
+        return false;
+    }
+
+}
+
+/**
  * Devuelve el cine por el nombre
  */
 
-    public function read($id_cinema){
+    public function readByName($cinema_name){
 
-        $sql = "SELECT * FROM Cinemas WHERE Cinemas.id_cinema = :id_cinema";
-        $parameters['id_cinema'] = $id_cinema;
+        $sql = "SELECT * FROM Cinemas WHERE Cinemas.cinema_name = :cinema_name";
+        $parameters['cinema_name'] = $cinema_name;
 
         try{
             $this->connection = Connection::getInstance();
@@ -77,6 +100,29 @@
         }
 
     }
+
+    /**
+ * Devuelve el cine por el id
+ */
+
+public function read($id_cinema){
+
+    $sql = "SELECT * FROM Cinemas WHERE Cinemas.id_cinema = :id_cinema";
+    $parameters['id_cinema'] = $id_cinema;
+
+    try{
+        $this->connection = Connection::getInstance();
+        $result = $this->connection->Execute($sql,$parameters);
+    }catch(\PDOException $ex){
+        throw $ex;
+    }
+    if(!empty($result)){
+        return $this->mapearCine($result);
+    }else{
+        return false;
+    }
+
+}
 
     public function readCinemas(){
 
