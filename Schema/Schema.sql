@@ -52,7 +52,7 @@ create table if not exists cinemas(
 	id_cinema int not null auto_increment,
     cinema_name varchar(50),
     address varchar(50),
-    phone_number int,
+    phone_number bigint,
     constraint pk_cinemas primary key (id_cinema)
 );
 

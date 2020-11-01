@@ -30,13 +30,13 @@
         }
 
         public function showRooms($id_cinema){
-            $roomList = array();
-            $roomList = $this->roomDAO->readRooms();
-            //$query = $_SERVER["QUERY_STRING"];
-
-            /*if($query){
-                $id_cinema = str_replace("url=Room/ShowRooms&name=", "", $query);
-            }*/
+            $data = $this->roomDAO->readRooms();
+            if ($data instanceof Room) { /* ESTE IF CHEQUEA SI EL READ RETORNA UN ARRAY DE Room O UN Room SOLO */
+                $roomList = [];
+                $roomList[0] = $data;
+            }else{
+                $roomList = $data;  
+            } 
             if($id_cinema){
                 $cinema = $this->cinemaDAO->Read($id_cinema);
             }
