@@ -12,14 +12,14 @@
 
     class ShowController
     {
-        private $ShowDAO;
-        private $RoomDAO;
-        private $RequestDAO;
+        private $showDAO;
+        private $roomDAO;
+        private $requestDAO;
         
         public function __construct(){
             $this->showDAO = new ShowDAO();
-            $this->RoomDAO = new RoomDAO();
-            $this->RequestDAO = new RequestDAO();
+            $this->roomDAO = new RoomDAO();
+            $this->requestDAO = new RequestDAO();
             
         }
 
@@ -32,19 +32,11 @@
         {
             require_once(VIEWS_PATH."validate-session.php");
             if($showId){
-                $show = $this->ShowDAO->read($showId);
+                $show = $this->showDAO->read($showId);
             }
             require_once(VIEWS_PATH."showManagment.php");
 
         }
-
-        public function registerShow($message = "")
-        {
-            require_once(VIEWS_PATH."validate-session.php");
-            require_once(VIEWS_PATH."registerShow.php");
-        }
-
-        
         public function register(){
             
             $id_room = $_POST['id_room'];
@@ -75,18 +67,18 @@
             $data = $this->showDAO->read($id_cinema);
             if($data instanceof Show){
                 $movie = $data->getMovie();
-                $data->setMovie($this->MovieDAO->read($movie->getMovieId()));
+                $data->setMovie($this->requestDAO->read($movie->getMovieId()));
                 $room = $data->getRoom();
-                $data->setRoom($this->RoomDAO->read($room->getRoomId());
+                $data->setRoom($this->roomDAO->read($room->getRoomId()));
                 $showList = [];
                 $showList[0] = $data;
             }else{
                 $showList = $data;
                 foreach($showList as $show){
                     $movie = $show->getMovie();
-                    $show->setMovie($this->RequestDAO->read($movie->getMovieId()));
+                    $show->setMovie($this->requestDAO->read($movie->getMovieId()));
                     $room = $show->getRoom();
-                    $show->setRoom($this->RoomDAO->read($room->getRoomId());
+                    $show->setRoom($this->roomDAO->read($room->getRoomId()));
                 }
             }
             require_once(VIEWS_PATH."validate-session.php");
@@ -107,6 +99,23 @@
             $this->ShowMenuView("");            
             
         }
+
+        public function registerShow(){
+            if($_POST){
+                $id_cinema = $_POST['id_cinema'];
+                $data = $this->roomDAO->readRooms($id_cinema);
+                $movieList = $this->requestDAO->readMovies();
+                if ($data instanceof Room) { /* ESTE IF CHEQUEA SI EL READ RETORNA UN ARRAY DE CINES O UN CINE SOLO */
+                    $roomList = [];
+                    $roomList[0] = $data;
+                }else{
+                    $roomList = $data;
+                } 
+            }
+            require_once(VIEWS_PATH."validate-session.php");
+            require_once(VIEWS_PATH."registerShow.php");
+        }
+
 
     }
 ?>

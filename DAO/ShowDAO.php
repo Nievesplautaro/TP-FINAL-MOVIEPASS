@@ -65,7 +65,7 @@
                     room_cinema r 
                 inner JOIN shows s on r.id_room = s.id_room
                 where r.id_cinema = ".$id_cinema."
-                order by id_room;"
+                order by id_room;";
 
         try{
             $this->connection = Connection::getInstance();

@@ -27,7 +27,6 @@
                 $cinema = $this->cinemaDAO->read($cinemaId);
             }
             require_once(VIEWS_PATH."editCinema.php");
-
         }
 
         public function registerCinema($message = "")
