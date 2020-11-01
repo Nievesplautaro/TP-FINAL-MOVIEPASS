@@ -1,7 +1,11 @@
 <?php
     namespace Controllers;
     use DAO\ShowDAO as ShowDAO;
+    use DAO\RoomDAO as RoomDAO;
+    use DAO\RequestDAO as RequestDAO;
     Use Models\Show as Show;
+    Use Models\Room as Room;
+    Use Models\Movie as Movie;
     
 
     
@@ -9,9 +13,13 @@
     class ShowController
     {
         private $ShowDAO;
+        private $RoomDAO;
+        private $RequestDAO;
         
         public function __construct(){
             $this->showDAO = new ShowDAO();
+            $this->RoomDAO = new RoomDAO();
+            $this->RequestDAO = new RequestDAO();
             
         }
 
@@ -64,11 +72,27 @@
 
 
         public function showCinemaShows($id_cinema){
-            $showList = array();
-            $showList = $this->showDAO->read($id_cinema);
+            $data = $this->showDAO->read($id_cinema);
+            if($data instanceof Show){
+                $movie = $data->getMovie();
+                $data->setMovie($this->MovieDAO->read($movie->getMovieId()));
+                $room = $data->getRoom();
+                $data->setRoom($this->RoomDAO->read($room->getRoomId());
+                $showList = [];
+                $showList[0] = $data;
+            }else{
+                $showList = $data;
+                foreach($showList as $show){
+                    $movie = $show->getMovie();
+                    $show->setMovie($this->RequestDAO->read($movie->getMovieId()));
+                    $room = $show->getRoom();
+                    $show->setRoom($this->RoomDAO->read($room->getRoomId());
+                }
+            }
             require_once(VIEWS_PATH."validate-session.php");
             require_once(VIEWS_PATH."ShowManagment.php");
         }
+
 
         public function removeShow(){
             require_once(VIEWS_PATH."validate-session.php");

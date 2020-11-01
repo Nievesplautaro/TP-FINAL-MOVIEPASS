@@ -42,10 +42,9 @@
                             }
                             $this->createMovie($movie);
                             $movieId = $this->getMovieIdByInternId($movie->getId());
-                            //echo $movieId.' ';
                             $genreArray = $movie->getGenreIds();
                             foreach($genreArray as $genreId){
-                                //echo $genreId.' ';
+                                //Guarda en db los generos correspondientes a la pelicula
                                 $this->insertGenresIntoMovies($genreId, $movieId);
                             }     
                         }
@@ -122,7 +121,6 @@
             $parameters['duration'] = $_movie->getDuration();
 
             
-            // agregar un script para la insercion de los generos
             
                                                   
 
@@ -145,6 +143,32 @@
                 throw $ex;
             }
             if(!empty($result)){
+                return $this->mapearMovieIdByInternId($result);
+            }else{
+                return false;
+            }
+        }
+
+        private function mapearMovieIdByInternId($value){
+            $value = is_array($value) ? $value : [];
+            
+            $resp = array_map(function($p){
+                return $p['id_movie'];
+            }, $value);
+    
+            return count($resp) > 1 ? $resp : $resp['0'];
+        }
+
+        public function getMovieById($id){
+            $sqlSelectIdMovie = "select * from movies where id_movie = ".$id.";";
+
+            try{
+                $this->connection = Connection::getInstance();
+                $result = $this->connection->Execute($sqlSelectIdMovie);
+            }catch(\PDOException $ex){
+                throw $ex;
+            }
+            if(!empty($result)){
                 return $this->mapearMovieId($result);
             }else{
                 return false;
@@ -155,11 +179,56 @@
             $value = is_array($value) ? $value : [];
             
             $resp = array_map(function($p){
-                return $p['id_movie'];
+                $movie = new Movie();
+                $movie->setTitle($p['title']);
+                $movie->setPopularity($p['popularity']);
+                $movie->setVoteCount($p['vote_count']);
+                $movie->setPosterPath($p['poster_path']);
+                $movie->setId($p['id']);
+                $movie->setBackdropPath($p['backdrop_path']);
+                $movie->setOriginalLanguage($p['original_language']);
+                $movie->setVoteAverage($p['vote_average']);
+                $movie->setOverview($p['overview']);
+                $movie->setReleaseDate($p['release_date']);
+                $movie->setTrailer($p['trailer']);
+                $movie->setDuration($p['duration']);
+                $movie->setGenreIds($this->getGenreIdByMovieInternId($movie->getId()));
+
+                return $movie;
             }, $value);
     
             return count($resp) > 1 ? $resp : $resp['0'];
         }
+
+        public function getGenreIdByMovieInternId($movieId){
+            $sqlSelectIdMovie = "select mxr.id_genre
+                                from movies_x_genres mxr
+                                inner join movies m on mxr.id_movie = m.id_movie
+                                where m.id=".$movieId.";";
+
+            try{
+                $this->connection = Connection::getInstance();
+                $result = $this->connection->Execute($sqlSelectIdMovie);
+            }catch(\PDOException $ex){
+                throw $ex;
+            }
+            if(!empty($result)){
+                return $this->mapearGenreId($result);
+            }else{
+                return false;
+            }
+        }
+
+        public function mapearGenreId($value){
+            $value = is_array($value) ? $value : [];
+
+            $resp = array_map(function($p){
+                return $p['id_genre'];
+            }, $value);
+    
+            return count($resp) > 1 ? $resp : $resp['0'];
+        }
+
 
         public function insertGenresIntoMovies($id_genre, $id_movie){
             $sql = "INSERT INTO movies_x_genres (id_genre, id_movie) values (:id_genre, :id_movie)";
@@ -189,7 +258,6 @@
                 $movie->setId($p['id']);
                 $movie->setBackdropPath($p['backdrop_path']);
                 $movie->setOriginalLanguage($p['original_language']);
-                //$movie->setGenreIds($jsonMovie['genre_ids']);
                 $movie->setVoteAverage($p['vote_average']);
                 $movie->setOverview($p['overview']);
                 $movie->setReleaseDate($p['release_date']);
