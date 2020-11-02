@@ -17,7 +17,7 @@
             $this->room->setRoomId($id_room);
             $this->start_time = $start_time;
             $this->id_show = $id_show;*/
-        }
+        } 
 
         public function getShowId()
         {

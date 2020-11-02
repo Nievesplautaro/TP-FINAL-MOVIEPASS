@@ -96,7 +96,7 @@
                 if($roomDAO2->readByName($roomName)){
                     
                     $error = "02";
-                     
+                
                     return $error;
                 }else{
                     return false;
