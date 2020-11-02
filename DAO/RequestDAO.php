@@ -297,7 +297,8 @@
         public function readMoviesShow(){
             $sql = "SELECT m.*
                     FROM shows s
-                    inner join movies m on s.id_movie = m.id_movie;";
+                    inner join movies m on s.id_movie = m.id_movie 
+                    group by m.id_movie;";
             try{
                 $this->connection = Connection::getInstance();
                 $result = $this->connection->Execute($sql);

@@ -38,6 +38,9 @@
                </div>
           </div>
           <div class="movie_list">
+          <div class="dashboard-title">
+               Movies on Billboard
+          </div>
           <ul class="catalogo">
                <?php
                     if($movieList && !empty($movieList)){

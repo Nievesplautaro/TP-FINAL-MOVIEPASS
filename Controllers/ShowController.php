@@ -59,7 +59,7 @@
                     echo '<script language="javascript">alert("Your Show Has Been Registered Successfully");</script>';
                 }else{
                     $message = "Show Registered Successfully";
-                    echo '<script language="javascript">alert("ERROR 404 NOT FOUND");</script>';
+                    echo '<script language="javascript">alert("This cinema already has a show in this room at this time");</script>';
                 }
                 
             }

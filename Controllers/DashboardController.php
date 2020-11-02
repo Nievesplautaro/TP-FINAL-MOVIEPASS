@@ -110,7 +110,7 @@
     public function GetMoviesByDate($date){
         $movieGenreList = array();
         $movieList = array();
-        $movieList = $this->dashboardDAO->readMovies();
+        $movieList = $this->dashboardDAO->readMoviesShow();
         foreach ($movieList as $movie){
             if ($movie->getReleaseDate() == $date){
                 array_push($movieGenreList, $movie);
