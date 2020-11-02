@@ -50,10 +50,12 @@
                         }
                 }else{  
                     echo "<div class='Error'>";
-                    echo "<div class='empty_cine'><p>Actualmente no tenemos ningun disponible para mostrar.</p><p> Si desea agregar un cine clickee aqui.</p></div>";
+                    echo "<div class='empty_cine'><p>Actualmente no tenemos ningun disponible para mostrar.</p><p> Si desea agregar un show clickee aqui.</p></div>";
                     echo "<div class='button'><a href='";
                     echo FRONT_ROOT;
-                    echo"show/registershow'>Add Show</a></div></div>";
+                    echo"show/registershow/";
+                    echo $id_cinema;
+                    echo "'>Add Show</a></div></div>";
                 }
             ?>
         </ul>

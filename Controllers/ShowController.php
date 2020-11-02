@@ -116,9 +116,9 @@
                     $data->setRoom($this->roomDAO->read($room->getRoomId()));
                     $showList = [];
                     $showList[0] = $data;
-                }else {
+                }else{
                     $showList = $data;
-                    if($data){
+                    if($showList){
                     foreach($showList as $show){
                         $movie = $show->getMovie();
                         $show->setMovie($this->movieDAO->getMovieById($movie->getMovieId()));
@@ -147,9 +147,9 @@
             
         }
 
-        public function registerShow(){
-            if($_POST){
-                $id_cinema = $_POST['id_cinema'];
+        public function registerShow($id_cinema){
+            if($id_cinema){
+                // $id_cinema = $_POST['id_cinema'];
                 $data = $this->roomDAO->readRooms($id_cinema);
                 $movieList = $this->movieDAO->readMovies();
                 if ($data instanceof Room) { /* ESTE IF CHEQUEA SI EL READ RETORNA UN ARRAY DE CINES O UN CINE SOLO */

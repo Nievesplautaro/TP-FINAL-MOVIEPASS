@@ -10,6 +10,7 @@
                             </a>
                         </div>
                     </div>
+                    
                     <div class="data_register">
                         <p>Please Enter Show Information To Register.</p> 
                     </div>
@@ -19,6 +20,7 @@
                                 <label for="id_room">Choose a room:</label>
                                 <select name="id_room" id="id_room" required>
                                     <?php 
+                                    
                                     if($roomList && !empty($roomList)){
                                         foreach($roomList as $room){
                                             echo "<option value='".$room->getRoomId()."'>".$room->getRoomName()."</option>";
