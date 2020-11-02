@@ -94,7 +94,7 @@
       public function GetMoviesByGenre($id){ 
           $movieGenreList = array();
           $movieList = array();
-          $movieList = $this->dashboardDAO->readMovies();
+          $movieList = $this->dashboardDAO->readMoviesShow();
           foreach ($movieList as $movie){
               $movieId = $this->dashboardDAO->getMovieIdByInternId($movie->getId());
               $genres = $this->dashboardDAO->GetGenreByMovieId($movieId);
