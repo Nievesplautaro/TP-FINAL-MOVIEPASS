@@ -426,7 +426,7 @@ body{
 
 .catalogo.cine .cinema .element_cine{
     border: 0.5px solid #cbcbcb;
-    border-radius: 25px;
+    /* border-radius: 25px; */
     padding: 10px;
 }
 
@@ -445,8 +445,8 @@ body{
 }
 .catalogo.cine .cinema .element_cine .title{
     text-align: center;
-    border: 0.5px dashed salmon;
-    border-radius: 10px;
+    border-bottom: 0.5px solid #cbcbcb;
+    /* border-radius: 10px; */
     text-transform: uppercase;
     justify-content: center;
     

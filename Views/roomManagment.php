@@ -39,21 +39,16 @@
             <?php
                         }
                     
-                    }else{
-                        echo "<div class='Error'>";
-                        echo "<div class='empty_cine'><p>Actualmente no tenemos ninguna sala disponible para mostrar.</p><p> Si desea agregar una sala clickee aqui.</p></div>";
-                        echo "<div class='button'><a href='";
-                        echo FRONT_ROOT;
-                        echo "Room/ShowRegisterRoom/";
-                        echo $id_cinema;
-                        echo "'>Add Cine</a></div></div>";
-                    }
+                }else{
+                    echo "<div class='Error'>";
+                    echo "<div class='empty_cine'><p>Actualmente no tenemos ninguna sala disponible para mostrar.</p><p> Si desea agregar una sala clickee aqui.</p></div>";
+                }
             ?>
         </ul>
         <div class='Error'>
                 <div class='empty_cine'>
                     <div class='button'>
-                        <a href="<?php echo FRONT_ROOT ?> Room/ShowRegisterRoom/ <?php echo $id_cinema ?> ">Add Cine</a>
+                        <a href="<?php echo FRONT_ROOT ?> Room/ShowRegisterRoom/ <?php echo $id_cinema ?> ">Add Room</a>
                     </div>
                 </div>
             </div>

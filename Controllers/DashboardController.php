@@ -26,8 +26,8 @@
          
           $movieList = array();
 
-        //   $this->dashboardDAO->SaveGenresFromApi();
-        //   $this->dashboardDAO->SaveMoviesFromApi();
+           //$this->dashboardDAO->SaveGenresFromApi();
+           //$this->dashboardDAO->SaveMoviesFromApi();
 
           //var_dump($this->dashboardDAO->getMovieById(1));
 
@@ -50,20 +50,15 @@
         require_once(VIEWS_PATH."movieDetails.php");
     }
 
-     public function showMoviesByGenre(){
+     public function showMoviesByGenre($idGenre){
 
-        $query = $_SERVER["QUERY_STRING"];
-
-        if($query){
-             $idGenre = str_replace("url=Dashboard/showMoviesByGenre&", "", $query);
-        }
         if($idGenre){
                $movieList = array();
                $movieList = $this->GetMoviesByGenre($idGenre);
                $genreList = $this->dashboardDAO->readGenres();
-          }
-          require_once(VIEWS_PATH."validate-session.php");
-          require_once(VIEWS_PATH."dashboard.php");
+               require_once(VIEWS_PATH."validate-session.php");
+                require_once(VIEWS_PATH."dashboard.php");
+        }
           
      }
 
