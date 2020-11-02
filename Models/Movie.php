@@ -20,7 +20,7 @@ namespace Models;
     private $release_date;
 
     /*public function __construct(){}
-
+    
     public function __construct($popularity,$vote_count,$poster_path,$id,$backdrop_path,$original_language,$genre_ids,$title,$vote_average,$overview,$release_date){
         $this->popularity = $popularity;
         $this->vote_count = $vote_count;

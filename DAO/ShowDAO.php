@@ -45,7 +45,7 @@
 
 
 /**
- * Transformamos el listado de usuarios en objetos de la clase usuario
+ * Transformamos el listado de shows en objetos de la clase show
  */
     protected function mapear ($value){
 
@@ -71,7 +71,7 @@
     }
 
 /**
- * Devuelve el cine por el nombre
+ * Devuelve el show por id
  */
 
     public function read($id_cinema){
@@ -99,6 +99,27 @@
             return false;
         }
 
+    }
+
+/**
+ * Devuelve todos los shows en una lista
+ */
+
+    public function GetAll(){
+        $sql = "SELECT * FROM shows";
+ 
+        try{
+            $this->connection = Connection::getInstance();
+            $result = $this->connection->execute($sql);
+        }
+        catch(\PDOException $ex){
+            throw $ex;
+        }
+
+        if(!empty($result))
+            return $this->mapear($result);
+        else
+            return false;
     }
 
 

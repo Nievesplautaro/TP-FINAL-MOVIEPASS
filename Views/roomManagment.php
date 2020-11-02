@@ -7,8 +7,7 @@
             <?php
                 $id = -1;
                     if ($roomList){
-                        foreach($roomList as $room){
-                             var_dump($room); 
+                        foreach($roomList as $room){ 
                         $id++;
             ?>
             <li class="cinema">
@@ -40,15 +39,15 @@
             <?php
                         }
                     
-                }else{
-                    echo "<div class='Error'>";
-                    echo "<div class='empty_cine'><p>Actualmente no tenemos ninguna sala disponible para mostrar.</p><p> Si desea agregar una sala clickee aqui.</p></div>";
-                    echo "<div class='button'><a href='";
-                    echo FRONT_ROOT;
-                    echo "Room/ShowRegisterRoom/";
-                    echo $id_cinema;
-                    echo "'>Add Cine</a></div></div>";
-                }
+                    }else{
+                        echo "<div class='Error'>";
+                        echo "<div class='empty_cine'><p>Actualmente no tenemos ninguna sala disponible para mostrar.</p><p> Si desea agregar una sala clickee aqui.</p></div>";
+                        echo "<div class='button'><a href='";
+                        echo FRONT_ROOT;
+                        echo "Room/ShowRegisterRoom/";
+                        echo $id_cinema;
+                        echo "'>Add Cine</a></div></div>";
+                    }
             ?>
         </ul>
         </div>

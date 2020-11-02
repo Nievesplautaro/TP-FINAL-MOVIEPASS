@@ -17,7 +17,7 @@
                         <form action="<?php echo FRONT_ROOT ?>Show/register"  method="POST" class="login-form bg-dark-alpha p-5 bg-light">
                             <div class="form-group">
                                 <label for="id_room">Choose a room:</label>
-                                <select name="id_room" id="id_room">
+                                <select name="id_room" id="id_room" required>
                                     <?php 
                                     if($roomList && !empty($roomList)){
                                         foreach($roomList as $room){
@@ -29,7 +29,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="id_movie">Choose a movie:</label>
-                                <select name="id_movie" id="id_movie">
+                                <select name="id_movie" id="id_movie" required>
                                     <?php 
                                     if($movieList && !empty($movieList)){
                                         foreach($movieList as $movie){
@@ -41,7 +41,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="start_time">Select Date and Hour of the Show:</label>
-                                <input type="datetime-local" id="start_time" name="start_time">
+                                <input type="datetime-local" id="start_time" name="start_time" min = "<?php (date('d-m-Y', time() + 86400).'T00:00') ?>" max = "<?php (date('d-m-Y', time() + 1209600).'T00:00') ?>" required>
                             </div>
                             <div class="form-group">
                             <div class="btn_cont">

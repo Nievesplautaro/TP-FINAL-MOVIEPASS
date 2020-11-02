@@ -47,28 +47,63 @@
 
                 $newShow = new Show();
                 
-                $newShow->setRoom($this->roomDAO->read($id_room));
+                if ($this->verifyDate($id_room,$start_time,$id_movie)){
+
+                    $newShow->setRoom($this->roomDAO->read($id_room));
                 
-                $newShow->setMovie($this->movieDAO->getMovieById($id_movie));
-                $newShow->setStartTime($start_time);
+                    $newShow->setMovie($this->movieDAO->getMovieById($id_movie));
+                    $newShow->setStartTime($start_time);
 
-                //var_dump($newShow);
+                    $this->showDAO->create($newShow);
 
-                $valid = $this->showDAO->create($newShow);
-            
-                /* ESTAS VALIDACIONES HAY QUE CAMBIARLAS, LAS VOY A POSPONER HASTA QUE NOS PONGAMOS DE ACUERDO */
-                if ($valid === 0){
-                    $message = "Show Name Already in Use";
-                    echo '<script language="javascript">alert("Show Name In Use");</script>';
+                    echo '<script language="javascript">alert("Your Show Has Been Registered Successfully");</script>';
                 }else{
                     $message = "Show Registered Successfully";
-                    echo '<script language="javascript">alert("Your Show Has Been Registered Successfully");</script>';
+                    echo '<script language="javascript">alert("ERROR 404 NOT FOUND");</script>';
                 }
+                
             }
-            $this->ShowMenuView($message);
+            $this->ShowMenuView();
             
         }
 
+        public function verifyDate($id_room, $start_time, $id_movie){
+
+            $movieShowList= $this->showDAO->GetAll();
+            
+            $movie = $this->movieDAO->getMovieById($id_movie);
+
+            $movie_duration = ($movie->getDuration() + 15);
+
+            $newStartTime=date_create($start_time);          
+
+            $newEndTime = date_create($start_time);
+            date_add($newEndTime,date_interval_create_from_date_string($movie_duration." minutes"));
+
+            if($movieShowList == null){
+                return true;
+            }else{
+                foreach($movieShowList as $movieshow){
+
+                    if($movieshow->getRoom()->getRoomId() == $id_room){
+
+                        $previousEndTime = date_create($movieshow->getStartTime());
+                        $previousShowDuration = ($movieshow->getMovie()->getDuration() + 15);
+                        date_add($previousEndTime,date_interval_create_from_date_string($previousShowDuration." minutes"));
+                        
+                        if(($movieshow->getStartTime() <= $newEndTime) && ($previousEndTime >= $newStartTime)){
+                            
+                            $error = "02";//asignar valor se pisa con otro show en la misma sala
+                            return false;
+                            
+                        }
+                    }
+                }
+
+                return true;
+            }
+        
+        }
 
         public function showCinemaShows(){
             if($_POST){

@@ -160,11 +160,12 @@
         }
 
         public function getMovieById($id){
-            $sqlSelectIdMovie = "select * from movies where id_movie = ".$id.";";
+            $sqlSelectIdMovie = "select * from movies where id_movie = :id_movie ;";
+            $parameters["id_movie"] = $id;
 
             try{
                 $this->connection = Connection::getInstance();
-                $result = $this->connection->Execute($sqlSelectIdMovie);
+                $result = $this->connection->Execute($sqlSelectIdMovie, $parameters);
             }catch(\PDOException $ex){
                 throw $ex;
             }
