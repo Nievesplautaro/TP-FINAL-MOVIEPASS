@@ -9,9 +9,6 @@ create table if not exists users(
     constraint pk_users primary key (id_user)
 );
 
-drop table room_cinema;
-
-select * from cinemas;
 
 insert into users (user_role, username, pass) values (0, 'user@user.com', '123456'), (1, 'admin@admin.com', '123456');
 
@@ -104,4 +101,3 @@ create table if not exists seat_x_ticket(
     constraint fk_seat_ticket foreign key (id_seat) references seats(id_seat)
 );
 
-select * from room_cinema;

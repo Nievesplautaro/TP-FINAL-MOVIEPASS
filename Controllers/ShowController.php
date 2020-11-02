@@ -116,14 +116,15 @@
                     $data->setRoom($this->roomDAO->read($room->getRoomId()));
                     $showList = [];
                     $showList[0] = $data;
-                }else{
+                }else {
                     $showList = $data;
+                    if($data){
                     foreach($showList as $show){
                         $movie = $show->getMovie();
                         $show->setMovie($this->movieDAO->getMovieById($movie->getMovieId()));
                         $room = $show->getRoom();
                         $show->setRoom($this->roomDAO->read($room->getRoomId()));
-                    }
+                    }}
                 }
             }
             

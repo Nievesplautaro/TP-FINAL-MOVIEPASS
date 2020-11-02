@@ -38,9 +38,10 @@
                 $roomList[0] = $data;
             }else{
                 $roomList = $data;
+                if($data){
                 foreach($roomList as $room){
                     $room->setCinema($this->cinemaDAO->read($id_cinema));
-                } 
+                } } 
             } 
             require_once(VIEWS_PATH."validate-session.php");
             require_once(VIEWS_PATH."roomManagment.php");
@@ -56,7 +57,11 @@
                     $price = $_POST['price'];
                     $cinema = $this->cinemaDAO->getCinemaById($id_cinema);
 
-                    $room = new Room($roomName, $capacity, $price,0);
+                    $room = new Room();
+                    $room->setRoomName($roomName);
+                    $room->setCapacity($capacity);
+                    $room->setPrice($price);
+                    $room->setRoomId(0);
                     $room->setCinema($cinema);
                     $this->roomDAO->create($room);
                     /* ESTE SCRIPT SIRVE DE ALGO=? */
@@ -66,7 +71,7 @@
                 }
         }
         
-        public function Delete($id_room){
+        public function Delete($id_cinema,$id_room){
             if($id_room){
                 try{
 
@@ -76,8 +81,7 @@
                     throw $ex;
                 } 
             }
-            require_once(VIEWS_PATH."validate-session.php");
-            require_once(VIEWS_PATH."roomManagment.php");
+            $this->showRooms($id_cinema);
         
         }
 
