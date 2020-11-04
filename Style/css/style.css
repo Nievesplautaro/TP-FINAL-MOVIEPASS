@@ -752,3 +752,40 @@ margin: 0;
      animation-delay: 0;
    }
    
+   .my_tickets .ticket{
+        width: 20%;
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .my_tickets .ticket .element_ticket{
+        border: 0.5px solid #cbcbcb;
+        padding: 10px;
+    }
+
+    .my_tickets .ticket .element_ticket .header{
+        display: flex;
+        margin-bottom: 15px;
+    }
+
+    .my_tickets .ticket .element_ticket .header img{
+        max-width: 60px;
+        margin: auto;
+    }
+
+    .my_tickets .ticket .element_ticket .data{
+        margin-bottom: 30px;
+        text-align: center;
+    }
+
+    .my_tickets .ticket .element_ticket .title{
+        text-align: center;
+        border-bottom: 0.5px solid #cbcbcb;
+        text-transform: uppercase;
+        justify-content: center;
+    }
+
+    .my_tickets .ticket .element_ticket .data .element{
+        margin: 15px 0;
+        padding: 0 5px;
+    }

@@ -7,11 +7,20 @@ namespace Models;
     private $email;
     private $password;
     private $user_role;
+    private $id_user;
 
     public function __construct($email, $password){
         $this->email=$email;
         $this->password=$password;
         $this->user_role = 0;
+    }
+
+    public function setUserId($id_user){
+        $this->id_user = $id_user;
+    }
+
+    public function getUserId(){
+        return $this->id_user;
     }
 
     public function setUserRole($user_role){

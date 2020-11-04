@@ -8,7 +8,7 @@
         <a class="nav-link" >Movies</a> <!-- Showmovies trae todas las peliculas a una lista y las muestra en Views/dashboard -->
         <ul>
           <li><a href="<?php echo FRONT_ROOT?>Dashboard/showMovies">Show Movies</a></li>
-          <li><a href="<?php echo FRONT_ROOT?>Dashboard/showMovies">My tickets</a></li>
+          <li><a href="<?php echo FRONT_ROOT?>Ticket/showMyTickets">My tickets</a></li>
         </ul>
       </li>
       <li class="nav-item">
