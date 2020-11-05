@@ -665,9 +665,9 @@ margin: 0;
     max-width: 200px;
 }
 
-.line-clamp_four {
+.line-clamp_three {
     display: -webkit-box;
-    -webkit-line-clamp: 4;
+    -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;  
     overflow: hidden;
 }
@@ -679,12 +679,12 @@ margin: 0;
 .owl-carousel .item .show_data .title{
     font-family: "Rubik";
     color: #211915;
-    font-size: 2.5rem;
+    font-size: 2.25rem;
     font-weight: bold;
     margin-bottom: 15px
 }
 .owl-carousel .item .show_data .data{
-    font-size: 1.375rem;
+    font-size: 1.25rem;
     color: #4d4d4d;
     margin-bottom: 10px;
 }
@@ -715,6 +715,10 @@ margin: 0;
     display: flex;  
     justify-content: center; 
     align-items: flex-start;
+}
+
+.slider_shows .owl-theme .owl-nav.disabled + .owl-dots {
+    margin-top: 0px;
 }
 
 /* SLIDER HOME */

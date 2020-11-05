@@ -18,7 +18,7 @@
                               <div class="title">
                                    <?php echo $show->getTitle();?>
                               </div>
-                              <div class="data line-clamp_four">
+                              <div class="data line-clamp_three ">
                                    <?php echo $show->getOverview();?>
                               </div>
                               <div class="details">
