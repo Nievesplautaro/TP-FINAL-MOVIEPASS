@@ -44,6 +44,8 @@ header{
     background: rgba(240,171,131,1);
     padding-top: 80PX;
     width: 100%;
+    position: fixed;
+    z-index: 9;
 }
 
 #navbarNav .navbar-nav.center-content{
@@ -105,7 +107,7 @@ body{
 }
 
 .container{
-    padding-top: 95px;
+    padding-top: 145px;
 }
 
 .container.menu{
@@ -622,79 +624,17 @@ margin: 0;
     font-size: 15px;
 }
 
+.owl-carousel .item{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
 
-@-webkit-keyframes FadeInOut {
-    0% {
-      opacity:1;
-    }
-    17% {
-      opacity:1;
-    }
-    25% {
-      opacity:0;
-    }
-    92% {
-      opacity:0;
-    }
-    100% {
-      opacity:1;
-    }
-   }
-   
-   @-moz-keyframes FadeInOut {
-    0% {
-      opacity:1;
-    }
-    17% {
-      opacity:1;
-    }
-    25% {
-      opacity:0;
-    }
-    92% {
-      opacity:0;
-    }
-    100% {
-      opacity:1;
-    }
-   }
-   
-   @-o-keyframes FadeInOut {
-    0% {
-      opacity:1;
-    }
-    17% {
-      opacity:1;
-    }
-    25% {
-      opacity:0;
-    }
-    92% {
-      opacity:0;
-    }
-    100% {
-      opacity:1;
-    }
-   }
-   
-   @keyframes FadeInOut {
-    0% {
-      opacity:1;
-    }
-    17% {
-      opacity:1;
-    }
-    25% {
-      opacity:0;
-    }
-    92% {
-      opacity:0;
-    }
-    100% {
-      opacity:1;
-    }
-   }
-   
+.owl-carousel .item img{
+    width: 100%;
+    max-width: 400px;
+}
+
    #ImageAutoDisplay {
      position:relative;
      height:281px;
@@ -757,6 +697,8 @@ margin: 0;
         display: flex;
         flex-wrap: wrap;
     }
+
+
 
     .my_tickets .ticket .element_ticket{
         border: 0.5px solid #cbcbcb;

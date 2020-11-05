@@ -92,19 +92,21 @@
       }
 
       public function GetMoviesByGenre($id){ 
-          $movieGenreList = array();
-          $movieList = array();
-          $movieList = $this->dashboardDAO->readMoviesShow();
-          foreach ($movieList as $movie){
-              $movieId = $this->dashboardDAO->getMovieIdByInternId($movie->getId());
-              $genres = $this->dashboardDAO->GetGenreByMovieId($movieId);
-              foreach ($genres as $genre){
-                if($id == $genre->getGenreId()){
-                    array_push($movieGenreList, $movie);
+        $movieGenreList = array();
+        $movieList = array();
+        $movieList = $this->dashboardDAO->readMoviesShow();
+        if(!empty($movieList)){
+            foreach ($movieList as $movie){
+                $movieId = $this->dashboardDAO->getMovieIdByInternId($movie->getId());
+                $genres = $this->dashboardDAO->GetGenreByMovieId($movieId);
+                foreach ($genres as $genre){
+                    if($id == $genre->getGenreId()){
+                        array_push($movieGenreList, $movie);
+                    }
                 }
-              }
-          }
-          return $movieGenreList;
+            }
+        }
+        return $movieGenreList;
       }
 
     public function GetMoviesByDate($date){

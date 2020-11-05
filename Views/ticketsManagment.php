@@ -1,5 +1,5 @@
 <?php
-    require_once(VIEWS_PATH."navAdmin.php");
+    require_once(VIEWS_PATH."nav.php");
 ?>
 <div class="container menu">
     <div class="ticket_list">
