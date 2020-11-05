@@ -44,7 +44,6 @@
         if ($id){
             $movie =  $this->GetMovieById($id);
         }
-        //$genreList = $this->dashboardDAO->GetGenres();
         $genreList = $this->dashboardDAO->readGenres();
         require_once(VIEWS_PATH."validate-session.php");
         require_once(VIEWS_PATH."movieDetails.php");

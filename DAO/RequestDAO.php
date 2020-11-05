@@ -105,7 +105,13 @@
 
         public function createMovie($_movie){
 
-            $sql = "INSERT INTO movies (title, original_language, release_date, popularity, vote_count, poster_path, id, backdrop_path,  vote_average, overview, trailer, duration) VALUES (:title, :original_language, :release_date, :popularity, :vote_count, :poster_path, :id, :backdrop_path,  :vote_average, :overview, :trailer, :duration);";
+            /*$sql = "INSERT INTO movies (title, original_language, release_date, popularity, vote_count, poster_path, id, backdrop_path,  vote_average, overview, trailer, duration) VALUES (:title, :original_language, :release_date, :popularity, :vote_count, :poster_path, :id, :backdrop_path,  :vote_average, :overview, :trailer, :duration);";*/
+
+            $sql = "INSERT INTO movies (title, original_language, release_date, popularity, vote_count, poster_path, id, backdrop_path,  vote_average, overview, trailer, duration)
+            SELECT * FROM (SELECT :title, :original_language, :release_date, :popularity, :vote_count, :poster_path, :id, :backdrop_path,  :vote_average, :overview, :trailer, :duration) AS movie
+            WHERE NOT EXISTS (
+                SELECT * FROM movies WHERE id = :id
+            );";
             
             $parameters['title'] = $_movie->getTitle();
             $parameters['original_language'] = $_movie->getOriginalLanguage();
@@ -314,7 +320,13 @@
 
 
         public function createGenre($_genre){
-            $sql = "INSERT INTO genres (id_genre, genre_name) VALUES (:id_genre, :genre_name);";
+            //$sql = "INSERT INTO genres (id_genre, genre_name) VALUES (:id_genre, :genre_name);";
+            
+            $sql = "INSERT INTO genres (id_genre, genre_name)
+            SELECT * FROM (SELECT :id_genre, :genre_name) AS genre
+            WHERE NOT EXISTS (
+                SELECT * FROM genres WHERE id_genre = :id_genre
+            );";
     
             $parameters['id_genre'] = $_genre->getGenreId();
             $parameters['genre_name'] = $_genre->getGenreName();

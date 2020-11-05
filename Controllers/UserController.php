@@ -2,6 +2,7 @@
     namespace Controllers;
 
     use DAO\UserDAO as UserDAO;
+    use DAO\RequestDAO as RequestDAO;
     Use Models\User as User;
 
     
@@ -9,9 +10,11 @@
     class UserController{
 
         private $userDAO;
+        private $dashboardDAO;
         
         public function __construct(){
             $this->userDAO = new UserDAO();
+            $this->dashboardDAO = new RequestDAO();
         }
 
         public function ShowMenuView()
@@ -28,6 +31,21 @@
 
         public function ShowRegisterAdmin($message = "")
         {
+            require_once(VIEWS_PATH."validate-session.php");
+            require_once(VIEWS_PATH."registerAdmin.php");
+        }
+
+        public function AddMovies($message = "")
+        {
+            $this->dashboardDAO->SaveGenresFromApi();
+            $this->dashboardDAO->SaveMoviesFromApi();
+            require_once(VIEWS_PATH."validate-session.php");
+            require_once(VIEWS_PATH."menuAdmin.php");
+        }
+
+        public function UpdateMovies($message = "")
+        {
+            $this->dashboardDAO->SaveMoviesFromApi();
             require_once(VIEWS_PATH."validate-session.php");
             require_once(VIEWS_PATH."registerAdmin.php");
         }
