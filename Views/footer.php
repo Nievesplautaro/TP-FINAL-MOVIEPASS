@@ -26,6 +26,6 @@
 <!-- LLAMADOS A JS -->
 <script src="<?php echo JS_PATH ?>jquery.min.js"></script>
 <script src="<?php echo JS_PATH ?>owl.carousel.min.js"></script>
-<script src="<?php echo JS_PATH ?>jquery.testeo.js"></script>
+<script src="<?php echo JS_PATH ?>jquery.slider.js"></script>
 </body>
 </html>

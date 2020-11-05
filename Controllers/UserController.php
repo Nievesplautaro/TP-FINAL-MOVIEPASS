@@ -3,6 +3,8 @@
 
     use DAO\UserDAO as UserDAO;
     Use Models\User as User;
+    use DAO\RequestDAO as RequestDAO;
+
 
     
 
@@ -12,10 +14,21 @@
         
         public function __construct(){
             $this->userDAO = new UserDAO();
+            $this->dashboardDAO = new RequestDAO();
         }
 
         public function ShowMenuView()
         {
+            $showList = array();
+            $showList = $this->dashboardDAO->readMoviesShow();
+            $lastshows = array();
+            if(!empty($showList)){
+                foreach($showList as $key=>$show) {
+                    if($key<10){
+                        array_push($lastshows, $show);
+                    }
+                }
+            }
             require_once(VIEWS_PATH."validate-session.php");
             require_once(VIEWS_PATH."menu.php");
         }
@@ -80,6 +93,17 @@
         }
 
         public function Menu(){
+            
+            $showList = array();
+            $showList = $this->dashboardDAO->readMoviesShow();
+            $lastshows = array();
+            if(!empty($showList)){
+                foreach($showList as $key=>$show) {
+                    if($key<10){
+                        array_push($lastshows, $show);
+                    }
+                }
+            }
             require_once(VIEWS_PATH."validate-session.php");
             include(VIEWS_PATH."menu.php");
             

@@ -55,10 +55,16 @@
                                     echo "<div class='generos' >Genres: ";
                                     $movieId = $this->dashboardDAO->getMovieIdByInternId($movie->getId());
                                     $genres = $this->dashboardDAO->GetGenreByMovieId($movieId);
-                                    //var_dump($genres);
-                                    foreach($genres as $genre){
-                                        echo $genre->getGenreName()." - ";
-                                    }
+                                    $size = count($genres);
+                                    if(!empty($genres)){
+                                        foreach($genres as $key=>$genre){
+                                             if($key < $size-1){
+                                                  echo $genre->getGenreName()." - ";
+                                             }else{
+                                                  echo $genre->getGenreName();
+                                             }
+                                        }
+                                   }
                                     /*foreach($movie->getGenreIds() as $genreId){
                                         $genre = $this->dashboardDAO->GetGenreById($genreId);
                                         

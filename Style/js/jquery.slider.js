@@ -2,10 +2,10 @@ $(".logo_header").addClass("funciono perra");
 $('.owl-carousel').owlCarousel({
     loop:true,
     margin:0,
-    nav:true,
     dots:true,
     autoplay:true,
-    autoplayTimeout:3000,
+    //autoplayHoverPause:true,
+    autoplayTimeout:5000,
     responsive:{
         0:{
             items:1
