@@ -21,7 +21,11 @@
             <img src="<?php echo IMG_PATH ?>MoviePass_b.png" alt="BUENARDO">                 
             B.T.P.V. DEVELOPENT - Web Design Buenardo
         </a>
-    </div> 
+    </div>  
 </footer>
+<!-- LLAMADOS A JS -->
+<script src="<?php echo JS_PATH ?>jquery.min.js"></script>
+<script src="<?php echo JS_PATH ?>owl.carousel.min.js"></script>
+<script src="<?php echo JS_PATH ?>jquery.testeo.js"></script>
 </body>
 </html>

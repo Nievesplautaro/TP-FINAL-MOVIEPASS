@@ -68,6 +68,14 @@
                          echo "</a>";
                          echo "</li>";
                          }
+                    }else{
+               ?>
+                    <div class="Error">
+                         <div class="empty_cine">
+                              There is no movie on Billboard for this genre.
+                         </div>
+                    </div>
+               <?php
                     }
                ?>
           </ul>
