@@ -14,6 +14,7 @@
                ?>
                     <div class="item">
                          <div class="show_data">
+                         <a href="<?php echo FRONT_ROOT ?>Dashboard/showMovieDetails/<?php echo $show->getId()?>">
                               <div class="title">
                                    <?php echo $show->getTitle();?>
                               </div>
@@ -56,6 +57,7 @@
                                               echo $show->getVoteAverage();
                                         ?>
                                    </div>
+                                   </a>
                               </div>
                               <div class="action">
                                    <a href="<?php echo FRONT_ROOT ?>Dashboard/showMovieDetails/<?php echo $show->getId()?>">BUY TICKETS</a>
