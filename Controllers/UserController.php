@@ -4,7 +4,6 @@
     use DAO\UserDAO as UserDAO;
     use DAO\RequestDAO as RequestDAO;
     Use Models\User as User;
-    use DAO\RequestDAO as RequestDAO;
 
 
     
