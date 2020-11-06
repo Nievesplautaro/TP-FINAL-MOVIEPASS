@@ -30,6 +30,14 @@
             require_once(VIEWS_PATH."registerRoom.php");
         }
 
+        public function ShowEditRoom($id_cinema, $id_room){
+            require_once(VIEWS_PATH."validate-session.php");
+            if($id_room){
+                $room = $this->roomDAO->readRooms($id_cinema);
+            }
+            require_once(VIEWS_PATH."editRoom.php");
+        }
+
         public function showRooms($id_cinema){
             $data = $this->roomDAO->readRooms($id_cinema);
             if ($data instanceof Room) { /* ESTE IF CHEQUEA SI EL READ RETORNA UN ARRAY DE Room O UN Room SOLO */
@@ -70,6 +78,37 @@
                     $this->showRooms($id_cinema);
                 }
         }
+
+        public function editRoom($id_cinema, $id_room){
+            if($id_room){
+                echo $id_room;
+                if ($_POST){
+                        
+                    $room_name = $_POST['room_name'];
+                    $capacity = $_POST['capacity'];
+                    $price = $_POST['price'];
+
+                    if($this->roomDAO->readByName($room_name) == 0){
+
+                        $room = new Room();
+                        
+                        $room->setRoomName($room_name);
+                        $room->setCapacity($capacity);
+                        $room->setPrice($price);
+                        
+
+                        $this->roomDAO->editRoom($id_room,$room);
+                        
+                        $this->showRooms($id_cinema);
+                        //header("location:showCinemas");
+
+                }else{
+                    // manejar error en pantalla
+                    require_once(VIEWS_PATH."menuAdmin.php");
+                } 
+            }
+        }
+    }
         
         public function Delete($id_cinema,$id_room){
             if($id_room){

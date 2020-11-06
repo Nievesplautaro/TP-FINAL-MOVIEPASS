@@ -35,13 +35,10 @@
                     </div>
                     <div class="actions">
                         <div class="button">
-                            <a href="<?php echo FRONT_ROOT?>show/ShowRegisterView/<?php echo $show->getshowId() ?>">Edit show</a>
+                            <a href="<?php echo FRONT_ROOT?>show/editShow/<?php echo $show->getshowId() ?>">Edit show</a>
                         </div>
                         <div class="button">
-                            <a href="<?php echo FRONT_ROOT ?>room/ShowRooms/<?php echo $show->getshowId(); ?>">Show Management</a>
-                        </div>
-                        <div class="button">
-                            <a href="<?php echo FRONT_ROOT?>show/removeshow/<?php echo $show->getshowId() ?>">Delete show</a>
+                            <a href="<?php echo FRONT_ROOT?>show/removeShow/<?php echo $show->getshowId() ?>">Delete show</a>
                         </div>
                     </div>
                 </div>

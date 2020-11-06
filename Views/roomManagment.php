@@ -31,6 +31,9 @@
                     </div>
                     <div class="actions">
                         <div class="button">
+                            <a href="<?php echo FRONT_ROOT?>Room/ShowEditRoom/<?php echo $id_cinema ?>/<?php echo $room->getRoomId() ?>">Edit Room</a>
+                        </div>
+                        <div class="button">
                             <a href="<?php echo FRONT_ROOT?>Room/Delete/<?php echo $id_cinema ?>/<?php echo $room->getRoomId() ?>">Delete Room</a>
                         </div>
                     </div>

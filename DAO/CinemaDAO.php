@@ -61,7 +61,8 @@
 
 public function readByAddress($address){
 
-    $sql = "SELECT * FROM Cinemas WHERE Cinemas.address = :address";
+    //$sql = "SELECT * FROM Cinemas WHERE Cinemas.address = :address";
+    $sql = 'SELECT EXISTS(SELECT * FROM Cinemas WHERE Cinemas.address = :address) as exist;';
     $parameters['address'] = $address;
 
     try{
@@ -71,7 +72,7 @@ public function readByAddress($address){
         throw $ex;
     }
     if(!empty($result)){
-        return $this->mapearCine($result);
+        return $this->mapearCinemaExists($result);
     }else{
         return false;
     }
@@ -84,7 +85,8 @@ public function readByAddress($address){
 
     public function readByName($cinema_name){
 
-        $sql = "SELECT * FROM Cinemas WHERE Cinemas.cinema_name = :cinema_name";
+        //$sql = "SELECT * FROM Cinemas WHERE Cinemas.cinema_name = :cinema_name";
+        $sql = 'SELECT EXISTS(SELECT * FROM Cinemas WHERE Cinemas.cinema_name = :cinema_name) as exist;';
         $parameters['cinema_name'] = $cinema_name;
 
         try{
@@ -94,11 +96,21 @@ public function readByAddress($address){
             throw $ex;
         }
         if(!empty($result)){
-            return $this->mapearCine($result);
+            return $this->mapearCinemaExists($result);
         }else{
             return false;
         }
+    }
 
+    public function mapearCinemaExists($value){
+        $value = is_array($value) ? $value : [];
+        
+        $resp = array_map(function($p){
+            $exist = $p['exist'];        
+	        return $exist;
+        }, $value);
+
+        return count($resp) > 1 ? $resp : $resp['0'];
     }
 
     /**
@@ -208,7 +220,7 @@ public function read($id_cinema){
         $parameters['cinema_name'] = $editCinema->getName();
         $parameters['address'] = $editCinema->getAddress();
         $parameters['phone_number'] = $editCinema->getPhoneNumber();
-        //indistinto el id de usuario porque es autoincremental, pero sino no lo sube por parametros
+        //indistinto el id de cinema porque es autoincremental, pero sino no lo sube por parametros
         $parameters['id_cinema'] = $id_cinema;
         $sql = "update cinemas 
                     set 
