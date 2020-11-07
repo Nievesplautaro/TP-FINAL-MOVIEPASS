@@ -122,6 +122,49 @@
             return false;
     }
 
+    public function showInfoToGetTicket($id_movie){
+        echo $id_movie;
+        $sql = "select c.cinema_name,s.id_show, s.start_time
+                from shows s
+                inner join room_cinema rc on s.id_room = rc.id_room
+                inner join cinemas c on rc.id_cinema = c.id_cinema
+                inner join movies m on s.id_movie = m.id_movie
+                where m.id = ".$id_movie."
+                order by c.cinema_name;";
+
+        try{
+            $this->connection = Connection::getInstance();
+            $result = $this->connection->Execute($sql);
+        }catch(\PDOException $ex){
+            throw $ex;
+        }
+        if(!empty($result)){
+            return $this->mapearShowInfo($result);
+        }else{
+            return false;
+        }
+        
+    }
+
+    protected function mapearShowInfo($value){
+        $value = is_array($value) ? $value : [];
+        $a = array();
+        $resp = array_map(function($p){
+            $showInfo = array(
+                            "cinema_name" => $p["cinema_name"],
+                            "start_time"  => $p["start_time"],
+                            "id_show"     => $p["id_show"]
+                        );
+            //$p['c.cinema_name'],$p['s.start_time'],$p['s.id_show'];
+            
+            
+            return $showInfo ;
+        }, $value);
+
+        return count($resp) > 1 ? $resp : $resp['0'];
+
+    }
+
 
 }
 ?>

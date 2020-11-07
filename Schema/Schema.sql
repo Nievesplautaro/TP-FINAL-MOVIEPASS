@@ -86,7 +86,6 @@ create table if not exists tickets(
 	id_ticket int not null auto_increment,
     id_show int,
     id_user int,
-    price int,
     constraint pk_tickets primary key (id_ticket),
     constraint fk_ticket_show foreign key (id_show) references shows(id_show) on delete cascade on update cascade,
     constraint fk_ticket_user foreign key (id_user) references users(id_user) on delete cascade on update cascade

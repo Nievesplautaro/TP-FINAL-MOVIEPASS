@@ -68,7 +68,30 @@
                             </div>
                         </div>
                         <div class="actions">
+                            <h3>Get Ticket for this Movie</h3>
+                            <?php $options = ''; ?>
+                            <select name="id_movie" id="id_movie" required>
+                            <?php //var_dump($showInfoTicket);
+                                 if($showInfoTicket && !empty($showInfoTicket)){
 
+                                    foreach($showInfoTicket as $showInfo){
+                                        foreach($showInfo as $key => $value){
+                                            if($key != 'id_show'){
+                                                //echo "<option value='".$value."'>".$value."</option>";
+                                                $options.=$value.' ';
+                                            }
+                                        }
+                                        echo "<option value='".$options."'>".$options."</option>";
+                                        $options='';
+                                    }
+                                }
+                            ?>
+                            </select>
+                            <div class="form-group">
+                                <div class="btn_cont">
+                                    <button class="btn btn-primary btn-block btn-lg" type="submit">Get Ticket For this Show</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

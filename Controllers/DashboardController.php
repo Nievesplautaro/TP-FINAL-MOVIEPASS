@@ -2,6 +2,7 @@
     namespace Controllers;
 
     use DAO\RequestDAO as RequestDAO;
+    use DAO\ShowDAO as ShowDAO;
     Use Models\Movie as Movie;
 
     
@@ -9,11 +10,13 @@
     class DashboardController
     {
      private $dashboardDAO;
+     private $showDAO;
      //private $movieListArray ;
         
      public function __construct(){
          //$this->movieListArray = array();
           $this->dashboardDAO = new RequestDAO();
+          $this->showDAO = new ShowDAO();
      }
 
      public function ShowDashboardView($message = ""){
@@ -45,6 +48,7 @@
             $movie =  $this->GetMovieById($id);
         }
         $genreList = $this->dashboardDAO->readGenres();
+        $showInfoTicket = $this->showDAO->showInfoToGetTicket($id);
         require_once(VIEWS_PATH."validate-session.php");
         require_once(VIEWS_PATH."movieDetails.php");
     }

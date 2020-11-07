@@ -35,9 +35,6 @@
                     </div>
                     <div class="actions">
                         <div class="button">
-                            <a href="<?php echo FRONT_ROOT?>show/editShow/<?php echo $show->getshowId() ?>">Edit show</a>
-                        </div>
-                        <div class="button">
                             <a href="<?php echo FRONT_ROOT?>show/removeShow/<?php echo $show->getshowId() ?>">Delete show</a>
                         </div>
                     </div>

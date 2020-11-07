@@ -95,6 +95,7 @@
                         $room->setRoomName($room_name);
                         $room->setCapacity($capacity);
                         $room->setPrice($price);
+
                         
 
                         $this->roomDAO->editRoom($id_room,$room);
