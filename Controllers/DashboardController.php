@@ -4,6 +4,8 @@
     use DAO\RequestDAO as RequestDAO;
     use DAO\ShowDAO as ShowDAO;
     Use Models\Movie as Movie;
+    Use Models\Genre as Genre;
+    
 
     
 
@@ -26,29 +28,52 @@
      }
 
     public function showMovies(){
-         
-          $movieList = array();
+    
+        $movieList = array();
 
            //$this->dashboardDAO->SaveGenresFromApi();
            //$this->dashboardDAO->SaveMoviesFromApi();
 
           //var_dump($this->dashboardDAO->getMovieById(1));
 
-          $genreList = $this->dashboardDAO->readGenres();
-          $movieList = $this->dashboardDAO->readMoviesShow();
-          
-         
-          require_once(VIEWS_PATH."validate-session.php");
-          require_once(VIEWS_PATH."dashboard.php");
-          
+        $data = $this->dashboardDAO->readGenres();
+        if ($data instanceof Genre) { /* ESTE IF CHEQUEA SI EL READ RETORNA UN ARRAY DE CINES O UN CINE SOLO */
+            $genreList = [];
+            $genreList[0] = $data;
+        }else{
+            $genreList = $data;
+        }
+        $data2 = $this->dashboardDAO->readMoviesShow();
+        if ($data2 instanceof Movie) { /* ESTE IF CHEQUEA SI EL READ RETORNA UN ARRAY DE CINES O UN CINE SOLO */
+            $movieList = [];
+            $movieList[0] = $data2;
+        }else{
+            $movieList = $data2;
+        }
+        
+        require_once(VIEWS_PATH."validate-session.php");
+        require_once(VIEWS_PATH."dashboard.php");
+        
     }
 
     public function showMovieDetails ($id){
         if ($id){
             $movie =  $this->GetMovieById($id);
         }
-        $genreList = $this->dashboardDAO->readGenres();
-        $showInfoTicket = $this->showDAO->showInfoToGetTicket($id);
+        $data = $this->dashboardDAO->readGenres();
+        if ($data instanceof Genre) { /* ESTE IF CHEQUEA SI EL READ RETORNA UN ARRAY DE CINES O UN CINE SOLO */
+            $genreList = [];
+            $genreList[0] = $data;
+        }else{
+            $genreList = $data;
+        }
+        $data2 = $this->showDAO->showInfoToGetTicket($id);
+        if (isset($data2['cinema_name'])) { /* ESTE IF CHEQUEA SI EL READ RETORNA UN ARRAY DE CINES O UN CINE SOLO */
+            $showInfoTicket = [];
+            $showInfoTicket[0] = $data2;
+        }else{
+            $showInfoTicket = $data2;
+        }
         require_once(VIEWS_PATH."validate-session.php");
         require_once(VIEWS_PATH."movieDetails.php");
     }
@@ -58,7 +83,13 @@
         if($idGenre){
                $movieList = array();
                $movieList = $this->GetMoviesByGenre($idGenre);
-               $genreList = $this->dashboardDAO->readGenres();
+               $data = $this->dashboardDAO->readGenres();
+               if ($data instanceof Genre) { /* ESTE IF CHEQUEA SI EL READ RETORNA UN ARRAY DE CINES O UN CINE SOLO */
+                    $genreList = [];
+                    $genreList[0] = $data;
+                }else{
+                    $genreList = $data;
+                }
                require_once(VIEWS_PATH."validate-session.php");
                 require_once(VIEWS_PATH."dashboard.php");
         }
@@ -74,8 +105,13 @@
         if($date){
                $movieList = array();
                $movieList = $this->GetMoviesByDate($date);
-               $genreList = $this->dashboardDAO->readGenres();
-
+               $data = $this->dashboardDAO->readGenres();
+               if ($data instanceof Genre) { /* ESTE IF CHEQUEA SI EL READ RETORNA UN ARRAY DE CINES O UN CINE SOLO */
+                    $genreList = [];
+                    $genreList[0] = $data;
+                }else{
+                    $genreList = $data;
+                }
           }
           require_once(VIEWS_PATH."validate-session.php");
           require_once(VIEWS_PATH."dashboard.php");
@@ -88,7 +124,13 @@
 
         $movieList = array();
         $movieList = $this->dashboardDAO->getMovieByTitle($title);
-        $genreList = $this->dashboardDAO->readGenres();
+        $data = $this->dashboardDAO->readGenres();
+        if ($data instanceof Genre) { /* ESTE IF CHEQUEA SI EL READ RETORNA UN ARRAY DE CINES O UN CINE SOLO */
+            $genreList = [];
+            $genreList[0] = $data;
+        }else{
+            $genreList = $data;
+        }
         require_once(VIEWS_PATH."validate-session.php");
         require_once(VIEWS_PATH."dashboard.php");
 
@@ -101,7 +143,13 @@
         if(!empty($movieList)){
             foreach ($movieList as $movie){
                 $movieId = $this->dashboardDAO->getMovieIdByInternId($movie->getId());
-                $genres = $this->dashboardDAO->GetGenreByMovieId($movieId);
+                $data = $this->dashboardDAO->GetGenreByMovieId($movieId);
+                if ($data instanceof Genre) { /* ESTE IF CHEQUEA SI EL READ RETORNA UN ARRAY DE CINES O UN CINE SOLO */
+                    $genres = [];
+                    $genres[0] = $data;
+                }else{
+                    $genres = $data;
+                }
                 foreach ($genres as $genre){
                     if($id == $genre->getGenreId()){
                         array_push($movieGenreList, $movie);
