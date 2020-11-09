@@ -52,12 +52,18 @@
                                    echo "<div class='title'>
                                         <p><b>".$movie->getTitle()."</b></p>                                       
                                         </div>";
-                                    echo "<div class='generos' >Genres: ";
-                                    $movieId = $this->dashboardDAO->getMovieIdByInternId($movie->getId());
-                                    $genres = $this->dashboardDAO->GetGenreByMovieId($movieId);
-                                    $size = count($genres);
-                                    if(!empty($genres)){
-                                        foreach($genres as $key=>$genre){
+                                   echo "<div class='generos' >Genres: ";
+                                   $movieId = $this->dashboardDAO->getMovieIdByInternId($movie->getId());
+                                   $genres = $this->dashboardDAO->GetGenreByMovieId($movieId);
+                                   if(!is_array($genres)){
+                                        $genresList = [];
+                                        $genresList[0] = $genres;
+                                   }else{
+                                        $genresList = $genres;
+                                   }
+                                   $size = count($genresList);
+                                   if(!empty($genresList)){
+                                        foreach($genresList as $key=>$genre){
                                              if($key < $size-1){
                                                   echo $genre->getGenreName()." - ";
                                              }else{
@@ -65,12 +71,8 @@
                                              }
                                         }
                                    }
-                                    /*foreach($movie->getGenreIds() as $genreId){
-                                        $genre = $this->dashboardDAO->GetGenreById($genreId);
-                                        
-                                    }*/
-                                    echo "</div>";     
-                             echo "</div>";
+                                   echo "</div>";     
+                              echo "</div>";
                          echo "</a>";
                          echo "</li>";
                          }

@@ -69,7 +69,7 @@
         }
 
         public function GetGenreByMovieId($idMovie){
-            $sql = 'select g.id_genre, g.genre_name
+            $sql = 'select distinct g.id_genre, g.genre_name
                     from movies_x_genres mxg
                     inner join genres g on mxg.id_genre = g.id_genre
                     where id_movie = '.$idMovie.';';
@@ -209,7 +209,7 @@
         }
 
         public function getGenreIdByMovieInternId($movieId){
-            $sqlSelectIdMovie = "select mxr.id_genre
+            $sqlSelectIdMovie = "select distinct mxr.id_genre
                                 from movies_x_genres mxr
                                 inner join movies m on mxr.id_movie = m.id_movie
                                 where m.id=".$movieId.";";
