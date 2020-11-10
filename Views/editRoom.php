@@ -20,7 +20,7 @@
                         <?php
                             if(isset($error)){
                                 switch ($error) {
-                                    case "10":
+                                    case "01":
                                         echo "<div class='error' >Room Name Already Exists. Please Try Another One.</div>";
                                         break;
                                     case "02":

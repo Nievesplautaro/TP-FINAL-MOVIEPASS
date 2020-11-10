@@ -44,7 +44,7 @@
                 $phoneNumber = $_POST['phoneNumber'];
                 $address = $_POST['address'];
 
-                if(!$this->CinemaExists($name, $address)){
+                if(!$this->CinemaExists(0, $name, $address)){
 
                         $newCinema = new Cinema();
         
@@ -102,26 +102,22 @@
                         $address = $_POST['address'];
                         $id  = $_POST["id_cine"];
 
-                        //echo $name. $phoneNumber. $address. $id;
-                        //echo $this->CinemaExists($name, $address);
-                        //echo $this->cinemaDAO->readByName($name);
-                        if($this->cinemaDAO->readByName($name) == 0 && $this->cinemaDAO->readByAddress($address) == 0){
+                        $editCinema = new Cinema();
+                        $editCinema->setCinemaId($id);
+                        $editCinema->setName($name);
+                        $editCinema->setPhoneNumber($phoneNumber);
+                        $editCinema->setAddress($address);
 
-                            $editCinema = new Cinema();
-                            
-                            $editCinema->setName($name);
-                            $editCinema->setPhoneNumber($phoneNumber);
-                            $editCinema->setAddress($address);
-
-                            //var_dump($editCinema);
+                        if(!$this->CinemaExists($id, $name, $address)){
     
                             $this->cinemaDAO->editCinema($id,$editCinema);
     
                             header("location:showCinemas");
     
                     }else{
-                        // manejar error en pantalla
-                        require_once(VIEWS_PATH."menuAdmin.php");
+                        $error = $this->CinemaExists($id, $name, $address);
+                        $cinema = $editCinema;
+                        require_once(VIEWS_PATH."editCinema.php");
                     } 
                 }
         }
@@ -129,13 +125,12 @@
         /**
         * Chequea el cine por el nombre
         */
-        public function CinemaExists($cinemaName, $address){
-
-            $cinemaDAO2 = new CinemaDAO();
+        public function CinemaExists($id_cinema, $cinemaName, $address){
 
             try{
-                if($cinemaDAO2->readByName($cinemaName) || $cinemaDAO2->readByAddress($address)){
-                    if ($cinemaDAO2->readByAddress($address)){
+
+                if($this->cinemaDAO->readByName($id_cinema,$cinemaName) || $this->cinemaDAO->readByAddress($id_cinema,$address)){
+                    if ($this->cinemaDAO->readByAddress($id_cinema,$address)){
                         $error = "03";
                     }else{
                         $error = "02";

@@ -18,15 +18,14 @@
                         <?php
                             if(isset($error)){
                                 switch ($error) {
-                                    case "10":
-                                        echo "<div class='error' >Username Already Exists. Please Try Another One.</div>";
+                                    case "01":
+                                        echo "<div class='error' >Room Name Already Exists. Please Try Another One.</div>";
                                         break;
                                     case "02":
                                         echo "<div class='error' >Error Sending Data</div>";
                                         break;
                                     }
                             }
-
                         ?>
                             <div class="form-group">
                                 <input type="hidden" name="id_cinema" value="<?php echo $id_cinema; ?>">

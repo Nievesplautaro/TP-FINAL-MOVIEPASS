@@ -128,13 +128,13 @@
 
     }
 
-    public function readByName($room_name){
-        $sql = 'SELECT EXISTS(SELECT * FROM room_cinema rc WHERE rc.room_name = :room_name) as exist;';
+    public function readByName($id_cinema,$room_name){
+        $sql = "SELECT EXISTS(SELECT room_name FROM room_cinema  WHERE room_name = :room_name and id_cinema =".$id_cinema." ) as exist;";
         $parameters['room_name'] = $room_name;
 
         try{
             $this->connection = Connection::getInstance();
-            $result = $this->connection->Execute($sql,$parameters);
+            $result = $this->connection->execute($sql,$parameters);
         }catch(\PDOException $ex){
             throw $ex;
         }

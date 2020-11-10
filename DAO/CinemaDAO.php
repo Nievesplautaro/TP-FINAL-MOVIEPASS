@@ -59,10 +59,10 @@
  * Devuelve el cine por el direccion
  */
 
-public function readByAddress($address){
+public function readByAddress($id_cinema,$address){
 
-    //$sql = "SELECT * FROM Cinemas WHERE Cinemas.address = :address";
-    $sql = 'SELECT EXISTS(SELECT * FROM Cinemas WHERE Cinemas.address = :address) as exist;';
+
+    $sql = "SELECT EXISTS(SELECT id_cinema FROM cinemas WHERE address = :address and id_cinema <> ".$id_cinema.") as exist;";
     $parameters['address'] = $address;
 
     try{
@@ -83,10 +83,9 @@ public function readByAddress($address){
  * Devuelve el cine por el nombre
  */
 
-    public function readByName($cinema_name){
+    public function readByName($id_cinema,$cinema_name){
 
-        //$sql = "SELECT * FROM Cinemas WHERE Cinemas.cinema_name = :cinema_name";
-        $sql = 'SELECT EXISTS(SELECT * FROM Cinemas WHERE Cinemas.cinema_name = :cinema_name) as exist;';
+        $sql = "SELECT EXISTS(SELECT id_cinema FROM cinemas WHERE cinema_name = :cinema_name and id_cinema <> ".$id_cinema.") as exist;";
         $parameters['cinema_name'] = $cinema_name;
 
         try{
