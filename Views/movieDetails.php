@@ -69,9 +69,11 @@
                         </div>
                         <div class="actions">
                             <h3>Get Ticket for this Movie</h3>
-                            <?php $options = ''; ?>
+                            <?php var_dump($showInfoTicket);
+                                $options = ''; 
+                            ?>
                             <select name="id_movie" id="id_movie" required>
-                            <?php //var_dump($showInfoTicket);
+                            <?php 
                                  if($showInfoTicket && !empty($showInfoTicket)){
 
                                     foreach($showInfoTicket as $showInfo){
@@ -79,6 +81,7 @@
                                             if($key != 'id_show'){
                                                 //echo "<option value='".$value."'>".$value."</option>";
                                                 $options.=$value.' ';
+                                                echo $options;
                                             }
                                         }
                                         echo "<option value='".$options."'>".$options."</option>";

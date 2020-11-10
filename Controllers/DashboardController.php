@@ -46,9 +46,10 @@
     public function showMovieDetails ($id){
         if ($id){
             $movie =  $this->GetMovieById($id);
+            $showInfoTicket = $this->showDAO->showInfoToGetTicket($id);
         }
         $genreList = $this->dashboardDAO->readGenres();
-        $showInfoTicket = $this->showDAO->showInfoToGetTicket($id);
+        //var_dump($showInfoTicket);
         require_once(VIEWS_PATH."validate-session.php");
         require_once(VIEWS_PATH."movieDetails.php");
     }
