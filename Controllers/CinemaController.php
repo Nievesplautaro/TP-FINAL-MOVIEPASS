@@ -168,5 +168,10 @@
             require_once(VIEWS_PATH."SelectCinema.php");
         }
 
+        public function buyTicket(){
+            require_once(VIEWS_PATH."validate-session.php");
+            require_once(VIEWS_PATH."registerTicket.php");
+        }
+
     }
 ?>

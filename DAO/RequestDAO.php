@@ -69,7 +69,7 @@
         }
 
         public function GetGenreByMovieId($idMovie){
-            $sql = 'select g.id_genre, g.genre_name
+            $sql = 'select distinct g.id_genre, g.genre_name
                     from movies_x_genres mxg
                     inner join genres g on mxg.id_genre = g.id_genre
                     where id_movie = '.$idMovie.';';
@@ -209,7 +209,7 @@
         }
 
         public function getGenreIdByMovieInternId($movieId){
-            $sqlSelectIdMovie = "select mxr.id_genre
+            $sqlSelectIdMovie = "select distinct mxr.id_genre
                                 from movies_x_genres mxr
                                 inner join movies m on mxr.id_movie = m.id_movie
                                 where m.id=".$movieId.";";
@@ -373,8 +373,58 @@
         }
 
 
-
+        public function mapearMovieDateShow($value){
+                $value = is_array($value) ? $value : [];
+                $a = array();
+                $resp = array_map(function($p){
+                    $idMovies = array(
+                                    "id_movie" => $p["id_movie"]
+                                );
+                    
+                    
+                    return $idMovies ;
+                }, $value);
         
+                return count($resp) > 1 ? $resp : $resp['0'];
+        
+            }
+        
+
+        public function readMovieIdDateShow($date){
+            $sql = "select distinct id_movie from shows
+                    where cast(start_time as date) = '".$date."';";
+
+            try{
+                $this->connection = Connection::getInstance();
+                $result = $this->connection->Execute($sql);
+            }catch(\PDOException $ex){
+                throw $ex;
+            }
+            if(!empty($result)){
+                return $this->mapearMovieDateShow($result);
+            }else{
+                return false;
+            }
+        }
+
+   /*      public function getMoviesByIdList($idList){
+            $sqlSelectIdMovie = "select * from movies where id_movie in ("foreach($idList as $id){
+                echo "
+            };
+            $parameters["id_movie"] = $id;
+
+            try{
+                $this->connection = Connection::getInstance();
+                $result = $this->connection->Execute($sqlSelectIdMovie, $parameters);
+            }catch(\PDOException $ex){
+                throw $ex;
+            }
+            if(!empty($result)){
+                return $this->mapearMovieId($result);
+            }else{
+                return false;
+            }
+        } */
 
     }
 
