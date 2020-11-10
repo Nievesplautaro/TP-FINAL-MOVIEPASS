@@ -61,10 +61,6 @@
             $movie =  $this->GetMovieById($id);
             $showInfoTicket = $this->showDAO->showInfoToGetTicket($id);
         }
-<<<<<<< HEAD
-        $genreList = $this->dashboardDAO->readGenres();
-        //var_dump($showInfoTicket);
-=======
         $data = $this->dashboardDAO->readGenres();
         if ($data instanceof Genre) { /* ESTE IF CHEQUEA SI EL READ RETORNA UN ARRAY DE CINES O UN CINE SOLO */
             $genreList = [];
@@ -79,7 +75,6 @@
         }else{
             $showInfoTicket = $data2;
         }
->>>>>>> caa9fee2b72870bbfb7b28a0181645d8d8cf25b4
         require_once(VIEWS_PATH."validate-session.php");
         require_once(VIEWS_PATH."movieDetails.php");
     }

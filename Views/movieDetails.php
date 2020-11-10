@@ -69,7 +69,7 @@
                         </div>
                         <div class="actions">
                             <h3>Get Ticket for this Movie</h3>
-                            <?php var_dump($showInfoTicket);
+                            <?php //var_dump($showInfoTicket);
                                 $options = ''; 
                             ?>
                             <select name="id_movie" id="id_movie" required>
