@@ -164,8 +164,19 @@
         $movieGenreList = array();
         $movieList = array();
         $movieList = $this->dashboardDAO->readMoviesShow();
+        $idList = $this->dashboardDAO->readMovieIdDateShow($date);
+        $newIdArray = array();
+        if(!(count($idList)===1)){
+            foreach($idList as $id){
+                $trueId = $id['id_movie'];
+                array_push($newIdArray,$trueId);
+            }
+        }else{
+            $newIdArray = $idList;
+        }
         foreach ($movieList as $movie){
-            if ($movie->getReleaseDate() == $date){
+            $movieId = $movie->getMovieId();
+            if (in_array($movieId,$newIdArray)){
                 array_push($movieGenreList, $movie);
             }
         }

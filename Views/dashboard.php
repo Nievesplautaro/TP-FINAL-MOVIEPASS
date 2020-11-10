@@ -43,6 +43,7 @@
           </div>
           <ul class="catalogo">
                <?php
+              /*  var_dump($movieList); */
                     if($movieList && !empty($movieList)){
                          foreach($movieList as $movie){
                          echo "<li class='movie' >";
