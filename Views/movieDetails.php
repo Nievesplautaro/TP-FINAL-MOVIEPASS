@@ -69,6 +69,7 @@
                         </div>
                         <div class="actions">
                             <h3>Get Ticket for this Movie</h3>
+                            <div class="cinema_list">
                             <?php $options = ''; ?>
                             <select name="id_movie" id="id_movie" required>
                             <?php //var_dump($showInfoTicket);
@@ -87,9 +88,10 @@
                                 }
                             ?>
                             </select>
+                            </div>
                             <div class="form-group">
                                 <div class="btn_cont">
-                                    <button class="btn btn-primary btn-block btn-lg" type="submit">Get Ticket For this Show</button>
+                                    <button class="btn btn-primary btn-block btn-lg btn_ticket" type="submit">Get Ticket For this Show</button>
                                 </div>
                             </div>
                         </div>

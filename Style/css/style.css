@@ -355,8 +355,6 @@ body{
 
 .catalogo.cine{
     list-style: none;
-    display: flex;
-    justify-content: space-around;
 }
 
 .catalogo.cine .cinema{
@@ -443,15 +441,18 @@ body{
 }
 
 .catalogo.cine .cinema{
-    width: 20%;
-    display: flex;
-    flex-wrap: wrap;
+    width: 24%;
+    display: inline-block;
+    margin: auto;
+    margin-bottom: 20px;
 }
 
 .catalogo.cine .cinema .element_cine{
     border: 0.5px solid #cbcbcb;
     /* border-radius: 25px; */
     padding: 10px;
+    max-width: 200px;
+    margin: auto;
 }
 
 .catalogo.cine .cinema .element_cine .header{
@@ -719,6 +720,23 @@ margin: 0;
 
 .slider_shows .owl-theme .owl-nav.disabled + .owl-dots {
     margin-top: 0px;
+}
+
+.actions h3{
+    text-align: center;
+}
+
+.cinema_list{
+    display: flex;
+    justify-content: center;
+}
+
+.btn_ticket{
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    background: linear-gradient(90deg, rgb(240, 171, 131) 86%, rgb(255, 219, 105) 100%);
+    border-radius: 6px;
 }
 
 /* SLIDER HOME */
