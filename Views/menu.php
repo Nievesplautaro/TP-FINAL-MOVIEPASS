@@ -27,9 +27,15 @@
                                    <?php 
                                    $movieId = $this->dashboardDAO->getMovieIdByInternId($show->getId());
                                    $genres = $this->dashboardDAO->GetGenreByMovieId($movieId);
-                                   $size = count($genres);
+                                   if(!is_array($genres)){
+                                        $genresList = [];
+                                        $genresList[0] = $genres;
+                                   }else{
+                                        $genresList = $genres;
+                                   }
+                                   $size = count($genresList);
 
-                                   foreach($genres as $key=>$genre){
+                                   foreach($genresList as $key=>$genre){
                                         if($key < $size-1){
                                              echo $genre->getGenreName()." - ";
                                         }else{

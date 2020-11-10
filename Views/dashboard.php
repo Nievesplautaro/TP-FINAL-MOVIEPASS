@@ -81,7 +81,7 @@
                ?>
                     <div class="Error">
                          <div class="empty_cine">
-                              There is no movie on Billboard for this genre.
+                              There is no movie on Billboard for this filters.
                          </div>
                     </div>
                <?php
