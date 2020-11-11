@@ -43,8 +43,14 @@
                 //echo $_POST['start_time'];
                 $id_room = $_POST['id_room'];
                 $id_movie = $_POST['id_movie'];
-                $start_time = $_POST['start_time'];
-
+                $date = $_POST['date'];
+                $time = $_POST['time'];
+                echo $date;
+                echo $time;
+               // $date->setTime($time->format('H'), $time->format('i'), $time->format('s'));
+                //echo $date->format('Y-m-d H:i:s');
+                $start_time = ($date.' ' .$time);
+                echo $start_time;
                 $newShow = new Show();
                 
                 if ($this->verifyDate($id_room,$start_time,$id_movie)){
@@ -124,6 +130,7 @@
                         $show->setMovie($this->movieDAO->getMovieById($movie->getMovieId()));
                         $room = $show->getRoom();
                         $show->setRoom($this->roomDAO->read($room->getRoomId()));
+                       // $show->setShowId();
                     }}
                 }
             }
@@ -133,17 +140,20 @@
         }
 
 
-        public function removeShow(){
+        public function removeShow($id_show){
             require_once(VIEWS_PATH."validate-session.php");
 
-            if ($_GET){
-                $showId = $_GET["showId"];
-                $this->showDAO->deleteShow($showId);
-                echo '<script language="javascript">alert("Your Show Has Been Deleted Successfully");</script>';  
-            
+            if($id_show){
+                try{
+
+                    $this->showDAO->deleteShow($id_show);
+    
+                }catch(\PDOException $ex){
+                    throw $ex;
+                } 
             }
 
-            $this->ShowMenuView("");            
+            $this->ShowMenuView("");             
             
         }
 

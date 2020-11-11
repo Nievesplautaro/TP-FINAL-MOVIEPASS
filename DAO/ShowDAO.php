@@ -54,12 +54,12 @@
         $resp = array_map(function($p){
             $movie = $this->movieDAO->getMovieById($p['id_movie']);
             $room = $this->roomDAO->read($p['id_room']);
-            echo $p['id_room'];
 
             $show = new Show();            
             $show->setMovie($movie);
             $show->setRoom($room);
             $show->setStartTime($p['start_time']);
+            $show->setShowId($p['id_show']);
             
             //$p['id_movie'],$p['id_room'],$p['start_time'],$p['id_show']
             
@@ -71,25 +71,22 @@
     }
 
 /**
- * Devuelve el show por id
+ * Devuelve el show por id de cine
  */
 
     public function read($id_cinema){
 
         $sql = "SELECT
-                id_show,
-                id_movie,
-                s.id_room,
-                start_time
+                shows.*
                 FROM
-                    room_cinema r 
-                inner JOIN shows s on r.id_room = s.id_room
-                where r.id_cinema = ".$id_cinema."
-                order by id_room;";
+                    shows 
+                inner JOIN room_cinema r on r.id_room = shows.id_room
+                and r.id_cinema = :id_cinema";
 
+        $parameters['id_cinema'] = $id_cinema;
         try{
             $this->connection = Connection::getInstance();
-            $result = $this->connection->Execute($sql);
+            $result = $this->connection->Execute($sql,$parameters);
         }catch(\PDOException $ex){
             throw $ex;
         }
@@ -110,7 +107,7 @@
  
         try{
             $this->connection = Connection::getInstance();
-            $result = $this->connection->execute($sql);
+            $result = $this->connection->Execute($sql);
         }
         catch(\PDOException $ex){
             throw $ex;
@@ -165,6 +162,17 @@
 
     }
 
+    public function deleteShow($id_show){
+        $sql="DELETE FROM shows WHERE shows.id_show=:id_show";
+        $values['id_show'] = $id_show;
+
+        try{
+            $this->connection= Connection::getInstance();
+            return $this->connection->ExecuteNonQuery($sql,$values);
+        }catch(\PDOException $ex){
+            throw $ex;
+        }
+    }
 
 }
 ?>

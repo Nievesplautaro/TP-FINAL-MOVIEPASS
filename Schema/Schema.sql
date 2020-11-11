@@ -8,8 +8,7 @@ create table if not exists users(
     pass varchar(50),
     constraint pk_users primary key (id_user)
 );
-
-
+drop table shows;
 insert into users (user_role, username, pass) values (0, 'user@user.com', '123456'), (1, 'admin@admin.com', '123456');
 
 create table if not exists genres(
@@ -62,7 +61,7 @@ create table if not exists room_cinema(
     constraint pk_room primary key (id_room),
     constraint fk_room_cinema foreign key (id_cinema) references cinemas(id_cinema) on delete cascade on update cascade
 );
-
+select * from shows;
 create table if not exists shows(
 	id_show int not null auto_increment,
     id_movie int,
@@ -99,38 +98,4 @@ create table if not exists seat_x_ticket(
     constraint fk_ticket_seat foreign key (id_ticket) references tickets(id_ticket) on delete cascade on update cascade,
     constraint fk_seat_ticket foreign key (id_seat) references seats(id_seat) on delete cascade on update cascade
 );
-insert into cinemas (cinema_name,address,phone_number) values 
-('Shopping Aldrey', 'Rawson 3200', 4521144),
-('Shopping Diagonal', 'Diagonal pueyrredon 325', 2235551245),
-('La Palangana', 'Lejos 999', 4862244),
-('Ambasador', 'Bolivar 3516', 4645511);
 
-insert into room_cinema (capacity, room_name, price, id_cinema) values
-(50, 'Sala A', 200, 1),
-(60, 'Sala B', 200, 1),
-(50, 'Sala 1',150,2),
-(70, 'Sala 2',150,2),
-(100, 'Sala Roja',100,3),
-(110, 'Sala Verde',90,3),
-(130, 'Roomando',150,4),
-(70, 'Lorea',150,4);
-SELECT EXISTS(SELECT * FROM Cinemas WHERE cinemas.cinema_name = 'DirecTva' and cinemas.id_cinema <> 1) as exist;
-
-select * from movies;
-select * from genres;
-select * from room_cinema;
-select * from shows;
-
-select distinct mxr.id_genre
-from movies_x_genres mxr
-inner join movies m on mxr.id_movie = m.id_movie
-where m.id=635302;
-
-select id_movie from movies where id = 635302 order by id_movie desc limit 1;
-use moviepass;
-select distinct id_movie from shows
-where cast(start_time as date) = '2020-11-09';
-
-select * from movies where id_movie in (2,4);
-
-SELECT EXISTS(SELECT * FROM room_cinema rc WHERE rc.room_name = 'Sala A' and rc.id_cinema = '1') as exist;

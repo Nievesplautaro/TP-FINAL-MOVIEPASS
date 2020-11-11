@@ -30,12 +30,17 @@
                     </div>
                     <div class="data">
                             <div class="element">
-                                Start Time: <?php echo $show->getStartTime()  ?>
+                                Start Time: <?php echo $show->getStartTime() ?>
+                            </div>
+                    </div>
+                    <div class="data">
+                            <div class="element">
+                                Show Id: <?php echo $show->getShowId() ?>
                             </div>
                     </div>
                     <div class="actions">
                         <div class="button">
-                            <a href="<?php echo FRONT_ROOT?>show/removeShow/<?php echo $show->getshowId() ?>">Delete show</a>
+                            <a href="<?php echo FRONT_ROOT?>Show/removeShow/<?php echo $show->getShowId() ?>">Delete show</a>
                         </div>
                     </div>
                 </div>
