@@ -130,7 +130,6 @@
                         $show->setMovie($this->movieDAO->getMovieById($movie->getMovieId()));
                         $room = $show->getRoom();
                         $show->setRoom($this->roomDAO->read($room->getRoomId()));
-                       // $show->setShowId();
                     }}
                 }
             }
