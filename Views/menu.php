@@ -1,10 +1,11 @@
+<!-- In this VIEW we show the Users menu -->
 <?php
      require_once(VIEWS_PATH."nav.php");
 ?>
 <div class="container">
      <div class="grid">
           <div class="msg_welcome">
-               Bienvenido ! 
+               Welcome! 
           </div>
           <div class="slider_shows">
                <div class="owl-carousel owl-theme">
@@ -27,9 +28,15 @@
                                    <?php 
                                    $movieId = $this->dashboardDAO->getMovieIdByInternId($show->getId());
                                    $genres = $this->dashboardDAO->GetGenreByMovieId($movieId);
-                                   $size = count($genres);
+                                   if(!is_array($genres)){
+                                        $genresList = [];
+                                        $genresList[0] = $genres;
+                                   }else{
+                                        $genresList = $genres;
+                                   }
+                                   $size = count($genresList);
 
-                                   foreach($genres as $key=>$genre){
+                                   foreach($genresList as $key=>$genre){
                                         if($key < $size-1){
                                              echo $genre->getGenreName()." - ";
                                         }else{

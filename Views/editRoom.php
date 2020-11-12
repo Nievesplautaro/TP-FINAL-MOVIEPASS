@@ -1,4 +1,4 @@
-
+<!-- In this VIEW we show a form that you can complete modifying the selected room -->
 <main class="d-flex align-items-center justify-content-center height-100" >
     <div class="content">
         <div class="container">
@@ -20,7 +20,7 @@
                         <?php
                             if(isset($error)){
                                 switch ($error) {
-                                    case "10":
+                                    case "01":
                                         echo "<div class='error' >Room Name Already Exists. Please Try Another One.</div>";
                                         break;
                                     case "02":

@@ -3,9 +3,11 @@
     use DAO\ShowDAO as ShowDAO;
     use DAO\RoomDAO as RoomDAO;
     use DAO\RequestDAO as RequestDAO;
+    use DAO\CinemaDAO as CinemaDAO;
     Use Models\Show as Show;
     Use Models\Room as Room;
     Use Models\Movie as Movie;
+    Use Models\Cinema as Cinema;
     
 
     
@@ -15,11 +17,13 @@
         private $showDAO;
         private $roomDAO;
         private $movieDAO;
+        private $cinemaDAO;
         
         public function __construct(){
             $this->showDAO = new ShowDAO();
             $this->roomDAO = new RoomDAO();
             $this->movieDAO = new RequestDAO();
+            $this->cinemaDAO = new CinemaDAO();
             
         }
 
@@ -43,6 +47,7 @@
                 //echo $_POST['start_time'];
                 $id_room = $_POST['id_room'];
                 $id_movie = $_POST['id_movie'];
+<<<<<<< HEAD
                 $start_time = $_POST['start_time'];
 
                 $newShow = new Show();
@@ -58,6 +63,18 @@
                 
                 /*if ($this->verifyDate($id_room,$start_time,$id_movie)){
 
+=======
+                $date = $_POST['date'];
+                $time = $_POST['time'];
+                // echo $date;
+                // echo $time;
+                $start_time = ($date.' ' .$time);
+                // echo $start_time;
+                
+                
+                if ($this->verifyDateAndCinema($id_room,$date,$time,$id_movie)){
+                    $newShow = new Show();
+>>>>>>> afe60b83d8c1486bd7c6209c49b70002f80395d7
                     $newShow->setRoom($this->roomDAO->read($id_room));
                 
                     $newShow->setMovie($this->movieDAO->getMovieById($id_movie));
@@ -67,7 +84,6 @@
 
                     echo '<script language="javascript">alert("Your Show Has Been Registered Successfully");</script>';
                 }else{
-                    $message = "Show Registered Successfully";
                     echo '<script language="javascript">alert("This cinema already has a show in this room at this time");</script>';
                 }*/
                 
@@ -76,42 +92,66 @@
             
         }
 
-        public function verifyDate($id_room, $start_time, $id_movie){
+        public function verifyDateAndCinema($id_room, $date, $time, $id_movie){
 
             $movieShowList= $this->showDAO->GetAll();
+
+            $cinemaID = $this->cinemaDAO->readCinemaIdByRoomId($id_room);
             
             $movie = $this->movieDAO->getMovieById($id_movie);
 
             $movie_duration = ($movie->getDuration() + 15);
 
-            $newStartTime=date_create($start_time);          
+            $newStartTime=date_create($time);          
 
-            $newEndTime = date_create($start_time);
+            $newEndTime = date_create($time);
             date_add($newEndTime,date_interval_create_from_date_string($movie_duration." minutes"));
 
             if($movieShowList == null){
                 return true;
             }else{
-                foreach($movieShowList as $movieshow){
-
-                    if($movieshow->getRoom()->getRoomId() == $id_room){
-
-                        $previousEndTime = date_create($movieshow->getStartTime());
-                        $previousShowDuration = ($movieshow->getMovie()->getDuration() + 15);
-                        date_add($previousEndTime,date_interval_create_from_date_string($previousShowDuration." minutes"));
+                $uniqueCinemaPerDay = $this->verifyNoRepeatCinema($id_movie, $date);
+                if ($uniqueCinemaPerDay == 0){
+                    // var_dump($movieShowList);
+                    foreach ($movieShowList as $movieshow){
                         
-                        if(($movieshow->getStartTime() <= $newEndTime) && ($previousEndTime >= $newStartTime)){
+                        $movieShowDateTime = date_create($movieshow->getStartTime());
+                        
+                        if(($movieshow->getRoom()->getRoomId() == $id_room ) && (date_format($movieShowDateTime,'Y-m-d') == $date)){
+
+                            $previousEndTime = date_create(date_format($movieShowDateTime, 'H:i:s'));
+                            $previousShowDuration = ($movieshow->getMovie()->getDuration() + 15);
+                            date_add($previousEndTime,date_interval_create_from_date_string($previousShowDuration." minutes"));
                             
-                            $error = "02";//asignar valor se pisa con otro show en la misma sala
-                            return false;
-                            
+                            if((date_format($movieShowDateTime, 'H:i:s') <= $newEndTime) && ($previousEndTime >= $newStartTime)){
+                                
+                                $error = "02";//asignar valor se pisa con otro show en la misma sala
+                                return false;
+                                
+                            }
                         }
                     }
-                }
 
-                return true;
+                    return true;
+                }else{
+                    echo '<script language="javascript">alert("The movie has a show in this or other cinema today");</script>';
+                    return false;
+                }      
             }
         
+        }
+
+        public function verifyNoRepeatCinema($id_movie, $date){
+            $flag = 0;
+            $movieShowList2= $this->showDAO->GetAll();
+
+            foreach($movieShowList2 as $movieshow){
+                $movieShowDateTime2 = date_create($movieshow->getStartTime());
+                if (($movieshow->getMovie()->getMovieId() == $id_movie) && (date_format($movieShowDateTime2, "Y-m-d") == $date)){     
+                    $flag = 1; // there is already one movie today
+                }
+            }
+            return $flag;
         }
 
         public function showCinemaShows(){
@@ -142,17 +182,20 @@
         }
 
 
-        public function removeShow(){
+        public function removeShow($id_show){
             require_once(VIEWS_PATH."validate-session.php");
 
-            if ($_GET){
-                $showId = $_GET["showId"];
-                $this->showDAO->deleteShow($showId);
-                echo '<script language="javascript">alert("Your Show Has Been Deleted Successfully");</script>';  
-            
+            if($id_show){
+                try{
+
+                    $this->showDAO->deleteShow($id_show);
+    
+                }catch(\PDOException $ex){
+                    throw $ex;
+                } 
             }
 
-            $this->ShowMenuView("");            
+            $this->ShowMenuView("");             
             
         }
 

@@ -23,7 +23,7 @@
 
 
     /**
-     * create = add, agrega shows a la base de datos, tabla shows
+     * create = add, add shows to db (table shows)
      */
     public function create($_show){
 
@@ -32,7 +32,6 @@
         $parameters['id_movie'] = $_show->getMovie()->getMovieId();
         $parameters['id_room'] = $_show->getRoom()->getRoomId();
         $parameters['start_time'] = $_show->getStartTime();
-        //$parameters['id_show'] = 0;
 
         try{
             $this->connection = Connection::getInstance();
@@ -45,7 +44,7 @@
 
 
 /**
- * Transformamos el listado de shows en objetos de la clase show
+ * Transform show list into objects from show class
  */
     protected function mapear ($value){
 
@@ -54,14 +53,12 @@
         $resp = array_map(function($p){
             $movie = $this->movieDAO->getMovieById($p['id_movie']);
             $room = $this->roomDAO->read($p['id_room']);
-            echo $p['id_room'];
 
             $show = new Show();            
             $show->setMovie($movie);
             $show->setRoom($room);
             $show->setStartTime($p['start_time']);
-            
-            //$p['id_movie'],$p['id_room'],$p['start_time'],$p['id_show']
+            $show->setShowId($p['id_show']);
             
             return $show;
         }, $value);
@@ -71,25 +68,22 @@
     }
 
 /**
- * Devuelve el show por id
+ * return show by cinemaId
  */
 
     public function read($id_cinema){
 
         $sql = "SELECT
-                id_show,
-                id_movie,
-                s.id_room,
-                start_time
+                shows.*
                 FROM
-                    room_cinema r 
-                inner JOIN shows s on r.id_room = s.id_room
-                where r.id_cinema = ".$id_cinema."
-                order by id_room;";
+                    shows 
+                inner JOIN room_cinema r on r.id_room = shows.id_room
+                and r.id_cinema = :id_cinema";
 
+        $parameters['id_cinema'] = $id_cinema;
         try{
             $this->connection = Connection::getInstance();
-            $result = $this->connection->Execute($sql);
+            $result = $this->connection->Execute($sql,$parameters);
         }catch(\PDOException $ex){
             throw $ex;
         }
@@ -102,7 +96,7 @@
     }
 
 /**
- * Devuelve todos los shows en una lista
+ * return all shows into a list
  */
 
     public function GetAll(){
@@ -110,7 +104,7 @@
  
         try{
             $this->connection = Connection::getInstance();
-            $result = $this->connection->execute($sql);
+            $result = $this->connection->Execute($sql);
         }
         catch(\PDOException $ex){
             throw $ex;
@@ -155,9 +149,6 @@
                             "start_time"  => $p["start_time"],
                             "id_show"     => $p["id_show"]
                         );
-            //$p['c.cinema_name'],$p['s.start_time'],$p['s.id_show'];
-            
-            
             return $showInfo ;
         }, $value);
 
@@ -165,6 +156,19 @@
 
     }
 
+//delete show by id
+
+    public function deleteShow($id_show){
+        $sql="DELETE FROM shows WHERE shows.id_show=:id_show";
+        $values['id_show'] = $id_show;
+
+        try{
+            $this->connection= Connection::getInstance();
+            return $this->connection->ExecuteNonQuery($sql,$values);
+        }catch(\PDOException $ex){
+            throw $ex;
+        }
+    }
 
 }
 ?>

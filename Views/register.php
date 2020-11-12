@@ -1,4 +1,4 @@
-<!-- SE COPIPASTEO EL LAYOUT, HAY QUE HACER UN FORMULARIO CON MAS DATOS -->
+<!-- In this VIEW we can register an User completing a form -->
      <main class="d-flex align-items-center justify-content-center height-100" >
           <div class="content">
                <div class="container">

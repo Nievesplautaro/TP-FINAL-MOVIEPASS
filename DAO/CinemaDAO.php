@@ -13,7 +13,7 @@
 
 
     /**
-     * create = add, agrega cines a la base de datos, tabla cinemas
+     * create = add, add cinemas to db (table cinemas)
      */
     public function create($_cinema){
 
@@ -22,7 +22,7 @@
         $parameters['cinema_name'] = $_cinema->getName();
         $parameters['address'] = $_cinema->getAddress();
         $parameters['phone_number'] = $_cinema->getPhoneNumber();
-        //indistinto el id de usuario porque es autoincremental, pero sino no lo sube por parametros
+        //autoincremental id in DB
         $parameters['id_cinema'] = 0;
 
         try{
@@ -36,7 +36,7 @@
 
 
 /**
- * Transformamos el listado de usuarios en objetos de la clase usuario
+ * Transform cinema list into objects form cinema class
  */
     protected function mapearCine($value){
 
@@ -56,13 +56,13 @@
     }
 
 /**
- * Devuelve el cine por el direccion
+ * return cinema by adress
  */
 
-public function readByAddress($address){
+public function readByAddress($id_cinema,$address){
 
-    //$sql = "SELECT * FROM Cinemas WHERE Cinemas.address = :address";
-    $sql = 'SELECT EXISTS(SELECT * FROM Cinemas WHERE Cinemas.address = :address) as exist;';
+
+    $sql = "SELECT EXISTS(SELECT id_cinema FROM cinemas WHERE address = :address and id_cinema <> ".$id_cinema.") as exist;";
     $parameters['address'] = $address;
 
     try{
@@ -80,13 +80,12 @@ public function readByAddress($address){
 }
 
 /**
- * Devuelve el cine por el nombre
+ * return cinema by name
  */
 
-    public function readByName($cinema_name){
+    public function readByName($id_cinema,$cinema_name){
 
-        //$sql = "SELECT * FROM Cinemas WHERE Cinemas.cinema_name = :cinema_name";
-        $sql = 'SELECT EXISTS(SELECT * FROM Cinemas WHERE Cinemas.cinema_name = :cinema_name) as exist;';
+        $sql = "SELECT EXISTS(SELECT id_cinema FROM cinemas WHERE cinema_name = :cinema_name and id_cinema <> ".$id_cinema.") as exist;";
         $parameters['cinema_name'] = $cinema_name;
 
         try{
@@ -114,7 +113,7 @@ public function readByAddress($address){
     }
 
     /**
- * Devuelve el cine por el id
+ * return cinema by Id
  */
 
 public function read($id_cinema){
@@ -136,6 +135,28 @@ public function read($id_cinema){
 
 }
 
+//return cinemaId by room id
+
+public function readCinemaIdByRoomId($id_room){
+
+    $sql = "SELECT room_cinema.id_cinema FROM room_cinema where room_cinema.id_room = ".$id_room."";
+    
+    try{
+        $this->connection = Connection::getInstance();
+        $result = $this->connection->Execute($sql);
+    }catch(\PDOException $ex){
+        throw $ex;
+    }
+    if(!empty($result)){
+        return $this->mapearCinemaId($result);
+    }else{
+        return false;
+    }
+
+}
+
+//read all the cinemas
+
     public function readCinemas(){
 
         $sql = "SELECT * FROM cinemas";
@@ -152,6 +173,8 @@ public function read($id_cinema){
             return false;
         }
     }
+
+//return the cinema by id
 
     public function getCinemaById($id){
         $sqlSelectId = "select * from cinemas where id_cinema = '".$id."';";
@@ -209,18 +232,16 @@ public function read($id_cinema){
             return $p['id_cinema'];
         }, $value);
 
-        var_dump($cinema);
-
         return count($resp) > 1 ? $resp : $resp['0'];
 
     }
 
+    //edit cinema by id
 
     public function editCinema($id_cinema,$editCinema){
         $parameters['cinema_name'] = $editCinema->getName();
         $parameters['address'] = $editCinema->getAddress();
         $parameters['phone_number'] = $editCinema->getPhoneNumber();
-        //indistinto el id de cinema porque es autoincremental, pero sino no lo sube por parametros
         $parameters['id_cinema'] = $id_cinema;
         $sql = "update cinemas 
                     set 
@@ -236,6 +257,8 @@ public function read($id_cinema){
             throw $ex;
         }
     }
+
+//delete cinema by id
 
     public function deleteCinema($id){
         $sql="DELETE FROM Cinemas WHERE Cinemas.id_Cinema=:id_Cinema";

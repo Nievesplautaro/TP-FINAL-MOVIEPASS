@@ -1,3 +1,4 @@
+<!-- In this VIEW we can add Rooms if there is no one charged and Also we display all the data from the rooms BY cinema -->
 <?php
     require_once(VIEWS_PATH."navAdmin.php");
 ?>
@@ -44,7 +45,7 @@
                     
                 }else{
                     echo "<div class='Error'>";
-                    echo "<div class='empty_cine'><p>Actualmente no tenemos ninguna sala disponible para mostrar.</p><p> Si desea agregar una sala clickee aqui.</p></div>";
+                    echo "<div class='empty_cine'><p>Currently, We Don't Wave Any Room Available to Show.</p><p> If You Want to Add a New One Click Here.</p></div>";
                 }
             ?>
         </ul>

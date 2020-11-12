@@ -8,8 +8,7 @@ create table if not exists users(
     pass varchar(50),
     constraint pk_users primary key (id_user)
 );
-
-
+drop table shows;
 insert into users (user_role, username, pass) values (0, 'user@user.com', '123456'), (1, 'admin@admin.com', '123456');
 
 create table if not exists genres(
@@ -62,7 +61,7 @@ create table if not exists room_cinema(
     constraint pk_room primary key (id_room),
     constraint fk_room_cinema foreign key (id_cinema) references cinemas(id_cinema) on delete cascade on update cascade
 );
-
+select * from shows;
 create table if not exists shows(
 	id_show int not null auto_increment,
     id_movie int,

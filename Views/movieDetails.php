@@ -1,3 +1,4 @@
+<!-- In this VIEW we show the Details of an specific movie (clicked on the dashboard) with their trailer, duration and showing the differents movie shows to buy a ticket -->
 <?php
      require_once(VIEWS_PATH."nav.php");
 ?>
@@ -79,7 +80,6 @@
                                     foreach($showInfoTicket as $showInfo){
                                         foreach($showInfo as $key => $value){
                                             if($key != 'id_show'){
-                                                //echo "<option value='".$value."'>".$value."</option>";
                                                 $options.=$value.' ';
                                                 echo $options;
                                             }
@@ -90,9 +90,10 @@
                                 }
                             ?>
                             </select>
+                            </div>
                             <div class="form-group">
                                 <div class="btn_cont">
-                                    <button class="btn btn-primary btn-block btn-lg" type="submit">Get Ticket For this Show</button>
+                                    <button class="btn btn-primary btn-block btn-lg btn_ticket" type="submit">Get Ticket For this Show</button>
                                 </div>
                             </div>
                         </div>

@@ -1,3 +1,4 @@
+<!-- In this VIEW we can register a room completing a form -->
 <main class="d-flex align-items-center justify-content-center height-100" >
     <div class="content">
         <div class="container">
@@ -18,15 +19,14 @@
                         <?php
                             if(isset($error)){
                                 switch ($error) {
-                                    case "10":
-                                        echo "<div class='error' >Username Already Exists. Please Try Another One.</div>";
+                                    case "01":
+                                        echo "<div class='error' >Room Name Already Exists. Please Try Another One.</div>";
                                         break;
                                     case "02":
                                         echo "<div class='error' >Error Sending Data</div>";
                                         break;
                                     }
                             }
-
                         ?>
                             <div class="form-group">
                                 <input type="hidden" name="id_cinema" value="<?php echo $id_cinema; ?>">

@@ -1,3 +1,4 @@
+<!-- In this VIEW we can register a show completing a form -->
 <main class="d-flex align-items-center justify-content-center height-100" >
     <div class="content">
         <div class="container">
@@ -43,7 +44,10 @@
                             </div>
                             <div class="form-group">
                                 <label for="start_time">Select Date and Hour of the Show:</label>
-                                <input type="datetime-local" id="start_time" name="start_time" min = "<?php (date('d-m-Y', time() + 86400).'T00:00') ?>" max = "<?php (date('d-m-Y', time() + 1209600).'T00:00') ?>" required>
+                                <?php  $next_date = date('Y-m-d', strtotime('tomorrow'));  ?>
+                                <?php  $last_date = date('Y-m-d', strtotime('+1 month'));  ?>
+                                <input type="date" id="date" name="date" min="<?php echo $next_date ?>" max="<?php echo $last_date ?>" required>
+                                <input type="time" id="time" name="time" min="14:00:00" max="23:59:00" oninvalid="this.setCustomValidity('The Time should be between 14:00hs to 23:59hs')" oninput="this.setCustomValidity('')" required>
                             </div>
                             <div class="form-group">
                             <div class="btn_cont">

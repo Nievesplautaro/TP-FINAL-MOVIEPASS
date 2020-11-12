@@ -1,3 +1,4 @@
+<!-- In this VIEW we can add Cinemas if there is no one charged and Also we display all the data from the Cinemas -->
 <?php
     require_once(VIEWS_PATH."navAdmin.php");
 ?>
@@ -20,24 +21,24 @@
                     </div>
                     <div class="data">
                             <div class="element">
-                                Name: <?php echo $cinema->getName()  ?>
+                                Name: <?php echo $cinema->getName() ; ?>
                             </div>
                             <div class="element">
-                                Phone: <?php echo $cinema->getPhoneNumber()  ?>
+                                Phone: <?php echo $cinema->getPhoneNumber() ; ?>
                             </div>
                             <div class="element">
-                                Address: <?php echo $cinema->getAddress()  ?>
+                                Address: <?php echo $cinema->getAddress()  ;?>
                             </div>
                     </div>
                     <div class="actions">
                         <div class="button">
-                            <a href="<?php echo FRONT_ROOT?>Cinema/ShowRegisterView/<?php echo $cinema->getCinemaId() ?>">Edit Cinema</a>
+                            <a href="<?php echo FRONT_ROOT?>Cinema/ShowRegisterView/<?php echo $cinema->getCinemaId(); ?>">Edit Cinema</a>
                         </div>
                         <div class="button">
                             <a href="<?php echo FRONT_ROOT ?>room/ShowRooms/<?php echo $cinema->getCinemaId(); ?>">Manage Rooms</a>
                         </div>
                         <div class="button">
-                            <a href="<?php echo FRONT_ROOT?>Cinema/removeCinema/<?php echo $cinema->getCinemaId() ?>">Delete Cinema</a>
+                            <a href="<?php echo FRONT_ROOT?>Cinema/removeCinema/<?php echo $cinema->getCinemaId() ;?>">Delete Cinema</a>
                         </div>
                     </div>
                 </div>
@@ -46,7 +47,7 @@
                         }
                 }else{  
                     echo "<div class='Error'>";
-                    echo "<div class='empty_cine'><p>Actualmente no tenemos ningun cine disponible para mostrar.</p><p> Si desea agregar un cine clickee aqui.</p></div>";
+                    echo "<div class='empty_cine'><p>Currently, We Don't Have Any Cinema Available To Show.</p><p> If You Want to Add a New One Click Here.</p></div>";
                     echo "<div class='button'><a href='";
                     echo FRONT_ROOT;
                     echo"Cinema/registerCinema'>Add Cine</a></div></div>";

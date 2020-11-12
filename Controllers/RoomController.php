@@ -59,23 +59,30 @@
         /*      ESTA FUNCION AGREGA UNA SALA A UN CINE */
         public function addRoom(){
                 if($_POST){
-                    $id_cinema = $_POST['id_cinema'];
-                    $roomName = $_POST['room_name'];
-                    $capacity = $_POST['capacity'];
-                    $price = $_POST['price'];
-                    $cinema = $this->cinemaDAO->getCinemaById($id_cinema);
-
-                    $room = new Room();
-                    $room->setRoomName($roomName);
-                    $room->setCapacity($capacity);
-                    $room->setPrice($price);
-                    $room->setRoomId(0);
-                    $room->setCinema($cinema);
-                    $this->roomDAO->create($room);
-                    /* ESTE SCRIPT SIRVE DE ALGO=? */
-                    echo '<script language="javascript">alert("Your Room Has Been Added Successfully");</script>';  
-                    require_once(VIEWS_PATH."validate-session.php");
-                    $this->showRooms($id_cinema);
+                    try{
+                        $id_cinema = $_POST['id_cinema'];
+                        $roomName = $_POST['room_name'];
+                        $capacity = $_POST['capacity'];
+                        $price = $_POST['price'];
+                        $cinema = $this->cinemaDAO->getCinemaById($id_cinema);
+                        if(!$this->roomExists($id_cinema, $roomName)){
+                            $room = new Room();
+                            $room->setRoomName($roomName);
+                            $room->setCapacity($capacity);
+                            $room->setPrice($price);
+                            $room->setRoomId(0);
+                            $room->setCinema($cinema);
+                            $this->roomDAO->create($room);
+                            require_once(VIEWS_PATH."validate-session.php");
+                            $this->showRooms($id_cinema);
+                        }else{
+                            $error = "01";
+                            require_once(VIEWS_PATH."registerRoom.php");
+                        }
+                        
+                    }catch(\PDOExeption $ex){
+                        throw $ex; 
+                    }    
                 }
         }
 
@@ -88,7 +95,7 @@
                     $capacity = $_POST['capacity'];
                     $price = $_POST['price'];
 
-                    if($this->roomDAO->readByName($room_name) == 0){
+                    if(!$this->roomExists($id_cinema, $roomName)){
 
                         $room = new Room();
                         
@@ -96,16 +103,13 @@
                         $room->setCapacity($capacity);
                         $room->setPrice($price);
 
-                        
-
                         $this->roomDAO->editRoom($id_room,$room);
                         
                         $this->showRooms($id_cinema);
-                        //header("location:showCinemas");
 
                 }else{
-                    // manejar error en pantalla
-                    require_once(VIEWS_PATH."menuAdmin.php");
+                    $error = "01";
+                    require_once(VIEWS_PATH."editRoom.php");
                 } 
             }
         }
@@ -128,16 +132,13 @@
         /**
         * Chequea el room por el nombre
         */
-        public function CinemaExists($roomName){
+        public function roomExists($id_cinema,$roomName){
 
-            $roomDAO2 = new CinemaDAO();
+            $roomDAO = new RoomDAO();
 
             try{
-                if($roomDAO2->readByName($roomName)){
-                    
-                    $error = "02";
-                
-                    return $error;
+                if($roomDAO->readByName($id_cinema, $roomName)){
+                    return true;
                 }else{
                     return false;
                 }

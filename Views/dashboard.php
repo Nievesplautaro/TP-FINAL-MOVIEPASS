@@ -1,4 +1,4 @@
-
+<!-- In this VIEW we Show the Billboard wich you can selecd movie shows ordered by genres or dates, and if you click one, they display their details -->
 <?php
      require_once(VIEWS_PATH."nav.php");
 ?>
@@ -6,11 +6,6 @@
      <div class="grid">
           <div class="dash">
           <div class="narrow">
-<!--                <div class="searchBar">
-                    <form action="<?= FRONT_ROOT ?>Dashboard/searchMovie" method="post" class="search-container">
-                         <input type="search" name="title" placeholder="Que buscas?...">
-                    </form>
-               </div> -->
                <div class="filters">
                     <div class="date_filter">
                     <div class="head_title">Search by date</div>
@@ -43,7 +38,6 @@
           </div>
           <ul class="catalogo">
                <?php
-              /*  var_dump($movieList); */
                     if($movieList && !empty($movieList)){
                          foreach($movieList as $movie){
                          echo "<li class='movie' >";
