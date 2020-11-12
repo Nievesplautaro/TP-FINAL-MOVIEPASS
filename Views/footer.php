@@ -11,14 +11,14 @@
     </div>
     <div class="texto">                
             AV. DORREGO 281, B7600 - BUENOS AIRES - ARGENTINA - TEL. (+555) 123 4567 - 0800 9999<br> 
-            <a href="/privacidad">Políticas de Privacidad</a> | 
-            <a href="/terminos">Términos y Condiciones</a> | 
-            <a href="/servicios/contacto">Contacto</a><br/>
+            <a href="/privacidad">Privacy Policy</a> | 
+            <a href="/terminos">Terms And Conditions</a> | 
+            <a href="/servicios/contacto">Contact</a><br/>
             COPYRIGHT © 2020 MOVIE-PASS
     </div>
     <div class="texto sello">
         <a target="_blank" href="#">  
-            <img src="<?php echo IMG_PATH ?>MoviePass_b.png" alt="BUENARDO">                 
+            <img src="<?php echo IMG_PATH ?>MoviePass_b.png" alt="Epic">                 
             B.T.P.V. DEVELOPENT - Web Design Buenardo
         </a>
     </div>  

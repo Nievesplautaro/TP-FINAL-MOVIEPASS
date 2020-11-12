@@ -135,6 +135,26 @@ public function read($id_cinema){
 
 }
 
+//return cinemaId by room id
+
+public function readCinemaIdByRoomId($id_room){
+
+    $sql = "SELECT room_cinema.id_cinema FROM room_cinema where room_cinema.id_room = ".$id_room."";
+    
+    try{
+        $this->connection = Connection::getInstance();
+        $result = $this->connection->Execute($sql);
+    }catch(\PDOException $ex){
+        throw $ex;
+    }
+    if(!empty($result)){
+        return $this->mapearCinemaId($result);
+    }else{
+        return false;
+    }
+
+}
+
 //read all the cinemas
 
     public function readCinemas(){
@@ -211,8 +231,6 @@ public function read($id_cinema){
         $resp = array_map(function($p){
             return $p['id_cinema'];
         }, $value);
-
-        var_dump($cinema);
 
         return count($resp) > 1 ? $resp : $resp['0'];
 

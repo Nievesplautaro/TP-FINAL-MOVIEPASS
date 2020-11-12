@@ -3,9 +3,11 @@
     use DAO\ShowDAO as ShowDAO;
     use DAO\RoomDAO as RoomDAO;
     use DAO\RequestDAO as RequestDAO;
+    use DAO\CinemaDAO as CinemaDAO;
     Use Models\Show as Show;
     Use Models\Room as Room;
     Use Models\Movie as Movie;
+    Use Models\Cinema as Cinema;
     
 
     
@@ -15,11 +17,13 @@
         private $showDAO;
         private $roomDAO;
         private $movieDAO;
+        private $cinemaDAO;
         
         public function __construct(){
             $this->showDAO = new ShowDAO();
             $this->roomDAO = new RoomDAO();
             $this->movieDAO = new RequestDAO();
+            $this->cinemaDAO = new CinemaDAO();
             
         }
 
@@ -47,8 +51,6 @@
                 $time = $_POST['time'];
                 echo $date;
                 echo $time;
-               // $date->setTime($time->format('H'), $time->format('i'), $time->format('s'));
-                //echo $date->format('Y-m-d H:i:s');
                 $start_time = ($date.' ' .$time);
                 echo $start_time;
                 $newShow = new Show();
@@ -65,7 +67,7 @@
                     echo '<script language="javascript">alert("Your Show Has Been Registered Successfully");</script>';
                 }else{
                     $message = "Show Registered Successfully";
-                    echo '<script language="javascript">alert("This cinema already has a show in this room at this time");</script>';
+                    //echo '<script language="javascript">alert("This cinema already has a show in this room at this time");</script>';
                 }
                 
             }
@@ -77,7 +79,7 @@
 
             $movieShowList= $this->showDAO->GetAll();
 
-            $cinemaID = $this->roomDAO->read($id_room)->getCinema()->getCinemaId();
+            $cinemaID = $this->cinemaDAO->readCinemaIdByRoomId($id_room);
             
             $movie = $this->movieDAO->getMovieById($id_movie);
 
@@ -95,13 +97,15 @@
                 if ($uniqueCinemaPerDay == 0){
                     foreach ($movieShowList as $movieshow){
 
-                        if(($movieshow->getRoom()->getRoomId() == $id_room ) && ($movieshow->getStartTime()->format('Y-m-d') == $date)){
+                        $movieShowDateTime = date_create($movieshow->getStartTime());
 
-                            $previousEndTime = date_create($movieshow->getStartTime()->format('H:i:s'));
+                        if(($movieshow->getRoom()->getRoomId() == $id_room ) && (date_format($movieShowDateTime,'Y-m-d') == $date)){
+
+                            $previousEndTime = date_create(date_format($movieShowDateTime, 'H:i:s'));
                             $previousShowDuration = ($movieshow->getMovie()->getDuration() + 15);
                             date_add($previousEndTime,date_interval_create_from_date_string($previousShowDuration." minutes"));
                             
-                            if(($movieshow->getStartTime()->format('H:i:s') <= $newEndTime) && ($previousEndTime >= $newStartTime)){
+                            if((date_format($movieShowDateTime, 'H:i:s') <= $newEndTime) && ($previousEndTime >= $newStartTime)){
                                 
                                 $error = "02";//asignar valor se pisa con otro show en la misma sala
                                 return false;
@@ -109,23 +113,31 @@
                             }
                         }
                     }
-                }
 
-                return true;
+                    return true;
+                }else{
+                    echo '<script language="javascript">alert("The movie has a show in this or other cinema today");</script>';
+                    return false;
+                }      
             }
         
         }
 
         public function verifyNoRepeatCinema($id_movie, $date){
            
-            foreach($movieShowList as $movieshow){
-
-                if ($movieshow->getMovie()->getId() == $id_movie && $movieshow->getStartTime()->format('Y-m-d') == $date){
+            $movieShowList2= $this->showDAO->GetAll();
+            foreach($movieShowList2 as $movieshow){
+                var_dump ($movieshow->getMovie()->getId());
+                var_dump ($id_movie);
+                var_dump (date_format($movieshow->getStartTime(), "Y-m-d"));
+                var_dump ($date);
+                if (($movieshow->getMovie()->getId() == $id_movie) && (date_format($movieshow->getStartTime(), "Y-m-d") == $date)){
+                    
                     return 1; // there is already one movie today
-                }else{
-                    return 0; // no movie today
                 }
+
             }
+            return 0;
 
         }
 

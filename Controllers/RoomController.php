@@ -73,8 +73,6 @@
                             $room->setRoomId(0);
                             $room->setCinema($cinema);
                             $this->roomDAO->create($room);
-                            /* ESTE SCRIPT SIRVE DE ALGO=? */
-                            echo '<script language="javascript">alert("Your Room Has Been Added Successfully");</script>';  
                             require_once(VIEWS_PATH."validate-session.php");
                             $this->showRooms($id_cinema);
                         }else{
@@ -105,12 +103,9 @@
                         $room->setCapacity($capacity);
                         $room->setPrice($price);
 
-                        
-
                         $this->roomDAO->editRoom($id_room,$room);
                         
                         $this->showRooms($id_cinema);
-                        //header("location:showCinemas");
 
                 }else{
                     $error = "01";
