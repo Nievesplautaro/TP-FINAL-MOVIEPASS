@@ -95,10 +95,11 @@
             }else{
                 $uniqueCinemaPerDay = $this->verifyNoRepeatCinema($id_movie, $date);
                 if ($uniqueCinemaPerDay == 0){
+                    // var_dump($movieShowList);
                     foreach ($movieShowList as $movieshow){
-
+                        
                         $movieShowDateTime = date_create($movieshow->getStartTime());
-
+                        
                         if(($movieshow->getRoom()->getRoomId() == $id_room ) && (date_format($movieShowDateTime,'Y-m-d') == $date)){
 
                             $previousEndTime = date_create(date_format($movieShowDateTime, 'H:i:s'));
@@ -124,20 +125,16 @@
         }
 
         public function verifyNoRepeatCinema($id_movie, $date){
-           
+            $flag = 0;
             $movieShowList2= $this->showDAO->GetAll();
 
             foreach($movieShowList2 as $movieshow){
                 $movieShowDateTime2 = date_create($movieshow->getStartTime());
-                if (($movieshow->getMovie()->getMovieId() == $id_movie) && (date_format($movieShowDateTime2, "Y-m-d") == $date)){
-                    
-                    return 1; // there is already one movie today
+                if (($movieshow->getMovie()->getMovieId() == $id_movie) && (date_format($movieShowDateTime2, "Y-m-d") == $date)){     
+                    $flag = 1; // there is already one movie today
                 }
-
             }
-
-            return 0;
-
+            return $flag;
         }
 
         public function showCinemaShows(){
