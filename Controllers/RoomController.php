@@ -13,6 +13,7 @@
 
 
         public function __construct(){
+            require_once(VIEWS_PATH."validate-session.php");
             $this->roomDAO = new RoomDAO();
             $this->cinemaDAO = new CinemaDAO();
         }
@@ -33,7 +34,8 @@
         public function ShowEditRoom($id_cinema, $id_room){
             require_once(VIEWS_PATH."validate-session.php");
             if($id_room){
-                $room = $this->roomDAO->readRooms($id_cinema);
+                $room = $this->roomDAO->read($id_room);
+                $id_room = $room->getRoomId();
             }
             require_once(VIEWS_PATH."editRoom.php");
         }
@@ -86,34 +88,31 @@
                 }
         }
 
-        public function editRoom($id_cinema, $id_room){
-            if($id_room){
-                echo $id_room;
-                if ($_POST){
-                        
+        public function editRoom(){
+            if ($_POST){
+                    $id_cinema = $_POST['id_cinema'];
+                    $id_room = $_POST['id_room'];
                     $room_name = $_POST['room_name'];
                     $capacity = $_POST['capacity'];
                     $price = $_POST['price'];
 
-                    if(!$this->roomExists($id_cinema, $roomName)){
+                    $room = new Room();
+                            
+                    $room->setRoomName($room_name);
+                    $room->setCapacity($capacity);
+                    $room->setPrice($price);
 
-                        $room = new Room();
+                    if(!$this->roomExists($id_cinema, $room_name)){
                         
-                        $room->setRoomName($room_name);
-                        $room->setCapacity($capacity);
-                        $room->setPrice($price);
-
                         $this->roomDAO->editRoom($id_room,$room);
                         
                         $this->showRooms($id_cinema);
-
-                }else{
-                    $error = "01";
-                    require_once(VIEWS_PATH."editRoom.php");
-                } 
+                    }else{
+                        $error = "01";
+                        require_once(VIEWS_PATH."editRoom.php");
+                    } 
             }
         }
-    }
         
         public function Delete($id_cinema,$id_room){
             if($id_room){
