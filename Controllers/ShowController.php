@@ -126,17 +126,16 @@
         public function verifyNoRepeatCinema($id_movie, $date){
            
             $movieShowList2= $this->showDAO->GetAll();
+
             foreach($movieShowList2 as $movieshow){
-                var_dump ($movieshow->getMovie()->getId());
-                var_dump ($id_movie);
-                var_dump (date_format($movieshow->getStartTime(), "Y-m-d"));
-                var_dump ($date);
-                if (($movieshow->getMovie()->getId() == $id_movie) && (date_format($movieshow->getStartTime(), "Y-m-d") == $date)){
+                $movieShowDateTime2 = date_create($movieshow->getStartTime());
+                if (($movieshow->getMovie()->getMovieId() == $id_movie) && (date_format($movieShowDateTime2, "Y-m-d") == $date)){
                     
                     return 1; // there is already one movie today
                 }
 
             }
+
             return 0;
 
         }
