@@ -1,3 +1,4 @@
+<!-- In this VIEW we show the tickets info, if no one is charged, you can add a new one clicking the button -->
 <?php
     require_once(VIEWS_PATH."nav.php");
 ?>

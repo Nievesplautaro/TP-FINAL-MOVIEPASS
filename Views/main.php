@@ -1,3 +1,4 @@
+<!-- In this VIEW we show the home page with logins / register -->
 <main class="d-flex align-items-center justify-content-center height-100" >
           <div class="content">
                <div class="container">

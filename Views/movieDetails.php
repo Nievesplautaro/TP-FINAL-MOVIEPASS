@@ -1,3 +1,4 @@
+<!-- In this VIEW we show the Details of an specific movie (clicked on the dashboard) with their trailer, duration and showing the differents movie shows to buy a ticket -->
 <?php
      require_once(VIEWS_PATH."nav.php");
 ?>

@@ -1,3 +1,4 @@
+<!-- In this VIEW we can add Rooms if there is no one charged and Also we display all the data from the rooms BY cinema -->
 <?php
     require_once(VIEWS_PATH."navAdmin.php");
 ?>

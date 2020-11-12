@@ -1,3 +1,4 @@
+<!-- In this VIEW we can add shows if there is no one charged and Also we display all the data from the shows BY room -->
 <?php
     require_once(VIEWS_PATH."navAdmin.php");
 ?>
@@ -16,7 +17,7 @@
                         <img src="<?php echo IMG_PATH?>/favicon.png" alt="Logo"></img>
                     </div>
                     <div class="title">
-                            show Data
+                            Show Data
                     </div>
                     <div class="data">
                             <div class="element">

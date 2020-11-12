@@ -1,4 +1,4 @@
-
+<!-- In this VIEW we Show the Billboard wich you can selecd movie shows ordered by genres or dates, and if you click one, they display their details -->
 <?php
      require_once(VIEWS_PATH."nav.php");
 ?>

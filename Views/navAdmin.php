@@ -1,3 +1,4 @@
+<!-- In this VIEW we show the navigation bar on the admins menu -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="collapse navbar-collapse admin" id="navbarNav">
     <ul class="navbar-nav">

@@ -1,3 +1,4 @@
+<!-- In this VIEW we can Select Cinemas to Create a Show -->
 <?php
     require_once(VIEWS_PATH."navAdmin.php");
 ?>

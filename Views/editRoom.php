@@ -1,4 +1,4 @@
-
+<!-- In this VIEW we show a form that you can complete modifying the selected room -->
 <main class="d-flex align-items-center justify-content-center height-100" >
     <div class="content">
         <div class="container">

@@ -1,3 +1,4 @@
+<!-- In this VIEW we can register a Cinema completing a form -->
 <?php
     require_once(VIEWS_PATH."navAdmin.php");
 ?>

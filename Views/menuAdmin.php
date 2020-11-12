@@ -1,3 +1,4 @@
+<!-- In this VIEW we show the admins menu -->
 <?php
 require_once(VIEWS_PATH."navAdmin.php");
 if(isset($error)){
