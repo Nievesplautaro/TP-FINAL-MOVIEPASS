@@ -46,7 +46,7 @@
                                 <?php  $next_date = date('Y-m-d', strtotime('tomorrow'));  ?>
                                 <?php  $last_date = date('Y-m-d', strtotime('+1 month'));  ?>
                                 <input type="date" id="date" name="date" min="<?php echo $next_date ?>" max="<?php echo $last_date ?>" required>
-                                <input type="time" id="time" name="time" min="14:00:00" max="23:59:00" required>
+                                <input type="time" id="time" name="time" min="14:00:00" max="23:59:00" oninvalid="this.setCustomValidity('The Time should be between 14:00hs to 23:59hs')" oninput="this.setCustomValidity('')" required>
                             </div>
                             <div class="form-group">
                             <div class="btn_cont">

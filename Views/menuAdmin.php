@@ -20,7 +20,7 @@ if(isset($error)){
 <div class="container">
  <div class="grid">
      <div class="msg_welcome">
-          Bienvenido!
+          Welcome!
      </div>
  </div>
 </div>

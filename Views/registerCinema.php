@@ -41,18 +41,10 @@
                                             <label for="">Phone number</label>
                                             <input type="tel" name="phoneNumber" value="" class="form-control form-control-lg" placeholder="Enter Phone Number" title="Phone Number" oninvalid="this.setCustomValidity('Invalid Phone Numer')" oninput="this.setCustomValidity('')" required>
                                         </div>
-                                        <!-- <div class="form-group">
-                                            <label for="">Ticket Price</label>
-                                            <input type="number" name="ticketPrice" value="" class="form-control form-control-lg" placeholder="Enter Ticket Price" title="Ticket Price" min = "50" max = "500" oninvalid="this.setCustomValidity('The Ticket Price should be between 50 to 500 ARS')" oninput="this.setCustomValidity('')" required>
-                                        </div> -->
                                         <div class="form-group">
                                             <label for="">Address</label>
                                             <input type="text" name="address" value="" class="form-control form-control-lg" placeholder="Enter Address" title="Address" minlength = "6" maxlength = "75" oninvalid="this.setCustomValidity('Invalid Address')" oninput="this.setCustomValidity('')" required>
                                         </div>
-                                        <!-- <div class="form-group">
-                                            <label for="">Capacity</label>
-                                            <input type="number" name="capacity" value="" class="form-control form-control-lg" placeholder="Enter Capacity" title="Capacity" min = "100" max = "500" oninvalid="this.setCustomValidity('The Capacity should be between 100 to 500 Clients')" oninput="this.setCustomValidity('')" required>
-                                        </div> -->
                                         <div class="btn_cont">
                                         <button class="btn btn-primary btn-block btn-lg" type="submit">Register</button>
                                         </div>

@@ -53,7 +53,7 @@
                 echo $start_time;
                 $newShow = new Show();
                 
-                if ($this->verifyDate($id_room,$start_time,$id_movie)){
+                if ($this->verifyDateAndCinema($id_room,$date,$time,$id_movie)){
 
                     $newShow->setRoom($this->roomDAO->read($id_room));
                 
@@ -73,35 +73,40 @@
             
         }
 
-        public function verifyDate($id_room, $start_time, $id_movie){
+        public function verifyDateAndCinema($id_room, $date, $time, $id_movie){
 
             $movieShowList= $this->showDAO->GetAll();
+
+            $cinemaID = $this->roomDAO->read($id_room)->getCinema()->getCinemaId();
             
             $movie = $this->movieDAO->getMovieById($id_movie);
 
             $movie_duration = ($movie->getDuration() + 15);
 
-            $newStartTime=date_create($start_time);          
+            $newStartTime=date_create($time);          
 
-            $newEndTime = date_create($start_time);
+            $newEndTime = date_create($time);
             date_add($newEndTime,date_interval_create_from_date_string($movie_duration." minutes"));
 
             if($movieShowList == null){
                 return true;
             }else{
-                foreach($movieShowList as $movieshow){
+                $uniqueCinemaPerDay = $this->verifyNoRepeatCinema($id_movie, $date);
+                if ($uniqueCinemaPerDay == 0){
+                    foreach ($movieShowList as $movieshow){
 
-                    if($movieshow->getRoom()->getRoomId() == $id_room){
+                        if(($movieshow->getRoom()->getRoomId() == $id_room ) && ($movieshow->getStartTime()->format('Y-m-d') == $date)){
 
-                        $previousEndTime = date_create($movieshow->getStartTime());
-                        $previousShowDuration = ($movieshow->getMovie()->getDuration() + 15);
-                        date_add($previousEndTime,date_interval_create_from_date_string($previousShowDuration." minutes"));
-                        
-                        if(($movieshow->getStartTime() <= $newEndTime) && ($previousEndTime >= $newStartTime)){
+                            $previousEndTime = date_create($movieshow->getStartTime()->format('H:i:s'));
+                            $previousShowDuration = ($movieshow->getMovie()->getDuration() + 15);
+                            date_add($previousEndTime,date_interval_create_from_date_string($previousShowDuration." minutes"));
                             
-                            $error = "02";//asignar valor se pisa con otro show en la misma sala
-                            return false;
-                            
+                            if(($movieshow->getStartTime()->format('H:i:s') <= $newEndTime) && ($previousEndTime >= $newStartTime)){
+                                
+                                $error = "02";//asignar valor se pisa con otro show en la misma sala
+                                return false;
+                                
+                            }
                         }
                     }
                 }
@@ -109,6 +114,19 @@
                 return true;
             }
         
+        }
+
+        public function verifyNoRepeatCinema($id_movie, $date){
+           
+            foreach($movieShowList as $movieshow){
+
+                if ($movieshow->getMovie()->getId() == $id_movie && $movieshow->getStartTime()->format('Y-m-d') == $date){
+                    return 1; // there is already one movie today
+                }else{
+                    return 0; // no movie today
+                }
+            }
+
         }
 
         public function showCinemaShows(){

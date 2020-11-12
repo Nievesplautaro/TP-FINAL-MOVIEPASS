@@ -42,7 +42,6 @@
                                    </form>
                                    <a href="<?php echo FRONT_ROOT ?>User/ShowRegisterView" class="login-form bg-dark-alpha p-5 bg-light">
                                    <div class="btn_cont">
-                                        <!-- <div class="btn btn-primary btn-block btn-lg">Register</div> -->
                                         <button class="btn btn-primary btn-block btn-lg" type="submit">Register</button>
                                    </div>
                                    </a>

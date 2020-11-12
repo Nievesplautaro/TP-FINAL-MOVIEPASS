@@ -72,13 +72,12 @@
                             <div class="cinema_list">
                             <?php $options = ''; ?>
                             <select name="id_movie" id="id_movie" required>
-                            <?php //var_dump($showInfoTicket);
+                            <?php
                                  if($showInfoTicket && !empty($showInfoTicket)){
 
                                     foreach($showInfoTicket as $showInfo){
                                         foreach($showInfo as $key => $value){
                                             if($key != 'id_show'){
-                                                //echo "<option value='".$value."'>".$value."</option>";
                                                 $options.=$value.' ';
                                             }
                                         }

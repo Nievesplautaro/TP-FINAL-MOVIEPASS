@@ -38,7 +38,7 @@
                         }
                 }else{  
                     echo "<div class='Error'>";
-                    echo "<div class='empty_cine'><p>Actualmente no tenemos ningun ticket disponible para mostrar.</p><p> Si desea comprar un ticket mire nuestra Cartelera aqui.</p></div>";
+                    echo "<div class='empty_cine'><p>Currently, we don't have any tickets available to show.</p><p> If you want to buy a ticket check out our Billboard here.</p></div>";
                     echo "<div class='button'><a href='";
                     echo FRONT_ROOT;
                     echo"Dashboard/showMovies'>Show Movies</a></div></div>";

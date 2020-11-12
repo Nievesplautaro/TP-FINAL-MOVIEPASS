@@ -33,11 +33,6 @@
                                 Start Time: <?php echo $show->getStartTime() ?>
                             </div>
                     </div>
-                    <div class="data">
-                            <div class="element">
-                                Show Id: <?php echo $show->getShowId() ?>
-                            </div>
-                    </div>
                     <div class="actions">
                         <div class="button">
                             <a href="<?php echo FRONT_ROOT?>Show/removeShow/<?php echo $show->getShowId() ?>">Delete show</a>
@@ -49,7 +44,7 @@
                         }
                 }else{  
                     echo "<div class='Error'>";
-                    echo "<div class='empty_cine'><p>Actualmente no tenemos ningun disponible para mostrar.</p><p> Si desea agregar un show clickee aqui.</p></div>";
+                    echo "<div class='empty_cine'><p>Currently, we don't have any Show available.</p><p> If You Want to Add a New One Click Here.</p></div>";
                     echo "<div class='button'><a href='";
                     echo FRONT_ROOT;
                     echo"show/registershow/";
