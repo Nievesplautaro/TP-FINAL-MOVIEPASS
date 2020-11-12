@@ -13,7 +13,7 @@
 
 
     /**
-     * create = add, agrega cines a la base de datos, tabla cinemas
+     * create = add, add cinemas to db (table cinemas)
      */
     public function create($_cinema){
 
@@ -22,7 +22,7 @@
         $parameters['cinema_name'] = $_cinema->getName();
         $parameters['address'] = $_cinema->getAddress();
         $parameters['phone_number'] = $_cinema->getPhoneNumber();
-        //indistinto el id de usuario porque es autoincremental, pero sino no lo sube por parametros
+        //autoincremental id in DB
         $parameters['id_cinema'] = 0;
 
         try{
@@ -36,7 +36,7 @@
 
 
 /**
- * Transformamos el listado de usuarios en objetos de la clase usuario
+ * Transform cinema list into objects form cinema class
  */
     protected function mapearCine($value){
 
@@ -56,7 +56,7 @@
     }
 
 /**
- * Devuelve el cine por el direccion
+ * return cinema by adress
  */
 
 public function readByAddress($id_cinema,$address){
@@ -80,7 +80,7 @@ public function readByAddress($id_cinema,$address){
 }
 
 /**
- * Devuelve el cine por el nombre
+ * return cinema by name
  */
 
     public function readByName($id_cinema,$cinema_name){
@@ -113,7 +113,7 @@ public function readByAddress($id_cinema,$address){
     }
 
     /**
- * Devuelve el cine por el id
+ * return cinema by Id
  */
 
 public function read($id_cinema){
@@ -135,6 +135,8 @@ public function read($id_cinema){
 
 }
 
+//read all the cinemas
+
     public function readCinemas(){
 
         $sql = "SELECT * FROM cinemas";
@@ -151,6 +153,8 @@ public function read($id_cinema){
             return false;
         }
     }
+
+//return the cinema by id
 
     public function getCinemaById($id){
         $sqlSelectId = "select * from cinemas where id_cinema = '".$id."';";
@@ -214,12 +218,12 @@ public function read($id_cinema){
 
     }
 
+    //edit cinema by id
 
     public function editCinema($id_cinema,$editCinema){
         $parameters['cinema_name'] = $editCinema->getName();
         $parameters['address'] = $editCinema->getAddress();
         $parameters['phone_number'] = $editCinema->getPhoneNumber();
-        //indistinto el id de cinema porque es autoincremental, pero sino no lo sube por parametros
         $parameters['id_cinema'] = $id_cinema;
         $sql = "update cinemas 
                     set 
@@ -235,6 +239,8 @@ public function read($id_cinema){
             throw $ex;
         }
     }
+
+//delete cinema by id
 
     public function deleteCinema($id){
         $sql="DELETE FROM Cinemas WHERE Cinemas.id_Cinema=:id_Cinema";

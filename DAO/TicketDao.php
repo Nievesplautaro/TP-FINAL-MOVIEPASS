@@ -16,7 +16,7 @@
 
 
     /**
-     * create = add, agrega tickets a la base de datos, tabla tickets
+     * create = add, add tickets to db (table tickets)
      */
     public function create($_ticket){
 
@@ -38,7 +38,7 @@
 
 
 /**
- * Transformamos el listado de tickets en objetos de la clase ticket
+ * Transform ticket list into objects from ticket class
  */
     protected function mapearTicket($value){
 
@@ -58,7 +58,7 @@
     }
 
     /**
- * Devuelve el ticket por el id
+ * return ticket by id
  */
 
 public function read($id_ticket){
@@ -80,6 +80,8 @@ public function read($id_ticket){
 
 }
 
+//return all tickets into a list
+
     public function readTickets(){
 
         $sql = "SELECT * FROM tickets";
@@ -96,6 +98,8 @@ public function read($id_ticket){
             return false;
         }
     }
+
+//return ticket by id
 
     public function getTicketById($id){
         $sqlSelectId = "select * from tickets where id_ticket = '".$id."';";

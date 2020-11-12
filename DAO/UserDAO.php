@@ -13,7 +13,7 @@
 
 
     /**
-     * create = add, agrega usuarios a la base de datos, tabla users
+     * create = add, add users to db (table users)
      */
     public function create($_user){
 
@@ -21,9 +21,9 @@
 
         $parameters['username'] = $_user->getEmail();
         $parameters['pass'] = $_user->getPassword();
-        //predefinido rol USUARIO y no ADMIN
+        //predefined role = USER, no ADMIN
         $parameters['user_role'] = $_user->getUserRole();
-        //indistinto el id de usuario porque es autoincremental, pero sino no lo sube por parametros
+        //autoincremental Id in db
         $parameters['id_user'] = 0;
 
         try{
@@ -34,6 +34,8 @@
         }
 
     }
+
+//return all users into a list
 
     public function readUsers(){
 
@@ -53,7 +55,7 @@
 
     }
 /**
- * Transformamos el listado de usuarios en objetos de la clase usuario
+ * Transform user list into objects from user class
  */
     protected function mapear ($value){
 
@@ -70,7 +72,7 @@
     }
 
 /**
- * Devuelve el usuario por el username
+ * return user by username
  */
 
     public function read($username){

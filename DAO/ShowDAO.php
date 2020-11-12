@@ -23,7 +23,7 @@
 
 
     /**
-     * create = add, agrega shows a la base de datos, tabla shows
+     * create = add, add shows to db (table shows)
      */
     public function create($_show){
 
@@ -32,7 +32,6 @@
         $parameters['id_movie'] = $_show->getMovie()->getMovieId();
         $parameters['id_room'] = $_show->getRoom()->getRoomId();
         $parameters['start_time'] = $_show->getStartTime();
-        //$parameters['id_show'] = 0;
 
         try{
             $this->connection = Connection::getInstance();
@@ -45,7 +44,7 @@
 
 
 /**
- * Transformamos el listado de shows en objetos de la clase show
+ * Transform show list into objects from show class
  */
     protected function mapear ($value){
 
@@ -61,8 +60,6 @@
             $show->setStartTime($p['start_time']);
             $show->setShowId($p['id_show']);
             
-            //$p['id_movie'],$p['id_room'],$p['start_time'],$p['id_show']
-            
             return $show;
         }, $value);
 
@@ -71,7 +68,7 @@
     }
 
 /**
- * Devuelve el show por id de cine
+ * return show by cinemaId
  */
 
     public function read($id_cinema){
@@ -99,7 +96,7 @@
     }
 
 /**
- * Devuelve todos los shows en una lista
+ * return all shows into a list
  */
 
     public function GetAll(){
@@ -152,15 +149,14 @@
                             "start_time"  => $p["start_time"],
                             "id_show"     => $p["id_show"]
                         );
-            //$p['c.cinema_name'],$p['s.start_time'],$p['s.id_show'];
-            
-            
             return $showInfo ;
         }, $value);
 
         return count($resp) > 1 ? $resp : $resp['0'];
 
     }
+
+//delete show by id
 
     public function deleteShow($id_show){
         $sql="DELETE FROM shows WHERE shows.id_show=:id_show";

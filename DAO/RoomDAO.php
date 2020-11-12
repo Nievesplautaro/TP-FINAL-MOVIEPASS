@@ -14,7 +14,7 @@
 
 
     /**
-     * create = add, agrega room a la base de datos, tabla room
+     * create = add, add room to db (table room_cinema)
      */
     public function create($_room){
 
@@ -22,12 +22,9 @@
 
         $parameters['room_name'] =  $_room->getRoomName();
         $parameters['capacity'] =  $_room->getCapacity();
-        //$cinema = new Cinema();
-        //$cinema = $_room->getCinema();
-        //var_dump($_room->getCinema());
         $parameters['id_cinema'] = $_room->getCinema()->getCinemaId();
         $parameters['price'] = $_room->getPrice();
-        //indistinto el id de room porque es autoincremental, pero sino no lo sube por parametros
+        //autoincrement id_room in db
         $parameters['id_room'] = 0;
 /* 
         ACA DEBERIA CARGARSE A LA TABLA SEATS LA CANTIDAD DE ASIENTOS ESPECIFICADOS EN capacity  */
@@ -41,11 +38,8 @@
 
     }
 
-    
-
-
 /**
- * Transformamos el listado de salas en objetos de la clase sala
+ * Transform room list into objects from room class
  */
     protected function mapear ($value){
 
@@ -66,7 +60,7 @@
     }
 
 /**
- * Devuelve el room por el id
+ * return room by id
  */
 
     public function read($id_room){
@@ -88,6 +82,8 @@
 
     }
 
+//return all rooms by cinema id
+
     public function readRooms($id_cinema){
 
         $sql = "SELECT * FROM room_cinema where room_cinema.id_cinema = ".$id_cinema."";
@@ -105,6 +101,8 @@
         }
 
     }
+
+//edit room by id
 
     public function EditRoom($id_room, $room){
         $parameters['capacity'] = $room->getCapacity();
@@ -127,6 +125,8 @@
         }
 
     }
+
+//read room by name and cinema id
 
     public function readByName($id_cinema,$room_name){
         $sql = "SELECT EXISTS(SELECT room_name FROM room_cinema  WHERE room_name = :room_name and id_cinema =".$id_cinema." ) as exist;";
@@ -155,6 +155,8 @@
 
         return count($resp) > 1 ? $resp : $resp['0'];
     }
+
+//delete room by id
 
     public function Delete($id_room){
         $sql="DELETE FROM room_cinema WHERE room_cinema.id_room=:id_room";
