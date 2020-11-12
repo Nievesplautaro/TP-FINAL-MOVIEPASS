@@ -49,14 +49,14 @@
                 $id_movie = $_POST['id_movie'];
                 $date = $_POST['date'];
                 $time = $_POST['time'];
-                echo $date;
-                echo $time;
+                // echo $date;
+                // echo $time;
                 $start_time = ($date.' ' .$time);
-                echo $start_time;
-                $newShow = new Show();
+                // echo $start_time;
+                
                 
                 if ($this->verifyDateAndCinema($id_room,$date,$time,$id_movie)){
-
+                    $newShow = new Show();
                     $newShow->setRoom($this->roomDAO->read($id_room));
                 
                     $newShow->setMovie($this->movieDAO->getMovieById($id_movie));
@@ -66,8 +66,7 @@
 
                     echo '<script language="javascript">alert("Your Show Has Been Registered Successfully");</script>';
                 }else{
-                    $message = "Show Registered Successfully";
-                    //echo '<script language="javascript">alert("This cinema already has a show in this room at this time");</script>';
+                    echo '<script language="javascript">alert("This cinema already has a show in this room at this time");</script>';
                 }
                 
             }
