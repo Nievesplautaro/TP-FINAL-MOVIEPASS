@@ -6,7 +6,7 @@ Contributors: Pedro Bazterrica - Leandro Toloza - Lautaro Nieves Perri - Facundo
 
 ## Description:
 
-###MoviePass is a project of a cinema Managment from the National Technological University Of Mar Del Plata which provides the user a full Cinema Management System. 
+### MoviePass is a project of a cinema Managment from the National Technological University Of Mar Del Plata which provides the user a full Cinema Management System. 
 
 ## Features:
 

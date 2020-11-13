@@ -13,7 +13,7 @@
                     </div>
                     <div class="data_register">
                         <p>Please Enter Room Information To Register.</p> 
-                        <?php echo $room->getRoomId(); ?>
+                        
                     </div>
                     <div class="form">
                         <form action="<?php echo FRONT_ROOT ?>Room/editRoom"  method="POST" class="login-form bg-dark-alpha p-5 bg-light">
@@ -32,7 +32,7 @@
                         ?>
                             <div class="form-group">
                                 <input type="hidden" name="id_cinema" value="<?php echo $id_cinema; ?>">
-                                <input type="hidden" value="<?php echo $room->getRoomId() ?>" name="id_room">
+                                <input type="hidden" value="<?php echo $id_room ?>" name="id_room">
                                 <label for="">Room Name</label>
                                 <input type="text" name="room_name" value="<?php echo $room->getRoomName(); ?>" class="form-control form-control-lg" placeholder="Enter Room Name" title="Room Name" oninvalid="this.setCustomValidity('Insert a Valid Email')" oninput="this.setCustomValidity('')" required>
                             </div>
