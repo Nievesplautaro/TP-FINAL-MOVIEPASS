@@ -32,8 +32,12 @@
             }else{
                 $ticketList = $data;
             } 
-            require_once(VIEWS_PATH."validate-session.php");
-            require_once(VIEWS_PATH."ticketsManagment.php");
+            //require_once(VIEWS_PATH."validate-session.php");
+            if(!isset($_SESSION["loggedUser"])){
+                header('location:../User/Logme');  
+            }else{
+                require_once(VIEWS_PATH."ticketsManagment.php");
+            }
         }
 
 

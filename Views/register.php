@@ -1,4 +1,7 @@
 <!-- In this VIEW we can register an User completing a form -->
+<?php
+     require_once(VIEWS_PATH."nav.php");
+?>
      <main class="d-flex align-items-center justify-content-center height-100" >
           <div class="content">
                <div class="container">

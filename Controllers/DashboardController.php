@@ -23,7 +23,7 @@
 
      public function ShowDashboardView($message = ""){
           //$movieList = $this->movieListArray;
-          require_once(VIEWS_PATH."validate-session.php");
+          //require_once(VIEWS_PATH."validate-session.php");
           require_once(VIEWS_PATH."dashboard.php");
      }
 
@@ -51,7 +51,7 @@
             $movieList = $data2;
         }
         
-        require_once(VIEWS_PATH."validate-session.php");
+        //require_once(VIEWS_PATH."validate-session.php");
         require_once(VIEWS_PATH."dashboard.php");
         
     }
@@ -74,7 +74,7 @@
         }else{
             $showInfoTicket = $data2;
         }
-        require_once(VIEWS_PATH."validate-session.php");
+        //require_once(VIEWS_PATH."validate-session.php");
         require_once(VIEWS_PATH."movieDetails.php");
     }
 
@@ -90,8 +90,8 @@
                 }else{
                     $genreList = $data;
                 }
-               require_once(VIEWS_PATH."validate-session.php");
-                require_once(VIEWS_PATH."dashboard.php");
+               //require_once(VIEWS_PATH."validate-session.php");
+            require_once(VIEWS_PATH."dashboard.php");
         }
           
      }
@@ -113,12 +113,11 @@
                     $genreList = $data;
                 }
           }
-          require_once(VIEWS_PATH."validate-session.php");
-          require_once(VIEWS_PATH."dashboard.php");
-          
-     }
+          //require_once(VIEWS_PATH."validate-session.php");
+        require_once(VIEWS_PATH."dashboard.php");  
+    }
 
-     public function searchMovie() {                                            
+    public function searchMovie() {                                            
         
         $title = $_POST['title'];
 
@@ -131,12 +130,12 @@
         }else{
             $genreList = $data;
         }
-        require_once(VIEWS_PATH."validate-session.php");
+        //require_once(VIEWS_PATH."validate-session.php");
         require_once(VIEWS_PATH."dashboard.php");
 
-      }
+    }
 
-      public function GetMoviesByGenre($id){ 
+    public function GetMoviesByGenre($id){ 
         $movieGenreList = array();
         $movieList = array();
         $movieList = $this->dashboardDAO->readMoviesShow();
@@ -212,4 +211,4 @@
         }
     }
 
-    }
+}

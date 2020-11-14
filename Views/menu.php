@@ -5,7 +5,17 @@
 <div class="container">
      <div class="grid">
           <div class="msg_welcome">
-               Welcome! 
+               <?php if (isset($_SESSION["loggedUser"])){
+                    $name = explode("@",$_SESSION["loggedUser"]->getEmail());
+               ?>
+                    Welcome back <?php echo $name[0]?>! 
+               <?php
+               }else{
+               ?>
+                    Welcome!
+               <?php
+               }
+               ?>
           </div>
           <div class="slider_shows">
                <div class="owl-carousel owl-theme">
