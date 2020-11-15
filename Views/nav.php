@@ -3,17 +3,21 @@
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
       <li class="nav-item active">
-        <a class="nav-link" href="<?php echo FRONT_ROOT ?>User/ShowMenuView">Home</a>
+        <a class="nav-link" href="<?php echo FRONT_ROOT ?>">Home</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" >Movies</a> <!-- Showmovies get all the movies into a list and show them on Views/dashboard -->
         <ul>
           <li><a href="<?php echo FRONT_ROOT?>Dashboard/showMovies">Show Movies</a></li>
-          <li><a href="<?php echo FRONT_ROOT?>Ticket/showMyTickets">My tickets</a></li>
+          <li><a href="<?php echo FRONT_ROOT?>Ticket/showMyTickets">Tickets</a></li>
         </ul>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="<?php echo FRONT_ROOT ?>User/logout">Logout</a>
+        <?php if(!isset($_SESSION["loggedUser"])){?> 
+          <a class="nav-link" href="<?php echo FRONT_ROOT ?>User/Logme">Login</a>
+        <?php }else{ ?>
+          <a class="nav-link" href="<?php echo FRONT_ROOT ?>User/logout">Logout</a>
+        <?php } ?>
       </li>
     </ul>
   </div>

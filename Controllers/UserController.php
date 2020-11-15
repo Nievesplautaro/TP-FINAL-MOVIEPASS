@@ -30,7 +30,7 @@
                     }
                 }
             }
-            require_once(VIEWS_PATH."validate-session.php");
+            //require_once(VIEWS_PATH."validate-session.php");
             require_once(VIEWS_PATH."menu.php");
         }
 
@@ -63,7 +63,7 @@
 
         public function ShowMainView()
         {
-            require_once(VIEWS_PATH."validate-session.php");
+            //require_once(VIEWS_PATH."validate-session.php");
             require_once(VIEWS_PATH."main.php");
         }
 
@@ -72,34 +72,55 @@
             require_once(VIEWS_PATH."register.php");
         }
 
-        public function login($email,$password){
+        public function Logme(){
+            $lasturl = FRONT_ROOT;
+            if(!isset($_SESSION["loggedUser"])){
+                if(isset($_SERVER['HTTP_REFERER']) && $_SERVER['HTTP_REFERER'] != 'http://localhost/TP_FINAL_MOVIEPASS/User/Login' && $_SERVER['HTTP_REFERER'] != 'http://localhost/TP_FINAL_MOVIEPASS/User/Logme'){
+                    $lasturl =  $_SERVER['HTTP_REFERER'];
+                }
+                require_once(VIEWS_PATH."login.php");
+            }else{
+                header("location:".FRONT_ROOT);
+            }
+        }
 
-            $daoUser= new UserDAO();
+        public function login(){
+            if($_POST){
+                $email = $_POST['email'];
+                $password = $_POST['password'];
+                $lasturl = $_POST['last_url'];
 
-            try{
-                if($this->UserExist($email)){
-                    $user = $daoUser->read($email);
-                    if($user->getPassword() == $password){                    
-                        $_SESSION["loggedUser"] = $user;
-                        $_SESSION["status"] = "on";
-                        //$message = "Login Successfully";
-                        //Se implementa header ya que con require rompe al volver hacia atras como en tp6
-                        if ($user->getUserRole() == 1||$user->getUserRole() == "1"){
-                            $_SESSION["admin"] = true;
-                            header("location:MenuAdmin");
+                $daoUser= new UserDAO();
+
+                try{
+                    if($this->UserExist($email)){
+                        $user = $daoUser->read($email);
+                        if($user->getPassword() == $password){                    
+                            $_SESSION["loggedUser"] = $user;
+                            $_SESSION["status"] = "on";
+                            //$message = "Login Successfully";
+                            //Se implementa header ya que con require rompe al volver hacia atras como en tp6
+                            if ($user->getUserRole() == 1||$user->getUserRole() == "1"){
+                                $_SESSION["admin"] = true;
+                                header("location:MenuAdmin");
+                            }else{
+                                if($lasturl){
+                                    header("location:".$lasturl);
+                                }else{
+                                    header("location:".FRONT_ROOT);
+                                }
+                            }   
                         }else{
-                            header("location:Menu");
-                        }   
+                            $error = "01";
+                            require_once(VIEWS_PATH."login.php"); 
+                        }
                     }else{
                         $error = "01";
-                        require_once(VIEWS_PATH."main.php"); 
+                        require_once(VIEWS_PATH."login.php");
                     }
-                }else{
-                    $error = "01";
-                    require_once(VIEWS_PATH."main.php");
+                }catch(\PDOExeption $ex){
+                    throw $ex; 
                 }
-            }catch(\PDOExeption $ex){
-                throw $ex; 
             }
 
         }
@@ -120,9 +141,9 @@
                     }
                 }
             }
-            require_once(VIEWS_PATH."validate-session.php");
+            //require_once(VIEWS_PATH."validate-session.php");
             include(VIEWS_PATH."menu.php");
-            
+            //include(FRONT_ROOT);
         }
 
         public function SignUp($username,$pass){
@@ -139,7 +160,8 @@
                     }else{
                         $error = "02";
                     }
-                    require_once(VIEWS_PATH."main.php");
+                    require_once(VIEWS_PATH."login.php");
+                    //header('location:'.FRONT_ROOT);
                 }else{
                     $error = "10";
                     require_once(VIEWS_PATH."register.php");
@@ -226,7 +248,22 @@
 
             $message = "Logout Successfully";
 
-            $this->ShowMainView($message);
+            //$this->ShowMainView($message);
+            header('location:'.FRONT_ROOT);
+        }
+
+        /**
+        * return logged user
+        */
+        public function GetUserLoged(){
+            if(!isset($_SESSION)){
+                session_start();
+            }
+            if( isset($_SESSION['status']) && isset($_SESSION['loggedUser']) ){
+                return $_SESSION['loggedUser'];
+            }else{
+                return false;
+            }
         }
         
     }

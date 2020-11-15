@@ -51,7 +51,8 @@
                 if($data){
                 foreach($roomList as $room){
                     $room->setCinema($this->cinemaDAO->read($id_cinema));
-                } } 
+                } 
+                } 
             } 
             require_once(VIEWS_PATH."validate-session.php");
             require_once(VIEWS_PATH."roomManagment.php");

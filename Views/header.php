@@ -17,7 +17,9 @@
 <header class="text-center">
           <div class="cont_header">
                <div class="logo_header">
-                    <img src="<?php echo IMG_PATH ?>MoviePass_w.png" alt="Movie-Pass">
+                    <a href="<?php echo FRONT_ROOT?>">
+                         <img src="<?php echo IMG_PATH ?>MoviePass_w.png" alt="Movie-Pass">
+                    </a>
                </div>
           </div>
 </header>
