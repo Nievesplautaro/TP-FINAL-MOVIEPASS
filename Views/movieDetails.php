@@ -93,6 +93,9 @@
                                 <div class="btn_cont">
                                     <button class="btn btn-primary btn-block btn-lg btn_ticket" type="submit">Get Ticket For this Show</button>
                                 </div>
+                                <div class="button">
+                                    <a href="<?php echo FRONT_ROOT ?>Email/sendTicketPurchase/">Send Email Integration</a>
+                                </div>
                             </div>
                         </div>
                     </div>

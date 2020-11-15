@@ -251,6 +251,20 @@
             //$this->ShowMainView($message);
             header('location:'.FRONT_ROOT);
         }
+
+        /**
+        * return logged user
+        */
+        public function GetUserLoged(){
+            if(!isset($_SESSION)){
+                session_start();
+            }
+            if( isset($_SESSION['status']) && isset($_SESSION['loggedUser']) ){
+                return $_SESSION['loggedUser'];
+            }else{
+                return false;
+            }
+        }
         
     }
 ?>
