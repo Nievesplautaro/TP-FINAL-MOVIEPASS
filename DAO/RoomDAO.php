@@ -3,6 +3,7 @@
 
     use Models\Room as Room;
     use Models\Cinema as Cinema;
+    use DAO\CinemaDAO as CinemaDAO;
     use DAO\Connection as Connection;
 
     class RoomDAO{
@@ -12,6 +13,9 @@
     private $connection;
     private $tableName = "room_cinema";
 
+    public function __construct(){
+        $this->cinemaDAO = new CinemaDAO();
+    }
 
     /**
      * create = add, add room to db (table room_cinema)
@@ -44,6 +48,8 @@
     protected function mapear ($value){
 
         $value = is_array($value) ? $value : [];
+
+        $cinema = new Cinema();
         
         $resp = array_map(function($p){
             $room = new Room();
@@ -51,6 +57,7 @@
             $room->setCapacity($p['capacity']);
             $room->setPrice($p['price']);
             $room->setRoomId($p['id_room']);
+            $room->setCinema($this->cinemaDAO->getCinemaById($p['id_cinema']));
 
 	        return $room;
         }, $value);
@@ -101,6 +108,8 @@
         }
 
     }
+
+    
 
 //edit room by id
 
@@ -154,6 +163,26 @@
         }, $value);
 
         return count($resp) > 1 ? $resp : $resp['0'];
+    }
+
+    public function getRoomByShowId($id_show){
+        $sql = "select r.*
+                from shows s
+                inner join room_cinema r on r.id_room = s.id_room
+                where s.id_show = ".$id_show.";";
+        
+        try{
+            $this->connection = Connection::getInstance();
+            $result = $this->connection->Execute($sql);
+        }catch(\PDOException $ex){
+            throw $ex;
+        }
+        if(!empty($result)){
+            return $this->mapear($result);
+        }else{
+            return false;
+        }
+
     }
 
 //delete room by id

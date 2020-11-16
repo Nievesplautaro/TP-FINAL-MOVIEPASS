@@ -156,6 +156,24 @@
 
     }
 
+    public function getShowById($id_show){
+        $sql = "SELECT shows.*
+                FROM shows 
+                where shows.id_show = ".$id_show.";";
+        try{
+            $this->connection = Connection::getInstance();
+            $result = $this->connection->Execute($sql);
+        }catch(\PDOException $ex){
+            throw $ex;
+        }
+        if(!empty($result)){
+            return $this->mapear($result);
+        }else{
+            return false;
+        }
+
+    }
+
 //delete show by id
 
     public function deleteShow($id_show){

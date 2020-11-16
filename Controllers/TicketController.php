@@ -2,6 +2,8 @@
     namespace Controllers;
     use DAO\CinemaDAO as CinemaDAO;
     Use Models\Cinema as Cinema;
+    use DAO\RoomDAO as RoomDAO;
+    Use Models\Room as Room;
     use DAO\ShowDAO as ShowDAO;
     Use Models\Show as Show;
     use DAO\TicketDAO as TicketDAO;
@@ -20,16 +22,40 @@
             $this->ticketDAO = new TicketDAO();
             $this->showDAO = new ShowDAO();
             $this->cinemaDAO = new CinemaDAO();
+            $this->roomDAO = new RoomDAO();
             
+        }
+
+        public function selectQuantity() {
+            if($_POST){
+                $id_show = $_POST['id_show'];
+                echo $id_show;
+                $roomPrice = $this->ticketDAO->getRoomPriceByShowId($id_show);
+                require_once(VIEWS_PATH."ticketQuantity.php");
+            }
         }
 
         public function purchaseTicket(){
             if($_POST){
+                $quantity = $_POST['quantity'];
                 $id_show = $_POST['id_show'];
-                echo $id_show;
+                $room_price = $_POST['room_price'];
+                
+                $show = new Show();
+                $show = $this->showDAO->getShowById($id_show);
+                //var_dump($show);
+
                 require_once(VIEWS_PATH."registerTicket.php");
             }
 
+        }
+
+        public function registerTicket(){
+            if($_POST){
+                $id_show = $_POST['id_show'];
+                echo $id_show;
+            }
+            require_once(VIEWS_PATH."dashboard.php");
         }
 
 

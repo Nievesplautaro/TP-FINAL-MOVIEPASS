@@ -75,7 +75,7 @@
                                 $options = ''; 
                                 $idShow;
                             ?>
-                            <form action="<?php echo FRONT_ROOT ?>Ticket/purchaseTicket" method="post">
+                            <form action="<?php echo FRONT_ROOT ?>Ticket/selectQuantity" method="post">
                                 <select name="id_show" id="id_show" required>
                                 <?php 
                                     if($showInfoTicket && !empty($showInfoTicket)){

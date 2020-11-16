@@ -12,40 +12,36 @@
                         </div>
                     </div>
                     <div class="data_register">
-                        <p>Please Enter your Payment Information.</p> 
+                        <p>Show Information.</p> 
                     </div>
+                    <?php $total = $quantity * $room_price ?>
                     <div class="form">
-                        <form action="<?php echo FRONT_ROOT ?>Ticket/register"  method="POST" class="login-form bg-dark-alpha p-5 bg-light">
-                            <div class="form-group">
-                                <label for="tarjeta">Choose a Card Type:</label>
-                                <select name="tarjeta" id="tarjeta" required>
-                                    <option value="credito">Credito</option>
-                                    <option value="debito">Debito</option>
-                                </select>
+                        <form action="<?php echo FRONT_ROOT ?>Ticket/registerTicket"  method="POST" class="login-form bg-dark-alpha p-5 bg-light">
+                            <input type="hidden" name="id_show" id="id_show" value="<?php echo $show->getShowId(); ?>">
+                            <div class="element">
+                                Movie: <?php echo $show->getMovie()->getTitle(); ?>
                             </div>
-                            <div class="form-group">
-                                <label for="">Card Number</label>
-                                <input type="number" name="card_number" class="form-control form-control-lg" placeholder="Enter Card Number" title="Card Number" oninvalid="this.setCustomValidity('Insert a Valid Card')" oninput="this.setCustomValidity('')" required>
+                            <div class="element">
+                                Duration: <?php echo $show->getMovie()->getDuration(); ?> mins.
                             </div>
-                            <div class="form-group">
-                                <label for="">Card Owner Name</label>
-                                <input type="text" name="card_name" class="form-control form-control-lg" placeholder="Enter Card Name" title="Card Name" oninvalid="this.setCustomValidity('Insert a Valid Name')" oninput="this.setCustomValidity('')" required>
+                            <div class="element">
+                                Date Time: <?php echo $show->getStartTime(); ?>
                             </div>
-                            <div class="form-group">
-                                <label for="">Card Key</label>
-                                <input type="number" name="card_key" class="form-control form-control-lg" placeholder="Enter Card Key" title="Card Key" oninvalid="this.setCustomValidity('Insert a Valid Key')" oninput="this.setCustomValidity('')" required>
+                            <div class="element">
+                                Cinema: <?php echo $show->getRoom()->getCinema()->getName(); ?>
                             </div>
-                            <div class="form-group">
-                            <!-- <div class="btn_cont">
-                                <button class="btn btn-primary btn-block btn-lg" type="submit">Submit Payment Info</button>
-                            </div> -->
-                                <script
-                                    src="https://www.mercadopago.com.ar/integrations/v1/web-tokenize-checkout.js"
-                                    data-public-key="TEST-64bdf9fa-688d-4f27-b55a-928bdea4e4ae"
-                                    data-button-label="Payment"
-                                    data-transaction-amount="100.00">
-                                </script>
+                            <div class="element">
+                                Room: <?php echo $show->getRoom()->getRoomName(); ?>
                             </div>
+                            <div class="element">
+                                Final Price: <?php echo $quantity.' tickets * $'.$room_price.' = $'.$total;  ?>
+                            </div>
+                            <script
+                                src="https://www.mercadopago.com.ar/integrations/v1/web-tokenize-checkout.js"
+                                data-public-key="TEST-64bdf9fa-688d-4f27-b55a-928bdea4e4ae"
+                                data-button-label="Payment"
+                                data-transaction-amount=<?php echo $total; ?>>
+                            </script>
                         </form>
                     </div>
                 </div>

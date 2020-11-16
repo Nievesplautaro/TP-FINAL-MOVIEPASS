@@ -258,6 +258,46 @@ public function readCinemaIdByRoomId($id_room){
         }
     }
 
+    public function getCinemaByShowId($id_show){
+        $sql = "select c.*
+                from shows s
+                inner join room_cinema r on r.id_room = s.id_room
+                inner join cinemas c on c.id_cinema = r.id_cinema
+                where s.id_show = ".$id_show.";";
+
+        try{
+            $this->connection = Connection::getInstance();
+            $result = $this->connection->Execute($sql);
+        }catch(\PDOException $ex){
+            throw $ex;
+        }
+        if(!empty($result)){
+            return $this->mapearCine($result);
+        }else{
+            return false;
+        }
+
+    }
+
+    public function getCinemaByRoomId($id_room){
+        $sql = 'select c.*
+                from  room_cinema r 
+                inner join cinemas c on c.id_cinema = r.id_cinema
+                where r.id_room = '.$id_room.';';
+        try{
+            $this->connection = Connection::getInstance();
+            $result = $this->connection->Execute($sql);
+        }catch(\PDOException $ex){
+            throw $ex;
+        }
+        if(!empty($result)){
+            return $this->mapearCine($result);
+        }else{
+            return false;
+        }
+
+    }
+
 //delete cinema by id
 
     public function deleteCinema($id){

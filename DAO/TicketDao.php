@@ -116,5 +116,34 @@ public function read($id_ticket){
         }
     }
 
+    public function getRoomPriceByShowId($id_show){
+        $sql = "select r.price
+                from shows s
+                inner join room_cinema r on r.id_room = s.id_room
+                where s.id_show = ".$id_show.";";
+        try{
+            $this->connection = Connection::getInstance();
+            $result = $this->connection->Execute($sql);
+        }catch(\PDOException $ex){
+            throw $ex;
+        }
+        if(!empty($result)){
+            return $this->mapearRoomPrice($result);
+        }else{
+            return false;
+        }
+    }
+
+    public function mapearRoomPrice($value){
+        $value = is_array($value) ? $value : [];
+        
+        $resp = array_map(function($p){
+            $price = $p['price'];        
+	        return $price;
+        }, $value);
+
+        return count($resp) > 1 ? $resp : $resp['0'];
+    }
+
 }
 ?>
