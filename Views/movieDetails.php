@@ -68,37 +68,46 @@
                                 </div>
                             </div>
                         </div>
+                        
                         <div class="actions">
                             <h3>Get Ticket for this Movie</h3>
-                            <?php //var_dump($showInfoTicket);
+                            <?php
                                 $options = ''; 
+                                $idShow;
                             ?>
-                            <select name="id_movie" id="id_movie" required>
-                            <?php 
-                                 if($showInfoTicket && !empty($showInfoTicket)){
-
-                                    foreach($showInfoTicket as $showInfo){
-                                        foreach($showInfo as $key => $value){
-                                            if($key != 'id_show'){
-                                                $options.=$value.' ';
-                                                echo $options;
+                            <form action="<?php echo FRONT_ROOT ?>Ticket/purchaseTicket" method="post">
+                                <select name="id_show" id="id_show" required>
+                                <?php 
+                                    if($showInfoTicket && !empty($showInfoTicket)){
+                                        foreach($showInfoTicket as $showInfo){
+                                            foreach($showInfo as $key => $value){
+                                                if($key != 'id_show'){
+                                                    $options.=$value.' ';
+                                                    echo $options;
+                                                }else{ 
+                                                    $idShow = $value;
+                                                }
                                             }
+                                            echo "<option value='".$idShow."'>".$options."</option>";
+                                            $options='';
+                                            
                                         }
-                                        echo "<option value='".$options."'>".$options."</option>";
-                                        $options='';
                                     }
-                                }
-                            ?>
-                            </select>
-                            </div>
-                            <div class="form-group">
-                                <div class="btn_cont">
-                                    <button class="btn btn-primary btn-block btn-lg btn_ticket" type="submit">Get Ticket For this Show</button>
+                                    
+                                ?>
+                                    
+                                </select>
+                                <div class="form-group">
+                                    <div class="btn_cont">                                        
+                                        <input type="submit" value="Buy Tickets" class="btn btn-primary btn-block btn-lg btn_ticket">
+                                    </div>
+                                    <!-- <div class="button">
+                                        <a href="<?php echo FRONT_ROOT ?>Email/sendTicketPurchase/">Send Email Integration</a>
+                                    </div> -->
                                 </div>
-                                <div class="button">
-                                    <a href="<?php echo FRONT_ROOT ?>Email/sendTicketPurchase/">Send Email Integration</a>
-                                </div>
+                            </form>
                             </div>
+                            
                         </div>
                     </div>
                 </div>

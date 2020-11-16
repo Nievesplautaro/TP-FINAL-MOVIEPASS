@@ -23,6 +23,15 @@
             
         }
 
+        public function purchaseTicket(){
+            if($_POST){
+                $id_show = $_POST['id_show'];
+                echo $id_show;
+                require_once(VIEWS_PATH."registerTicket.php");
+            }
+
+        }
+
 
         public function showMyTickets(){
             $data = $this->ticketDAO->readTickets();

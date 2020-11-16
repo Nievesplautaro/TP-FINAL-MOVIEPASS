@@ -47,7 +47,6 @@
                 //echo $_POST['start_time'];
                 $id_room = $_POST['id_room'];
                 $id_movie = $_POST['id_movie'];
-<<<<<<< HEAD
                 $start_time = $_POST['start_time'];
 
                 $newShow = new Show();
@@ -63,18 +62,6 @@
                 
                 /*if ($this->verifyDate($id_room,$start_time,$id_movie)){
 
-=======
-                $date = $_POST['date'];
-                $time = $_POST['time'];
-                // echo $date;
-                // echo $time;
-                $start_time = ($date.' ' .$time);
-                // echo $start_time;
-                
-                
-                if ($this->verifyDateAndCinema($id_room,$date,$time,$id_movie)){
-                    $newShow = new Show();
->>>>>>> afe60b83d8c1486bd7c6209c49b70002f80395d7
                     $newShow->setRoom($this->roomDAO->read($id_room));
                 
                     $newShow->setMovie($this->movieDAO->getMovieById($id_movie));
