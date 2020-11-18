@@ -94,5 +94,32 @@
 
     }
 
+    public function getIdByUserName($username){
+        echo $username;
+        $sql = 'SELECT u.id_user FROM users u WHERE u.username = "'.$username.'";';
+        try{
+            $this->connection = Connection::getInstance();
+            $result = $this->connection->execute($sql);
+        }catch(\PDOException $ex){
+            throw $ex;
+        }
+        if(!empty($result)){
+            return $this->mapearId($result);
+        }else{
+            return false;
+        }
+    }
+
+    public function mapearId($value){
+        $value = is_array($value) ? $value : [];
+        
+        $resp = array_map(function($p){
+            $userId = $p['id_user'];
+            return $userId;
+        }, $value);
+
+        return count($resp) > 1 ? $resp : $resp['0'];
+    }
+
 }
 ?>

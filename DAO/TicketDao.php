@@ -144,6 +144,7 @@ public function read($id_ticket){
 
         return count($resp) > 1 ? $resp : $resp['0'];
     }
+    
 
 }
 ?>

@@ -18,6 +18,8 @@
                     <div class="form">
                         <form action="<?php echo FRONT_ROOT ?>Ticket/registerTicket"  method="POST" class="login-form bg-dark-alpha p-5 bg-light">
                             <input type="hidden" name="id_show" id="id_show" value="<?php echo $show->getShowId(); ?>">
+                            <input type="hidden" name="quantity" id="quantity" value="<?php echo $quantity; ?>">
+                            <input type="hidden" name="ticket_price" id="ticket_price" value="<?php echo $room_price; ?>">
                             <div class="element">
                                 Movie: <?php echo $show->getMovie()->getTitle(); ?>
                             </div>
