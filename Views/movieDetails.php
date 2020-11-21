@@ -75,7 +75,7 @@
                                 $options = ''; 
                                 $idShow;
                             ?>
-                            <form action="<?php echo FRONT_ROOT ?>Ticket/selectQuantity" method="post">
+                            <form action="<?php echo FRONT_ROOT ?>Ticket/<?php if(!isset($_SESSION['loggedUser'])){ echo 'checkPurchase';}else{ echo 'selectQuantity';}?>" method="post">
                                 <select name="id_show" id="id_show" required>
                                 <?php 
                                     if($showInfoTicket && !empty($showInfoTicket)){
@@ -99,7 +99,7 @@
                                 </select>
                                 <div class="form-group">
                                     <div class="btn_cont">                                        
-                                        <input type="submit" value="Buy Tickets" class="btn btn-primary btn-block btn-lg btn_ticket">
+                                        <input type="submit" value="Buy Tickets" class=" btn_ticket">
                                     </div>
                                     <!-- <div class="button">
                                         <a href="<?php echo FRONT_ROOT ?>Email/sendTicketPurchase/">Send Email Integration</a>

@@ -31,16 +31,27 @@
             
         }
 
+        public function checkPurchase () {
+            if(!isset($_SESSION["loggedUser"])){
+                $returnTO =  $_SERVER['HTTP_REFERER'];
+                setcookie ("ReturnTo", $returnTO, time()+3600, '/', NULL, 0 );  
+                var_dump ($_COOKIE['ReturnTo']);
+                $error = "Por favor, ingrese con sus datos para poder continuar con la compra";
+                header('location:../User/Logme');
+            }
+        }
+
         public function selectQuantity() {
+            require_once(VIEWS_PATH."validate-session.php");
             if($_POST){
                 $id_show = $_POST['id_show'];
-                echo $id_show;
                 $roomPrice = $this->ticketDAO->getRoomPriceByShowId($id_show);
                 require_once(VIEWS_PATH."ticketQuantity.php");
             }
         }
 
         public function purchaseTicket(){
+            require_once(VIEWS_PATH."validate-session.php");
             if($_POST){
                 $quantity = $_POST['quantity'];
                 $id_show = $_POST['id_show'];
@@ -56,6 +67,7 @@
         }
 
         public function registerTicket(){
+            require_once(VIEWS_PATH."validate-session.php");
             if($_POST){
                 $id_show = $_POST['id_show'];
                 $quantity = $_POST['quantity'];
@@ -63,10 +75,8 @@
                 
                 $user = new User();
                 $user = $_SESSION['loggedUser'];
-                var_dump($user);
                 $id_user = $this->userDAO->getIdByUserName($user->getEmail());
                 
-                echo $id_user;
                 /*echo $quantity;
                 echo $ticket_price;*/
 
@@ -81,11 +91,13 @@
                 }
                 
             }
-            require_once(VIEWS_PATH."menu.php");
+            //require_once(VIEWS_PATH."menu.php");
+            header('location:../Home/Index');
         }
 
 
         public function showMyTickets(){
+            require_once(VIEWS_PATH."validate-session.php");
             $data = $this->ticketDAO->readTickets();
              if ($data instanceof Ticket) { /* ESTE IF CHEQUEA SI EL READ RETORNA UN ARRAY DE TICKETS O UN TICKET SOLO */
                 $ticketList = [];

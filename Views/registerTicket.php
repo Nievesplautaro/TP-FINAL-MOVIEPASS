@@ -12,10 +12,10 @@
                         </div>
                     </div>
                     <div class="data_register">
-                        <p>Show Information.</p> 
+                        <p>Ticket Information.</p> 
                     </div>
                     <?php $total = $quantity * $room_price ?>
-                    <div class="form">
+                    <div class="form ticket">
                         <form action="<?php echo FRONT_ROOT ?>Ticket/registerTicket"  method="POST" class="login-form bg-dark-alpha p-5 bg-light">
                             <input type="hidden" name="id_show" id="id_show" value="<?php echo $show->getShowId(); ?>">
                             <input type="hidden" name="quantity" id="quantity" value="<?php echo $quantity; ?>">
@@ -38,12 +38,12 @@
                             <div class="element">
                                 Final Price: <?php echo $quantity.' tickets * $'.$room_price.' = $'.$total;  ?>
                             </div>
-                            <script
-                                src="https://www.mercadopago.com.ar/integrations/v1/web-tokenize-checkout.js"
-                                data-public-key="TEST-64bdf9fa-688d-4f27-b55a-928bdea4e4ae"
-                                data-button-label="Payment"
-                                data-transaction-amount=<?php echo $total; ?>>
-                            </script>
+                                <script
+                                    src="https://www.mercadopago.com.ar/integrations/v1/web-tokenize-checkout.js"
+                                    data-public-key="TEST-64bdf9fa-688d-4f27-b55a-928bdea4e4ae"
+                                    data-button-label="Purchase"
+                                    data-transaction-amount=<?php echo $total; ?>>
+                                </script>
                         </form>
                     </div>
                 </div>

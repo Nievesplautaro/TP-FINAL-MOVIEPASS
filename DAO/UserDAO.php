@@ -62,8 +62,10 @@
         $value = is_array($value) ? $value : [];
         
         $resp = array_map(function($p){
-            $user = new User($p['username'], $p['pass']);
+            $user = new User();
             $user->setUserRole($p['user_role']);
+            $user->setEmail($p['username']);
+            $user->setPassword($p['pass']);
             return $user;
         }, $value);
 

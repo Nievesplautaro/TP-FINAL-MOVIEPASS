@@ -780,3 +780,28 @@ margin: 0;
         margin: 15px 0;
         padding: 0 5px;
     }
+
+    .element.price{
+        text-align: center;
+    }
+
+    .form.ticket .element{
+        margin-bottom: 5px;
+    }
+
+    .mercadopago-button{
+        padding: 0px 10px !important;
+        margin-top: 25px;
+        position: relative;
+        left: 25%
+    }
+
+    #mercadopago-checkout{
+        text-align: center;
+    }
+
+    #mercadopago-checkout .sandbox-mode .layout, .sandbox-mode .layout--modal .group-summary {
+        background-image: none !important;
+
+    }
+    

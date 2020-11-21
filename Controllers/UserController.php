@@ -90,11 +90,15 @@
                 $password = $_POST['password'];
                 $lasturl = $_POST['last_url'];
 
+               echo $email.gettype($email).'\n';
+               echo $password.gettype($password);
+
                 $daoUser= new UserDAO();
 
                 try{
                     if($this->UserExist($email)){
-                        $user = $daoUser->read($email);
+                        $user = $daoUser->read($email); 
+                        var_dump ($user);
                         if($user->getPassword() == $password){                    
                             $_SESSION["loggedUser"] = $user;
                             $_SESSION["status"] = "on";
@@ -104,10 +108,16 @@
                                 $_SESSION["admin"] = true;
                                 header("location:MenuAdmin");
                             }else{
-                                if($lasturl){
-                                    header("location:".$lasturl);
+                                if(isset($_COOKIE["ReturnTo"])){
+                                    $returnTo = $_COOKIE["ReturnTo"];
+                                    setcookie ("ReturnTo", $returnTO, time()-5000, '/', NULL, 0 );  
+                                    header("location:".$returnTo);
                                 }else{
-                                    header("location:".FRONT_ROOT);
+                                    if($lasturl){
+                                        header("location:".$lasturl);
+                                    }else{
+                                        header("location:".FRONT_ROOT);
+                                    }
                                 }
                             }   
                         }else{

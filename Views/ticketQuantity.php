@@ -21,14 +21,14 @@
                                 <input type="number" name="quantity" class="form-control form-control-lg" placeholder="Quantity" title="Capacity" min = "1" max = "10" oninvalid="this.setCustomValidity('You have to select a number of tickets between 1 and 10.')" oninput="this.setCustomValidity('')" required>
                                 
                             </div>
-                            <div class="element">
+                            <div class="element price">
                                    Unit Price: $<?php echo $roomPrice ?>
                             </div>
                             <div class="form-group">
                               <input type="hidden" name="id_show" value="<?php echo $id_show; ?>">
                               <input type="hidden" name="room_price" value="<?php echo $roomPrice; ?>">
                               <div class="btn_cont">                                        
-                                   <input type="submit" value="Continue" class="btn btn-primary btn-block btn-lg btn_ticket">
+                                   <input type="submit" value="Continue" class=" btn_ticket">
                               </div>
                             </div>
                         </form>

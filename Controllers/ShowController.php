@@ -47,7 +47,13 @@
                 //echo $_POST['start_time'];
                 $id_room = $_POST['id_room'];
                 $id_movie = $_POST['id_movie'];
-                $start_time = $_POST['start_time'];
+                //PRUEBEN LAS COSAS PADRE, NUNCA LE PASABAN LA HORA AL SHOW, POR ESO AGREGUE LOS DOS DE ABAJO
+                $date = $_POST['date'];
+                $time = $_POST['time'];
+                
+                if($date && $time){
+                    $start_time = $date.' '.$time;
+                }
 
                 $newShow = new Show();
 

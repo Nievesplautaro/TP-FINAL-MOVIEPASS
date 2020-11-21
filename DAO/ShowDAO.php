@@ -117,7 +117,7 @@
     }
 
     public function showInfoToGetTicket($id_movie){
-        echo $id_movie;
+
         $sql = "select c.cinema_name,s.id_show, s.start_time
                 from shows s
                 inner join room_cinema rc on s.id_room = rc.id_room
