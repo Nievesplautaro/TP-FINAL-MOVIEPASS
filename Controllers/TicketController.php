@@ -49,6 +49,8 @@
             if($_POST){
                 $id_show = $_POST['id_show'];
                 $roomPrice = $this->ticketDAO->getRoomPriceByShowId($id_show);
+                $roomCapacity = $this->roomDAO->getRoomCapacityByShowId($id_show);
+                $ticketsPurchased = $this->ticketDAO->getTicketsPurchaseByShowId($id_show);
                 require_once(VIEWS_PATH."ticketQuantity.php");
             }
         }
