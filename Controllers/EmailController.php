@@ -13,7 +13,7 @@ Use Models\Show as Show;
 
 class EmailController{
 
-    public function sendTicketPurchase($user, $show){
+    public function sendTicketPurchase($user, $show,$qrArray){
         require_once(VIEWS_PATH."validate-session.php");
 
         if ($user == null){
@@ -58,8 +58,23 @@ class EmailController{
                 $mail->AddAddress($emailToSend, 'User');                // Recipient
                 $mail->Subject = "MoviePass Ticket Data";          // Este es el titulo del email.
     
+
+                // QR Content
+                $info = "Cinema: ";
+                $info .= $show->getRoom()->getCinema()->getName();
+                $info .= "\nRoom: ";
+                $info .= $show->getRoom()->getRoomName();
+                $info .= "\nMovie: ";
+                $info .= $show->getMovie()->getTitle();
+                $info .= "\nUnit Price: ";
+                $info .= $qrArray['ticket_price'];
+                $info .= "\nQuantity: ";
+                $info .= $qrArray['quantity'];
+                $qrcontent = urlencode($info);
+
+
                 // Email Content
-    
+                
                 $mail->isHTML(true);                                        // Set email format to HTML
                 $mail->Body = "
                     <html> 
@@ -75,6 +90,7 @@ class EmailController{
                                 </div>
                                 <div style='display: flex;margin-bottom:15px;'>
                                     <div class='QRCODE' style='width:50%'>
+                                    <img src='https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl=".$qrcontent."&choe=UTF-8' title='Link to Google.com' />
                                     </div>
                                     <div class='Details' style='width:50%; padding: 10px;border: 0.5px solid #cecece;text-align: center;'>
                                         <div style='font-weight: bold;margin-bottom: 5px;'> Movie: ".$show->getMovie()->getTitle().
