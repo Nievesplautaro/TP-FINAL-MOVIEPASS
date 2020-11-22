@@ -160,7 +160,9 @@
             try{
                 if(!$this->UserExist($username))
                 {
-                    $user = new User($username,$pass);
+                    $user = new User();
+                    $user->setEmail($username);
+                    $user->setPassword($pass);
                     $user->setUserRole(0);
                     $daoUser= new UserDAO(); 
 
@@ -189,8 +191,11 @@
                 if(!$this->UserExist($username))
                 {
 
-                    $user = new User($username,$pass);
+                    $user = new User();
                     $user->setUserRole(1);
+                    $user->setEmail($username);
+                    $user->setPassword($pass);
+
                     $daoUser= new UserDAO(); 
 
                     //se crean los usuarios sin rol de admin

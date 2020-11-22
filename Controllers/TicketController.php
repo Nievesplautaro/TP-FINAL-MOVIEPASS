@@ -10,6 +10,8 @@
     Use Models\Show as Show;
     use DAO\TicketDAO as TicketDAO;
     use Models\Ticket as Ticket;
+    use controllers\EmailController as EmailController;
+
     
 
     
@@ -18,6 +20,7 @@
     {
         private $ticketDAO;
         private $showDAO;
+        private $EmailController;
         private $cinemaDAO;
         private $roomDAO;  
         private $userDAO;  
@@ -28,7 +31,7 @@
             $this->cinemaDAO = new CinemaDAO();
             $this->roomDAO = new RoomDAO();
             $this->userDAO = new UserDAO();
-            
+            $this->EmailController = new EmailController();
         }
 
         public function checkPurchase () {
@@ -89,6 +92,8 @@
                     $ticket->setPrice($ticket_price);
                     $this->ticketDAO->create($ticket);
                 }
+
+                $this->EmailController->sendTicketPurchase();
                 
             }
             //require_once(VIEWS_PATH."menu.php");

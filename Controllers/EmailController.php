@@ -51,12 +51,12 @@ class EmailController{
                 //Recipients
     
                 $mail->From = $smtpUsuario;
-                $mail->FromName = "TEST";
+                $mail->FromName = "MoviePass";
                // $mail->setFrom($smtpUsuario);     // Email who gonna Send Email                          
     
                 $emailToSend = $user->getEmail();
                 $mail->AddAddress($emailToSend, 'User');                // Recipient
-                $mail->Subject = "MoviePass® Ticket Purchase";          // Este es el titulo del email.
+                $mail->Subject = "MoviePass Ticket Data";          // Este es el titulo del email.
     
                 // Email Content
     
@@ -64,33 +64,37 @@ class EmailController{
                 $mail->Body = "
                     <html> 
     
-                        <body> 
+                        <body style='display: block;'> 
                             <div Style='align:center;'>
-    
-                            <h1>TICKET PURCHASE INFORMATION</h1>
-    
-                            <p>Perri Gei</p>
-    
+                                <img src='https://i.ibb.co/z6bhV25/Screenshot-2020-11-21-Movie-Pass.png' style='width:100%'>
                             </div>
-    
-                            </br>
-                            <p>--------------------------------------------------------------------------------MoviePass®--------------------------------------------------------------------------------</p>
-                            </br>
-                            <p>( This is an automated message, please do not reply to this message, if you have any queries please contact tecinformaticas@mdp.utn.edu.ar  )</p>
-                            </br>
-                            <p>--------------------------------------------------------------------------------MoviePass®--------------------------------------------------------------------------------</p>
-                            </br>
+                            <div>
+                                <div style='text-align: center;margin-bottom: 10px;font-size: 16px;'>
+                                    <span>Hello, your payment was credited successfully. Here you have your QR code and all the information to enter the movie.
+                                    </span>
+                                </div>
+                                <div style='display: flex;'>
+                                    <div class='QRCODE' style='width:50%'>
+                                    </div>
+                                    <div class='Details' style='width:50%'>
+
+                                    </div>
+                                </div>
+                                <div style='text-align: center; font-size:18px;' >
+                                Enjoy!
+                                </div>
+                            </div>
                         </body> 
     
                     </html>
     
-                <br />"; // Texto del email en formato HTML
+                "; // Texto del email en formato HTML
     
                 
                 $estadoEnvio = $mail->Send(); 
     
                 if($estadoEnvio){
-                    echo "El correo fue enviado correctamente.";
+                    echo "El correo fue enviado correctamente.";    
                 } else {
                     echo "Ocurri� un error inesperado.";
                 }

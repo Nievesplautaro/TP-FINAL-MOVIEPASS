@@ -101,9 +101,6 @@
                                     <div class="btn_cont">                                        
                                         <input type="submit" value="Buy Tickets" class=" btn_ticket">
                                     </div>
-                                    <!-- <div class="button">
-                                        <a href="<?php echo FRONT_ROOT ?>Email/sendTicketPurchase/">Send Email Integration</a>
-                                    </div> -->
                                 </div>
                             </form>
                             </div>

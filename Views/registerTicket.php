@@ -42,8 +42,11 @@
                                     src="https://www.mercadopago.com.ar/integrations/v1/web-tokenize-checkout.js"
                                     data-public-key="TEST-64bdf9fa-688d-4f27-b55a-928bdea4e4ae"
                                     data-button-label="Purchase"
+                                    data-summary-product-label="Total"
+                                    data-max-installments="6"
+                                    data-summary-product="<?php echo $show->getMovie()->getTitle(); ?>"
                                     data-transaction-amount=<?php echo $total; ?>>
-                                </script>
+                                </script>   
                         </form>
                     </div>
                 </div>
