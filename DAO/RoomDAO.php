@@ -198,6 +198,37 @@
             throw $ex;
         }
     }
+    
+    public function getRoomCapacityByShowId($id_show){
+        $sql = "select rc.capacity
+                from tickets t
+                inner join shows s on t.id_show = s.id_show
+                inner join room_cinema rc on s.id_room = rc.id_room
+                where t.id_show = ".$id_show."
+                group by rc.capacity;";
+        try{
+            $this->connection = Connection::getInstance();
+            $result = $this->connection->Execute($sql);
+        }catch(\PDOException $ex){
+            throw $ex;
+        }
+        if(!empty($result)){
+            return $this->mapearRoomCapacity($result);
+        }else{
+            return false;
+        }
+    }
+
+    public function mapearRoomCapacity($value){
+        $value = is_array($value) ? $value : [];
+        
+        $resp = array_map(function($p){
+            $capacity = $p['capacity'];        
+	        return $capacity;
+        }, $value);
+
+        return count($resp) > 1 ? $resp : $resp['0'];
+    }
 
 }
 ?>

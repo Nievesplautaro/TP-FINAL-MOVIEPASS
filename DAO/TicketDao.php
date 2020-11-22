@@ -145,6 +145,32 @@ public function read($id_ticket){
         return count($resp) > 1 ? $resp : $resp['0'];
     }
     
+    public function getTicketsPurchaseByShowId($id_show){
+        $sql = "select count(*) as ticket_purchase from tickets where id_show = ".$id_show.";";
+        try{
+            $this->connection = Connection::getInstance();
+            $result = $this->connection->Execute($sql);
+        }catch(\PDOException $ex){
+            throw $ex;
+        }
+        if(!empty($result)){
+            return $this->mapearTicketPurchase($result);
+        }else{
+            return false;
+        }
+    }
+
+    public function mapearTicketPurchase($value){
+        $value = is_array($value) ? $value : [];
+        
+        $resp = array_map(function($p){
+            $ticket_purchase = $p['ticket_purchase'];        
+	        return $ticket_purchase;
+        }, $value);
+
+        return count($resp) > 1 ? $resp : $resp['0'];
+    }
+
 
 }
 ?>

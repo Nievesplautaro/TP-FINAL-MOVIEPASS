@@ -13,12 +13,14 @@
                     </div>
                     <div class="data_register">
                         <p>Enter the tickets quantity you want.</p> 
+                        <?php $capacityLeft = $roomCapacity - $ticketsPurchased; ?>
+                        <p>(Tickets left for this show: <?php echo $capacityLeft;?> units.)</p>
                     </div>
                     <div class="form">
                         <form action="<?php echo FRONT_ROOT ?>Ticket/purchaseTicket"  method="POST" class="login-form bg-dark-alpha p-5 bg-light">
                             <div class="form-group">
                                 <label for=""></label>
-                                <input type="number" name="quantity" class="form-control form-control-lg" placeholder="Quantity" title="Capacity" min = "1" max = "10" oninvalid="this.setCustomValidity('You have to select a number of tickets between 1 and 10.')" oninput="this.setCustomValidity('')" required>
+                                <input type="number" name="quantity" class="form-control form-control-lg" placeholder="Quantity" title="Capacity" min = "1" max = "<?php echo $capacityLeft; ?>" oninvalid="this.setCustomValidity('You cannot select that quantity, because it exceeds the capacity of the room.')" oninput="this.setCustomValidity('')" required>
                                 
                             </div>
                             <div class="element price">
