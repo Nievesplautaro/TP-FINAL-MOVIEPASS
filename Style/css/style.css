@@ -796,6 +796,15 @@ margin: 0;
         left: 25%
     }
 
+    .select_show{
+        display: flex;
+        justify-content: center;
+    }
+
+    .select_show select{
+        padding: 5px;
+    }
+
     #mercadopago-checkout{
         text-align: center;
     }

@@ -7,14 +7,14 @@ Use Models\PHPMailer as PHPMailer;
 Use Models\Exception as Exception;
 use Models\SMTP as SMTP;
 Use Models\User as User;
+Use Models\Show as Show;
+
 
 
 class EmailController{
 
-    public function sendTicketPurchase(){
-
-        $userController = new UserController();
-        $user = $userController->GetUserLoged();
+    public function sendTicketPurchase($user, $show){
+        require_once(VIEWS_PATH."validate-session.php");
 
         if ($user == null){
             echo "no usser logged in";
@@ -73,11 +73,18 @@ class EmailController{
                                     <span>Hello, your payment was credited successfully. Here you have your QR code and all the information to enter the movie.
                                     </span>
                                 </div>
-                                <div style='display: flex;'>
+                                <div style='display: flex;margin-bottom:15px;'>
                                     <div class='QRCODE' style='width:50%'>
                                     </div>
-                                    <div class='Details' style='width:50%'>
-
+                                    <div class='Details' style='width:50%; padding: 10px;border: 0.5px solid #cecece;text-align: center;'>
+                                        <div style='font-weight: bold;margin-bottom: 5px;'> Movie: ".$show->getMovie()->getTitle().
+                                        "</div>
+                                        <div style='font-weight: bold;margin-bottom: 5px;'> Cinema: ".$show->getRoom()->getCinema()->getName().
+                                        "</div>
+                                        <div style='font-weight: bold;margin-bottom: 5px;'> Room: ".$show->getRoom()->getRoomName().
+                                        "</div>
+                                        <div style='font-weight: bold;margin-bottom: 5px;'> Start Time: ".$show->getStartTime().
+                                        "</div>                             
                                     </div>
                                 </div>
                                 <div style='text-align: center; font-size:18px;' >

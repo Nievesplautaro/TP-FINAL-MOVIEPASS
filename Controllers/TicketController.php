@@ -79,6 +79,9 @@
                 $user = new User();
                 $user = $_SESSION['loggedUser'];
                 $id_user = $this->userDAO->getIdByUserName($user->getEmail());
+                if($id_show){
+                    $show = $this->showDAO->getShowById($id_show);
+                }
                 
                 /*echo $quantity;
                 echo $ticket_price;*/
@@ -93,7 +96,7 @@
                     $this->ticketDAO->create($ticket);
                 }
 
-                $this->EmailController->sendTicketPurchase();
+                $this->EmailController->sendTicketPurchase($user,$show);
                 
             }
             //require_once(VIEWS_PATH."menu.php");
