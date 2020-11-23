@@ -61,6 +61,18 @@
                 $quantity = $_POST['quantity'];
                 $id_show = $_POST['id_show'];
                 $room_price = $_POST['room_price'];
+
+                if(isset($quantity) && isset($room_price) && $quantity >=2){
+                    $date = getdate();
+                    if($date['weekday'] == 'Tuesday' || $date['weekday'] == 'Wednesday'){
+                        $discount = ($quantity * $room_price)*0.25;
+                    }
+                }
+
+                $total = $quantity * $room_price;
+                if(isset($discount)){
+                    $total = $total - $discount;
+                }
                 
                 $show = new Show();
                 $show = $this->showDAO->getShowById($id_show);
@@ -115,6 +127,18 @@
             }else{
                 $ticketList = $data;
             } 
+
+            if(!empty($ticketList)){
+                foreach($ticketList as $ticket){
+                    $idShow = $ticket->getIdShow();
+                    if(isset($idShow)){
+                        $instanceShow = $this->showDAO->getShowById($idShow);
+                        if($instanceShow){
+                            $ticket->setShow($instanceShow);
+                        }
+                    }
+                }
+            }
             //require_once(VIEWS_PATH."validate-session.php");
             if(!isset($_SESSION["loggedUser"])){
                 header('location:../User/Logme');  
@@ -122,7 +146,5 @@
                 require_once(VIEWS_PATH."ticketsManagment.php");
             }
         }
-
-
     }
 ?>

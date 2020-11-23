@@ -1,12 +1,16 @@
 <?php
 namespace Models;
 
+Use Models\Show as Show;
+
+
 class Ticket{
 
     private $idTicket;
     private $idShow;
     private $idUser;
     private $price;
+    private $Show;
     //private $QR; ver si se implementa
     
 
@@ -89,6 +93,19 @@ class Ticket{
 
         return $this;
     }
+
+    public function getShow()
+    {
+        return $this->Show;
+    }
+
+    public function setShow($Show)
+    {
+        $this->Show = $Show;
+
+        return $this;
+    }
+
 }
 
 ?>
