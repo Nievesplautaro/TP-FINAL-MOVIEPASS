@@ -742,6 +742,13 @@ margin: 0;
     padding: 5px 10px;
     background: linear-gradient(90deg, rgb(240, 171, 131) 86%, rgb(255, 219, 105) 100%);
     border-radius: 6px;
+    max-width: 110px;
+    border: none;
+}
+
+.btn_ticket:active{
+    color: white !important;
+    border: none !important;
 }
 
 /* SLIDER HOME */
