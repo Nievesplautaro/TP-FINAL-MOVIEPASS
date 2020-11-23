@@ -34,6 +34,21 @@
                                 Start Time: <?php echo $show->getStartTime() ?>
                             </div>
                     </div>
+                    <div class="data">
+                            <div class="element">
+                                Purchased Tickets: <?php echo $show->getTicketPurchased() ?>
+                            </div>
+                    </div>
+                    <div class="data">
+                            <div class="element">
+                                Remaining Tickets: <?php echo ($show->getRoom()->getCapacity()-$show->getTicketPurchased()) ?>
+                            </div>
+                    </div>
+                    <div class="data">
+                            <div class="element">
+                                Amount Collected: $ <?php if($show->getAmountCollected()!= null){ echo $show->getAmountCollected();}else{echo '0';} ?>
+                            </div>
+                    </div>
                     <div class="actions">
                         <div class="button">
                             <a href="<?php echo FRONT_ROOT?>Show/removeShow/<?php echo $show->getShowId() ?>">Delete show</a>

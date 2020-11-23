@@ -8,6 +8,8 @@
     Use Models\Room as Room;
     Use Models\Movie as Movie;
     Use Models\Cinema as Cinema;
+    use DAO\TicketDAO as TicketDAO;
+    use Models\Ticket as Ticket;
     
 
     
@@ -18,12 +20,15 @@
         private $roomDAO;
         private $movieDAO;
         private $cinemaDAO;
+        private $TicketDAO;
+
         
         public function __construct(){
             $this->showDAO = new ShowDAO();
             $this->roomDAO = new RoomDAO();
             $this->movieDAO = new RequestDAO();
             $this->cinemaDAO = new CinemaDAO();
+            $this->TicketDAO = new TicketDAO();
             
         }
 
@@ -161,12 +166,21 @@
                 }else{
                     $showList = $data;
                     if($showList){
-                    foreach($showList as $show){
-                        $movie = $show->getMovie();
-                        $show->setMovie($this->movieDAO->getMovieById($movie->getMovieId()));
-                        $room = $show->getRoom();
-                        $show->setRoom($this->roomDAO->read($room->getRoomId()));
-                    }}
+                        foreach($showList as $show){
+                            $movie = $show->getMovie();
+                            $show->setMovie($this->movieDAO->getMovieById($movie->getMovieId()));
+                            $room = $show->getRoom();
+                            $tickets_less = $room ->getCapacity();
+                            $show->setRoom($this->roomDAO->read($room->getRoomId()));
+                            $ticketsPurchased = $this->TicketDAO->getTicketsPurchaseByShowId($show->getShowId());
+                            if(isset($ticketsPurchased)){
+                                $show->setTicketPurchased($ticketsPurchased);
+                                $tickets_less = $tickets_less - $ticketsPurchased;
+                            }
+                            $amount_collected = $this->TicketDAO->getAmountCollectedByShowId($show->getShowId());
+                            $show->SetAmountCollected($amount_collected);
+                        }
+                    }
                 }
             }
             

@@ -71,6 +71,7 @@
                 $total = $quantity * $room_price;
                 if(isset($discount)){
                     $total = $total - $discount;
+                    $room_price= $room_price-$room_price*0.25;
                 }
                 
                 $show = new Show();
