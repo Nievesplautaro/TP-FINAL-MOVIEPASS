@@ -160,6 +160,32 @@ public function read($id_ticket){
         }
     }
 
+    public function getAmountCollectedByShowId($id_show){
+        $sql = "select sum(price) as total_amount from tickets where id_show =".$id_show.";";
+        try{
+            $this->connection = Connection::getInstance();
+            $result = $this->connection->Execute($sql);
+        }catch(\PDOException $ex){
+            throw $ex;
+        }
+        if(!empty($result)){
+            return $this->mapearAmountCollected($result);
+        }else{
+            return false;
+        }
+    }
+
+    public function mapearAmountCollected($value){
+        $value = is_array($value) ? $value : [];
+        
+        $resp = array_map(function($p){
+            $total_amount = $p['total_amount'];        
+	        return $total_amount;
+        }, $value);
+
+        return count($resp) > 1 ? $resp : $resp['0'];
+    }
+
     public function mapearTicketPurchase($value){
         $value = is_array($value) ? $value : [];
         

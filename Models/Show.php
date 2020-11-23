@@ -9,6 +9,11 @@
         private $room;
         private $start_time;
         private $id_show;
+        private $ticket_purchased;
+        private $amount_collected;
+
+        
+
 
         public function __construct(/*$id_movie, $id_room, $start_time,$id_show*/){
             /*$this->movie = new Movie();
@@ -88,6 +93,26 @@
         {
             $this->start_time = $startTime;
 
+        }
+
+        public function getTicketPurchased()
+        {
+            return $this->ticket_purchased;
+        }
+
+        public function setTicketPurchased($ticket_purchased)
+        {
+            $this->ticket_purchased = $ticket_purchased;
+        }
+
+        public function getAmountCollected()
+        {
+            return $this->amount_collected;
+        }
+
+        public function setAmountCollected($amount_collected)
+        {
+            $this->amount_collected = $amount_collected;
         }
     }
 ?>

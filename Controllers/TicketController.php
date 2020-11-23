@@ -71,6 +71,7 @@
                 $total = $quantity * $room_price;
                 if(isset($discount)){
                     $total = $total - $discount;
+                    $room_price= $room_price-$room_price*0.25;
                 }
                 
                 $show = new Show();
@@ -110,7 +111,7 @@
                 $this->EmailController->sendTicketPurchase($user,$show,$qrArray);
                 
             }
-            //require_once(VIEWS_PATH."menu.php");
+            //require_once(VIEWS_PATH."menu.php"); 
             header('location:../Home/Index');
         }
 
