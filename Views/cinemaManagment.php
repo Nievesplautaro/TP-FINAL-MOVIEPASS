@@ -9,6 +9,7 @@
             $id = -1;
                 if($cinemaList && !empty($cinemaList)){
                         foreach($cinemaList as $cinema){
+                        $cinemaSoldTicket = $this->cinemaDAO->cinemaSoldTicket($cinema->getCinemaId());
                         $id++;
             ?>
             <li class="cinema">
@@ -37,9 +38,15 @@
                         <div class="button">
                             <a href="<?php echo FRONT_ROOT ?>room/ShowRooms/<?php echo $cinema->getCinemaId(); ?>">Manage Rooms</a>
                         </div>
+                        <?php if($cinemaSoldTicket == 0){ ?>
                         <div class="button">
                             <a href="<?php echo FRONT_ROOT?>Cinema/removeCinema/<?php echo $cinema->getCinemaId() ;?>">Delete Cinema</a>
                         </div>
+                        <?php }else if($cinemaSoldTicket == 1){ ?>
+                        <div class="button" disabled>
+                            <a>Delete Cinema</a>
+                        </div>
+                        <?php } ?>
                     </div>
                 </div>
             </li>

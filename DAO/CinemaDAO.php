@@ -298,6 +298,38 @@ public function readCinemaIdByRoomId($id_room){
 
     }
 
+    public function cinemaSoldTicket($id_cinema){
+        $sql='SELECT EXISTS(
+                SELECT *
+                FROM tickets t
+                inner join shows s on t.id_show = s.id_show
+                inner join room_cinema rc on s.id_room = rc.id_room
+                inner join cinemas c on rc.id_cinema = c.id_cinema
+                where c.id_cinema = '.$id_cinema.'
+            ) ticket_cinema;';
+        try{
+            $this->connection = Connection::getInstance();
+            $result = $this->connection->Execute($sql);
+        }catch(\PDOException $ex){
+            throw $ex;
+        }
+        if(!empty($result)){
+            return $this->mapearCinemaSoldTickets($result);
+        }else{
+            return false;
+        }
+    }
+    
+    public function mapearCinemaSoldTickets($value){
+        $value = is_array($value) ? $value : [];
+        
+        $resp = array_map(function($p){
+            return $p['ticket_cinema'];
+        }, $value);
+
+        return count($resp) > 1 ? $resp : $resp['0'];
+    }
+
 //delete cinema by id
 
     public function deleteCinema($id){
