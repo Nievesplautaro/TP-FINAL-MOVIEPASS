@@ -1,4 +1,4 @@
-<!-- In this VIEW we can Select Cinemas to Create a Show / to see all shows/ to get info about money spent by cinema-->
+<!-- In this VIEW we can Select movies to Create a Show -->
 <?php
     require_once(VIEWS_PATH."navAdmin.php");
 ?>
@@ -15,17 +15,17 @@
                         </div>
                     </div>
                     <div class="data_register">
-                        <p>Please Pick Cinema desired.</p> 
+                        <p>Please Pick Movie desired.</p> 
                     </div>
                     <div class="form">
-                        <form action="<?php echo FRONT_ROOT . $path;?>"  method="POST" class="login-form bg-dark-alpha p-5 bg-light">
+                        <form action="<?php echo FRONT_ROOT;?>"  method="POST" class="login-form bg-dark-alpha p-5 bg-light">
                             <div class="form-group">
-                                <label for="id_cinema">Choose a cinema:</label>
-                                <select name="id_cinema" id="id_cinema">
+                                <label for="id_movie">Choose a movie:</label>
+                                <select name="id_movie" id="id_movie">
                                     <?php 
-                                    if($cinemaList && !empty($cinemaList)){
-                                        foreach($cinemaList as $cinema){
-                                            echo "<option value='".$cinema->getCinemaId()."'>".$cinema->getName()."</option>";
+                                    if($movieList && !empty($movieList)){
+                                        foreach($movieList as $movie){
+                                            echo "<option value='".$movie->getmovieId()."'>".$movie->getName()."</option>";
                                         }
                                     }
                                     ?>
