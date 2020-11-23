@@ -118,7 +118,10 @@
 
         public function showMyTickets(){
             require_once(VIEWS_PATH."validate-session.php");
-            $data = $this->ticketDAO->readTickets();
+            $user = new User();
+            $user = $_SESSION['loggedUser'];
+            $id_user = $this->userDAO->getIdByUserName($user->getEmail());
+            $data = $this->ticketDAO->getTicketByUserId($id_user);
              if ($data instanceof Ticket) { /* ESTE IF CHEQUEA SI EL READ RETORNA UN ARRAY DE TICKETS O UN TICKET SOLO */
                 $ticketList = [];
                 $ticketList[0] = $data;

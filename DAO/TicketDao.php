@@ -99,6 +99,22 @@ public function read($id_ticket){
         }
     }
 
+    public function getTicketByUserId($user_id){
+        $sql = "SELECT * FROM tickets t where t.id_user = ".$user_id.";";
+        
+        try{
+            $this->connection = Connection::getInstance();
+            $result = $this->connection->Execute($sql);
+        }catch(\PDOException $ex){
+            throw $ex;
+        }
+        if(!empty($result)){
+            return $this->mapearTicket($result);
+        }else{
+            return false;
+        }
+    }
+
 //return ticket by id
 
     public function getTicketById($id){

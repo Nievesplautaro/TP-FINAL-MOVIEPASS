@@ -52,6 +52,8 @@ create table if not exists cinemas(
     constraint pk_cinemas primary key (id_cinema)
 );
 
+insert into cinemas (cinema_name, address, phone_number) values ('Ambassador', 'Cordoba 2204', '4790909');
+
 create table if not exists room_cinema(
 	id_room int not null auto_increment,
     capacity int,
@@ -61,7 +63,9 @@ create table if not exists room_cinema(
     constraint pk_room primary key (id_room),
     constraint fk_room_cinema foreign key (id_cinema) references cinemas(id_cinema) on delete cascade on update cascade
 );
-select * from shows;
+
+insert into room_cinema (capacity, room_name, price, id_cinema) values (100, 'Dolby Atmos', 75, 1);
+
 create table if not exists shows(
 	id_show int not null auto_increment,
     id_movie int,
