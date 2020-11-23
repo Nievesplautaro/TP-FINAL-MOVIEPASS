@@ -11,7 +11,6 @@
     use DAO\TicketDAO as TicketDAO;
     use Models\Ticket as Ticket;
     use controllers\EmailController as EmailController;
-
     
 
     
@@ -99,9 +98,7 @@
                 
                 /*echo $quantity;
                 echo $ticket_price;*/
-
                 
-
                 for($i = 0; $i < $quantity; $i++){
                     $ticket = new Ticket();
                     $ticket->setIdUser($id_user);
@@ -109,8 +106,8 @@
                     $ticket->setPrice($ticket_price);
                     $this->ticketDAO->create($ticket);
                 }
-
-                $this->EmailController->sendTicketPurchase($user,$show);
+                $qrArray = $_POST;
+                $this->EmailController->sendTicketPurchase($user,$show,$qrArray);
                 
             }
             //require_once(VIEWS_PATH."menu.php");
