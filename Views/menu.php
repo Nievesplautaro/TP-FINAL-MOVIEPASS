@@ -4,6 +4,15 @@
 ?>
 <div class="container">
      <div class="grid">
+          <?php 
+          if(isset($_COOKIE['PaymentSuccesfull'])){
+          ?>
+          <div class="Succesfull Payment">
+               Your payment has been successfully credited. We have sent to your Email all the necessary data to enter the cinema. Congratulations.
+          </div>
+          <?php
+          }else{
+          ?>
           <div class="msg_welcome">
                <?php if (isset($_SESSION["loggedUser"])){
                     $name = explode("@",$_SESSION["loggedUser"]->getEmail());
@@ -17,6 +26,9 @@
                }
                ?>
           </div>
+          <?php
+          }
+          ?>
           <div class="slider_shows">
                <div class="owl-carousel owl-theme">
                <?php

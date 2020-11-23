@@ -110,7 +110,7 @@
                 $this->EmailController->sendTicketPurchase($user,$show,$qrArray);
                 
             }
-            //require_once(VIEWS_PATH."menu.php");
+            //require_once(VIEWS_PATH."menu.php"); 
             header('location:../Home/Index');
         }
 

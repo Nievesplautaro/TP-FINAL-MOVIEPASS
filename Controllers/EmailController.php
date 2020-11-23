@@ -57,7 +57,9 @@ class EmailController{
                 $emailToSend = $user->getEmail();
                 $mail->AddAddress($emailToSend, 'User');                // Recipient
                 $mail->Subject = "MoviePass Ticket Data";          // Este es el titulo del email.
-    
+                 
+                $dataname = explode("@",$emailToSend);
+                $name = $dataname[0];
 
                 // QR Content
                 $info = "Cinema: ";
@@ -83,16 +85,21 @@ class EmailController{
                             <div Style='align:center;'>
                                 <img src='https://i.ibb.co/z6bhV25/Screenshot-2020-11-21-Movie-Pass.png' style='width:100%'>
                             </div>
-                            <div>
+                            <div style='margin-bottom: 5px;'>
                                 <div style='text-align: center;margin-bottom: 10px;font-size: 16px;'>
-                                    <span>Hello, your payment was credited successfully. Here you have your QR code and all the information to enter the movie.
-                                    </span>
+                                    <div style='text-align:center;font-size: 18px;font-weight: bold;margin-bottom: 10px;'> Hello ".$name."
+                                    </div>
+                                    <div style='text-align:center;font-size: 16px;font-weight: bold;margin-bottom: 10px;'>Your payment was credited successfully. Here you have your QR code and all the information to enter the movie.
+                                    </div>
                                 </div>
                                 <div style='display: flex;margin-bottom:15px;'>
-                                    <div class='QRCODE' style='width:50%'>
-                                    <img src='https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl=".$qrcontent."&choe=UTF-8' title='Link to Google.com' />
+                                    <div class='QRCODE' style='width:50%; display:flex;'>
+                                    <img style='max-width: 190px; margin:auto;' src='https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl=".$qrcontent."&choe=UTF-8' title='Link to Google.com' />
                                     </div>
                                     <div class='Details' style='width:50%; padding: 10px;border: 0.5px solid #cecece;text-align: center;'>
+                                        <div style='font-size: 22px;font-weight: bold;margin-bottom: 25px;border-bottom: 0.5px solid #cecece;'>
+                                            Ticket Details
+                                        </div>
                                         <div style='font-weight: bold;margin-bottom: 5px;'> Movie: ".$show->getMovie()->getTitle().
                                         "</div>
                                         <div style='font-weight: bold;margin-bottom: 5px;'> Cinema: ".$show->getRoom()->getCinema()->getName().
@@ -103,7 +110,7 @@ class EmailController{
                                         "</div>                             
                                     </div>
                                 </div>
-                                <div style='text-align: center; font-size:18px;' >
+                                <div style='text-align:center; font-size:18px;font-weight: bold;' >
                                 Enjoy!
                                 </div>
                             </div>
