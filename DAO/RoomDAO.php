@@ -201,11 +201,11 @@
     
     public function getRoomCapacityByShowId($id_show){
         $sql = "select rc.capacity
-                from tickets t
-                inner join shows s on t.id_show = s.id_show
+                from shows s
                 inner join room_cinema rc on s.id_room = rc.id_room
-                where t.id_show = ".$id_show."
+                where s.id_show = ".$id_show."
                 group by rc.capacity;";
+
         try{
             $this->connection = Connection::getInstance();
             $result = $this->connection->Execute($sql);
