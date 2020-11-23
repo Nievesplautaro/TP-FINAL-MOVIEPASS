@@ -99,4 +99,3 @@ create table if not exists seat_x_ticket(
     constraint fk_ticket_seat foreign key (id_ticket) references tickets(id_ticket) on delete cascade on update cascade,
     constraint fk_seat_ticket foreign key (id_seat) references seats(id_seat) on delete cascade on update cascade
 );
-

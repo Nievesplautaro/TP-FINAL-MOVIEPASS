@@ -6,10 +6,10 @@
     <div class="ticket_list">
         <ul class="my_tickets">
             <?php
-            $id = -1;
+            //$id = -1;
                 if($ticketList && !empty($ticketList)){
                         foreach($ticketList as $ticket){
-                        $id++;
+                        //$id++;
             ?>
             <li class="ticket">
                 <div class="element_ticket">
@@ -24,11 +24,16 @@
                                 Ticket ID: <?php echo $ticket->getIdTicket()  ?>
                             </div>
                             <div class="element">
-                                Show ID: <?php echo $ticket->getIdShow()  ?>
+                                Movie: <?php echo $ticket->getShow()->getMovie()->getTitle();  ?>
                             </div>
                             <div class="element">
-                                User ID: <?php echo $ticket->getIdUser()  ?>
+                                Start Time: <?php echo $ticket->getShow()->getStartTime();  ?>
                             </div>
+
+                            <div class="element">
+                                Room: <?php echo $ticket->getShow()->getRoom()->getRoomName();  ?>
+                            </div>
+
                             <div class="element">
                                 Price: <?php echo $ticket->getPrice()  ?>
                             </div>

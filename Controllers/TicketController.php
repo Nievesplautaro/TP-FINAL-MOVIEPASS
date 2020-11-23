@@ -11,7 +11,6 @@
     use DAO\TicketDAO as TicketDAO;
     use Models\Ticket as Ticket;
     use controllers\EmailController as EmailController;
-
     
 
     
@@ -61,6 +60,18 @@
                 $quantity = $_POST['quantity'];
                 $id_show = $_POST['id_show'];
                 $room_price = $_POST['room_price'];
+
+                if(isset($quantity) && isset($room_price) && $quantity >=2){
+                    $date = getdate();
+                    if($date['weekday'] == 'Tuesday' || $date['weekday'] == 'Wednesday'){
+                        $discount = ($quantity * $room_price)*0.25;
+                    }
+                }
+
+                $total = $quantity * $room_price;
+                if(isset($discount)){
+                    $total = $total - $discount;
+                }
                 
                 $show = new Show();
                 $show = $this->showDAO->getShowById($id_show);
@@ -87,9 +98,7 @@
                 
                 /*echo $quantity;
                 echo $ticket_price;*/
-
                 
-
                 for($i = 0; $i < $quantity; $i++){
                     $ticket = new Ticket();
                     $ticket->setIdUser($id_user);
@@ -97,8 +106,8 @@
                     $ticket->setPrice($ticket_price);
                     $this->ticketDAO->create($ticket);
                 }
-
-                $this->EmailController->sendTicketPurchase($user,$show);
+                $qrArray = $_POST;
+                $this->EmailController->sendTicketPurchase($user,$show,$qrArray);
                 
             }
             //require_once(VIEWS_PATH."menu.php");
@@ -115,6 +124,18 @@
             }else{
                 $ticketList = $data;
             } 
+
+            if(!empty($ticketList)){
+                foreach($ticketList as $ticket){
+                    $idShow = $ticket->getIdShow();
+                    if(isset($idShow)){
+                        $instanceShow = $this->showDAO->getShowById($idShow);
+                        if($instanceShow){
+                            $ticket->setShow($instanceShow);
+                        }
+                    }
+                }
+            }
             //require_once(VIEWS_PATH."validate-session.php");
             if(!isset($_SESSION["loggedUser"])){
                 header('location:../User/Logme');  
@@ -122,7 +143,5 @@
                 require_once(VIEWS_PATH."ticketsManagment.php");
             }
         }
-
-
     }
 ?>

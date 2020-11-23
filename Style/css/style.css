@@ -147,6 +147,11 @@ body{
     margin: auto;
 }
 
+.form_edit .cinema{
+    height: unset;
+    min-height: 420px;
+}
+
 .data_register{
     font-size: 12px;
     text-align: center;
@@ -742,9 +747,9 @@ margin: 0;
 /* SLIDER HOME */
 
    .my_tickets .ticket{
-        width: 20%;
-        display: flex;
-        flex-wrap: wrap;
+        width: 24%;
+        display: inline-block;
+        margin-bottom: 15px;
     }
 
 
@@ -752,6 +757,8 @@ margin: 0;
     .my_tickets .ticket .element_ticket{
         border: 0.5px solid #cbcbcb;
         padding: 10px;
+        max-width: 200px;
+        margin: auto;
     }
 
     .my_tickets .ticket .element_ticket .header{
