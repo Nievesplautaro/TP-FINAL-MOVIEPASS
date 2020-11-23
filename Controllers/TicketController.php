@@ -147,5 +147,12 @@
                 require_once(VIEWS_PATH."ticketsManagment.php");
             }
         }
+
+        public function moneyByCinema($id_cinema){
+            require_once(VIEWS_PATH."validate-session.php");
+            $total = $this->ticketDAO->getAmountCollectedByCinemaId($id_cinema);
+            echo $total;
+            require_once(VIEWS_PATH."earningsCinema.php");
+        }
     }
 ?>

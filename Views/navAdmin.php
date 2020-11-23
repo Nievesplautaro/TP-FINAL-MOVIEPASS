@@ -22,6 +22,8 @@
           <li><a href="<?php echo FRONT_ROOT ?>User/ShowRegisterAdmin">Add Admin</a></li>
           <li><a href="<?php echo FRONT_ROOT ?>User/AddMovies">Add Movies</a></li>
           <li><a href="<?php echo FRONT_ROOT ?>User/UpdateMovies">Update Movies</a></li>
+          <li><a href="<?php echo FRONT_ROOT ?>Cinema/shows/spent">Spent by Cinema</a></li>
+          <li><a href="<?php echo FRONT_ROOT ?>">Spent by Cinema</a></li>
         </ul>
       </li>
       <li class="nav-item">
