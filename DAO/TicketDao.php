@@ -213,8 +213,8 @@ public function read($id_ticket){
         return count($resp) > 1 ? $resp : $resp['0'];
     }
 
-    public function getAmountCollectedByCinemaId($CinemaId){
-        $sql = "select sum(t.price) as total_amount from room_cinema r  join shows s on r.id_cinema = ".$CinemaId." and r.id_room = s.id_room join tickets t on s.id_show = t.id_show;";
+    public function getAmountCollectedByCinemaId($CinemaId,$inDate,$outDate){
+        $sql = "select sum(t.price) as total_amount from room_cinema r  join shows s on r.id_cinema = ".$CinemaId." and r.id_room = s.id_room join tickets t on s.id_show = t.id_show where cast(s.start_time as date) between '".$inDate."' and '".$outDate."';";
         try{
             $this->connection = Connection::getInstance();
             $result = $this->connection->Execute($sql);
@@ -229,8 +229,8 @@ public function read($id_ticket){
     }
 
     
-    public function getAmountCollectedByMovieId($id_movie){
-        $sql = "select sum(t.price)  as total_amount from shows s join tickets t on s.id_movie = ".$id_movie." and s.id_show = t.id_show;";
+    public function getAmountCollectedByMovieId($id_movie,$inDate,$outDate){
+        $sql = "select sum(t.price)  as total_amount from shows s join tickets t on s.id_movie = ".$id_movie." and s.id_show = t.id_show where cast(s.start_time as date) between '".$inDate."' and '".$outDate."';";
         try{
             $this->connection = Connection::getInstance();
             $result = $this->connection->Execute($sql);
@@ -244,8 +244,8 @@ public function read($id_ticket){
         }
     }
 
-    public function getAmountTicketsSoldByMovieId($id_movie){
-        $sql = "select count(t.id_ticket)  as total_amount from shows s join tickets t on s.id_movie = ".$id_movie." and s.id_show = t.id_show;";
+    public function getAmountTicketsSoldByMovieId($id_movie,$inDate,$outDate){
+        $sql = "select count(t.id_ticket)  as total_amount from shows s join tickets t on s.id_movie = ".$id_movie." and s.id_show = t.id_show where cast(s.start_time as date) between '".$inDate."' and '".$outDate."';";
         try{
             $this->connection = Connection::getInstance();
             $result = $this->connection->Execute($sql);
@@ -259,8 +259,8 @@ public function read($id_ticket){
         }
     }
 
-    public function getAmountTicketsSoldByCinemaId($id_cinema){
-        $sql = "select count(t.id_ticket) as total_amount from room_cinema r  join shows s on r.id_cinema = ".$id_cinema." and r.id_room = s.id_room join tickets t on s.id_show = t.id_show;";
+    public function getAmountTicketsSoldByCinemaId($id_cinema,$inDate,$outDate){
+        $sql = "select count(t.id_ticket) as total_amount from room_cinema r  join shows s on r.id_cinema = ".$id_cinema." and r.id_room = s.id_room join tickets t on s.id_show = t.id_show where cast(s.start_time as date) between '".$inDate."' and '".$outDate."';";
         try{
             $this->connection = Connection::getInstance();
             $result = $this->connection->Execute($sql);
