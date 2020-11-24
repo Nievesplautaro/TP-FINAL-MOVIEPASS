@@ -20,8 +20,8 @@
         <a class="nav-link">Admin</a>
         <ul>
           <li><a href="<?php echo FRONT_ROOT ?>User/ShowRegisterAdmin">Add Admin</a></li>
-          <li><a href="<?php echo FRONT_ROOT ?>Cinema/shows/spent">Spent by Cinema</a></li>
-          <li><a href="<?php echo FRONT_ROOT ?>Ticket/selectMovie">Spent by Movie</a></li>
+          <li><a href="<?php echo FRONT_ROOT ?>Cinema/shows/spent">Details by Cinema</a></li>
+          <li><a href="<?php echo FRONT_ROOT ?>Ticket/selectMovie">Details by Movie</a></li>
           <?php if(isset($movies_exists) && $movies_exists == '0')
           { 
           ?>

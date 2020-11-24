@@ -8,17 +8,23 @@
             <?php
                 if($cinema){
             ?>
-            <li class="cinema">
+            <li class="cinema earnings">
                 <div class="element_cine">
                     <div class="header">
                         <img src="<?php echo IMG_PATH?>/favicon.png" alt="Logo"></img>
                     </div>
                     <div class="title">
-                            Cinema Data
+                            Cinema Details
                     </div>
                     <div class="data">
                             <div class="element">
                                 Name: <?php echo $cinema->getName() ; ?>
+                            </div>
+                            <div class="element">
+                                Total Earnings: $ <?php echo $totalMoney;?>
+                            </div>
+                            <div class="element">
+                                Total Tickets Sold: <?php echo $ticketsSold;?>
                             </div>
                             <div class="element">
                                 Phone: <?php echo $cinema->getPhoneNumber() ; ?>
@@ -26,20 +32,6 @@
                             <div class="element">
                                 Address: <?php echo $cinema->getAddress()  ;?>
                             </div>
-                            <div class="element">
-                                Earnings: <?php echo $totalMoney;?>
-                            </div>
-                            <div class="element">
-                                Tickets Sold: <?php echo $ticketsSold;?>
-                            </div>
-                    </div>
-                    <div class="actions">
-                        <div class="button">
-                            <a href="<?php echo FRONT_ROOT?>Cinema/ShowRegisterView/<?php echo $cinema->getCinemaId(); ?>">Edit Cinema</a>
-                        </div>
-                        <div class="button">
-                            <a href="<?php echo FRONT_ROOT ?>room/ShowRooms/<?php echo $cinema->getCinemaId(); ?>">Manage Rooms</a>
-                        </div>
                     </div>
                 </div>
             </li>

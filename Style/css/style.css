@@ -841,3 +841,55 @@ margin: 0;
     .sortBy .actions a:hover{
         color: rgb(240, 171, 131);
     }
+
+    .catalogo .cinema.earnings{
+        width: 100%;    
+    }
+
+    .catalogo .cinema.earnings .element_cine{
+        max-width: 300px;
+    }
+
+    .movie_list.earnings{
+        width: 100%;
+    }
+
+    .movie_list.earnings .selected_movie{
+        max-width: 750px;
+        margin: auto;
+        border: 0.5px solid #cecece;
+        padding: 20px;
+    }
+
+    .movie_list.earnings .selected_movie .movie_details{
+        width: 30%;
+    }   
+    .movie_list.earnings .selected_movie .movie_details .data{
+        margin: 0;
+    }
+    .movie_list.earnings .selected_movie .movie_details .data .titulo{
+    font-size: 24px;
+    text-transform: uppercase;
+    text-align: center;
+    }
+
+    .movie_list.earnings .selected_movie .movie_details .media{
+        max-width: 210px;
+    }
+
+    .movie_list.earnings .selected_movie .earning_details{
+        width: 70%;
+    }
+
+    .movie_list.earnings .selected_movie .earning_details .element{
+        font-size: 30px;
+        margin-bottom: 30px;
+        text-align: center;
+    }
+    .movie_list.earnings .selected_movie .earning_details .element.title
+    {
+        font-weight: bold;
+        text-align: center;
+        border-bottom: .5px solid #cecece;
+        margin-bottom: 100px;
+    }
