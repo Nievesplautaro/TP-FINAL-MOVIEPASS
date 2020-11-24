@@ -10,6 +10,8 @@
     Use Models\Show as Show;
     use DAO\TicketDAO as TicketDAO;
     use Models\Ticket as Ticket;
+    use Models\Movie as Movie;
+    use DAO\RequestDAO as MovieDAO;
     use controllers\EmailController as EmailController;
     
 
@@ -31,6 +33,7 @@
             $this->cinemaDAO = new CinemaDAO();
             $this->roomDAO = new RoomDAO();
             $this->userDAO = new UserDAO();
+            $this->movieDAO = new MovieDAO();
             $this->EmailController = new EmailController();
         }
 
@@ -123,7 +126,10 @@
 
         public function showMyTickets(){
             require_once(VIEWS_PATH."validate-session.php");
-            $data = $this->ticketDAO->readTickets();
+            $user = new User();
+            $user = $_SESSION['loggedUser'];
+            $id_user = $this->userDAO->getIdByUserName($user->getEmail());
+            $data = $this->ticketDAO->getTicketByUserId($id_user);
              if ($data instanceof Ticket) { /* ESTE IF CHEQUEA SI EL READ RETORNA UN ARRAY DE TICKETS O UN TICKET SOLO */
                 $ticketList = [];
                 $ticketList[0] = $data;
@@ -172,6 +178,31 @@
             }
         }
 
+        public function moneyByCinema($id_cinema){
+            require_once(VIEWS_PATH."validate-session.php");
+            if(isset($id_cinema)){
+                $total = $this->ticketDAO->getAmountCollectedByCinemaId($id_cinema);
+                $cinema = $this->cinemaDAO->read($id_cinema);
+            }
+            require_once(VIEWS_PATH."earningsCinema.php");
+        }
 
+        
+
+        public function selectMovie(){
+            require_once(VIEWS_PATH."validate-session.php");
+            $movieList = $this->movieDAO->readMovies();
+            require_once(VIEWS_PATH."selectMovie.php");
+        }
+    
+
+        public function moneyByMovie($id_movie){
+            require_once(VIEWS_PATH."validate-session.php");
+            if(isset($id_movie)){
+                $total = $this->ticketDAO->getAmountCollectedByMovieId($id_movie);
+                $movie = $this->movieDAO->getMovieById($id_movie);
+            }
+            require_once(VIEWS_PATH."earningsMovie.php");
+        }
     }
 ?>

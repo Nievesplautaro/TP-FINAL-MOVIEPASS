@@ -158,6 +158,8 @@
                 $path = 'Show/registerShow';
             }else if($type == 'see'){
                 $path = 'Show/showCinemaShows';
+            }else if($type == 'spent'){
+                $path = 'Ticket/moneyByCinema';
             }
             require_once(VIEWS_PATH."validate-session.php");
             require_once(VIEWS_PATH."SelectCinema.php");

@@ -8,7 +8,7 @@ create table if not exists users(
     pass varchar(50),
     constraint pk_users primary key (id_user)
 );
-drop table shows;
+
 insert into users (user_role, username, pass) values (0, 'user@user.com', '123456'), (1, 'admin@admin.com', '123456');
 
 create table if not exists genres(
@@ -52,6 +52,8 @@ create table if not exists cinemas(
     constraint pk_cinemas primary key (id_cinema)
 );
 
+insert into cinemas (cinema_name, address, phone_number) values ('Ambassador', 'Cordoba 2204', '4790909');
+
 create table if not exists room_cinema(
 	id_room int not null auto_increment,
     capacity int,
@@ -61,7 +63,9 @@ create table if not exists room_cinema(
     constraint pk_room primary key (id_room),
     constraint fk_room_cinema foreign key (id_cinema) references cinemas(id_cinema) on delete cascade on update cascade
 );
-select * from shows;
+
+insert into room_cinema (capacity, room_name, price, id_cinema) values (100, 'Dolby Atmos', 75, 1);
+
 create table if not exists shows(
 	id_show int not null auto_increment,
     id_movie int,
@@ -70,15 +74,6 @@ create table if not exists shows(
     constraint pk_show primary key (id_show),
     constraint fk_show_movie foreign key (id_movie) references movies(id_movie) on delete cascade on update cascade,
     constraint fk_show_room foreign key (id_room) references room_cinema(id_room) on delete cascade on update cascade
-);
-
-create table if not exists seats(
-	id_seat int not null auto_increment,
-    seat_row varchar(5),
-    seat_number int,
-    id_room int,
-    constraint pk_seat primary key (id_seat),
-    constraint fk_seat_room foreign key (id_room) references room_cinema(id_room) on delete cascade on update cascade
 );
 
 create table if not exists tickets(
@@ -91,11 +86,4 @@ create table if not exists tickets(
     constraint fk_ticket_user foreign key (id_user) references users(id_user) on delete cascade on update cascade
 );
 
-create table if not exists seat_x_ticket(
-	id_seat_x_ticket int not null auto_increment,
-    id_ticket int,
-    id_seat int,
-    constraint pk_seat_x_ticket primary key (id_seat_x_ticket),
-    constraint fk_ticket_seat foreign key (id_ticket) references tickets(id_ticket) on delete cascade on update cascade,
-    constraint fk_seat_ticket foreign key (id_seat) references seats(id_seat) on delete cascade on update cascade
-);
+

@@ -78,7 +78,8 @@
                 FROM
                     shows 
                 inner JOIN room_cinema r on r.id_room = shows.id_room
-                and r.id_cinema = :id_cinema";
+                where r.id_cinema = :id_cinema
+                and shows.start_time > now()";
 
         $parameters['id_cinema'] = $id_cinema;
         try{
@@ -123,7 +124,8 @@
                 inner join room_cinema rc on s.id_room = rc.id_room
                 inner join cinemas c on rc.id_cinema = c.id_cinema
                 inner join movies m on s.id_movie = m.id_movie
-                where m.id = ".$id_movie."
+                where m.id = ".$id_movie." 
+                and s.start_time > now()
                 order by c.cinema_name;";
 
         try{

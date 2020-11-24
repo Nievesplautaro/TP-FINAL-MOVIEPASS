@@ -139,7 +139,7 @@
     
         }
         
-        public function getMovieIdByInternId($id){
+        public function getMovieIdByInternId($id){ //id from MovieDB api
             $sqlSelectIdMovie = "select id_movie from movies where id = ".$id." order by id_movie desc limit 1;";
 
             try{
@@ -165,7 +165,7 @@
             return count($resp) > 1 ? $resp : $resp['0'];
         }
 
-        public function getMovieById($id){
+        public function getMovieById($id){ //id from our database
             $sqlSelectIdMovie = "select * from movies where id_movie = :id_movie ;";
             $parameters["id_movie"] = $id;
 
@@ -405,6 +405,34 @@
             }else{
                 return false;
             }
+        }
+
+        public function moviesExistsInDB(){
+            $sql = "SELECT EXISTS(
+                        SELECT *
+                        from movies
+                    ) movie_exist;";
+            try{
+                $this->connection = Connection::getInstance();
+                $result = $this->connection->Execute($sql);
+            }catch(\PDOException $ex){
+                throw $ex;
+            }
+            if(!empty($result)){
+                return $this->mapearMoviesExists($result);
+            }else{
+                return false;
+            }
+        }
+
+        public function mapearMoviesExists($value){
+            $value = is_array($value) ? $value : [];
+        
+            $resp = array_map(function($p){
+                return $p['movie_exist'];
+            }, $value);
+
+            return count($resp) > 1 ? $resp : $resp['0'];
         }
 
    /*      public function getMoviesByIdList($idList){

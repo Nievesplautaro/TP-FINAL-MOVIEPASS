@@ -37,6 +37,7 @@
         public function MenuAdmin()
         {
             require_once(VIEWS_PATH."validate-session.php");
+            $movies_exists = $this->dashboardDAO->moviesExistsInDB();
             require_once(VIEWS_PATH."menuAdmin.php");
         }
 
@@ -56,6 +57,7 @@
 
         public function UpdateMovies($message = "")
         {
+            $this->dashboardDAO->SaveGenresFromApi();
             $this->dashboardDAO->SaveMoviesFromApi();
             require_once(VIEWS_PATH."validate-session.php");
             require_once(VIEWS_PATH."registerAdmin.php");

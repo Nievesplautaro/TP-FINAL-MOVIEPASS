@@ -99,6 +99,22 @@ public function read($id_ticket){
         }
     }
 
+    public function getTicketByUserId($user_id){
+        $sql = "SELECT * FROM tickets t where t.id_user = ".$user_id.";";
+        
+        try{
+            $this->connection = Connection::getInstance();
+            $result = $this->connection->Execute($sql);
+        }catch(\PDOException $ex){
+            throw $ex;
+        }
+        if(!empty($result)){
+            return $this->mapearTicket($result);
+        }else{
+            return false;
+        }
+    }
+
 //return ticket by id
 
     public function getTicketById($id){
@@ -197,6 +213,36 @@ public function read($id_ticket){
         return count($resp) > 1 ? $resp : $resp['0'];
     }
 
+    public function getAmountCollectedByCinemaId($CinemaId){
+        $sql = "select sum(t.price) as total_amount from room_cinema r  join shows s on r.id_cinema = ".$CinemaId." and r.id_room = s.id_room join tickets t on s.id_show = t.id_show;";
+        try{
+            $this->connection = Connection::getInstance();
+            $result = $this->connection->Execute($sql);
+        }catch(\PDOException $ex){
+            throw $ex;
+        }
+        if(!empty($result)){
+            return $this->mapearAmountCollected($result);
+        }else{
+            return false;
+        }
+    }
+
+    
+    public function getAmountCollectedByMovieId($id_movie){
+        $sql = "select sum(t.price)  as total_amount from shows s join tickets t on s.id_movie = ".$id_movie." and s.id_show = t.id_show;";
+        try{
+            $this->connection = Connection::getInstance();
+            $result = $this->connection->Execute($sql);
+        }catch(\PDOException $ex){
+            throw $ex;
+        }
+        if(!empty($result)){
+            return $this->mapearAmountCollected($result);
+        }else{
+            return false;
+        }
+    }
 
 }
 ?>

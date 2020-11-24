@@ -6,11 +6,7 @@
     <div class="movie_list">
         <ul class="catalogo cine">
             <?php
-            $id = -1;
-                if($cinemaList && !empty($cinemaList)){
-                        foreach($cinemaList as $cinema){
-                        $cinemaSoldTicket = $this->cinemaDAO->cinemaSoldTicket($cinema->getCinemaId());
-                        $id++;
+                if($cinema){
             ?>
             <li class="cinema">
                 <div class="element_cine">
@@ -30,6 +26,9 @@
                             <div class="element">
                                 Address: <?php echo $cinema->getAddress()  ;?>
                             </div>
+                            <div class="element">
+                                Total: <?php echo $total;?>
+                            </div>
                     </div>
                     <div class="actions">
                         <div class="button">
@@ -38,17 +37,12 @@
                         <div class="button">
                             <a href="<?php echo FRONT_ROOT ?>room/ShowRooms/<?php echo $cinema->getCinemaId(); ?>">Manage Rooms</a>
                         </div>
-                        <?php if($cinemaSoldTicket == 0){ ?>
-                        <div class="button">
-                            <a href="<?php echo FRONT_ROOT?>Cinema/removeCinema/<?php echo $cinema->getCinemaId() ;?>">Delete Cinema</a>
-                        </div>
-                        <?php } ?>
                     </div>
                 </div>
             </li>
             <?php
                         }
-                }else{  
+                else{  
                     echo "<div class='Error'>";
                     echo "<div class='empty_cine'><p>Currently, We Don't Have Any Cinema Available To Show.</p><p> If You Want to Add a New One Click Here.</p></div>";
                     echo "<div class='button'><a href='";
