@@ -11,9 +11,20 @@
                             </a>
                         </div>
                     </div>
+                    <?php $capacityLeft = $roomCapacity - $ticketsPurchased; 
+                        if(isset($capacityLeft) && $capacityLeft == 0){
+                    ?>
+                        <div class="data_register no_capaticy">
+                            <p>Right no we dont have tickets avaiable for this show</p>
+                        </div>
+                        <div class="return_to_movie">
+                        <a class="btn_ticket" href="<?php echo FRONT_ROOT?>Dashboard/showMovies">Search Movies</a>
+                        </div>
+                    <?php
+                        }else{
+                    ?>
                     <div class="data_register">
                         <p>Enter the tickets quantity you want.</p> 
-                        <?php $capacityLeft = $roomCapacity - $ticketsPurchased; ?>
                         <p>(Tickets left for this show: <?php echo $capacityLeft;?> units.)</p>
                     </div>
                     <div class="form">
@@ -35,6 +46,9 @@
                             </div>
                         </form>
                     </div>
+                    <?php 
+                        }
+                    ?>
                 </div>
             </div>
         </div>

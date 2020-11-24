@@ -4,12 +4,18 @@
 ?>
 <div class="container menu">
     <div class="ticket_list">
+        <?php
+            if($ticketList && !empty($ticketList)){
+        ?>
         <div class="sortBy">
         SORT BY
         <div class="actions">
             <a href="<?php echo FRONT_ROOT?>Ticket/showMyTickets?sortby=date">DATE</a>
             <a href="<?php echo FRONT_ROOT?>Ticket/showMyTickets?sortby=movie">MOVIE</a>
         </div>
+        <?php 
+        }
+        ?>
         </div>
         <ul class="my_tickets">
             <?php

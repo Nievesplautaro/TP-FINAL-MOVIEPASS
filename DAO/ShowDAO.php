@@ -149,7 +149,7 @@
             $showInfo = array(
                             "cinema_name" => $p["cinema_name"],
                             "start_time"  => $p["start_time"],
-                            "id_show"     => $p["id_show"]
+                            "id_show"     => $p["id_show"]z
                         );
             return $showInfo ;
         }, $value);

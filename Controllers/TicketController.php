@@ -119,8 +119,8 @@
                 $this->EmailController->sendTicketPurchase($user,$show,$qrArray);
                 
             }
-            //require_once(VIEWS_PATH."menu.php"); 
-            header('location:../Home/Index');
+            require_once(VIEWS_PATH."purchasedata.php"); 
+            //header('location:../Home/Index');
         }
 
 
