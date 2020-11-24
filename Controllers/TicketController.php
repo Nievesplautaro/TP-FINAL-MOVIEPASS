@@ -178,11 +178,24 @@
             }
         }
 
-        public function moneyByCinema($id_cinema){
+        public function selectCinema(){
+            $data = $this->cinemaDAO->readCinemas();
+            if ($data instanceof Cinema) { /* ESTE IF CHEQUEA SI EL READ RETORNA UN ARRAY DE CINES O UN CINE SOLO */
+                $cinemaList = [];
+                $cinemaList[0] = $data;
+            }else{
+                $cinemaList = $data;
+            }
             require_once(VIEWS_PATH."validate-session.php");
+            require_once(VIEWS_PATH."SelectCinemaDate.php");
+        }
+
+        public function moneyByCinema($id_cinema,$inDate,$outDate){
+            require_once(VIEWS_PATH."validate-session.php");
+            echo $inDate;
             if(isset($id_cinema)){
-                $ticketsSold = $this->ticketDAO->getAmountTicketsSoldByCinemaId($id_cinema);
-                $totalMoney = $this->ticketDAO->getAmountCollectedByCinemaId($id_cinema);
+                $ticketsSold = $this->ticketDAO->getAmountTicketsSoldByCinemaId($id_cinema,$inDate,$outDate);
+                $totalMoney = $this->ticketDAO->getAmountCollectedByCinemaId($id_cinema,$inDate,$outDate);
                 $cinema = $this->cinemaDAO->read($id_cinema);
             }
             require_once(VIEWS_PATH."earningsCinema.php");
@@ -197,11 +210,11 @@
         }
     
 
-        public function moneyByMovie($id_movie){
+        public function moneyByMovie($id_movie,$inDate,$outDate){
             require_once(VIEWS_PATH."validate-session.php");
             if(isset($id_movie)){
-                $ticketsSold = $this->ticketDAO->getAmountTicketsSoldByMovieId($id_movie);
-                $totalMoney = $this->ticketDAO->getAmountCollectedByMovieId($id_movie);
+                $ticketsSold = $this->ticketDAO->getAmountTicketsSoldByMovieId($id_movie,$inDate,$outDate);
+                $totalMoney = $this->ticketDAO->getAmountCollectedByMovieId($id_movie,$inDate,$outDate);
                 $movie = $this->movieDAO->getMovieById($id_movie);
             }
             require_once(VIEWS_PATH."earningsMovie.php");
