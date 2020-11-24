@@ -304,6 +304,7 @@
             $sql = "SELECT m.*
                     FROM shows s
                     inner join movies m on s.id_movie = m.id_movie 
+                    and s.start_time > now()
                     group by m.id_movie;";
             try{
                 $this->connection = Connection::getInstance();

@@ -10,9 +10,10 @@
                     <div class="date_filter">
                     <div class="head_title">Search by date</div>
                     <form action="<?php echo FRONT_ROOT ?>Dashboard/showMoviesByDate" method="GET">
+                    <?php  $today = date('Y-m-d', strtotime('today'));  ?>
                          <input type="date" id="start" name="date"
                               value="<?php if(isset($date)){echo $date;}else{ echo date("Y-m-d");}?>"
-                              min="2018-01-01" max="2022-12-31">
+                              min="<?php echo $today ?>" max="2022-12-31">
                          <input type="submit" name="" value="Search"/>
                     </form>
                     </div>

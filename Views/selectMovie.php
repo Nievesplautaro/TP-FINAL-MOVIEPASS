@@ -30,8 +30,11 @@
                                     }
                                     ?>
                                 </select>
+                                </br>
+                                <label for="indate">Min Date:</label>
                                 <input type="date" id="indate" name="indate" required>
-                                <input type="date" id="outdate" name="outdate"required>
+                                <label for="outdate">Max Date:</label>
+                                <input type="date" id="outdate" name="outdate" required>
                             </div>
                             <div class="form-group">
                             <div class="btn_cont">
