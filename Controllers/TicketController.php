@@ -13,6 +13,7 @@
     use controllers\EmailController as EmailController;
     
 
+
     
 
     class TicketController
@@ -31,6 +32,10 @@
             $this->roomDAO = new RoomDAO();
             $this->userDAO = new UserDAO();
             $this->EmailController = new EmailController();
+        }
+
+        public function compareDates($a, $b) {
+            return strcmp($a->getShow()->getStartTime(), $b->getShow()->getStartTime());
         }
 
         public function checkPurchase () {
@@ -137,12 +142,36 @@
                     }
                 }
             }
-            //require_once(VIEWS_PATH."validate-session.php");
+
+            if(isset($_SERVER['QUERY_STRING'])){
+                $query = $_SERVER['QUERY_STRING'];
+                $query = str_replace('url=Ticket/showMyTickets&sortby=', '', $query); 
+            }
+            if(isset($query)){
+                if($query == 'date'){
+                    usort($ticketList, function($a, $b){
+                        if($a->getShow()->getStartTime() == $b->getShow()->getStartTime()) { 
+                        return 0 ; 
+                    } 
+                    return ($a->getShow()->getStartTime() < $b->getShow()->getStartTime()) ? -1 : 1;
+                    }); 
+                }else if($query == 'movie'){
+                    usort($ticketList, function($a, $b){
+                        if($a->getShow()->getMovie()->getTitle() == $b->getShow()->getMovie()->getTitle()) { 
+                        return 0 ; 
+                    } 
+                    return ($a->getShow()->getMovie()->getTitle() < $b->getShow()->getMovie()->getTitle()) ? -1 : 1;
+                    }); 
+                }
+            }
+
             if(!isset($_SESSION["loggedUser"])){
                 header('location:../User/Logme');  
             }else{
                 require_once(VIEWS_PATH."ticketsManagment.php");
             }
         }
+
+
     }
 ?>
