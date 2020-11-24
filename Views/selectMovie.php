@@ -18,14 +18,14 @@
                         <p>Please Pick Movie desired.</p> 
                     </div>
                     <div class="form">
-                        <form action="<?php echo FRONT_ROOT;?>"  method="POST" class="login-form bg-dark-alpha p-5 bg-light">
+                        <form action="<?php echo FRONT_ROOT;?>Ticket/moneyByMovie"  method="POST" class="login-form bg-dark-alpha p-5 bg-light">
                             <div class="form-group">
                                 <label for="id_movie">Choose a movie:</label>
                                 <select name="id_movie" id="id_movie">
                                     <?php 
                                     if($movieList && !empty($movieList)){
                                         foreach($movieList as $movie){
-                                            echo "<option value='".$movie->getmovieId()."'>".$movie->getName()."</option>";
+                                            echo "<option value='".$movie->getMovieId()."'>".$movie->getTitle()."</option>";
                                         }
                                     }
                                     ?>
