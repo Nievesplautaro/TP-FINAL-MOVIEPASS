@@ -244,5 +244,35 @@ public function read($id_ticket){
         }
     }
 
+    public function getAmountTicketsSoldByMovieId($id_movie){
+        $sql = "select count(t.id_ticket)  as total_amount from shows s join tickets t on s.id_movie = ".$id_movie." and s.id_show = t.id_show;";
+        try{
+            $this->connection = Connection::getInstance();
+            $result = $this->connection->Execute($sql);
+        }catch(\PDOException $ex){
+            throw $ex;
+        }
+        if(!empty($result)){
+            return $this->mapearAmountCollected($result);
+        }else{
+            return false;
+        }
+    }
+
+    public function getAmountTicketsSoldByCinemaId($id_cinema){
+        $sql = "select count(t.id_ticket) as total_amount from room_cinema r  join shows s on r.id_cinema = ".$id_cinema." and r.id_room = s.id_room join tickets t on s.id_show = t.id_show;";
+        try{
+            $this->connection = Connection::getInstance();
+            $result = $this->connection->Execute($sql);
+        }catch(\PDOException $ex){
+            throw $ex;
+        }
+        if(!empty($result)){
+            return $this->mapearAmountCollected($result);
+        }else{
+            return false;
+        }
+    }
+
 }
 ?>

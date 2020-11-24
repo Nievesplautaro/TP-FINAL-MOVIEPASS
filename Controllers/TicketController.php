@@ -154,7 +154,8 @@
         public function moneyByCinema($id_cinema){
             require_once(VIEWS_PATH."validate-session.php");
             if(isset($id_cinema)){
-                $total = $this->ticketDAO->getAmountCollectedByCinemaId($id_cinema);
+                $ticketsSold = $this->ticketDAO->getAmountTicketsSoldByCinemaId($id_cinema);
+                $totalMoney = $this->ticketDAO->getAmountCollectedByCinemaId($id_cinema);
                 $cinema = $this->cinemaDAO->read($id_cinema);
             }
             require_once(VIEWS_PATH."earningsCinema.php");
@@ -172,7 +173,8 @@
         public function moneyByMovie($id_movie){
             require_once(VIEWS_PATH."validate-session.php");
             if(isset($id_movie)){
-                $total = $this->ticketDAO->getAmountCollectedByMovieId($id_movie);
+                $ticketsSold = $this->ticketDAO->getAmountTicketsSoldByMovieId($id_movie);
+                $totalMoney = $this->ticketDAO->getAmountCollectedByMovieId($id_movie);
                 $movie = $this->movieDAO->getMovieById($id_movie);
             }
             require_once(VIEWS_PATH."earningsMovie.php");

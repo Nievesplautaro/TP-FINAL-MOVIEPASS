@@ -1,3 +1,6 @@
+<?php
+    require_once(VIEWS_PATH."navAdmin.php");
+?>
 <div class="container menu">
     <div class="grid">
         <div class="dash">
@@ -26,8 +29,11 @@
                                     </div>
                                 </div>  
                             </div>
-                            <div>
-                                <?php echo $total ?>
+                            <div class="element">
+                                Earnings: <?php echo $totalMoney;?>
+                            </div>
+                            <div class="element">
+                                Tickets Sold: <?php echo $ticketsSold;?>
                             </div>
                         <?php
                             }

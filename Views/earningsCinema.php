@@ -27,7 +27,10 @@
                                 Address: <?php echo $cinema->getAddress()  ;?>
                             </div>
                             <div class="element">
-                                Total: <?php echo $total;?>
+                                Earnings: <?php echo $totalMoney;?>
+                            </div>
+                            <div class="element">
+                                Tickets Sold: <?php echo $ticketsSold;?>
                             </div>
                     </div>
                     <div class="actions">
