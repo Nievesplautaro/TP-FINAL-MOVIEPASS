@@ -826,4 +826,18 @@ margin: 0;
         background-image: none !important;
 
     }
+
+    .sortBy{
+        text-align: center;
+    }
+
+    .sortBy .actions{
+        margin: 5px 0;
+    }
     
+    .sortBy .actions a{
+        padding: 0 15px;
+    }
+    .sortBy .actions a:hover{
+        color: rgb(240, 171, 131);
+    }

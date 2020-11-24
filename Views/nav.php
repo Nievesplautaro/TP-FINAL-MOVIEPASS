@@ -9,7 +9,13 @@
         <a class="nav-link" >Movies</a> <!-- Showmovies get all the movies into a list and show them on Views/dashboard -->
         <ul>
           <li><a href="<?php echo FRONT_ROOT?>Dashboard/showMovies">Show Movies</a></li>
-          <li><a href="<?php echo FRONT_ROOT?>Ticket/showMyTickets">Tickets</a></li>
+          <?php 
+            if(isset($_SESSION["loggedUser"])){
+          ?>
+           <li><a href="<?php echo FRONT_ROOT?>Ticket/showMyTickets">Tickets</a></li>
+          <?php 
+          }
+          ?>
         </ul>
       </li>
       <li class="nav-item">

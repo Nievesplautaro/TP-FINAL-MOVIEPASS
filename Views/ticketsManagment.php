@@ -4,6 +4,13 @@
 ?>
 <div class="container menu">
     <div class="ticket_list">
+        <div class="sortBy">
+        SORT BY
+        <div class="actions">
+            <a href="<?php echo FRONT_ROOT?>Ticket/showMyTickets?sortby=date">DATE</a>
+            <a href="<?php echo FRONT_ROOT?>Ticket/showMyTickets?sortby=movie">MOVIE</a>
+        </div>
+        </div>
         <ul class="my_tickets">
             <?php
             //$id = -1;
@@ -20,9 +27,6 @@
                             Ticket Data
                     </div>
                     <div class="data">
-                            <div class="element">
-                                Ticket ID: <?php echo $ticket->getIdTicket()  ?>
-                            </div>
                             <div class="element">
                                 Movie: <?php echo $ticket->getShow()->getMovie()->getTitle();  ?>
                             </div>
