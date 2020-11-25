@@ -59,8 +59,9 @@
         {
             $this->dashboardDAO->SaveGenresFromApi();
             $this->dashboardDAO->SaveMoviesFromApi();
+            $updatemovies = '01';
             require_once(VIEWS_PATH."validate-session.php");
-            require_once(VIEWS_PATH."registerAdmin.php");
+            require_once(VIEWS_PATH."menuAdmin.php");
         }
 
         public function ShowMainView()

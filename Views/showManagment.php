@@ -36,7 +36,7 @@
                     </div>
                     <div class="data">
                             <div class="element">
-                                Purchased Tickets: <?php echo $show->getTicketPurchased() ?>
+                                Purchased Tickets: <?php if($show->getTicketPurchased()!= null){echo $show->getTicketPurchased();}else{echo '0';} ?>
                             </div>
                     </div>
                     <div class="data">

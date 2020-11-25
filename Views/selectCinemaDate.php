@@ -31,9 +31,9 @@
                                     ?>
                                 </select>
                                 </br>
-                                <label for="indate">Min Date:</label>
+                                <label class="dateLabel" for="indate">From:</label>
                                 <input type="date" id="indate" name="indate" required>
-                                <label for="outdate">Max Date:</label>
+                                <label class="dateLabel" for="outdate">To:</label>
                                 <input type="date" id="outdate" name="outdate" required>
                             </div>
                             <div class="form-group">

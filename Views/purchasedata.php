@@ -15,7 +15,7 @@ h<!-- In this VIEW we can register a ticket completing a form -->
                         <p>Congratulations, your payment was successfully credited. We have sent you all the information you need to access the cinema by email. Enjoy!</p>
                     </div>
                     <div class="return_to_movie">
-                    <a class="btn_ticket" href="<?php echo FRONT_ROOT?>">Go to Home</a>
+                    <a class="btn_ticket" href="<?php echo FRONT_ROOT?>Ticket/showMyTickets">Go to My Tickets</a>
                     </div>
                 </div>
             </div>

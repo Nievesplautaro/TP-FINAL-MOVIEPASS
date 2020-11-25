@@ -126,7 +126,7 @@
                 inner join movies m on s.id_movie = m.id_movie
                 where m.id = ".$id_movie." 
                 and s.start_time > now()
-                order by c.cinema_name;";
+                order by s.start_time;";
 
         try{
             $this->connection = Connection::getInstance();
@@ -149,7 +149,7 @@
             $showInfo = array(
                             "cinema_name" => $p["cinema_name"],
                             "start_time"  => $p["start_time"],
-                            "id_show"     => $p["id_show"]z
+                            "id_show"     => $p["id_show"]
                         );
             return $showInfo ;
         }, $value);

@@ -20,8 +20,17 @@ if(isset($error)){
 ?>
 <div class="container">
  <div class="grid">
+     <?php if(isset($updatemovies) && $updatemovies == '01'){
+     ?>
+     <div class="msg_welcome update">
+          Movies were updated successfully
+     </div>
+     <?php } ?>
      <div class="msg_welcome">
           Welcome!
+     </div>
+     <div class="huge">
+          ADMIN!
      </div>
  </div>
 </div>

@@ -922,3 +922,22 @@ margin: 0;
         border-bottom: .5px solid #cecece;
         margin-bottom: 100px;
     }
+
+    #outdate,
+    #indate{
+        background: none;
+        width: 90%;
+    }
+
+    .dateLabel{
+        margin-bottom: 5px;
+        margin-top: 5px;
+    }
+
+    .huge{
+            text-align: center;
+            font-size: 50px;
+            text-transform: uppercase;
+            font-weight: bold;
+            margin-bottom: 20px;
+    }
