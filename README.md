@@ -24,9 +24,9 @@ Contributors: Pedro Bazterrica - Leandro Toloza - Lautaro Nieves Perri - Facundo
  
 ## Instructions
 
-  1- Clone Repository
-  2- We use WAMP Server for Localhost
-  3- When they build the project they will have 2 users (user@user.com / admin@admin.com // pass:123456)
-  4- Enter with Admin user and go to Admin -> update / add movies to get movies from the api
-  5- Add cinemas / Rooms / Shows
-  6- The System it's ready to Use.
+  - Clone Repository
+  - We use WAMP Server for Localhost
+  - When they build the project they will have 2 users (user@user.com / admin@admin.com // pass:123456)
+  - Enter with Admin user and go to Admin -> update / add movies to get movies from the api
+  - Add cinemas / Rooms / Shows
+  - The System it's ready to Use.
